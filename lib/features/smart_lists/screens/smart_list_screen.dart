@@ -18,7 +18,11 @@ class SmartListScreen extends ConsumerWidget {
 
   final int listId;
 
-  Future<void> _delete(BuildContext context, WidgetRef ref, SmartList list) async {
+  Future<void> _delete(
+    BuildContext context,
+    WidgetRef ref,
+    SmartList list,
+  ) async {
     final S l = S.of(context);
     final bool confirmed = await ConfirmDialog.show(
       context,
@@ -39,8 +43,9 @@ class SmartListScreen extends ConsumerWidget {
         .valueOrNull
         ?.where((SmartList s) => s.id == listId)
         .firstOrNull;
-    final AsyncValue<List<CollectionItem>> items =
-        ref.watch(smartListItemsProvider(listId));
+    final AsyncValue<List<CollectionItem>> items = ref.watch(
+      smartListItemsProvider(listId),
+    );
 
     return Scaffold(
       appBar: AppBar(

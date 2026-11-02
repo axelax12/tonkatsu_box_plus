@@ -59,7 +59,10 @@ class SmartListRules {
         json['statuses'],
         (Object? v) => v is String ? ItemStatus.tryFromString(v) : null,
       ),
-      tagIds: parseSet<int>(json['tag_ids'], (Object? v) => v is int ? v : null),
+      tagIds: parseSet<int>(
+        json['tag_ids'],
+        (Object? v) => v is int ? v : null,
+      ),
       collectionIds: parseSet<int>(
         json['collection_ids'],
         (Object? v) => v is int ? v : null,
@@ -163,8 +166,9 @@ class SmartListRules {
       collectionIds: collectionIds ?? this.collectionIds,
       minMinutes: clearMinMinutes ? null : (minMinutes ?? this.minMinutes),
       maxMinutes: clearMaxMinutes ? null : (maxMinutes ?? this.maxMinutes),
-      maxUnitsLeft:
-          clearMaxUnitsLeft ? null : (maxUnitsLeft ?? this.maxUnitsLeft),
+      maxUnitsLeft: clearMaxUnitsLeft
+          ? null
+          : (maxUnitsLeft ?? this.maxUnitsLeft),
       minRating: clearMinRating ? null : (minRating ?? this.minRating),
       minAgeDays: clearMinAgeDays ? null : (minAgeDays ?? this.minAgeDays),
       favoritesOnly: favoritesOnly ?? this.favoritesOnly,

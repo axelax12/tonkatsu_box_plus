@@ -74,11 +74,13 @@ abstract final class SmartListEvaluator {
     switch (rules.sort) {
       case SmartListSort.addedOldest:
         result.sort(
-          (CollectionItem a, CollectionItem b) => a.addedAt.compareTo(b.addedAt),
+          (CollectionItem a, CollectionItem b) =>
+              a.addedAt.compareTo(b.addedAt),
         );
       case SmartListSort.addedNewest:
         result.sort(
-          (CollectionItem a, CollectionItem b) => b.addedAt.compareTo(a.addedAt),
+          (CollectionItem a, CollectionItem b) =>
+              b.addedAt.compareTo(a.addedAt),
         );
       case SmartListSort.shortestFirst:
         // Unknown lengths go last instead of pretending to be zero.

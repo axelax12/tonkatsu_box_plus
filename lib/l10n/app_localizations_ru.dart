@@ -6748,4 +6748,133 @@ class SRu extends S {
   String yearShareTitle(int year) {
     return 'Итоги $year';
   }
+
+  @override
+  String get smartListsTitle => 'Умные списки';
+
+  @override
+  String get smartListsHint =>
+      'Списки, которые обновляются сами по вашим правилам';
+
+  @override
+  String get smartNew => 'Новый умный список';
+
+  @override
+  String get smartNoneYet =>
+      'Умных списков пока нет. Начните с шаблона или создайте свой.';
+
+  @override
+  String get smartTemplates => 'Шаблоны';
+
+  @override
+  String smartAdded(String name) {
+    return '«$name» добавлен';
+  }
+
+  @override
+  String smartDeleteConfirm(String name) {
+    return 'Удалить умный список «$name»? Сами элементы останутся на месте.';
+  }
+
+  @override
+  String get smartEmpty => 'Сейчас ничего не подходит под эти правила.';
+
+  @override
+  String smartMatches(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count совпадения',
+      many: '$count совпадений',
+      few: '$count совпадения',
+      one: '1 совпадение',
+      zero: 'Нет совпадений',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get smartName => 'Название';
+
+  @override
+  String get smartRuleTypes => 'Типы';
+
+  @override
+  String get smartRuleStatus => 'Статус';
+
+  @override
+  String get smartRuleLength => 'Примерная длительность';
+
+  @override
+  String get smartMinHours => 'Не меньше (часов)';
+
+  @override
+  String get smartMaxHours => 'Не больше (часов)';
+
+  @override
+  String get smartRuleProgress => 'Прогресс и история';
+
+  @override
+  String get smartUnitsLeft => 'Осталось эпизодов, глав или страниц, не больше';
+
+  @override
+  String get smartMinRating => 'Моя оценка не ниже (1-10)';
+
+  @override
+  String get smartMinAgeDays => 'В библиотеке не меньше (дней)';
+
+  @override
+  String get smartFavoritesOnly => 'Только избранное';
+
+  @override
+  String get smartNeverStarted => 'Ещё не начато';
+
+  @override
+  String get smartRuleTags => 'Теги (любой из)';
+
+  @override
+  String get smartRuleCollections => 'Коллекции (любая из)';
+
+  @override
+  String get smartRuleText => 'Содержит текст';
+
+  @override
+  String get smartTextHint => 'Название, жанр или автор';
+
+  @override
+  String get smartSort => 'Порядок';
+
+  @override
+  String get smartSortOldest => 'Сначала самые давние';
+
+  @override
+  String get smartSortNewest => 'Сначала новые';
+
+  @override
+  String get smartSortShortest => 'Сначала короткие';
+
+  @override
+  String get smartSortRating => 'Сначала с лучшей оценкой';
+
+  @override
+  String get smartSortName => 'По алфавиту';
+
+  @override
+  String get smartTemplateShortGames => 'Короткие игры в очереди (до 10 ч)';
+
+  @override
+  String get smartTemplateAlmostDone =>
+      'Почти закончено (осталось 5 или меньше)';
+
+  @override
+  String get smartTemplateForgotten => 'Ждут больше года';
+
+  @override
+  String get smartTemplateMovieNight => 'Вечер кино (до 2 ч)';
+
+  @override
+  String get smartTemplateFavoritesToStart => 'Избранное, которое я не начал';
+
+  @override
+  String get smartTemplateBestRated => 'Мои лучшие оценки';
 }

@@ -9,16 +9,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/database/database_service.dart';
 import '../../insights/providers/insights_providers.dart';
 
-final Provider<SmartListDao> smartListDaoProvider =
-    Provider<SmartListDao>((Ref ref) {
+final Provider<SmartListDao> smartListDaoProvider = Provider<SmartListDao>((
+  Ref ref,
+) {
   final DatabaseService db = ref.watch(databaseServiceProvider);
   return SmartListDao(() => db.database);
 });
 
 final FutureProvider<List<SmartList>> smartListsProvider =
     FutureProvider<List<SmartList>>(
-  (Ref ref) => ref.watch(smartListDaoProvider).getAll(),
-);
+      (Ref ref) => ref.watch(smartListDaoProvider).getAll(),
+    );
 
 /// Everything a rule needs besides the rule itself, loaded once and shared by
 /// the lists, the detail screen and the editor's live preview.
@@ -44,34 +45,38 @@ class SmartListContext {
 
 final FutureProvider<SmartListContext> smartListContextProvider =
     FutureProvider<SmartListContext>((Ref ref) async {
-  final List<CollectionItem> items =
-      await ref.watch(libraryItemsProvider.future);
-  final Map<int, List<int>> tags =
-      await ref.read(globalTagDaoProvider).getAllItemTags();
-  final List<int> gameIds = <int>{
-    for (final CollectionItem i in items)
-      if (i.mediaType == MediaType.game) i.externalId,
-  }.toList();
-  final GoalsDao goals = ref.read(goalsDaoProvider);
-  // Lengths come from the shared cache; missing ones are fetched once here.
-  await refreshTimeToBeat(ref, goals, gameIds, DateTime.now());
-  return SmartListContext(
-    items: items,
-    tagIdsByItem: tags,
-    gameSecondsById: await goals.getTimeToBeat(gameIds),
-  );
-});
+      final List<CollectionItem> items = await ref.watch(
+        libraryItemsProvider.future,
+      );
+      final Map<int, List<int>> tags = await ref
+          .read(globalTagDaoProvider)
+          .getAllItemTags();
+      final List<int> gameIds = <int>{
+        for (final CollectionItem i in items)
+          if (i.mediaType == MediaType.game) i.externalId,
+      }.toList();
+      final GoalsDao goals = ref.read(goalsDaoProvider);
+      // Lengths come from the shared cache; missing ones are fetched once here.
+      await refreshTimeToBeat(ref, goals, gameIds, DateTime.now());
+      return SmartListContext(
+        items: items,
+        tagIdsByItem: tags,
+        gameSecondsById: await goals.getTimeToBeat(gameIds),
+      );
+    });
 
 final FutureProviderFamily<List<CollectionItem>, int> smartListItemsProvider =
     FutureProvider.family<List<CollectionItem>, int>((Ref ref, int id) async {
-  final List<SmartList> lists = await ref.watch(smartListsProvider.future);
-  final SmartList? list =
-      lists.where((SmartList l) => l.id == id).firstOrNull;
-  if (list == null) return <CollectionItem>[];
-  final SmartListContext context =
-      await ref.watch(smartListContextProvider.future);
-  return context.apply(list.rules);
-});
+      final List<SmartList> lists = await ref.watch(smartListsProvider.future);
+      final SmartList? list = lists
+          .where((SmartList l) => l.id == id)
+          .firstOrNull;
+      if (list == null) return <CollectionItem>[];
+      final SmartListContext context = await ref.watch(
+        smartListContextProvider.future,
+      );
+      return context.apply(list.rules);
+    });
 
 final Provider<SmartListController> smartListControllerProvider =
     Provider<SmartListController>(SmartListController.new);

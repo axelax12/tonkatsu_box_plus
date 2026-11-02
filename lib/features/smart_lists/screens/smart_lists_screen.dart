@@ -26,7 +26,9 @@ class SmartListsScreen extends ConsumerWidget {
   ) async {
     final S l = S.of(context);
     final DateTime now = DateTime.now();
-    await ref.read(smartListControllerProvider).save(
+    await ref
+        .read(smartListControllerProvider)
+        .save(
           SmartList(
             id: 0,
             name: template.name,
@@ -45,12 +47,10 @@ class SmartListsScreen extends ConsumerWidget {
     final S l = S.of(context);
     final List<SmartList> lists =
         ref.watch(smartListsProvider).valueOrNull ?? const <SmartList>[];
-    final Set<String> taken = <String>{
-      for (final SmartList s in lists) s.name,
-    };
-    final List<SmartListTemplate> templates = smartListTemplates(l)
-        .where((SmartListTemplate t) => !taken.contains(t.name))
-        .toList();
+    final Set<String> taken = <String>{for (final SmartList s in lists) s.name};
+    final List<SmartListTemplate> templates = smartListTemplates(
+      l,
+    ).where((SmartListTemplate t) => !taken.contains(t.name)).toList();
 
     return ListView(
       padding: const EdgeInsets.all(AppSpacing.md),
@@ -67,7 +67,9 @@ class SmartListsScreen extends ConsumerWidget {
             child: Text(
               l.smartNoneYet,
               textAlign: TextAlign.center,
-              style: AppTypography.body.copyWith(color: AppColors.textSecondary),
+              style: AppTypography.body.copyWith(
+                color: AppColors.textSecondary,
+              ),
             ),
           ),
         FilledButton.icon(
@@ -114,8 +116,9 @@ class _SmartListTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final S l = S.of(context);
-    final List<CollectionItem>? items =
-        ref.watch(smartListItemsProvider(list.id)).valueOrNull;
+    final List<CollectionItem>? items = ref
+        .watch(smartListItemsProvider(list.id))
+        .valueOrNull;
 
     return Material(
       color: AppColors.surfaceLight,

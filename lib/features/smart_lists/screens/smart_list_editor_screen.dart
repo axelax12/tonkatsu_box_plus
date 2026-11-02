@@ -32,20 +32,27 @@ class _SmartListEditorScreenState extends ConsumerState<SmartListEditorScreen> {
   static const int _minutesPerHour = 60;
 
   late SmartListRules _rules = widget.existing?.rules ?? const SmartListRules();
-  late final TextEditingController _name =
-      TextEditingController(text: widget.existing?.name ?? '');
-  late final TextEditingController _text =
-      TextEditingController(text: _rules.text ?? '');
-  late final TextEditingController _minHours =
-      TextEditingController(text: _hoursText(_rules.minMinutes));
-  late final TextEditingController _maxHours =
-      TextEditingController(text: _hoursText(_rules.maxMinutes));
-  late final TextEditingController _unitsLeft =
-      TextEditingController(text: _rules.maxUnitsLeft?.toString() ?? '');
-  late final TextEditingController _minRating =
-      TextEditingController(text: _rules.minRating?.toStringAsFixed(0) ?? '');
-  late final TextEditingController _minAge =
-      TextEditingController(text: _rules.minAgeDays?.toString() ?? '');
+  late final TextEditingController _name = TextEditingController(
+    text: widget.existing?.name ?? '',
+  );
+  late final TextEditingController _text = TextEditingController(
+    text: _rules.text ?? '',
+  );
+  late final TextEditingController _minHours = TextEditingController(
+    text: _hoursText(_rules.minMinutes),
+  );
+  late final TextEditingController _maxHours = TextEditingController(
+    text: _hoursText(_rules.maxMinutes),
+  );
+  late final TextEditingController _unitsLeft = TextEditingController(
+    text: _rules.maxUnitsLeft?.toString() ?? '',
+  );
+  late final TextEditingController _minRating = TextEditingController(
+    text: _rules.minRating?.toStringAsFixed(0) ?? '',
+  );
+  late final TextEditingController _minAge = TextEditingController(
+    text: _rules.minAgeDays?.toString() ?? '',
+  );
 
   bool _saving = false;
 
@@ -115,7 +122,8 @@ class _SmartListEditorScreenState extends ConsumerState<SmartListEditorScreen> {
     if (name.isEmpty || _saving) return;
     setState(() => _saving = true);
     final DateTime now = DateTime.now();
-    final SmartList base = widget.existing ??
+    final SmartList base =
+        widget.existing ??
         SmartList(
           id: 0,
           name: name,
@@ -123,9 +131,9 @@ class _SmartListEditorScreenState extends ConsumerState<SmartListEditorScreen> {
           createdAt: now,
           updatedAt: now,
         );
-    await ref.read(smartListControllerProvider).save(
-          base.copyWith(name: name, rules: _rules, updatedAt: now),
-        );
+    await ref
+        .read(smartListControllerProvider)
+        .save(base.copyWith(name: name, rules: _rules, updatedAt: now));
     if (mounted) Navigator.of(context).pop();
   }
 
@@ -155,8 +163,11 @@ class _SmartListEditorScreenState extends ConsumerState<SmartListEditorScreen> {
   @override
   Widget build(BuildContext context) {
     final S l = S.of(context);
-    final int? matches =
-        ref.watch(smartListContextProvider).valueOrNull?.apply(_rules).length;
+    final int? matches = ref
+        .watch(smartListContextProvider)
+        .valueOrNull
+        ?.apply(_rules)
+        .length;
     final List<Tag> tags =
         ref.watch(globalTagsProvider).valueOrNull ?? const <Tag>[];
     final List<Collection> collections =
@@ -180,8 +191,7 @@ class _SmartListEditorScreenState extends ConsumerState<SmartListEditorScreen> {
                 ),
               ),
               FilledButton(
-                onPressed:
-                    _name.text.trim().isEmpty || _saving ? null : _save,
+                onPressed: _name.text.trim().isEmpty || _saving ? null : _save,
                 style: FilledButton.styleFrom(
                   minimumSize: const Size(0, AppSpacing.buttonHeight),
                 ),
@@ -282,9 +292,8 @@ class _SmartListEditorScreenState extends ConsumerState<SmartListEditorScreen> {
                   contentPadding: EdgeInsets.zero,
                   title: Text(l.smartNeverStarted),
                   value: _rules.neverStarted,
-                  onChanged: (bool v) => setState(
-                    () => _rules = _rules.copyWith(neverStarted: v),
-                  ),
+                  onChanged: (bool v) =>
+                      setState(() => _rules = _rules.copyWith(neverStarted: v)),
                 ),
               ],
             ),
@@ -357,9 +366,8 @@ class _SmartListEditorScreenState extends ConsumerState<SmartListEditorScreen> {
                     child: Text(_sortLabel(sort, l)),
                   ),
               ],
-              onChanged: (SmartListSort? sort) => setState(
-                () => _rules = _rules.copyWith(sort: sort),
-              ),
+              onChanged: (SmartListSort? sort) =>
+                  setState(() => _rules = _rules.copyWith(sort: sort)),
             ),
           ),
         ],

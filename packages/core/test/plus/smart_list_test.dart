@@ -111,7 +111,9 @@ void main() {
 
     test('an empty rule set keeps everything, oldest first', () {
       expect(
-        ids(SmartListEvaluator.apply(const SmartListRules(), library, now: now)),
+        ids(
+          SmartListEvaluator.apply(const SmartListRules(), library, now: now),
+        ),
         <int>[4, 1, 3, 2],
       );
     });
@@ -282,17 +284,16 @@ void main() {
       expect(b.sortOrder, a.sortOrder + 1);
 
       await dao.reorder(<int>[b.id, a.id]);
-      expect(
-        (await dao.getAll()).map((SmartList l) => l.name),
-        <String>['B', 'A'],
-      );
+      expect((await dao.getAll()).map((SmartList l) => l.name), <String>[
+        'B',
+        'A',
+      ]);
 
       await dao.save(a.copyWith(name: 'A2'));
       expect((await dao.getById(a.id))?.name, 'A2');
-      expect(
-        (await dao.getById(a.id))?.rules.statuses,
-        <ItemStatus>{ItemStatus.planned},
-      );
+      expect((await dao.getById(a.id))?.rules.statuses, <ItemStatus>{
+        ItemStatus.planned,
+      });
 
       await dao.delete(a.id);
       expect(await dao.getById(a.id), isNull);

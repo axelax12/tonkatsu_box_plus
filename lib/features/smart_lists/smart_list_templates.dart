@@ -62,10 +62,7 @@ List<SmartListTemplate> smartListTemplates(S l) => <SmartListTemplate>[
   ),
   SmartListTemplate(
     name: l.smartTemplateFavoritesToStart,
-    rules: const SmartListRules(
-      favoritesOnly: true,
-      neverStarted: true,
-    ),
+    rules: const SmartListRules(favoritesOnly: true, neverStarted: true),
   ),
   SmartListTemplate(
     name: l.smartTemplateBestRated,

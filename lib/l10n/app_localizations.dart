@@ -11671,6 +11671,228 @@ abstract class S {
   /// In en, this message translates to:
   /// **'{year} in review'**
   String yearShareTitle(int year);
+
+  /// No description provided for @smartListsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart lists'**
+  String get smartListsTitle;
+
+  /// No description provided for @smartListsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Lists that update themselves from rules you pick'**
+  String get smartListsHint;
+
+  /// No description provided for @smartNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New smart list'**
+  String get smartNew;
+
+  /// No description provided for @smartNoneYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No smart lists yet. Start from a template or build your own.'**
+  String get smartNoneYet;
+
+  /// No description provided for @smartTemplates.
+  ///
+  /// In en, this message translates to:
+  /// **'Templates'**
+  String get smartTemplates;
+
+  /// No description provided for @smartAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'\"{name}\" added'**
+  String smartAdded(String name);
+
+  /// No description provided for @smartDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete the smart list \"{name}\"? Your items stay where they are.'**
+  String smartDeleteConfirm(String name);
+
+  /// No description provided for @smartEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing matches these rules right now.'**
+  String get smartEmpty;
+
+  /// No description provided for @smartMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No matches} =1{1 match} other{{count} matches}}'**
+  String smartMatches(int count);
+
+  /// No description provided for @smartName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get smartName;
+
+  /// No description provided for @smartRuleTypes.
+  ///
+  /// In en, this message translates to:
+  /// **'Types'**
+  String get smartRuleTypes;
+
+  /// No description provided for @smartRuleStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get smartRuleStatus;
+
+  /// No description provided for @smartRuleLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated length'**
+  String get smartRuleLength;
+
+  /// No description provided for @smartMinHours.
+  ///
+  /// In en, this message translates to:
+  /// **'At least (hours)'**
+  String get smartMinHours;
+
+  /// No description provided for @smartMaxHours.
+  ///
+  /// In en, this message translates to:
+  /// **'At most (hours)'**
+  String get smartMaxHours;
+
+  /// No description provided for @smartRuleProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress and history'**
+  String get smartRuleProgress;
+
+  /// No description provided for @smartUnitsLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Episodes, chapters or pages left at most'**
+  String get smartUnitsLeft;
+
+  /// No description provided for @smartMinRating.
+  ///
+  /// In en, this message translates to:
+  /// **'My rating at least (1-10)'**
+  String get smartMinRating;
+
+  /// No description provided for @smartMinAgeDays.
+  ///
+  /// In en, this message translates to:
+  /// **'In the library for at least (days)'**
+  String get smartMinAgeDays;
+
+  /// No description provided for @smartFavoritesOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites only'**
+  String get smartFavoritesOnly;
+
+  /// No description provided for @smartNeverStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Never started'**
+  String get smartNeverStarted;
+
+  /// No description provided for @smartRuleTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags (any of)'**
+  String get smartRuleTags;
+
+  /// No description provided for @smartRuleCollections.
+  ///
+  /// In en, this message translates to:
+  /// **'Collections (any of)'**
+  String get smartRuleCollections;
+
+  /// No description provided for @smartRuleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Contains text'**
+  String get smartRuleText;
+
+  /// No description provided for @smartTextHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Title, genre or author'**
+  String get smartTextHint;
+
+  /// No description provided for @smartSort.
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get smartSort;
+
+  /// No description provided for @smartSortOldest.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting longest first'**
+  String get smartSortOldest;
+
+  /// No description provided for @smartSortNewest.
+  ///
+  /// In en, this message translates to:
+  /// **'Newest first'**
+  String get smartSortNewest;
+
+  /// No description provided for @smartSortShortest.
+  ///
+  /// In en, this message translates to:
+  /// **'Shortest first'**
+  String get smartSortShortest;
+
+  /// No description provided for @smartSortRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Best rated first'**
+  String get smartSortRating;
+
+  /// No description provided for @smartSortName.
+  ///
+  /// In en, this message translates to:
+  /// **'A to Z'**
+  String get smartSortName;
+
+  /// No description provided for @smartTemplateShortGames.
+  ///
+  /// In en, this message translates to:
+  /// **'Short games waiting (under 10 h)'**
+  String get smartTemplateShortGames;
+
+  /// No description provided for @smartTemplateAlmostDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Almost done (5 or fewer left)'**
+  String get smartTemplateAlmostDone;
+
+  /// No description provided for @smartTemplateForgotten.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for over a year'**
+  String get smartTemplateForgotten;
+
+  /// No description provided for @smartTemplateMovieNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Movie night (under 2 h)'**
+  String get smartTemplateMovieNight;
+
+  /// No description provided for @smartTemplateFavoritesToStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites I never started'**
+  String get smartTemplateFavoritesToStart;
+
+  /// No description provided for @smartTemplateBestRated.
+  ///
+  /// In en, this message translates to:
+  /// **'My best rated'**
+  String get smartTemplateBestRated;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
