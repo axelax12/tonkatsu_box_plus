@@ -246,7 +246,7 @@ class _ReviewCard extends StatelessWidget {
             Text(l.yearTopRated, style: AppTypography.h3),
             for (final CollectionItem item in review.topRated)
               ItemCoverRow(
-                key: ValueKey<int>(item.id),
+                key: ValueKey<String>('rated-${item.id}'),
                 item: item,
                 trailing: Text(
                   '★ ${(item.userRating ?? 0).toStringAsFixed(0)}',
@@ -263,7 +263,7 @@ class _ReviewCard extends StatelessWidget {
             const SizedBox(height: AppSpacing.sm),
             for (final JournalEntry entry in review.highlights)
               Padding(
-                key: ValueKey<int>(entry.id),
+                key: ValueKey<String>('quote-${entry.id}'),
                 padding: const EdgeInsets.only(bottom: AppSpacing.sm),
                 child: Text(
                   '“${entry.body ?? ''}”',

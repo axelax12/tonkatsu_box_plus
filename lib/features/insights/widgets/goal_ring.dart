@@ -43,7 +43,7 @@ class GoalRing extends StatelessWidget {
               ),
               child: Center(child: child),
             ),
-        child: this.child,
+        child: child,
       ),
     );
   }
