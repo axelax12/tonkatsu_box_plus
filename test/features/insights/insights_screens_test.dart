@@ -74,8 +74,9 @@ void main() {
         const GoalsScreen(),
         wrapInScaffold: true,
         overrides: <Override>[
-          goalProgressProvider(year)
-              .overrideWith((Ref ref) async => <GoalProgress>[]),
+          goalProgressProvider(
+            year,
+          ).overrideWith((Ref ref) async => <GoalProgress>[]),
         ],
       );
 

@@ -22,10 +22,11 @@ class GoalCard extends StatelessWidget {
     final GoalPace pace = progress.pace;
     final Color color = goalPaceColor(pace);
     final double target = progress.goal.target.toDouble();
-    final String current =
-        formatGoalAmount(progress.current, progress.goal.metric);
-    final String targetText =
-        formatGoalAmount(target, progress.goal.metric);
+    final String current = formatGoalAmount(
+      progress.current,
+      progress.goal.metric,
+    );
+    final String targetText = formatGoalAmount(target, progress.goal.metric);
 
     return Material(
       color: AppColors.surfaceLight,
@@ -39,7 +40,9 @@ class GoalCard extends StatelessWidget {
             children: <Widget>[
               GoalRing(
                 fraction: progress.fraction,
-                expectedFraction: target > 0 ? progress.expected / target : null,
+                expectedFraction: target > 0
+                    ? progress.expected / target
+                    : null,
                 color: color,
                 child: Text(
                   '${(progress.fraction * _percent).round()}%',

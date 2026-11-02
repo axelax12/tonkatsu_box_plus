@@ -58,9 +58,11 @@ class YearReview {
 
   bool get isEmpty => completed.isEmpty && sessionCount == 0 && entryCount == 0;
 
-  CollectionItem? get firstCompleted => completed.isEmpty ? null : completed.first;
+  CollectionItem? get firstCompleted =>
+      completed.isEmpty ? null : completed.first;
 
-  CollectionItem? get lastCompleted => completed.isEmpty ? null : completed.last;
+  CollectionItem? get lastCompleted =>
+      completed.isEmpty ? null : completed.last;
 
   /// 1-based month with the most logged time, or null without sessions.
   int? get busiestMonth {
@@ -85,12 +87,14 @@ class YearReview {
     final DateTime end = DateTime(year + 1);
     bool inYear(DateTime d) => !d.isBefore(start) && d.isBefore(end);
 
-    final List<CollectionItem> completed = items.where((CollectionItem i) {
-      final DateTime? done = i.completedAt;
-      return isFinishedStatus(i.status) && done != null && inYear(done);
-    }).toList()
-      ..sort((CollectionItem a, CollectionItem b) =>
-          _completedAt(a).compareTo(_completedAt(b)));
+    final List<CollectionItem> completed =
+        items.where((CollectionItem i) {
+          final DateTime? done = i.completedAt;
+          return isFinishedStatus(i.status) && done != null && inYear(done);
+        }).toList()..sort(
+          (CollectionItem a, CollectionItem b) =>
+              _completedAt(a).compareTo(_completedAt(b)),
+        );
 
     final Map<MediaType, int> byType = <MediaType, int>{};
     final List<int> completedByMonth = List<int>.filled(monthsPerYear, 0);
@@ -138,21 +142,27 @@ class YearReview {
       if (item.id == mostPlayedId) mostPlayed = item;
     }
 
-    final List<CollectionItem> rated = completed
-        .where((CollectionItem i) => i.userRating != null)
-        .toList()
-      ..sort((CollectionItem a, CollectionItem b) =>
-          (b.userRating ?? 0).compareTo(a.userRating ?? 0));
+    final List<CollectionItem> rated =
+        completed.where((CollectionItem i) => i.userRating != null).toList()
+          ..sort(
+            (CollectionItem a, CollectionItem b) =>
+                (b.userRating ?? 0).compareTo(a.userRating ?? 0),
+          );
 
-    final List<JournalEntry> highlights = yearEntries
-        .where((JournalEntry e) =>
-            !e.isSpoiler &&
-            (e.body?.trim().isNotEmpty ?? false) &&
-            e.kind != JournalEntryKind.note &&
-            e.kind != JournalEntryKind.screenshot)
-        .toList()
-      ..sort((JournalEntry a, JournalEntry b) =>
-          b.occurredAt.compareTo(a.occurredAt));
+    final List<JournalEntry> highlights =
+        yearEntries
+            .where(
+              (JournalEntry e) =>
+                  !e.isSpoiler &&
+                  (e.body?.trim().isNotEmpty ?? false) &&
+                  e.kind != JournalEntryKind.note &&
+                  e.kind != JournalEntryKind.screenshot,
+            )
+            .toList()
+          ..sort(
+            (JournalEntry a, JournalEntry b) =>
+                b.occurredAt.compareTo(a.occurredAt),
+          );
 
     return YearReview(
       year: year,

@@ -4,11 +4,7 @@ import '../../../shared/theme/app_typography.dart';
 
 /// ‹ 2026 › — never past the current year.
 class YearSwitcher extends StatelessWidget {
-  const YearSwitcher({
-    required this.year,
-    required this.onChanged,
-    super.key,
-  });
+  const YearSwitcher({required this.year, required this.onChanged, super.key});
 
   final int year;
   final ValueChanged<int> onChanged;

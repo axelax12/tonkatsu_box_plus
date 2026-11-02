@@ -6432,4 +6432,207 @@ class SEn extends S {
 
   @override
   String get journalInvalidDuration => 'Enter a duration longer than zero.';
+
+  @override
+  String get insightsGoalsTitle => 'Yearly goals';
+
+  @override
+  String get insightsGoalsHint =>
+      'Set targets for the year and watch the rings fill up';
+
+  @override
+  String get insightsBacklogTitle => 'Backlog health';
+
+  @override
+  String get insightsBacklogHint =>
+      'How big it is, how old, and how long it would take to clear';
+
+  @override
+  String get insightsYearTitle => 'Year in review';
+
+  @override
+  String get insightsYearHint => 'Your year told in numbers and moments';
+
+  @override
+  String get goalAdd => 'Add goal';
+
+  @override
+  String get goalEdit => 'Edit goal';
+
+  @override
+  String get goalMetricCompleted => 'Finished';
+
+  @override
+  String get goalMetricHours => 'Hours logged';
+
+  @override
+  String get goalMetricBacklog => 'From the backlog';
+
+  @override
+  String get goalAllTypes => 'Everything';
+
+  @override
+  String get goalScope => 'What counts';
+
+  @override
+  String get goalTarget => 'Target';
+
+  @override
+  String goalNoneYet(int year) {
+    return 'No goals for $year yet. Add one to start tracking.';
+  }
+
+  @override
+  String get goalPaceDone => 'Goal reached';
+
+  @override
+  String get goalPaceAhead => 'Ahead of pace';
+
+  @override
+  String get goalPaceOnTrack => 'On track';
+
+  @override
+  String get goalPaceBehind => 'Behind pace';
+
+  @override
+  String goalProgressCount(String current, String target) {
+    return '$current of $target';
+  }
+
+  @override
+  String goalRemaining(String remaining) {
+    return '$remaining to go';
+  }
+
+  @override
+  String get goalDeleteConfirm => 'Delete this goal?';
+
+  @override
+  String get goalHoursHint => 'Hours come from journal sessions.';
+
+  @override
+  String get backlogWaiting => 'Waiting';
+
+  @override
+  String get backlogAverageAge => 'Average wait';
+
+  @override
+  String backlogDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backlogFinishedPerMonth => 'Finished per month';
+
+  @override
+  String get backlogAddedPerMonth => 'Added per month';
+
+  @override
+  String get backlogShrinking => 'Your backlog is shrinking';
+
+  @override
+  String get backlogGrowing => 'Your backlog is growing faster than you finish';
+
+  @override
+  String get backlogEstimate => 'Time to finish everything';
+
+  @override
+  String backlogEstimateNote(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count items have no length estimate.',
+      one: '1 item has no length estimate.',
+      zero: 'Every item has a length estimate.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backlogAtYourPace => 'At your pace';
+
+  @override
+  String backlogMonths(String value) {
+    return '$value months';
+  }
+
+  @override
+  String backlogWeeks(String value) {
+    return '$value weeks';
+  }
+
+  @override
+  String get backlogNever => 'Not at this pace';
+
+  @override
+  String get backlogNoSessions =>
+      'Log sessions in the journal for a time-based estimate.';
+
+  @override
+  String get backlogOldest => 'Waiting the longest';
+
+  @override
+  String get backlogByType => 'By type';
+
+  @override
+  String get backlogEmpty => 'Nothing in the backlog. Enjoy it while it lasts.';
+
+  @override
+  String get backlogFetchingTimes => 'Fetching game lengths…';
+
+  @override
+  String hubBacklogPreview(int count, String age) {
+    return '$count waiting · average $age';
+  }
+
+  @override
+  String hubYearPreview(int count, String time) {
+    return '$count finished · $time logged';
+  }
+
+  @override
+  String get yearCompleted => 'Finished';
+
+  @override
+  String get yearHours => 'Time logged';
+
+  @override
+  String get yearActiveDays => 'Active days';
+
+  @override
+  String get yearLongestStreak => 'Longest streak (days)';
+
+  @override
+  String get yearBusiestMonth => 'Busiest month';
+
+  @override
+  String get yearMonthByMonth => 'Month by month';
+
+  @override
+  String get yearMostPlayed => 'Most time with';
+
+  @override
+  String get yearTopRated => 'Top rated';
+
+  @override
+  String get yearHighlights => 'From your journal';
+
+  @override
+  String yearEmpty(int year) {
+    return 'Nothing logged in $year yet.';
+  }
+
+  @override
+  String get yearShare => 'Save as image';
+
+  @override
+  String yearShareTitle(int year) {
+    return '$year in review';
+  }
 }

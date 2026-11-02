@@ -34,15 +34,15 @@ class GoalRing extends StatelessWidget {
         curve: Curves.easeOutCubic,
         builder: (BuildContext context, double value, Widget? child) =>
             CustomPaint(
-          painter: _RingPainter(
-            fraction: value,
-            expectedFraction: expectedFraction,
-            color: color,
-            trackColor: AppColors.surfaceBorder,
-            strokeWidth: strokeWidth,
-          ),
-          child: Center(child: child),
-        ),
+              painter: _RingPainter(
+                fraction: value,
+                expectedFraction: expectedFraction,
+                color: color,
+                trackColor: AppColors.surfaceBorder,
+                strokeWidth: strokeWidth,
+              ),
+              child: Center(child: child),
+            ),
         child: this.child,
       ),
     );
@@ -98,10 +98,12 @@ class _RingPainter extends CustomPainter {
     final double? expected = expectedFraction;
     if (expected != null && expected > 0 && expected < 1) {
       final double angle = _startAngle + _fullTurn * expected;
-      final Offset inner = center +
+      final Offset inner =
+          center +
           Offset(math.cos(angle), math.sin(angle)) *
               (radius - strokeWidth * 0.75);
-      final Offset outer = center +
+      final Offset outer =
+          center +
           Offset(math.cos(angle), math.sin(angle)) *
               (radius + strokeWidth * 0.75);
       canvas.drawLine(

@@ -90,7 +90,8 @@ class _GoalFormState extends State<_GoalForm> {
     final int? target = _targetValue;
     if (target == null) return;
     final DateTime now = DateTime.now();
-    final YearlyGoal base = widget.existing ??
+    final YearlyGoal base =
+        widget.existing ??
         YearlyGoal(
           id: 0,
           year: widget.year,
@@ -164,8 +165,9 @@ class _GoalFormState extends State<_GoalForm> {
           deleteLabel: l.delete,
           onDelete: widget.existing == null
               ? null
-              : () => Navigator.of(context)
-                  .pop<GoalEditResult>(const GoalDeleted()),
+              : () => Navigator.of(
+                  context,
+                ).pop<GoalEditResult>(const GoalDeleted()),
         ),
       ],
     );

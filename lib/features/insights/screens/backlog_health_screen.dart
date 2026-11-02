@@ -75,9 +75,10 @@ class _BacklogBody extends StatelessWidget {
     final double? months = health.monthsToClearByPace;
     final double? weeks = health.weeksToClearByTime;
     final List<MapEntry<MediaType, int>> types =
-        health.countByType.entries.toList()
-          ..sort((MapEntry<MediaType, int> a, MapEntry<MediaType, int> b) =>
-              b.value.compareTo(a.value));
+        health.countByType.entries.toList()..sort(
+          (MapEntry<MediaType, int> a, MapEntry<MediaType, int> b) =>
+              b.value.compareTo(a.value),
+        );
 
     return ListView(
       padding: const EdgeInsets.all(AppSpacing.md),
@@ -144,8 +145,8 @@ class _BacklogBody extends StatelessWidget {
               value: weeks != null
                   ? l.backlogWeeks(formatSpan(weeks))
                   : (months != null
-                      ? l.backlogMonths(formatSpan(months))
-                      : l.backlogNever),
+                        ? l.backlogMonths(formatSpan(months))
+                        : l.backlogNever),
               label: l.backlogAtYourPace,
             ),
           ],

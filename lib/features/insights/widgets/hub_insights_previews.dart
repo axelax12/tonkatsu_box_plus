@@ -27,7 +27,7 @@ class HubGoalsPreview extends ConsumerWidget {
     final S l = S.of(context);
     final List<GoalProgress> goals =
         ref.watch(goalProgressProvider(DateTime.now().year)).valueOrNull ??
-            const <GoalProgress>[];
+        const <GoalProgress>[];
     if (goals.isEmpty) {
       return Text(
         l.goalNoneYet(DateTime.now().year),
@@ -72,9 +72,9 @@ class HubBacklogPreview extends ConsumerWidget {
     final int avgDays = backlog.isEmpty
         ? 0
         : backlog
-                .map((CollectionItem i) => now.difference(i.addedAt).inDays)
-                .reduce((int a, int b) => a + b) ~/
-            backlog.length;
+                  .map((CollectionItem i) => now.difference(i.addedAt).inDays)
+                  .reduce((int a, int b) => a + b) ~/
+              backlog.length;
     return Text(
       backlog.isEmpty
           ? l.backlogEmpty
@@ -90,8 +90,9 @@ class HubYearPreview extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final S l = S.of(context);
-    final YearReview? review =
-        ref.watch(yearReviewProvider(DateTime.now().year)).valueOrNull;
+    final YearReview? review = ref
+        .watch(yearReviewProvider(DateTime.now().year))
+        .valueOrNull;
     if (review == null || review.isEmpty) {
       return Text(
         l.yearEmpty(DateTime.now().year),

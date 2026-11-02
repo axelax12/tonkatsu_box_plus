@@ -90,7 +90,9 @@ class _YearReviewScreenState extends ConsumerState<YearReviewScreen> {
             child: Text(
               l.yearEmpty(_year),
               textAlign: TextAlign.center,
-              style: AppTypography.body.copyWith(color: AppColors.textSecondary),
+              style: AppTypography.body.copyWith(
+                color: AppColors.textSecondary,
+              ),
             ),
           )
         else ...<Widget>[
@@ -130,9 +132,10 @@ class _ReviewCard extends StatelessWidget {
     final int? busiest = review.busiestMonth;
     final CollectionItem? mostPlayed = review.mostPlayed;
     final List<MapEntry<MediaType, int>> types =
-        review.completedByType.entries.toList()
-          ..sort((MapEntry<MediaType, int> a, MapEntry<MediaType, int> b) =>
-              b.value.compareTo(a.value));
+        review.completedByType.entries.toList()..sort(
+          (MapEntry<MediaType, int> a, MapEntry<MediaType, int> b) =>
+              b.value.compareTo(a.value),
+        );
 
     return Container(
       padding: const EdgeInsets.all(AppSpacing.lg),

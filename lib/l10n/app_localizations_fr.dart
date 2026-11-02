@@ -6534,4 +6534,209 @@ class SFr extends S {
 
   @override
   String get journalInvalidDuration => 'Saisissez une durée supérieure à zéro.';
+
+  @override
+  String get insightsGoalsTitle => 'Objectifs annuels';
+
+  @override
+  String get insightsGoalsHint =>
+      'Fixez vos objectifs de l\'année et regardez les anneaux se remplir';
+
+  @override
+  String get insightsBacklogTitle => 'Santé du backlog';
+
+  @override
+  String get insightsBacklogHint =>
+      'Sa taille, son âge et le temps pour en venir à bout';
+
+  @override
+  String get insightsYearTitle => 'Bilan de l\'année';
+
+  @override
+  String get insightsYearHint => 'Votre année en chiffres et en moments';
+
+  @override
+  String get goalAdd => 'Ajouter un objectif';
+
+  @override
+  String get goalEdit => 'Modifier l\'objectif';
+
+  @override
+  String get goalMetricCompleted => 'Terminés';
+
+  @override
+  String get goalMetricHours => 'Heures suivies';
+
+  @override
+  String get goalMetricBacklog => 'Depuis le backlog';
+
+  @override
+  String get goalAllTypes => 'Tout';
+
+  @override
+  String get goalScope => 'Ce qui compte';
+
+  @override
+  String get goalTarget => 'Cible';
+
+  @override
+  String goalNoneYet(int year) {
+    return 'Aucun objectif pour $year. Ajoutez-en un pour commencer.';
+  }
+
+  @override
+  String get goalPaceDone => 'Objectif atteint';
+
+  @override
+  String get goalPaceAhead => 'En avance';
+
+  @override
+  String get goalPaceOnTrack => 'Dans les temps';
+
+  @override
+  String get goalPaceBehind => 'En retard';
+
+  @override
+  String goalProgressCount(String current, String target) {
+    return '$current sur $target';
+  }
+
+  @override
+  String goalRemaining(String remaining) {
+    return 'encore $remaining';
+  }
+
+  @override
+  String get goalDeleteConfirm => 'Supprimer cet objectif ?';
+
+  @override
+  String get goalHoursHint => 'Les heures viennent des sessions du journal.';
+
+  @override
+  String get backlogWaiting => 'En attente';
+
+  @override
+  String get backlogAverageAge => 'Attente moyenne';
+
+  @override
+  String backlogDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours',
+      one: '1 jour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backlogFinishedPerMonth => 'Terminés par mois';
+
+  @override
+  String get backlogAddedPerMonth => 'Ajoutés par mois';
+
+  @override
+  String get backlogShrinking => 'Votre backlog diminue';
+
+  @override
+  String get backlogGrowing =>
+      'Votre backlog grossit plus vite que vous ne terminez';
+
+  @override
+  String get backlogEstimate => 'Temps pour tout finir';
+
+  @override
+  String backlogEstimateNote(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count éléments n\'ont pas de durée estimée.',
+      one: '1 élément n\'a pas de durée estimée.',
+      zero: 'Chaque élément a une durée estimée.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backlogAtYourPace => 'À votre rythme';
+
+  @override
+  String backlogMonths(String value) {
+    return '$value mois';
+  }
+
+  @override
+  String backlogWeeks(String value) {
+    return '$value semaines';
+  }
+
+  @override
+  String get backlogNever => 'Pas à ce rythme';
+
+  @override
+  String get backlogNoSessions =>
+      'Enregistrez des sessions dans le journal pour une estimation en temps.';
+
+  @override
+  String get backlogOldest => 'Ceux qui attendent le plus';
+
+  @override
+  String get backlogByType => 'Par type';
+
+  @override
+  String get backlogEmpty =>
+      'Rien dans le backlog. Profitez-en tant que ça dure.';
+
+  @override
+  String get backlogFetchingTimes => 'Récupération des durées de jeu…';
+
+  @override
+  String hubBacklogPreview(int count, String age) {
+    return '$count en attente · moyenne $age';
+  }
+
+  @override
+  String hubYearPreview(int count, String time) {
+    return '$count terminés · $time suivies';
+  }
+
+  @override
+  String get yearCompleted => 'Terminés';
+
+  @override
+  String get yearHours => 'Temps suivi';
+
+  @override
+  String get yearActiveDays => 'Jours actifs';
+
+  @override
+  String get yearLongestStreak => 'Plus longue série (jours)';
+
+  @override
+  String get yearBusiestMonth => 'Mois le plus actif';
+
+  @override
+  String get yearMonthByMonth => 'Mois par mois';
+
+  @override
+  String get yearMostPlayed => 'Le plus de temps avec';
+
+  @override
+  String get yearTopRated => 'Mieux notés';
+
+  @override
+  String get yearHighlights => 'Extraits de votre journal';
+
+  @override
+  String yearEmpty(int year) {
+    return 'Rien d\'enregistré en $year pour l\'instant.';
+  }
+
+  @override
+  String get yearShare => 'Enregistrer en image';
+
+  @override
+  String yearShareTitle(int year) {
+    return 'Bilan $year';
+  }
 }

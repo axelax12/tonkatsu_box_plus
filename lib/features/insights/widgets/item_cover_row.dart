@@ -53,8 +53,9 @@ class ItemCoverRow extends StatelessWidget {
                 height: _coverHeight,
                 child: MediaCoverImage(
                   coverUrl: item.thumbnailUrl ?? item.coverUrl,
-                  placeholderIcon:
-                      MediaTypeTheme.placeholderIconFor(item.mediaType),
+                  placeholderIcon: MediaTypeTheme.placeholderIconFor(
+                    item.mediaType,
+                  ),
                 ),
               ),
             ),
@@ -70,10 +71,7 @@ class ItemCoverRow extends StatelessWidget {
                     style: AppTypography.body,
                   ),
                   if (caption != null)
-                    Text(
-                      caption,
-                      style: AppTypography.caption,
-                    ),
+                    Text(caption, style: AppTypography.caption),
                 ],
               ),
             ),

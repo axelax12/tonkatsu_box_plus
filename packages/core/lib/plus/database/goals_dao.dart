@@ -120,17 +120,13 @@ class GoalsDao {
     final Batch batch = db.batch();
     for (final int id in requested.toSet()) {
       final ({int? hastily, int? normally, int? completely})? t = found[id];
-      batch.insert(
-        _ttb,
-        <String, Object?>{
-          'igdb_game_id': id,
-          'hastily_seconds': t?.hastily,
-          'normally_seconds': t?.normally,
-          'completely_seconds': t?.completely,
-          'fetched_at': now.millisecondsSinceEpoch,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      batch.insert(_ttb, <String, Object?>{
+        'igdb_game_id': id,
+        'hastily_seconds': t?.hastily,
+        'normally_seconds': t?.normally,
+        'completely_seconds': t?.completely,
+        'fetched_at': now.millisecondsSinceEpoch,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
     await batch.commit(noResult: true);
   }

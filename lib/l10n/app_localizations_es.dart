@@ -6510,4 +6510,207 @@ class SEs extends S {
 
   @override
   String get journalInvalidDuration => 'Introduce una duración mayor que cero.';
+
+  @override
+  String get insightsGoalsTitle => 'Metas anuales';
+
+  @override
+  String get insightsGoalsHint =>
+      'Fija metas para el año y mira cómo se llenan los anillos';
+
+  @override
+  String get insightsBacklogTitle => 'Salud del backlog';
+
+  @override
+  String get insightsBacklogHint =>
+      'Su tamaño, su antigüedad y cuánto tardarías en vaciarlo';
+
+  @override
+  String get insightsYearTitle => 'Resumen del año';
+
+  @override
+  String get insightsYearHint => 'Tu año contado en números y momentos';
+
+  @override
+  String get goalAdd => 'Añadir meta';
+
+  @override
+  String get goalEdit => 'Editar meta';
+
+  @override
+  String get goalMetricCompleted => 'Terminados';
+
+  @override
+  String get goalMetricHours => 'Horas registradas';
+
+  @override
+  String get goalMetricBacklog => 'Del backlog';
+
+  @override
+  String get goalAllTypes => 'Todo';
+
+  @override
+  String get goalScope => 'Qué cuenta';
+
+  @override
+  String get goalTarget => 'Objetivo';
+
+  @override
+  String goalNoneYet(int year) {
+    return 'Aún no hay metas para $year. Añade una para empezar.';
+  }
+
+  @override
+  String get goalPaceDone => 'Meta cumplida';
+
+  @override
+  String get goalPaceAhead => 'Por delante';
+
+  @override
+  String get goalPaceOnTrack => 'En camino';
+
+  @override
+  String get goalPaceBehind => 'Por detrás';
+
+  @override
+  String goalProgressCount(String current, String target) {
+    return '$current de $target';
+  }
+
+  @override
+  String goalRemaining(String remaining) {
+    return 'faltan $remaining';
+  }
+
+  @override
+  String get goalDeleteConfirm => '¿Eliminar esta meta?';
+
+  @override
+  String get goalHoursHint => 'Las horas salen de las sesiones del diario.';
+
+  @override
+  String get backlogWaiting => 'En espera';
+
+  @override
+  String get backlogAverageAge => 'Espera media';
+
+  @override
+  String backlogDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count días',
+      one: '1 día',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backlogFinishedPerMonth => 'Terminados al mes';
+
+  @override
+  String get backlogAddedPerMonth => 'Añadidos al mes';
+
+  @override
+  String get backlogShrinking => 'Tu backlog se está reduciendo';
+
+  @override
+  String get backlogGrowing => 'Tu backlog crece más rápido de lo que terminas';
+
+  @override
+  String get backlogEstimate => 'Tiempo para terminarlo todo';
+
+  @override
+  String backlogEstimateNote(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count elementos no tienen duración estimada.',
+      one: '1 elemento no tiene duración estimada.',
+      zero: 'Todos tienen una duración estimada.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backlogAtYourPace => 'A tu ritmo';
+
+  @override
+  String backlogMonths(String value) {
+    return '$value meses';
+  }
+
+  @override
+  String backlogWeeks(String value) {
+    return '$value semanas';
+  }
+
+  @override
+  String get backlogNever => 'No a este ritmo';
+
+  @override
+  String get backlogNoSessions =>
+      'Registra sesiones en el diario para estimar por tiempo.';
+
+  @override
+  String get backlogOldest => 'Los que más esperan';
+
+  @override
+  String get backlogByType => 'Por tipo';
+
+  @override
+  String get backlogEmpty => 'Nada en el backlog. Disfrútalo mientras dure.';
+
+  @override
+  String get backlogFetchingTimes => 'Obteniendo duraciones de juegos…';
+
+  @override
+  String hubBacklogPreview(int count, String age) {
+    return '$count en espera · media $age';
+  }
+
+  @override
+  String hubYearPreview(int count, String time) {
+    return '$count terminados · $time registradas';
+  }
+
+  @override
+  String get yearCompleted => 'Terminados';
+
+  @override
+  String get yearHours => 'Tiempo registrado';
+
+  @override
+  String get yearActiveDays => 'Días activos';
+
+  @override
+  String get yearLongestStreak => 'Racha más larga (días)';
+
+  @override
+  String get yearBusiestMonth => 'Mes más activo';
+
+  @override
+  String get yearMonthByMonth => 'Mes a mes';
+
+  @override
+  String get yearMostPlayed => 'Con más tiempo';
+
+  @override
+  String get yearTopRated => 'Mejor valorados';
+
+  @override
+  String get yearHighlights => 'De tu diario';
+
+  @override
+  String yearEmpty(int year) {
+    return 'Aún no hay nada registrado en $year.';
+  }
+
+  @override
+  String get yearShare => 'Guardar como imagen';
+
+  @override
+  String yearShareTitle(int year) {
+    return 'Resumen de $year';
+  }
 }

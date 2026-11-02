@@ -30,8 +30,9 @@ void main() {
   group('GoalsDao', () {
     group('goals', () {
       test('saves, lists by year and deletes', () async {
-        final YearlyGoal saved =
-            await dao.saveGoal(draft(GoalMetric.completed, 30));
+        final YearlyGoal saved = await dao.saveGoal(
+          draft(GoalMetric.completed, 30),
+        );
         expect(saved.id, isNot(0));
         expect(await dao.getGoals(2026), hasLength(1));
         expect(await dao.getGoals(2025), isEmpty);
@@ -56,7 +57,9 @@ void main() {
       });
 
       test('editing keeps the id', () async {
-        final YearlyGoal saved = await dao.saveGoal(draft(GoalMetric.hours, 50));
+        final YearlyGoal saved = await dao.saveGoal(
+          draft(GoalMetric.hours, 50),
+        );
         await dao.saveGoal(saved.copyWith(target: 80));
         final YearlyGoal reloaded = (await dao.getGoals(2026)).single;
         expect(reloaded.id, saved.id);
@@ -81,17 +84,19 @@ void main() {
 
         expect(await dao.getTimeToBeat(<int>[1, 2, 3]), <int, int>{1: 7200});
         expect(
-          await dao.idsNeedingTimeToBeat(
-            <int>[1, 2, 3],
-            staleBefore: t0.subtract(const Duration(days: 1)),
-          ),
+          await dao.idsNeedingTimeToBeat(<int>[
+            1,
+            2,
+            3,
+          ], staleBefore: t0.subtract(const Duration(days: 1))),
           <int>[3],
         );
         expect(
-          await dao.idsNeedingTimeToBeat(
-            <int>[1, 2, 3],
-            staleBefore: t0.add(const Duration(days: 1)),
-          ),
+          await dao.idsNeedingTimeToBeat(<int>[
+            1,
+            2,
+            3,
+          ], staleBefore: t0.add(const Duration(days: 1))),
           containsAll(<int>[1, 2, 3]),
         );
       });
@@ -105,10 +110,10 @@ void main() {
           },
           now: t0,
         );
-        expect(
-          await dao.getTimeToBeat(<int>[5, 6]),
-          <int, int>{5: 100, 6: 900},
-        );
+        expect(await dao.getTimeToBeat(<int>[5, 6]), <int, int>{
+          5: 100,
+          6: 900,
+        });
       });
 
       test('empty input does nothing', () async {
@@ -119,7 +124,8 @@ void main() {
         );
         await dao.saveTimeToBeat(
           requested: <int>[],
-          found: const <int, ({int? hastily, int? normally, int? completely})>{},
+          found:
+              const <int, ({int? hastily, int? normally, int? completely})>{},
           now: t0,
         );
       });

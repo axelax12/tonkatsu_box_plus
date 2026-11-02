@@ -51,8 +51,9 @@ class _GoalsScreenState extends ConsumerState<GoalsScreen> {
   @override
   Widget build(BuildContext context) {
     final S l = S.of(context);
-    final AsyncValue<List<GoalProgress>> progress =
-        ref.watch(goalProgressProvider(_year));
+    final AsyncValue<List<GoalProgress>> progress = ref.watch(
+      goalProgressProvider(_year),
+    );
     final List<GoalProgress> goals =
         progress.valueOrNull ?? const <GoalProgress>[];
 
@@ -75,8 +76,9 @@ class _GoalsScreenState extends ConsumerState<GoalsScreen> {
             child: Text(
               l.goalNoneYet(_year),
               textAlign: TextAlign.center,
-              style:
-                  AppTypography.body.copyWith(color: AppColors.textSecondary),
+              style: AppTypography.body.copyWith(
+                color: AppColors.textSecondary,
+              ),
             ),
           )
         else

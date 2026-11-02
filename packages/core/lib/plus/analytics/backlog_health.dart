@@ -67,11 +67,12 @@ class BacklogHealth {
     final double windowMonths = windowDays / _daysPerMonth;
     final double windowWeeks = windowDays / _daysPerWeek;
 
-    final List<CollectionItem> backlog = items
-        .where((CollectionItem i) => isBacklogStatus(i.status))
-        .toList()
-      ..sort((CollectionItem a, CollectionItem b) =>
-          a.addedAt.compareTo(b.addedAt));
+    final List<CollectionItem> backlog =
+        items.where((CollectionItem i) => isBacklogStatus(i.status)).toList()
+          ..sort(
+            (CollectionItem a, CollectionItem b) =>
+                a.addedAt.compareTo(b.addedAt),
+          );
 
     final Map<MediaType, int> byType = <MediaType, int>{};
     double ageDaysSum = 0;
@@ -100,8 +101,10 @@ class BacklogHealth {
           !done.isAfter(now);
     }).length;
     final int addedInWindow = items
-        .where((CollectionItem i) =>
-            !i.addedAt.isBefore(windowStart) && !i.addedAt.isAfter(now))
+        .where(
+          (CollectionItem i) =>
+              !i.addedAt.isBefore(windowStart) && !i.addedAt.isAfter(now),
+        )
         .length;
 
     return BacklogHealth(
@@ -113,8 +116,7 @@ class BacklogHealth {
       addedPerMonth: addedInWindow / windowMonths,
       estimatedMinutes: estimated,
       unknownCount: unknown,
-      minutesPerWeek:
-          sessionSecondsInWindow / _secondsPerMinute / windowWeeks,
+      minutesPerWeek: sessionSecondsInWindow / _secondsPerMinute / windowWeeks,
     );
   }
 }

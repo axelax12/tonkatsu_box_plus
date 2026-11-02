@@ -62,14 +62,17 @@ class GoalProgress {
       case GoalMetric.completed:
       case GoalMetric.backlogCleared:
         final bool onlyBacklog = goal.metric == GoalMetric.backlogCleared;
-        current = items.where((CollectionItem i) {
-          final DateTime? done = i.completedAt;
-          return isFinishedStatus(i.status) &&
-              done != null &&
-              inYear(done) &&
-              typeMatches(i.mediaType) &&
-              (!onlyBacklog || i.addedAt.isBefore(start));
-        }).length.toDouble();
+        current = items
+            .where((CollectionItem i) {
+              final DateTime? done = i.completedAt;
+              return isFinishedStatus(i.status) &&
+                  done != null &&
+                  inYear(done) &&
+                  typeMatches(i.mediaType) &&
+                  (!onlyBacklog || i.addedAt.isBefore(start));
+            })
+            .length
+            .toDouble();
       case GoalMetric.hours:
         final Map<int, MediaType> typeById = <int, MediaType>{
           for (final CollectionItem i in items) i.id: i.mediaType,
