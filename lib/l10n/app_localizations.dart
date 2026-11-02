@@ -13285,6 +13285,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Back'**
   String get togetherBack;
+
+  /// No description provided for @releaseReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Out today: {name}'**
+  String releaseReminderTitle(String name);
+
+  /// No description provided for @releaseReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A work on your list is released today.'**
+  String get releaseReminderBody;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

@@ -7617,4 +7617,12 @@ class SPt extends S {
 
   @override
   String get togetherBack => 'Voltar';
+
+  @override
+  String releaseReminderTitle(String name) {
+    return 'Sai hoje: $name';
+  }
+
+  @override
+  String get releaseReminderBody => 'Uma obra da sua lista sai hoje.';
 }

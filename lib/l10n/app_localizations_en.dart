@@ -7554,4 +7554,12 @@ class SEn extends S {
 
   @override
   String get togetherBack => 'Back';
+
+  @override
+  String releaseReminderTitle(String name) {
+    return 'Out today: $name';
+  }
+
+  @override
+  String get releaseReminderBody => 'A work on your list is released today.';
 }

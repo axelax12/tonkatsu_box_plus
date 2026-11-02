@@ -7676,4 +7676,13 @@ class SRu extends S {
 
   @override
   String get togetherBack => 'Назад';
+
+  @override
+  String releaseReminderTitle(String name) {
+    return 'Выходит сегодня: $name';
+  }
+
+  @override
+  String get releaseReminderBody =>
+      'Сегодня выходит произведение из вашего списка.';
 }

@@ -7661,4 +7661,13 @@ class SFr extends S {
 
   @override
   String get togetherBack => 'Retour';
+
+  @override
+  String releaseReminderTitle(String name) {
+    return 'Sort aujourd\'hui : $name';
+  }
+
+  @override
+  String get releaseReminderBody =>
+      'Une œuvre de votre liste sort aujourd\'hui.';
 }

@@ -7207,4 +7207,12 @@ class SZh extends S {
 
   @override
   String get togetherBack => '返回';
+
+  @override
+  String releaseReminderTitle(String name) {
+    return '今天发售：$name';
+  }
+
+  @override
+  String get releaseReminderBody => '你清单里的一部作品今天发售。';
 }

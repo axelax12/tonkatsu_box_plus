@@ -7638,4 +7638,12 @@ class SEs extends S {
 
   @override
   String get togetherBack => 'Atrás';
+
+  @override
+  String releaseReminderTitle(String name) {
+    return 'Sale hoy: $name';
+  }
+
+  @override
+  String get releaseReminderBody => 'Hoy sale una obra de tu lista.';
 }
