@@ -61,8 +61,9 @@ class _JournalEntryTileState extends State<JournalEntryTile> {
                       material.formatMediumDate(entry.occurredAt),
                       if (progress != null && progress.isNotEmpty) progress,
                     ].join(' · '),
-                    style: AppTypography.caption
-                        .copyWith(color: AppColors.textTertiary),
+                    style: AppTypography.caption.copyWith(
+                      color: AppColors.textTertiary,
+                    ),
                   ),
                   const SizedBox(height: AppSpacing.xs),
                   if (hidden)

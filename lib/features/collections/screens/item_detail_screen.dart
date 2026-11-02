@@ -109,15 +109,15 @@ class ItemDetailScreen extends ConsumerStatefulWidget {
   final bool isEditable;
 
   static ShortcutGroup shortcutGroup(S l) => ShortcutGroup(
-        title: l.shortcutsGroupItemDetail,
-        entries: <ShortcutEntry>[
-          ShortcutEntry(keys: 'Ctrl+B', description: l.shortcutToggleBoard),
-          ShortcutEntry(keys: 'Ctrl+L', description: l.shortcutLockCanvas),
-          ShortcutEntry(keys: 'Ctrl+M', description: l.shortcutMoveToCollection),
-          ShortcutEntry(keys: 'Alt+1..5', description: l.shortcutSetRating),
-          ShortcutEntry(keys: 'Alt+0', description: l.shortcutResetRating),
-        ],
-      );
+    title: l.shortcutsGroupItemDetail,
+    entries: <ShortcutEntry>[
+      ShortcutEntry(keys: 'Ctrl+B', description: l.shortcutToggleBoard),
+      ShortcutEntry(keys: 'Ctrl+L', description: l.shortcutLockCanvas),
+      ShortcutEntry(keys: 'Ctrl+M', description: l.shortcutMoveToCollection),
+      ShortcutEntry(keys: 'Alt+1..5', description: l.shortcutSetRating),
+      ShortcutEntry(keys: 'Alt+0', description: l.shortcutResetRating),
+    ],
+  );
 
   @override
   ConsumerState<ItemDetailScreen> createState() => _ItemDetailScreenState();
@@ -149,7 +149,15 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     if (!settings.discordRpcEnabled) return;
     _discordRpc ??= ref.read(discordRpcServiceProvider);
     final TrackerGameData? raData = item.mediaType == MediaType.game
-        ? ref.read(trackerDetailProvider((gameId: item.externalId, platformId: item.platformId))).valueOrNull?.gameData
+        ? ref
+              .read(
+                trackerDetailProvider((
+                  gameId: item.externalId,
+                  platformId: item.platformId,
+                )),
+              )
+              .valueOrNull
+              ?.gameData
         : null;
     _discordRpc!.updatePresence(
       item,
@@ -187,9 +195,7 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
       ),
       error: (Object error, StackTrace stack) => Scaffold(
         appBar: const ScreenAppBar(),
-        body: Center(
-          child: Text(S.of(context).errorPrefix(error.toString())),
-        ),
+        body: Center(child: Text(S.of(context).errorPrefix(error.toString()))),
       ),
     );
   }
@@ -200,9 +206,7 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
       ref
           .read(steamGridDbPanelProvider(widget.collectionId).notifier)
           .closePanel();
-      ref
-          .read(vgMapsPanelProvider(widget.collectionId).notifier)
-          .closePanel();
+      ref.read(vgMapsPanelProvider(widget.collectionId).notifier).closePanel();
     }
   }
 
@@ -240,28 +244,34 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
   Future<void> _toggleTracked(CollectionItem item) async {
     final TrackedReleaseDao dao = ref.read(trackedReleaseDaoProvider);
     final DataSource source = item.dataSource;
-    final bool tracked =
-        await dao.isTracked(item.externalId, source, item.mediaType);
+    final bool tracked = await dao.isTracked(
+      item.externalId,
+      source,
+      item.mediaType,
+    );
     if (tracked) {
       await dao.unsubscribe(item.externalId, source, item.mediaType);
     } else {
       await dao.subscribe(item.externalId, source, item.mediaType);
     }
-    ref.invalidate(isReleaseTrackedProvider(
-      (
+    ref.invalidate(
+      isReleaseTrackedProvider((
         externalId: item.externalId,
         source: source,
         mediaType: item.mediaType,
-      ),
-    ));
+      )),
+    );
     ref.invalidate(releasesProvider);
   }
 
   Future<void> _toggleCalendarEntry(CollectionItem item) async {
     final CalendarEntryDao dao = ref.read(calendarEntryDaoProvider);
     final DataSource source = item.dataSource;
-    final bool added =
-        await dao.isAdded(item.externalId, source, item.mediaType);
+    final bool added = await dao.isAdded(
+      item.externalId,
+      source,
+      item.mediaType,
+    );
     if (added) {
       await dao.remove(item.externalId, source, item.mediaType);
     } else {
@@ -271,18 +281,24 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
         initialDate: _initialCalendarDate(item),
       );
       if (result == null || !mounted) return;
-      await dao.upsert(CalendarEntry(
+      await dao.upsert(
+        CalendarEntry(
+          externalId: item.externalId,
+          source: source,
+          mediaType: item.mediaType,
+          startDate: result.date,
+          recurrence: result.recurrence,
+          createdAt: DateTime.now(),
+        ),
+      );
+    }
+    ref.invalidate(
+      isCalendarEntryProvider((
         externalId: item.externalId,
         source: source,
         mediaType: item.mediaType,
-        startDate: result.date,
-        recurrence: result.recurrence,
-        createdAt: DateTime.now(),
-      ));
-    }
-    ref.invalidate(isCalendarEntryProvider(
-      (externalId: item.externalId, source: source, mediaType: item.mediaType),
-    ));
+      )),
+    );
     ref.invalidate(releasesProvider);
   }
 
@@ -304,12 +320,20 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
       case MediaType.manga:
         final int? y = item.manga?.startYear;
         return y != null
-            ? DateTime(y, item.manga?.startMonth ?? 1, item.manga?.startDay ?? 1)
+            ? DateTime(
+                y,
+                item.manga?.startMonth ?? 1,
+                item.manga?.startDay ?? 1,
+              )
             : null;
       case MediaType.anime:
         final int? y = item.anime?.startYear;
         return y != null
-            ? DateTime(y, item.anime?.startMonth ?? 1, item.anime?.startDay ?? 1)
+            ? DateTime(
+                y,
+                item.anime?.startMonth ?? 1,
+                item.anime?.startDay ?? 1,
+              )
             : null;
       case MediaType.movie:
       case MediaType.tvShow:
@@ -337,21 +361,27 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     required String? english,
     required String? native,
   }) {
-    out.add(RenameSuggestion(
-      label: l.settingsAnimeMangaTitleLanguageRomaji,
-      value: romaji,
-    ));
+    out.add(
+      RenameSuggestion(
+        label: l.settingsAnimeMangaTitleLanguageRomaji,
+        value: romaji,
+      ),
+    );
     if (english != null && english.isNotEmpty) {
-      out.add(RenameSuggestion(
-        label: l.settingsAnimeMangaTitleLanguageEnglish,
-        value: english,
-      ));
+      out.add(
+        RenameSuggestion(
+          label: l.settingsAnimeMangaTitleLanguageEnglish,
+          value: english,
+        ),
+      );
     }
     if (native != null && native.isNotEmpty) {
-      out.add(RenameSuggestion(
-        label: l.settingsAnimeMangaTitleLanguageNative,
-        value: native,
-      ));
+      out.add(
+        RenameSuggestion(
+          label: l.settingsAnimeMangaTitleLanguageNative,
+          value: native,
+        ),
+      );
     }
   }
 
@@ -361,14 +391,16 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     final List<RenameSuggestion> suggestions = <RenameSuggestion>[];
     if (item.mediaType == MediaType.anime && item.anime != null) {
       _addAnimeMangaSuggestions(
-        suggestions, l,
+        suggestions,
+        l,
         romaji: item.anime!.title,
         english: item.anime!.titleEnglish,
         native: item.anime!.titleNative,
       );
     } else if (item.mediaType == MediaType.manga && item.manga != null) {
       _addAnimeMangaSuggestions(
-        suggestions, l,
+        suggestions,
+        l,
         romaji: item.manga!.title,
         english: item.manga!.titleEnglish,
         native: item.manga!.titleNative,
@@ -386,9 +418,7 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     if (newName == item.overrideName) return;
 
     await ref
-        .read(
-          collectionItemsNotifierProvider(widget.collectionId).notifier,
-        )
+        .read(collectionItemsNotifierProvider(widget.collectionId).notifier)
         .setOverrideName(item.id, newName);
   }
 
@@ -400,16 +430,19 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
         isGame && ref.read(settingsNotifierProvider).hasSteamGridDbKey;
     final CoverPickResult? picked = await pickCustomCoverImage(
       context,
-      currentUrl:
-          current == null || CustomMedia.isLocalCover(current) ? '' : current,
+      currentUrl: current == null || CustomMedia.isLocalCover(current)
+          ? ''
+          : current,
       extraSources: <CoverPickSource>[
         if (isGame)
           CoverPickSource(
             icon: Icons.sports_esports_outlined,
             label: l.coverSourceIgdb,
             pick: (BuildContext ctx) async {
-              final String? url =
-                  await pickIgdbCover(ctx, igdbGameId: item.externalId);
+              final String? url = await pickIgdbCover(
+                ctx,
+                igdbGameId: item.externalId,
+              );
               return url == null ? null : CoverPickResult.url(url);
             },
           ),
@@ -434,8 +467,9 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
   /// ScreenScraper media URLs carry the account's credentials, so the picture
   /// is stored as an uploaded file rather than by its link.
   Future<void> _setCoverFromGallery(CollectionItem item, String url) async {
-    final Uint8List? bytes =
-        await ref.read(imageCacheServiceProvider).fetchImageBytes(url);
+    final Uint8List? bytes = await ref
+        .read(imageCacheServiceProvider)
+        .fetchImageBytes(url);
     if (!mounted) return;
     if (bytes == null) {
       context.showSnack(
@@ -489,9 +523,7 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     }
 
     final ({bool success, bool sourceEmpty}) result = await ref
-        .read(
-          collectionItemsNotifierProvider(widget.collectionId).notifier,
-        )
+        .read(collectionItemsNotifierProvider(widget.collectionId).notifier)
         .moveItem(
           item.id,
           targetCollectionId: targetCollectionId,
@@ -602,9 +634,7 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     if (!confirmed || !mounted) return;
 
     await ref
-        .read(
-          collectionItemsNotifierProvider(widget.collectionId).notifier,
-        )
+        .read(collectionItemsNotifierProvider(widget.collectionId).notifier)
         .removeItem(item.id, mediaType: item.mediaType);
 
     if (mounted) {
@@ -633,8 +663,10 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
       final String marker = CustomMedia.localCoverMarkerFor(
         DateTime.now().millisecondsSinceEpoch,
       );
-      final String coverId =
-          customCoverImageId(id: item.externalId, coverUrl: marker);
+      final String coverId = customCoverImageId(
+        id: item.externalId,
+        coverUrl: marker,
+      );
       final bool saved = await cache.saveImageBytes(
         ImageType.customCover,
         coverId,
@@ -665,16 +697,16 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
       await cache.evictDecodedImage(ImageType.customCover, previousCoverId);
     }
 
-    final CustomMedia updated =
-        data.applyTo(item.customMedia!, coverUrl: newCoverUrl);
+    final CustomMedia updated = data.applyTo(
+      item.customMedia!,
+      coverUrl: newCoverUrl,
+    );
 
     final DatabaseService db = ref.read(databaseServiceProvider);
     await db.customMediaDao.update(updated);
 
     ref
-        .read(
-          collectionItemsNotifierProvider(widget.collectionId).notifier,
-        )
+        .read(collectionItemsNotifierProvider(widget.collectionId).notifier)
         .refresh();
     // The edit can change display type / platform / format, which drive the
     // All Items filters — reload so it re-buckets instead of staying stale.
@@ -704,26 +736,26 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
 
     return <ShortcutActivator, VoidCallback>{
       if (_hasCanvas)
-        const SingleActivator(LogicalKeyboardKey.keyB, control: true):
-            () => setState(() => _showCanvas = !_showCanvas),
+        const SingleActivator(LogicalKeyboardKey.keyB, control: true): () =>
+            setState(() => _showCanvas = !_showCanvas),
       if (widget.isEditable && _hasCanvas && _showCanvas)
         const SingleActivator(LogicalKeyboardKey.keyL, control: true):
             _toggleLock,
       if (widget.isEditable)
-        const SingleActivator(LogicalKeyboardKey.keyM, control: true):
-            () => _moveToCollection(item),
-      const SingleActivator(LogicalKeyboardKey.digit1, alt: true):
-          () => _updateUserRating(item.id, 1),
-      const SingleActivator(LogicalKeyboardKey.digit2, alt: true):
-          () => _updateUserRating(item.id, 2),
-      const SingleActivator(LogicalKeyboardKey.digit3, alt: true):
-          () => _updateUserRating(item.id, 3),
-      const SingleActivator(LogicalKeyboardKey.digit4, alt: true):
-          () => _updateUserRating(item.id, 4),
-      const SingleActivator(LogicalKeyboardKey.digit5, alt: true):
-          () => _updateUserRating(item.id, 5),
-      const SingleActivator(LogicalKeyboardKey.digit0, alt: true):
-          () => _updateUserRating(item.id, null),
+        const SingleActivator(LogicalKeyboardKey.keyM, control: true): () =>
+            _moveToCollection(item),
+      const SingleActivator(LogicalKeyboardKey.digit1, alt: true): () =>
+          _updateUserRating(item.id, 1),
+      const SingleActivator(LogicalKeyboardKey.digit2, alt: true): () =>
+          _updateUserRating(item.id, 2),
+      const SingleActivator(LogicalKeyboardKey.digit3, alt: true): () =>
+          _updateUserRating(item.id, 3),
+      const SingleActivator(LogicalKeyboardKey.digit4, alt: true): () =>
+          _updateUserRating(item.id, 4),
+      const SingleActivator(LogicalKeyboardKey.digit5, alt: true): () =>
+          _updateUserRating(item.id, 5),
+      const SingleActivator(LogicalKeyboardKey.digit0, alt: true): () =>
+          _updateUserRating(item.id, null),
     };
   }
 
@@ -731,8 +763,10 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     final String displayName = ref.displayNameOf(item);
     _currentItemName = displayName;
     _updateDiscordPresence(item);
-    final ItemDetailMediaConfig config =
-        ItemDetailMediaConfig.from(item, context);
+    final ItemDetailMediaConfig config = ItemDetailMediaConfig.from(
+      item,
+      context,
+    );
 
     return wrapWithScreenShortcuts(
       bindings: _buildScreenShortcuts(item),
@@ -758,27 +792,32 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
           canTrackReleases: true,
           isTracked: _isEpisodeType(item)
               ? ref
-                      .watch(isReleaseTrackedProvider((
-                        externalId: item.externalId,
-                        source: item.dataSource,
-                        mediaType: item.mediaType,
-                      )))
-                      .valueOrNull ??
-                  false
+                        .watch(
+                          isReleaseTrackedProvider((
+                            externalId: item.externalId,
+                            source: item.dataSource,
+                            mediaType: item.mediaType,
+                          )),
+                        )
+                        .valueOrNull ??
+                    false
               : ref
-                      .watch(isCalendarEntryProvider((
-                        externalId: item.externalId,
-                        source: item.dataSource,
-                        mediaType: item.mediaType,
-                      )))
-                      .valueOrNull ??
-                  false,
+                        .watch(
+                          isCalendarEntryProvider((
+                            externalId: item.externalId,
+                            source: item.dataSource,
+                            mediaType: item.mediaType,
+                          )),
+                        )
+                        .valueOrNull ??
+                    false,
           onToggleTracked: () => _isEpisodeType(item)
               ? _toggleTracked(item)
               : _toggleCalendarEntry(item),
           trackTooltip: _isEpisodeType(item) ? null : S.of(context).calendarAdd,
-          untrackTooltip:
-              _isEpisodeType(item) ? null : S.of(context).calendarRemove,
+          untrackTooltip: _isEpisodeType(item)
+              ? null
+              : S.of(context).calendarRemove,
         ),
         body: _showCanvas && _hasCanvas
             ? ItemDetailCanvasView(
@@ -799,7 +838,8 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
   ) {
     final SettingsState settings = ref.watch(settingsNotifierProvider);
     // Recommendations / reviews are TMDB-only.
-    final bool showRecs = settings.showRecommendations &&
+    final bool showRecs =
+        settings.showRecommendations &&
         item.dataSource == DataSource.tmdb &&
         (item.mediaType == MediaType.movie ||
             item.mediaType == MediaType.tvShow ||
@@ -837,13 +877,10 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
       completionTime: item.completionTime,
       onActivityDateChanged: widget.isEditable
           ? (ActivityDateField field, DateTime? date) =>
-              _updateActivityDate(item.id, field, date)
+                _updateActivityDate(item.id, field, date)
           : null,
       tagWidget: widget.collectionId != null
-          ? ItemTagsSection(
-              itemId: item.id,
-              isEditable: widget.isEditable,
-            )
+          ? ItemTagsSection(itemId: item.id, isEditable: widget.isEditable)
           : null,
       raBadge: item.mediaType == MediaType.game
           ? ItemDetailRaBadge(item: item, onLink: () => _linkRa(item))
@@ -949,10 +986,7 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
             onAddTvShow: _addTvShowFromRecommendations,
           ),
         if (showRecs)
-          ReviewsSection(
-            tmdbId: item.externalId,
-            mediaType: item.mediaType,
-          ),
+          ReviewsSection(tmdbId: item.externalId, mediaType: item.mediaType),
         // Similar books — Fantlab has a native similars endpoint; Google Books
         // approximates it by category search.
         if (settings.showRecommendations &&
@@ -995,16 +1029,15 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
       hasAuthorComment: item.hasAuthorComment,
       hasUserComment: item.hasUserComment,
       isEditable: widget.isEditable,
-      onAuthorCommentSave: (String? text) =>
-          _saveAuthorComment(item.id, text),
-      onUserCommentSave: (String? text) =>
-          _saveUserComment(item.id, text),
+      onAuthorCommentSave: (String? text) => _saveAuthorComment(item.id, text),
+      onUserCommentSave: (String? text) => _saveUserComment(item.id, text),
       userRating: item.userRating,
       onUserRatingChanged: (double? rating) =>
           _updateUserRating(item.id, rating),
       accentColor: config.accentColor,
-      platformOverlayAsset:
-          ref.watch(settingsNotifierProvider).resolveOverlay(
+      platformOverlayAsset: ref
+          .watch(settingsNotifierProvider)
+          .resolveOverlay(
             platformOverlay: item.platform?.overlayAsset,
             mediaTypeOverlay: item.mediaType.overlayAsset,
           ),
@@ -1035,24 +1068,22 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
         : await _pickCardLinkTarget(matches) ?? matches.first;
     if (!mounted) return;
 
-    final MetaSearchRequest? request =
-        await Navigator.of(context).push<MetaSearchRequest?>(
-      MaterialPageRoute<MetaSearchRequest?>(
-        builder: (BuildContext context) => ItemDetailScreen(
-          collectionId: target.collectionId,
-          itemId: target.id,
-          isEditable: widget.isEditable,
-        ),
-      ),
-    );
+    final MetaSearchRequest? request = await Navigator.of(context)
+        .push<MetaSearchRequest?>(
+          MaterialPageRoute<MetaSearchRequest?>(
+            builder: (BuildContext context) => ItemDetailScreen(
+              collectionId: target.collectionId,
+              itemId: target.id,
+              isEditable: widget.isEditable,
+            ),
+          ),
+        );
     // A chip tapped in the linked card closes both cards: the screen that
     // opened the first one is the only place the query can be applied.
     if (request != null && mounted) Navigator.of(context).pop(request);
   }
 
-  Future<CollectionItem?> _pickCardLinkTarget(
-    List<CollectionItem> matches,
-  ) {
+  Future<CollectionItem?> _pickCardLinkTarget(List<CollectionItem> matches) {
     return showModalBottomSheet<CollectionItem>(
       context: context,
       builder: (BuildContext context) => SafeArea(
@@ -1074,15 +1105,18 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
                   future: match.collectionId == null
                       ? Future<Collection?>.value(null)
                       : ref
-                          .read(databaseServiceProvider)
-                          .getCollectionById(match.collectionId!),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<Collection?> snapshot) {
-                    return Text(
-                      snapshot.data?.name ??
-                          S.of(context).collectionsUncategorized,
-                    );
-                  },
+                            .read(databaseServiceProvider)
+                            .getCollectionById(match.collectionId!),
+                  builder:
+                      (
+                        BuildContext context,
+                        AsyncSnapshot<Collection?> snapshot,
+                      ) {
+                        return Text(
+                          snapshot.data?.name ??
+                              S.of(context).collectionsUncategorized,
+                        );
+                      },
                 ),
                 onTap: () => Navigator.of(context).pop(match),
               ),
@@ -1151,14 +1185,16 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     final AudioItem? album = item.audioItem;
     final (int, int)? lastListened =
         album != null && !album.isPodcast && collectionId != null
-            ? ref
-                .watch(lastListenedTrackProvider((
+        ? ref
+              .watch(
+                lastListenedTrackProvider((
                   collectionId: collectionId,
                   source: album.source,
                   audioId: album.id,
-                )))
-                .valueOrNull
-            : null;
+                )),
+              )
+              .valueOrNull
+        : null;
     return StoppedAtProgress.forItem(
       item,
       S.of(context),
@@ -1170,9 +1206,11 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
   Widget? _buildTrackerSection(CollectionItem item) {
     if (item.mediaType != MediaType.game) return null;
     final bool hasData = ref.watch(
-      trackerDetailProvider((gameId: item.externalId, platformId: item.platformId)).select(
-        (AsyncValue<TrackerDetailState> v) =>
-            v.valueOrNull?.hasRaData ?? false,
+      trackerDetailProvider((
+        gameId: item.externalId,
+        platformId: item.platformId,
+      )).select(
+        (AsyncValue<TrackerDetailState> v) => v.valueOrNull?.hasRaData ?? false,
       ),
     );
     if (hasData) {
@@ -1184,14 +1222,13 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     return null;
   }
 
-
   Future<void> _addMovieFromRecommendations(Movie movie) => _addRecommendation(
-        tmdbId: movie.tmdbId,
-        title: movie.title,
-        mediaType: MediaType.movie,
-        ownMapProvider: collectedMovieIdsProvider,
-        upsert: (DatabaseService db) => db.movieDao.upsertMovie(movie),
-      );
+    tmdbId: movie.tmdbId,
+    title: movie.title,
+    mediaType: MediaType.movie,
+    ownMapProvider: collectedMovieIdsProvider,
+    upsert: (DatabaseService db) => db.movieDao.upsertMovie(movie),
+  );
 
   Future<void> _addTvShowFromRecommendations(TvShow tvShow) =>
       _addRecommendation(
@@ -1202,8 +1239,9 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
         upsert: (DatabaseService db) => db.tvShowDao.upsertTvShow(tvShow),
         // Recommendation rows carry no season/episode totals — warm the
         // cache with full details like the search add flow does.
-        afterAdd: () =>
-            ref.read(tvShowCacheWarmerProvider).warm(tvShow.tmdbId, tvShow.source),
+        afterAdd: () => ref
+            .read(tvShowCacheWarmerProvider)
+            .warm(tvShow.tmdbId, tvShow.source),
       );
 
   Future<void> _addRecommendation({
@@ -1214,10 +1252,11 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     required Future<void> Function(DatabaseService db) upsert,
     Future<void> Function()? afterAdd,
   }) async {
-    final Map<int, List<CollectedItemInfo>> ownMap =
-        await ref.read(ownMapProvider.future);
-    final Map<int, List<CollectedItemInfo>> collectedAnimations =
-        await ref.read(collectedAnimationIdsProvider.future);
+    final Map<int, List<CollectedItemInfo>> ownMap = await ref.read(
+      ownMapProvider.future,
+    );
+    final Map<int, List<CollectedItemInfo>> collectedAnimations = await ref
+        .read(collectedAnimationIdsProvider.future);
     // TMDB-only rows, so placements from another provider sharing the numeric
     // id must not grey out a collection in the picker.
     final Set<int?> alreadyIn = <CollectedItemInfo>[
@@ -1274,8 +1313,9 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
   /// Caches the full record first and carries `book.source` so the Fantlab
   /// origin survives.
   Future<void> _addBookFromSimilars(Book book) async {
-    final Map<int, List<CollectedItemInfo>> ownMap =
-        await ref.read(collectedBookIdsProvider.future);
+    final Map<int, List<CollectedItemInfo>> ownMap = await ref.read(
+      collectedBookIdsProvider.future,
+    );
     final Set<int?> alreadyIn = <CollectedItemInfo>[
       ...?ownMap[book.externalIdInt],
     ].map((CollectedItemInfo i) => i.collectionId).toSet();
@@ -1325,11 +1365,10 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
   /// Caches the full record first and carries `manga.source` so the provider
   /// origin (MangaBaka / MangaDex) survives.
   Future<void> _addMangaFromSimilars(Manga manga) async {
-    final Map<int, List<CollectedItemInfo>> ownMap =
-        await ref.read(collectedMangaIdsProvider.future);
-    final Set<int?> alreadyIn = <CollectedItemInfo>[
-      ...?ownMap[manga.id],
-    ]
+    final Map<int, List<CollectedItemInfo>> ownMap = await ref.read(
+      collectedMangaIdsProvider.future,
+    );
+    final Set<int?> alreadyIn = <CollectedItemInfo>[...?ownMap[manga.id]]
         .where((CollectedItemInfo i) => i.source == manga.source)
         .map((CollectedItemInfo i) => i.collectionId)
         .toSet();
@@ -1382,11 +1421,10 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
   /// Adds an anime tapped in the "Similar" row to a chosen collection,
   /// caching the full record first. Similars are always Kitsu entities.
   Future<void> _addAnimeFromSimilars(Anime anime) async {
-    final Map<int, List<CollectedItemInfo>> ownMap =
-        await ref.read(collectedAnimeIdsProvider.future);
-    final Set<int?> alreadyIn = <CollectedItemInfo>[
-      ...?ownMap[anime.id],
-    ]
+    final Map<int, List<CollectedItemInfo>> ownMap = await ref.read(
+      collectedAnimeIdsProvider.future,
+    );
+    final Set<int?> alreadyIn = <CollectedItemInfo>[...?ownMap[anime.id]]
         .where((CollectedItemInfo i) => i.source == anime.source)
         .map((CollectedItemInfo i) => i.collectionId)
         .toSet();
@@ -1441,10 +1479,14 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     ItemStatus status,
     MediaType mediaType,
   ) async {
-    final CollectionItemsNotifier notifier =
-        ref.read(collectionItemsNotifierProvider(widget.collectionId).notifier);
-    final ClearedEpisodeMarks? cleared =
-        await notifier.updateStatus(id, status, mediaType);
+    final CollectionItemsNotifier notifier = ref.read(
+      collectionItemsNotifierProvider(widget.collectionId).notifier,
+    );
+    final ClearedEpisodeMarks? cleared = await notifier.updateStatus(
+      id,
+      status,
+      mediaType,
+    );
     if (!mounted) return;
     offerStatusEpisodesUndo(context, notifier, cleared);
   }
@@ -1500,7 +1542,12 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     if (result == null || !mounted) return;
 
     await ref
-        .read(trackerDetailProvider((gameId: item.externalId, platformId: item.platformId)).notifier)
+        .read(
+          trackerDetailProvider((
+            gameId: item.externalId,
+            platformId: item.platformId,
+          )).notifier,
+        )
         .linkRaGame(
           raGameId: result.raGameId,
           raTitle: result.title,
@@ -1512,4 +1559,3 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     }
   }
 }
-

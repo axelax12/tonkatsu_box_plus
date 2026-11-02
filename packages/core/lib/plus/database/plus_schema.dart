@@ -29,9 +29,7 @@ class PlusSchema {
 
   static const String versionKey = 'schema_version';
 
-  static const List<PlusMigration> all = <PlusMigration>[
-    PlusMigrationV1(),
-  ];
+  static const List<PlusMigration> all = <PlusMigration>[PlusMigrationV1()];
 
   static int get latestVersion => all.last.version;
 
@@ -63,14 +61,10 @@ class PlusSchema {
       if (migration.version <= current) continue;
       await db.transaction((Transaction txn) async {
         await migration.migrate(txn);
-        await txn.insert(
-          metaTable,
-          <String, Object?>{
-            'key': versionKey,
-            'value': migration.version.toString(),
-          },
-          conflictAlgorithm: ConflictAlgorithm.replace,
-        );
+        await txn.insert(metaTable, <String, Object?>{
+          'key': versionKey,
+          'value': migration.version.toString(),
+        }, conflictAlgorithm: ConflictAlgorithm.replace);
       });
     }
   }

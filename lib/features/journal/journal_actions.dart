@@ -32,8 +32,9 @@ class JournalActions {
   /// Progress typed while stopping also moves the "Where was I?" position.
   Future<void> stopSession(BuildContext context, PlaySession session) async {
     final S l = S.of(context);
-    final ResumeBookmark? bookmark =
-        await ref.read(itemBookmarkProvider(itemId).future);
+    final ResumeBookmark? bookmark = await ref.read(
+      itemBookmarkProvider(itemId).future,
+    );
     if (!context.mounted) return;
     final SessionWrapUp? wrapUp = await showStopSessionSheet(
       context,
@@ -74,8 +75,10 @@ class JournalActions {
 
   Future<void> editSession(BuildContext context, PlaySession session) async {
     final S l = S.of(context);
-    final SessionEditResult? result =
-        await showManualSessionSheet(context, existing: session);
+    final SessionEditResult? result = await showManualSessionSheet(
+      context,
+      existing: session,
+    );
     if (result == null || !context.mounted) return;
     switch (result) {
       case SessionInput():
@@ -109,8 +112,9 @@ class JournalActions {
     JournalEntryKind initialKind = JournalEntryKind.note,
   }) async {
     final S l = S.of(context);
-    final ResumeBookmark? bookmark =
-        await ref.read(itemBookmarkProvider(itemId).future);
+    final ResumeBookmark? bookmark = await ref.read(
+      itemBookmarkProvider(itemId).future,
+    );
     if (!context.mounted) return;
     final EntryEditResult? result = await showEntryEditorSheet(
       context,
@@ -137,8 +141,9 @@ class JournalActions {
   }
 
   Future<void> editBookmark(BuildContext context) async {
-    final ResumeBookmark? current =
-        await ref.read(itemBookmarkProvider(itemId).future);
+    final ResumeBookmark? current = await ref.read(
+      itemBookmarkProvider(itemId).future,
+    );
     if (!context.mounted) return;
     final ResumeBookmark? edited = await showBookmarkEditorSheet(
       context,

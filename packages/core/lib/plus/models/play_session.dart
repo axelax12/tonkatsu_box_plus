@@ -85,14 +85,16 @@ class PlaySession {
     return PlaySession(
       id: id ?? this.id,
       itemId: itemId,
-      playthroughId:
-          clearPlaythrough ? null : (playthroughId ?? this.playthroughId),
+      playthroughId: clearPlaythrough
+          ? null
+          : (playthroughId ?? this.playthroughId),
       startedAt: startedAt ?? this.startedAt,
       endedAt: endedAt ?? this.endedAt,
       durationSeconds: durationSeconds ?? this.durationSeconds,
       note: clearNote ? null : (note ?? this.note),
-      progressLabel:
-          clearProgressLabel ? null : (progressLabel ?? this.progressLabel),
+      progressLabel: clearProgressLabel
+          ? null
+          : (progressLabel ?? this.progressLabel),
       createdAt: createdAt,
     );
   }

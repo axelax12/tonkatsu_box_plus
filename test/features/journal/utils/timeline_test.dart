@@ -5,24 +5,24 @@ import 'package:tonkatsu_box/features/journal/utils/timeline.dart';
 
 void main() {
   PlaySession session(int id, DateTime start) => PlaySession(
-        id: id,
-        itemId: 1,
-        startedAt: start,
-        endedAt: start.add(const Duration(minutes: 30)),
-        durationSeconds: 1800,
-        createdAt: start,
-      );
+    id: id,
+    itemId: 1,
+    startedAt: start,
+    endedAt: start.add(const Duration(minutes: 30)),
+    durationSeconds: 1800,
+    createdAt: start,
+  );
 
   JournalEntry entry(int id, DateTime at) => JournalEntry(
-        id: id,
-        itemId: 1,
-        kind: JournalEntryKind.note,
-        body: 'x',
-        isSpoiler: false,
-        occurredAt: at,
-        createdAt: at,
-        updatedAt: at,
-      );
+    id: id,
+    itemId: 1,
+    kind: JournalEntryKind.note,
+    body: 'x',
+    isSpoiler: false,
+    occurredAt: at,
+    createdAt: at,
+    updatedAt: at,
+  );
 
   group('buildTimeline', () {
     test('is empty without events', () {
@@ -41,9 +41,7 @@ void main() {
           session(1, DateTime(2026, 3, 1, 9)),
           session(2, DateTime(2026, 3, 2, 21)),
         ],
-        entries: <JournalEntry>[
-          entry(10, DateTime(2026, 3, 1, 22)),
-        ],
+        entries: <JournalEntry>[entry(10, DateTime(2026, 3, 1, 22))],
       );
 
       expect(days.map((TimelineDay d) => d.date), <DateTime>[

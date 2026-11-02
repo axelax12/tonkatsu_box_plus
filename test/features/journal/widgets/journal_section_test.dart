@@ -19,12 +19,13 @@ void main() {
 
   setUp(() {
     dao = MockJournalDao();
-    when(() => dao.getRunningSession(itemId))
-        .thenAnswer((_) async => null);
-    when(() => dao.getSessionsForItem(itemId))
-        .thenAnswer((_) async => <PlaySession>[]);
-    when(() => dao.getEntriesForItem(itemId))
-        .thenAnswer((_) async => <JournalEntry>[]);
+    when(() => dao.getRunningSession(itemId)).thenAnswer((_) async => null);
+    when(
+      () => dao.getSessionsForItem(itemId),
+    ).thenAnswer((_) async => <PlaySession>[]);
+    when(
+      () => dao.getEntriesForItem(itemId),
+    ).thenAnswer((_) async => <JournalEntry>[]);
     when(() => dao.getBookmark(itemId)).thenAnswer((_) async => null);
   });
 
@@ -43,9 +44,7 @@ void main() {
       ),
       wrapInScaffold: true,
       settle: false,
-      overrides: <Override>[
-        journalDaoProvider.overrideWithValue(dao),
-      ],
+      overrides: <Override>[journalDaoProvider.overrideWithValue(dao)],
     );
     await tester.pump();
     await tester.pump();
@@ -73,8 +72,9 @@ void main() {
         durationSeconds: 0,
         createdAt: t0,
       );
-      when(() => dao.getRunningSession(itemId))
-          .thenAnswer((_) async => running);
+      when(
+        () => dao.getRunningSession(itemId),
+      ).thenAnswer((_) async => running);
 
       await pump(tester);
 

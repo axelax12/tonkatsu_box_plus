@@ -46,10 +46,12 @@ class _PlaythroughForm extends StatefulWidget {
 }
 
 class _PlaythroughFormState extends State<_PlaythroughForm> {
-  late final TextEditingController _label =
-      TextEditingController(text: widget.existing?.label ?? '');
-  late final TextEditingController _review =
-      TextEditingController(text: widget.existing?.review ?? '');
+  late final TextEditingController _label = TextEditingController(
+    text: widget.existing?.label ?? '',
+  );
+  late final TextEditingController _review = TextEditingController(
+    text: widget.existing?.review ?? '',
+  );
   late PlaythroughStatus _status =
       widget.existing?.status ?? PlaythroughStatus.inProgress;
   late DateTime? _startedAt = widget.existing?.startedAt ?? DateTime.now();
@@ -87,7 +89,8 @@ class _PlaythroughFormState extends State<_PlaythroughForm> {
     final DateTime now = DateTime.now();
     final String label = _label.text.trim();
     final String review = _review.text.trim();
-    final Playthrough base = widget.existing ??
+    final Playthrough base =
+        widget.existing ??
         Playthrough(
           id: 0,
           itemId: widget.itemId,
@@ -198,8 +201,7 @@ class _PlaythroughFormState extends State<_PlaythroughForm> {
           value: rating ?? Playthrough.minRating,
           min: Playthrough.minRating,
           max: Playthrough.maxRating,
-          divisions:
-              (Playthrough.maxRating - Playthrough.minRating).round(),
+          divisions: (Playthrough.maxRating - Playthrough.minRating).round(),
           label: rating?.toStringAsFixed(0),
           onChanged: (double v) => setState(() => _rating = v),
         ),
@@ -218,8 +220,9 @@ class _PlaythroughFormState extends State<_PlaythroughForm> {
           deleteLabel: l.delete,
           onDelete: widget.existing == null
               ? null
-              : () => Navigator.of(context)
-                  .pop<PlaythroughEditResult>(const PlaythroughDeleted()),
+              : () => Navigator.of(
+                  context,
+                ).pop<PlaythroughEditResult>(const PlaythroughDeleted()),
         ),
       ],
     );

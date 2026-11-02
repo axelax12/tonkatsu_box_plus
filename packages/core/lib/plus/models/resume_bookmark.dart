@@ -42,12 +42,12 @@ class ResumeBookmark {
   final DateTime updatedAt;
 
   bool get isEmpty => <String?>[
-        position,
-        objective,
-        reminders,
-        characters,
-        notes,
-      ].every((String? field) => field == null || field.trim().isEmpty);
+    position,
+    objective,
+    reminders,
+    characters,
+    notes,
+  ].every((String? field) => field == null || field.trim().isEmpty);
 
   Map<String, dynamic> toDb() {
     return <String, dynamic>{

@@ -11,7 +11,8 @@ class PlusMigrationV1 extends PlusMigration {
   int get version => 1;
 
   @override
-  String get description => 'Journal: playthroughs, sessions, entries, bookmarks';
+  String get description =>
+      'Journal: playthroughs, sessions, entries, bookmarks';
 
   @override
   Future<void> migrate(DatabaseExecutor db) async {

@@ -33,19 +33,13 @@ void main() {
       });
 
       test('stamps the latest version', () async {
-        expect(
-          await PlusSchema.currentVersion(t.db),
-          PlusSchema.latestVersion,
-        );
+        expect(await PlusSchema.currentVersion(t.db), PlusSchema.latestVersion);
       });
 
       test('is a no-op when run again', () async {
         await PlusSchema.ensure(t.db);
         await PlusSchema.ensure(t.db);
-        expect(
-          await PlusSchema.currentVersion(t.db),
-          PlusSchema.latestVersion,
-        );
+        expect(await PlusSchema.currentVersion(t.db), PlusSchema.latestVersion);
       });
 
       test('refuses a file written by a newer build', () async {
@@ -79,12 +73,14 @@ void main() {
     group('foreign keys', () {
       test('deleting an item cascades through every journal table', () async {
         final int itemId = await t.newItem();
-        final int playthroughId =
-            await t.db.insert('plus_playthroughs', <String, Object?>{
-          'item_id': itemId,
-          'created_at': 1,
-          'updated_at': 1,
-        });
+        final int playthroughId = await t.db.insert(
+          'plus_playthroughs',
+          <String, Object?>{
+            'item_id': itemId,
+            'created_at': 1,
+            'updated_at': 1,
+          },
+        );
         await t.db.insert('plus_sessions', <String, Object?>{
           'item_id': itemId,
           'playthrough_id': playthroughId,
@@ -122,12 +118,14 @@ void main() {
 
       test('deleting a playthrough detaches its sessions', () async {
         final int itemId = await t.newItem();
-        final int playthroughId =
-            await t.db.insert('plus_playthroughs', <String, Object?>{
-          'item_id': itemId,
-          'created_at': 1,
-          'updated_at': 1,
-        });
+        final int playthroughId = await t.db.insert(
+          'plus_playthroughs',
+          <String, Object?>{
+            'item_id': itemId,
+            'created_at': 1,
+            'updated_at': 1,
+          },
+        );
         await t.db.insert('plus_sessions', <String, Object?>{
           'item_id': itemId,
           'playthrough_id': playthroughId,
@@ -141,8 +139,9 @@ void main() {
           whereArgs: <Object?>[playthroughId],
         );
 
-        final List<Map<String, Object?>> sessions =
-            await t.db.query('plus_sessions');
+        final List<Map<String, Object?>> sessions = await t.db.query(
+          'plus_sessions',
+        );
         expect(sessions, hasLength(1));
         expect(sessions.single['playthrough_id'], isNull);
       });

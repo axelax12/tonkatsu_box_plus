@@ -57,8 +57,9 @@ class ResumeCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       l.journalResumeTitle,
-                      style: AppTypography.body
-                          .copyWith(fontWeight: FontWeight.w600),
+                      style: AppTypography.body.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   if (onTap != null)
@@ -73,8 +74,9 @@ class ResumeCard extends StatelessWidget {
               if (rows.isEmpty)
                 Text(
                   l.journalResumeEmpty,
-                  style: AppTypography.bodySmall
-                      .copyWith(color: AppColors.textSecondary),
+                  style: AppTypography.bodySmall.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
                 )
               else
                 for (final (IconData icon, String label, String value) in rows)
@@ -92,8 +94,9 @@ class ResumeCard extends StatelessWidget {
                             children: <Widget>[
                               Text(
                                 label,
-                                style: AppTypography.caption
-                                    .copyWith(color: AppColors.textTertiary),
+                                style: AppTypography.caption.copyWith(
+                                  color: AppColors.textTertiary,
+                                ),
                               ),
                               Text(value, style: AppTypography.bodySmall),
                             ],
@@ -105,11 +108,13 @@ class ResumeCard extends StatelessWidget {
               if (b != null && rows.isNotEmpty)
                 Text(
                   l.journalResumeUpdated(
-                    MaterialLocalizations.of(context)
-                        .formatMediumDate(b.updatedAt),
+                    MaterialLocalizations.of(
+                      context,
+                    ).formatMediumDate(b.updatedAt),
                   ),
-                  style: AppTypography.caption
-                      .copyWith(color: AppColors.textTertiary),
+                  style: AppTypography.caption.copyWith(
+                    color: AppColors.textTertiary,
+                  ),
                 ),
             ],
           ),

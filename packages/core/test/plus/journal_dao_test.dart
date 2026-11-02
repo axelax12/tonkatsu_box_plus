@@ -46,16 +46,18 @@ void main() {
         expect((await dao.getRunningSession(itemId))?.id, s.id);
       });
 
-      test('returns the running session instead of opening a second one',
-          () async {
-        final PlaySession first = await dao.startSession(itemId, now: t0);
-        final PlaySession second = await dao.startSession(
-          itemId,
-          now: t0.add(const Duration(minutes: 5)),
-        );
-        expect(second.id, first.id);
-        expect(await dao.getRunningSessions(), hasLength(1));
-      });
+      test(
+        'returns the running session instead of opening a second one',
+        () async {
+          final PlaySession first = await dao.startSession(itemId, now: t0);
+          final PlaySession second = await dao.startSession(
+            itemId,
+            now: t0.add(const Duration(minutes: 5)),
+          );
+          expect(second.id, first.id);
+          expect(await dao.getRunningSessions(), hasLength(1));
+        },
+      );
     });
 
     group('stopSession', () {
@@ -74,15 +76,17 @@ void main() {
         expect((await dao.getSession(s.id))?.durationSeconds, 90 * 60);
       });
 
-      test('returns null the second time so time is never counted twice',
-          () async {
-        final PlaySession s = await dao.startSession(itemId, now: t0);
-        await dao.stopSession(s.id, now: t0.add(const Duration(minutes: 1)));
-        expect(
-          await dao.stopSession(s.id, now: t0.add(const Duration(hours: 1))),
-          isNull,
-        );
-      });
+      test(
+        'returns null the second time so time is never counted twice',
+        () async {
+          final PlaySession s = await dao.startSession(itemId, now: t0);
+          await dao.stopSession(s.id, now: t0.add(const Duration(minutes: 1)));
+          expect(
+            await dao.stopSession(s.id, now: t0.add(const Duration(hours: 1))),
+            isNull,
+          );
+        },
+      );
 
       test('clamps a clock that went backwards to zero', () async {
         final PlaySession s = await dao.startSession(itemId, now: t0);
@@ -133,8 +137,9 @@ void main() {
           duration: const Duration(minutes: 30),
           now: t0,
         );
-        final PlaySession? before =
-            await dao.updateSession(s.copyWith(durationSeconds: 3600));
+        final PlaySession? before = await dao.updateSession(
+          s.copyWith(durationSeconds: 3600),
+        );
         expect(before?.durationSeconds, 1800);
         expect((await dao.getSession(s.id))?.durationSeconds, 3600);
       });
@@ -210,20 +215,22 @@ void main() {
 
     group('playthroughs', () {
       Playthrough run(String label, DateTime? startedAt) => Playthrough(
-            id: 0,
-            itemId: itemId,
-            label: label,
-            status: PlaythroughStatus.inProgress,
-            startedAt: startedAt,
-            createdAt: t0,
-            updatedAt: t0,
-          );
+        id: 0,
+        itemId: itemId,
+        label: label,
+        status: PlaythroughStatus.inProgress,
+        startedAt: startedAt,
+        createdAt: t0,
+        updatedAt: t0,
+      );
 
       test('insert, list in start order, update and delete', () async {
-        final Playthrough second =
-            await dao.insertPlaythrough(run('NG+', DateTime(2026, 5)));
-        final Playthrough first =
-            await dao.insertPlaythrough(run('First', DateTime(2025, 1)));
+        final Playthrough second = await dao.insertPlaythrough(
+          run('NG+', DateTime(2026, 5)),
+        );
+        final Playthrough first = await dao.insertPlaythrough(
+          run('First', DateTime(2025, 1)),
+        );
 
         expect(
           (await dao.getPlaythroughs(itemId)).map((Playthrough p) => p.id),
@@ -284,7 +291,9 @@ void main() {
         await dao.updateEntry(
           e.copyWith(body: 'changed', kind: JournalEntryKind.quote),
         );
-        final JournalEntry reloaded = (await dao.getEntriesForItem(itemId)).single;
+        final JournalEntry reloaded = (await dao.getEntriesForItem(
+          itemId,
+        )).single;
         expect(reloaded.body, 'changed');
         expect(reloaded.kind, JournalEntryKind.quote);
 
@@ -296,16 +305,16 @@ void main() {
     group('bookmarks', () {
       test('save, read back trimmed, replace', () async {
         await dao.saveBookmark(
-          ResumeBookmark(
-            itemId: itemId,
-            position: '  Act II  ',
-            updatedAt: t0,
-          ),
+          ResumeBookmark(itemId: itemId, position: '  Act II  ', updatedAt: t0),
         );
         expect((await dao.getBookmark(itemId))?.position, 'Act II');
 
         await dao.saveBookmark(
-          ResumeBookmark(itemId: itemId, objective: 'Find the key', updatedAt: t0),
+          ResumeBookmark(
+            itemId: itemId,
+            objective: 'Find the key',
+            updatedAt: t0,
+          ),
         );
         final ResumeBookmark? replaced = await dao.getBookmark(itemId);
         expect(replaced?.position, isNull);

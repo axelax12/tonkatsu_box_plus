@@ -50,16 +50,18 @@ class JournalSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final S l = S.of(context);
     final JournalActions actions = JournalActions(ref, itemId);
-    final PlaySession? running =
-        ref.watch(runningSessionProvider(itemId)).valueOrNull;
+    final PlaySession? running = ref
+        .watch(runningSessionProvider(itemId))
+        .valueOrNull;
     final List<PlaySession> sessions =
         ref.watch(itemSessionsProvider(itemId)).valueOrNull ??
-            const <PlaySession>[];
+        const <PlaySession>[];
     final List<JournalEntry> entries =
         ref.watch(itemEntriesProvider(itemId)).valueOrNull ??
-            const <JournalEntry>[];
-    final ResumeBookmark? bookmark =
-        ref.watch(itemBookmarkProvider(itemId)).valueOrNull;
+        const <JournalEntry>[];
+    final ResumeBookmark? bookmark = ref
+        .watch(itemBookmarkProvider(itemId))
+        .valueOrNull;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -164,8 +166,9 @@ class _SessionControls extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     l.journalSessionRunning,
-                    style: AppTypography.caption
-                        .copyWith(color: AppColors.textSecondary),
+                    style: AppTypography.caption.copyWith(
+                      color: AppColors.textSecondary,
+                    ),
                   ),
                   LiveSessionClock(
                     session: session,
@@ -222,8 +225,9 @@ class _SessionSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<PlaySession> finished =
-        sessions.where((PlaySession s) => !s.isRunning).toList();
+    final List<PlaySession> finished = sessions
+        .where((PlaySession s) => !s.isRunning)
+        .toList();
     if (finished.isEmpty) return const SizedBox.shrink();
     final S l = S.of(context);
     final int seconds = finished.fold<int>(
@@ -234,8 +238,9 @@ class _SessionSummary extends StatelessWidget {
       formatMinutes(PlaySession.roundToMinutes(seconds), l),
     );
     final String last = l.journalLastSession(
-      MaterialLocalizations.of(context)
-          .formatMediumDate(finished.first.startedAt),
+      MaterialLocalizations.of(
+        context,
+      ).formatMediumDate(finished.first.startedAt),
     );
     return Padding(
       padding: const EdgeInsets.only(top: AppSpacing.sm),

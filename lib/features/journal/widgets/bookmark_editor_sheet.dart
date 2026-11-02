@@ -30,16 +30,21 @@ class _BookmarkForm extends StatefulWidget {
 }
 
 class _BookmarkFormState extends State<_BookmarkForm> {
-  late final TextEditingController _position =
-      TextEditingController(text: widget.existing?.position ?? '');
-  late final TextEditingController _objective =
-      TextEditingController(text: widget.existing?.objective ?? '');
-  late final TextEditingController _reminders =
-      TextEditingController(text: widget.existing?.reminders ?? '');
-  late final TextEditingController _characters =
-      TextEditingController(text: widget.existing?.characters ?? '');
-  late final TextEditingController _notes =
-      TextEditingController(text: widget.existing?.notes ?? '');
+  late final TextEditingController _position = TextEditingController(
+    text: widget.existing?.position ?? '',
+  );
+  late final TextEditingController _objective = TextEditingController(
+    text: widget.existing?.objective ?? '',
+  );
+  late final TextEditingController _reminders = TextEditingController(
+    text: widget.existing?.reminders ?? '',
+  );
+  late final TextEditingController _characters = TextEditingController(
+    text: widget.existing?.characters ?? '',
+  );
+  late final TextEditingController _notes = TextEditingController(
+    text: widget.existing?.notes ?? '',
+  );
 
   @override
   void dispose() {
@@ -78,10 +83,7 @@ class _BookmarkFormState extends State<_BookmarkForm> {
         minLines: 1,
         maxLines: maxLines,
         textCapitalization: TextCapitalization.sentences,
-        decoration: InputDecoration(
-          labelText: label,
-          prefixIcon: Icon(icon),
-        ),
+        decoration: InputDecoration(labelText: label, prefixIcon: Icon(icon)),
       ),
     );
   }

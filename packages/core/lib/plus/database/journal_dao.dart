@@ -97,8 +97,9 @@ class JournalDao {
       );
       if (rows.isEmpty) return null;
       final PlaySession running = PlaySession.fromDb(rows.first);
-      final DateTime endedAt =
-          now.isBefore(running.startedAt) ? running.startedAt : now;
+      final DateTime endedAt = now.isBefore(running.startedAt)
+          ? running.startedAt
+          : now;
       final PlaySession stopped = running.copyWith(
         endedAt: endedAt,
         durationSeconds: endedAt.difference(running.startedAt).inSeconds,
@@ -275,8 +276,9 @@ class JournalDao {
     final List<Map<String, dynamic>> rows = await db.query(
       _entries,
       where: before != null ? 'occurred_at < ?' : null,
-      whereArgs:
-          before != null ? <Object?>[before.millisecondsSinceEpoch] : null,
+      whereArgs: before != null
+          ? <Object?>[before.millisecondsSinceEpoch]
+          : null,
       orderBy: 'occurred_at DESC, id DESC',
       limit: limit,
     );
@@ -302,10 +304,7 @@ class JournalDao {
 
   Future<JournalEntry> insertEntry(JournalEntry entry) async {
     final Database db = await _getDatabase();
-    final int id = await db.insert(
-      _entries,
-      entry.copyWith(id: 0).toDb(),
-    );
+    final int id = await db.insert(_entries, entry.copyWith(id: 0).toDb());
     return entry.copyWith(id: id);
   }
 

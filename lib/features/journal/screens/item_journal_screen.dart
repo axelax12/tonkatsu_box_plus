@@ -48,8 +48,9 @@ class ItemJournalScreen extends ConsumerWidget {
                   itemName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTypography.caption
-                      .copyWith(color: AppColors.textSecondary),
+                  style: AppTypography.caption.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
                 ),
               ],
             ),
@@ -66,8 +67,7 @@ class ItemJournalScreen extends ConsumerWidget {
               ? FloatingActionButton(
                   backgroundColor: accentColor,
                   onPressed: () {
-                    final int tab =
-                        DefaultTabController.of(tabContext).index;
+                    final int tab = DefaultTabController.of(tabContext).index;
                     if (tab == 0) {
                       actions.editEntry(tabContext);
                     } else {
@@ -112,10 +112,12 @@ class _TimelineTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final S l = S.of(context);
     final JournalActions actions = JournalActions(ref, itemId);
-    final AsyncValue<List<PlaySession>> sessions =
-        ref.watch(itemSessionsProvider(itemId));
-    final AsyncValue<List<JournalEntry>> entries =
-        ref.watch(itemEntriesProvider(itemId));
+    final AsyncValue<List<PlaySession>> sessions = ref.watch(
+      itemSessionsProvider(itemId),
+    );
+    final AsyncValue<List<JournalEntry>> entries = ref.watch(
+      itemEntriesProvider(itemId),
+    );
 
     if (sessions.isLoading || entries.isLoading) {
       return const Center(child: CircularProgressIndicator());
@@ -160,21 +162,21 @@ class _TimelineTab extends ConsumerWidget {
             for (final TimelineEvent event in day.events)
               switch (event) {
                 SessionEvent(:final PlaySession session) => _SessionTile(
-                    key: ValueKey<String>('s${session.id}'),
-                    session: session,
-                    accentColor: accentColor,
-                    onTap: isEditable && !session.isRunning
-                        ? () => actions.editSession(context, session)
-                        : null,
-                  ),
+                  key: ValueKey<String>('s${session.id}'),
+                  session: session,
+                  accentColor: accentColor,
+                  onTap: isEditable && !session.isRunning
+                      ? () => actions.editSession(context, session)
+                      : null,
+                ),
                 EntryEvent(:final JournalEntry entry) => JournalEntryTile(
-                    key: ValueKey<String>('e${entry.id}'),
-                    entry: entry,
-                    accentColor: accentColor,
-                    onTap: isEditable
-                        ? () => actions.editEntry(context, existing: entry)
-                        : null,
-                  ),
+                  key: ValueKey<String>('e${entry.id}'),
+                  entry: entry,
+                  accentColor: accentColor,
+                  onTap: isEditable
+                      ? () => actions.editEntry(context, existing: entry)
+                      : null,
+                ),
               },
           ],
         );
@@ -199,8 +201,9 @@ class _SessionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final S l = S.of(context);
     final MaterialLocalizations material = MaterialLocalizations.of(context);
-    final String start =
-        material.formatTimeOfDay(TimeOfDay.fromDateTime(session.startedAt));
+    final String start = material.formatTimeOfDay(
+      TimeOfDay.fromDateTime(session.startedAt),
+    );
     final String? note = session.note;
     final String? progress = session.progressLabel;
 
@@ -223,8 +226,9 @@ class _SessionTile extends StatelessWidget {
                       start,
                       if (progress != null && progress.isNotEmpty) progress,
                     ].join(' · '),
-                    style: AppTypography.caption
-                        .copyWith(color: AppColors.textTertiary),
+                    style: AppTypography.caption.copyWith(
+                      color: AppColors.textTertiary,
+                    ),
                   ),
                   const SizedBox(height: AppSpacing.xs),
                   if (session.isRunning)
@@ -238,8 +242,9 @@ class _SessionTile extends StatelessWidget {
                   else
                     Text(
                       formatMinutes(session.countedMinutes, l),
-                      style: AppTypography.body
-                          .copyWith(fontWeight: FontWeight.w600),
+                      style: AppTypography.body.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   if (note != null && note.isNotEmpty)
                     Padding(
@@ -271,8 +276,9 @@ class _PlaythroughsTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final S l = S.of(context);
     final JournalActions actions = JournalActions(ref, itemId);
-    final AsyncValue<List<Playthrough>> runs =
-        ref.watch(itemPlaythroughsProvider(itemId));
+    final AsyncValue<List<Playthrough>> runs = ref.watch(
+      itemPlaythroughsProvider(itemId),
+    );
     final List<Playthrough> list = runs.valueOrNull ?? const <Playthrough>[];
 
     if (runs.isLoading) {
@@ -326,8 +332,9 @@ class _PlaythroughsTab extends ConsumerWidget {
                       Expanded(
                         child: Text(
                           title,
-                          style: AppTypography.body
-                              .copyWith(fontWeight: FontWeight.w600),
+                          style: AppTypography.body.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                       if (rating != null)
@@ -346,8 +353,9 @@ class _PlaythroughsTab extends ConsumerWidget {
                       playthroughStatusLabel(run.status, l),
                       if (dates.isNotEmpty) dates,
                     ].join(' · '),
-                    style: AppTypography.caption
-                        .copyWith(color: AppColors.textSecondary),
+                    style: AppTypography.caption.copyWith(
+                      color: AppColors.textSecondary,
+                    ),
                   ),
                   if (review != null && review.trim().isNotEmpty) ...<Widget>[
                     const SizedBox(height: AppSpacing.sm),

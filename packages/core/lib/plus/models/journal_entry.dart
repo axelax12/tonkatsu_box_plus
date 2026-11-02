@@ -46,8 +46,9 @@ class JournalEntry {
       imagePath: row['image_path'] as String?,
       progressLabel: row['progress_label'] as String?,
       isSpoiler: (row['is_spoiler'] as int?) == 1,
-      occurredAt:
-          DateTime.fromMillisecondsSinceEpoch(row['occurred_at'] as int),
+      occurredAt: DateTime.fromMillisecondsSinceEpoch(
+        row['occurred_at'] as int,
+      ),
       createdAt: DateTime.fromMillisecondsSinceEpoch(row['created_at'] as int),
       updatedAt: DateTime.fromMillisecondsSinceEpoch(row['updated_at'] as int),
     );
@@ -106,14 +107,16 @@ class JournalEntry {
     return JournalEntry(
       id: id ?? this.id,
       itemId: itemId,
-      playthroughId:
-          clearPlaythrough ? null : (playthroughId ?? this.playthroughId),
+      playthroughId: clearPlaythrough
+          ? null
+          : (playthroughId ?? this.playthroughId),
       sessionId: clearSession ? null : (sessionId ?? this.sessionId),
       kind: kind ?? this.kind,
       body: clearBody ? null : (body ?? this.body),
       imagePath: clearImage ? null : (imagePath ?? this.imagePath),
-      progressLabel:
-          clearProgressLabel ? null : (progressLabel ?? this.progressLabel),
+      progressLabel: clearProgressLabel
+          ? null
+          : (progressLabel ?? this.progressLabel),
       isSpoiler: isSpoiler ?? this.isSpoiler,
       occurredAt: occurredAt ?? this.occurredAt,
       createdAt: createdAt,

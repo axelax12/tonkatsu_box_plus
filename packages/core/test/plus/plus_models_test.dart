@@ -47,8 +47,10 @@ void main() {
           endedAt: t0.add(const Duration(hours: 1)),
           durationSeconds: 120,
         );
-        expect(done.elapsed(t0.add(const Duration(days: 9))),
-            const Duration(minutes: 2));
+        expect(
+          done.elapsed(t0.add(const Duration(days: 9))),
+          const Duration(minutes: 2),
+        );
         expect(done.countedMinutes, 2);
       });
     });
@@ -97,9 +99,14 @@ void main() {
 
   group('PlaythroughStatus.fromString', () {
     test('maps known values and falls back to in progress', () {
-      expect(PlaythroughStatus.fromString('completed'),
-          PlaythroughStatus.completed);
-      expect(PlaythroughStatus.fromString('dropped'), PlaythroughStatus.dropped);
+      expect(
+        PlaythroughStatus.fromString('completed'),
+        PlaythroughStatus.completed,
+      );
+      expect(
+        PlaythroughStatus.fromString('dropped'),
+        PlaythroughStatus.dropped,
+      );
       expect(PlaythroughStatus.fromString('???'), PlaythroughStatus.inProgress);
       expect(PlaythroughStatus.fromString(null), PlaythroughStatus.inProgress);
     });
@@ -140,16 +147,16 @@ void main() {
 
   group('JournalEntry.isEmpty', () {
     JournalEntry make({String? body, String? image}) => JournalEntry(
-          id: 0,
-          itemId: 1,
-          kind: JournalEntryKind.note,
-          body: body,
-          imagePath: image,
-          isSpoiler: false,
-          occurredAt: t0,
-          createdAt: t0,
-          updatedAt: t0,
-        );
+      id: 0,
+      itemId: 1,
+      kind: JournalEntryKind.note,
+      body: body,
+      imagePath: image,
+      isSpoiler: false,
+      occurredAt: t0,
+      createdAt: t0,
+      updatedAt: t0,
+    );
 
     test('is empty with blank text and no image', () {
       expect(make().isEmpty, isTrue);
@@ -170,8 +177,7 @@ void main() {
         isTrue,
       );
       expect(
-        ResumeBookmark(itemId: 1, reminders: 'jump = A', updatedAt: t0)
-            .isEmpty,
+        ResumeBookmark(itemId: 1, reminders: 'jump = A', updatedAt: t0).isEmpty,
         isFalse,
       );
     });

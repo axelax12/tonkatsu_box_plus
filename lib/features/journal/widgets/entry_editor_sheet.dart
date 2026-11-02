@@ -61,8 +61,9 @@ class _EntryEditorForm extends StatefulWidget {
 
 class _EntryEditorFormState extends State<_EntryEditorForm> {
   late JournalEntryKind _kind = widget.existing?.kind ?? widget.initialKind;
-  late final TextEditingController _body =
-      TextEditingController(text: widget.existing?.body ?? '');
+  late final TextEditingController _body = TextEditingController(
+    text: widget.existing?.body ?? '',
+  );
   late final TextEditingController _progress = TextEditingController(
     text: widget.existing?.progressLabel ?? widget.initialProgress ?? '',
   );
@@ -192,8 +193,9 @@ class _EntryEditorFormState extends State<_EntryEditorForm> {
           deleteLabel: l.delete,
           onDelete: widget.existing == null
               ? null
-              : () => Navigator.of(context)
-                  .pop<EntryEditResult>(const EntryDeleted()),
+              : () => Navigator.of(
+                  context,
+                ).pop<EntryEditResult>(const EntryDeleted()),
         ),
       ],
     );

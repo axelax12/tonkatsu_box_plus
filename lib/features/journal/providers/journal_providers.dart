@@ -20,36 +20,38 @@ final Provider<JournalDao> journalDaoProvider = Provider<JournalDao>((Ref ref) {
 
 final FutureProviderFamily<PlaySession?, int> runningSessionProvider =
     FutureProvider.family<PlaySession?, int>(
-  (Ref ref, int itemId) => ref.watch(journalDaoProvider).getRunningSession(itemId),
-);
+      (Ref ref, int itemId) =>
+          ref.watch(journalDaoProvider).getRunningSession(itemId),
+    );
 
 final FutureProvider<List<PlaySession>> allRunningSessionsProvider =
     FutureProvider<List<PlaySession>>(
-  (Ref ref) => ref.watch(journalDaoProvider).getRunningSessions(),
-);
+      (Ref ref) => ref.watch(journalDaoProvider).getRunningSessions(),
+    );
 
 final FutureProviderFamily<List<PlaySession>, int> itemSessionsProvider =
     FutureProvider.family<List<PlaySession>, int>(
-  (Ref ref, int itemId) =>
-      ref.watch(journalDaoProvider).getSessionsForItem(itemId),
-);
+      (Ref ref, int itemId) =>
+          ref.watch(journalDaoProvider).getSessionsForItem(itemId),
+    );
 
 final FutureProviderFamily<List<JournalEntry>, int> itemEntriesProvider =
     FutureProvider.family<List<JournalEntry>, int>(
-  (Ref ref, int itemId) =>
-      ref.watch(journalDaoProvider).getEntriesForItem(itemId),
-);
+      (Ref ref, int itemId) =>
+          ref.watch(journalDaoProvider).getEntriesForItem(itemId),
+    );
 
 final FutureProviderFamily<List<Playthrough>, int> itemPlaythroughsProvider =
     FutureProvider.family<List<Playthrough>, int>(
-  (Ref ref, int itemId) =>
-      ref.watch(journalDaoProvider).getPlaythroughs(itemId),
-);
+      (Ref ref, int itemId) =>
+          ref.watch(journalDaoProvider).getPlaythroughs(itemId),
+    );
 
 final FutureProviderFamily<ResumeBookmark?, int> itemBookmarkProvider =
     FutureProvider.family<ResumeBookmark?, int>(
-  (Ref ref, int itemId) => ref.watch(journalDaoProvider).getBookmark(itemId),
-);
+      (Ref ref, int itemId) =>
+          ref.watch(journalDaoProvider).getBookmark(itemId),
+    );
 
 final Provider<JournalController> journalControllerProvider =
     Provider<JournalController>(JournalController.new);
@@ -188,8 +190,9 @@ class JournalController {
   Future<void> _shiftTimeSpent(int itemId, int deltaMinutes) async {
     if (deltaMinutes == 0) return;
     try {
-      final CollectionItem? item =
-          await _ref.read(databaseServiceProvider).getCollectionItemById(itemId);
+      final CollectionItem? item = await _ref
+          .read(databaseServiceProvider)
+          .getCollectionItemById(itemId);
       if (item == null) return;
       final int total = math.max(0, item.timeSpentMinutes + deltaMinutes);
       await _ref
@@ -202,8 +205,9 @@ class JournalController {
 
   Future<void> _markInProgress(int itemId) async {
     try {
-      final CollectionItem? item =
-          await _ref.read(databaseServiceProvider).getCollectionItemById(itemId);
+      final CollectionItem? item = await _ref
+          .read(databaseServiceProvider)
+          .getCollectionItemById(itemId);
       if (item == null) return;
       if (item.status != ItemStatus.notStarted &&
           item.status != ItemStatus.planned) {

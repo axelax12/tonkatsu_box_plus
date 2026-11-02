@@ -69,8 +69,9 @@ class _StopSessionForm extends StatefulWidget {
 
 class _StopSessionFormState extends State<_StopSessionForm> {
   final TextEditingController _note = TextEditingController();
-  late final TextEditingController _progress =
-      TextEditingController(text: widget.initialProgress ?? '');
+  late final TextEditingController _progress = TextEditingController(
+    text: widget.initialProgress ?? '',
+  );
 
   @override
   void dispose() {
@@ -127,15 +128,18 @@ class _ManualSessionFormState extends State<_ManualSessionForm> {
   late final Duration _initialDuration = widget.existing != null
       ? Duration(seconds: widget.existing?.durationSeconds ?? 0)
       : _defaultDuration;
-  late final TextEditingController _hours =
-      TextEditingController(text: '${_initialDuration.inHours}');
+  late final TextEditingController _hours = TextEditingController(
+    text: '${_initialDuration.inHours}',
+  );
   late final TextEditingController _minutes = TextEditingController(
     text: '${_initialDuration.inMinutes % Duration.minutesPerHour}',
   );
-  late final TextEditingController _note =
-      TextEditingController(text: widget.existing?.note ?? '');
-  late final TextEditingController _progress =
-      TextEditingController(text: widget.existing?.progressLabel ?? '');
+  late final TextEditingController _note = TextEditingController(
+    text: widget.existing?.note ?? '',
+  );
+  late final TextEditingController _progress = TextEditingController(
+    text: widget.existing?.progressLabel ?? '',
+  );
   late DateTime _start =
       widget.existing?.startedAt ?? DateTime.now().subtract(_defaultDuration);
   String? _error;
@@ -263,8 +267,9 @@ class _ManualSessionFormState extends State<_ManualSessionForm> {
           deleteLabel: l.delete,
           onDelete: widget.existing == null
               ? null
-              : () => Navigator.of(context)
-                  .pop<SessionEditResult>(const SessionDeleteRequested()),
+              : () => Navigator.of(
+                  context,
+                ).pop<SessionEditResult>(const SessionDeleteRequested()),
         ),
       ],
     );

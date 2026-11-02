@@ -8,11 +8,7 @@ import '../utils/journal_format.dart';
 /// Ticks once a second while mounted; the elapsed time is always derived from
 /// the stored start, so a killed app resumes at the right number.
 class LiveSessionClock extends StatefulWidget {
-  const LiveSessionClock({
-    required this.session,
-    this.style,
-    super.key,
-  });
+  const LiveSessionClock({required this.session, this.style, super.key});
 
   final PlaySession session;
   final TextStyle? style;

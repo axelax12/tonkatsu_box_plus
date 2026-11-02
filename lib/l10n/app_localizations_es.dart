@@ -6319,4 +6319,194 @@ class SEs extends S {
   String collectionImportSynced(String source, int count) {
     return '$source sincronizado: $count nuevos';
   }
+
+  @override
+  String get journalTitle => 'Journal';
+
+  @override
+  String get journalStartSession => 'Start session';
+
+  @override
+  String get journalStopSession => 'Stop';
+
+  @override
+  String get journalSessionRunning => 'Session in progress';
+
+  @override
+  String get journalLogPastSession => 'Log a past session';
+
+  @override
+  String journalTrackedTime(String time) {
+    return '$time tracked';
+  }
+
+  @override
+  String journalSessionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sessions',
+      one: '1 session',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String journalLastSession(String date) {
+    return 'Last session: $date';
+  }
+
+  @override
+  String get journalResumeTitle => 'Where was I?';
+
+  @override
+  String get journalResumeEmpty =>
+      'Note where you got to, so picking it up later is easy.';
+
+  @override
+  String get journalResumePosition => 'Where I got to';
+
+  @override
+  String get journalResumeObjective => 'Next objective';
+
+  @override
+  String get journalResumeReminders => 'Controls and things to remember';
+
+  @override
+  String get journalResumeCharacters => 'Characters and events';
+
+  @override
+  String get journalResumeNotes => 'Notes';
+
+  @override
+  String journalResumeUpdated(String date) {
+    return 'Updated $date';
+  }
+
+  @override
+  String get journalAddEntry => 'Add to journal';
+
+  @override
+  String get journalSeeAll => 'Open journal';
+
+  @override
+  String get journalKindNote => 'Note';
+
+  @override
+  String get journalKindQuote => 'Quote';
+
+  @override
+  String get journalKindImpression => 'Impression';
+
+  @override
+  String get journalKindMilestone => 'Milestone';
+
+  @override
+  String get journalKindScreenshot => 'Screenshot';
+
+  @override
+  String get journalEntryText => 'Text';
+
+  @override
+  String get journalEntryProgress => 'Where (chapter, mission, episode…)';
+
+  @override
+  String get journalEntrySpoiler => 'Contains spoilers';
+
+  @override
+  String get journalEntryDate => 'Date';
+
+  @override
+  String get journalSpoilerHidden => 'Spoiler — tap to reveal';
+
+  @override
+  String get journalStopSheetTitle => 'End session';
+
+  @override
+  String get journalSessionNote => 'How did it go?';
+
+  @override
+  String get journalSessionDuration => 'Duration';
+
+  @override
+  String get journalSessionStart => 'Started';
+
+  @override
+  String journalSessionAdded(String time) {
+    return '$time added to the total';
+  }
+
+  @override
+  String get journalDeleteSessionConfirm =>
+      'Delete this session? Its time is removed from the total.';
+
+  @override
+  String get journalDeleteEntryConfirm => 'Delete this journal entry?';
+
+  @override
+  String get journalEmpty =>
+      'Nothing here yet. Start a session or write your first note.';
+
+  @override
+  String get journalPlaythroughs => 'Playthroughs';
+
+  @override
+  String get journalAddPlaythrough => 'Add playthrough';
+
+  @override
+  String get journalPlaythroughLabel => 'Name (e.g. First run, NG+, Reread)';
+
+  @override
+  String journalPlaythroughUntitled(int number) {
+    return 'Playthrough $number';
+  }
+
+  @override
+  String get journalPlaythroughInProgress => 'In progress';
+
+  @override
+  String get journalPlaythroughCompleted => 'Completed';
+
+  @override
+  String get journalPlaythroughDropped => 'Dropped';
+
+  @override
+  String get journalPlaythroughStarted => 'Started';
+
+  @override
+  String get journalPlaythroughFinished => 'Finished';
+
+  @override
+  String get journalPlaythroughReview => 'Review';
+
+  @override
+  String get journalPlaythroughRating => 'Rating';
+
+  @override
+  String get journalPlaythroughNoRating => 'No rating';
+
+  @override
+  String get journalDeletePlaythroughConfirm =>
+      'Delete this playthrough? Its sessions and notes stay in the journal.';
+
+  @override
+  String get journalTimeline => 'Timeline';
+
+  @override
+  String get journalSessionsTab => 'Sessions';
+
+  @override
+  String get journalHours => 'Hours';
+
+  @override
+  String get journalMinutes => 'Minutes';
+
+  @override
+  String get journalPickDate => 'Pick a date';
+
+  @override
+  String get journalNotSet => 'Not set';
+
+  @override
+  String get journalInvalidDuration => 'Enter a duration longer than zero.';
 }

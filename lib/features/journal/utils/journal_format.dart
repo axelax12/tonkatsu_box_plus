@@ -11,10 +11,13 @@ const int _minutesPerHour = 60;
 String formatClock(Duration duration) {
   final Duration safe = duration.isNegative ? Duration.zero : duration;
   final int hours = safe.inHours;
-  final String minutes =
-      (safe.inMinutes % _minutesPerHour).toString().padLeft(2, '0');
-  final String seconds =
-      (safe.inSeconds % _secondsPerMinute).toString().padLeft(2, '0');
+  final String minutes = (safe.inMinutes % _minutesPerHour).toString().padLeft(
+    2,
+    '0',
+  );
+  final String seconds = (safe.inSeconds % _secondsPerMinute)
+      .toString()
+      .padLeft(2, '0');
   if (hours > 0) return '$hours:$minutes:$seconds';
   return '${safe.inMinutes}:$seconds';
 }
