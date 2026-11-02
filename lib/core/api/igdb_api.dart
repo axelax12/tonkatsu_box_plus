@@ -115,6 +115,9 @@ class IgdbApi {
   Future<Map<String, Game>> lookupSteamGames(List<String> steamAppIds) =>
       _games.lookupSteamGames(steamAppIds);
 
+  Future<Map<int, String>> steamAppIdsFor(List<int> gameIds) =>
+      _games.steamAppIdsFor(gameIds);
+
   Future<Game?> getGameById(int gameId) => _games.getGameById(gameId);
 
   Future<List<String>> getCoverImageIds(int gameId) =>

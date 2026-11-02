@@ -91,6 +91,12 @@ dependencies:
   trina_grid: ^2.2.2
   shadcn_ui: ^0.43.4
 
+  # Plus: local notifications (session timer, loans, deals) and the
+  # Android home-screen widget.
+  flutter_local_notifications: ^22.3.3
+  timezone: any
+  home_widget: ^0.10.0
+
 # The real gamepads_windows is native-only and its USB device listener
 # crashes the app (0xc0000005) even though the Dart side never subscribes
 # on Windows. The stub keeps the DLL out of the Windows build; Android

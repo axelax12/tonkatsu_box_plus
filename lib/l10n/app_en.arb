@@ -3058,5 +3058,70 @@
   "keepsakeBacklogBuster": "Backlog buster",
   "keepsakeBacklogBusterHint": "Finish 10 items that waited over a year",
   "keepsakeCritic": "Critic",
-  "keepsakeCriticHint": "Rate 50 items"
+  "keepsakeCriticHint": "Rate 50 items",
+  "connectionsTitle": "Connections",
+  "connectionsSteam": "Steam achievements",
+  "connectionsSteamHint": "Needs a Steam Web API key and your 17-digit SteamID64. Your game details must be public.",
+  "connectionsSteamKey": "Steam Web API key",
+  "connectionsSteamId": "SteamID64",
+  "connectionsItad": "IsThereAnyDeal prices",
+  "connectionsItadHint": "Register a free app on IsThereAnyDeal to get a key. Prices use your country.",
+  "connectionsItadKey": "IsThereAnyDeal API key",
+  "connectionsCountry": "Country code (e.g. IT)",
+  "connectionsGetKey": "Get a key",
+  "steamAchievementsTitle": "Steam achievements",
+  "steamConnect": "Connect Steam to see achievements",
+  "steamSync": "Refresh",
+  "steamNotSynced": "Not synced yet.",
+  "steamProgress": "{earned} of {total} unlocked",
+  "@steamProgress": {
+    "placeholders": {"earned": {"type": "int"}, "total": {"type": "int"}}
+  },
+  "steamShowAll": "Show all {count}",
+  "@steamShowAll": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "steamShowLess": "Show less",
+  "steamHiddenAchievement": "Hidden achievement",
+  "steamPrivateProfile": "Your Steam game details are private. Make them public to sync.",
+  "steamNoAchievements": "This game has no Steam achievements.",
+  "steamBadKey": "Steam rejected the key or SteamID. Check them in Connections.",
+  "steamNetworkError": "Could not reach the service. Try again later.",
+  "dealTitle": "Best price",
+  "dealConnect": "Connect IsThereAnyDeal for prices",
+  "dealConnectHint": "Connect IsThereAnyDeal to watch prices of the games you plan to play and get a notice at their all-time low.",
+  "dealNotChecked": "Price not checked yet.",
+  "dealNotListed": "No store listing found.",
+  "dealHistoricLow": "All-time low {price}",
+  "@dealHistoricLow": {
+    "placeholders": {"price": {"type": "String"}}
+  },
+  "dealAtLow": "All-time low right now!",
+  "dealBadKey": "IsThereAnyDeal rejected the key. Check it in Connections.",
+  "dealLowTitle": "{title} at its all-time low",
+  "@dealLowTitle": {
+    "placeholders": {"title": {"type": "String"}}
+  },
+  "dealLowBody": "{price} on {shop}",
+  "@dealLowBody": {
+    "placeholders": {"price": {"type": "String"}, "shop": {"type": "String"}}
+  },
+  "dealsTitle": "Deals",
+  "dealsCardHint": "Prices of the games you plan to play",
+  "dealsHint": "Planned games are watched. A notice arrives when one hits its all-time low.",
+  "dealsRefresh": "Check prices now",
+  "dealsEmpty": "No planned games yet. Set a game to Planned to watch its price.",
+  "loanReminderTitle": "Time to get {title} back",
+  "@loanReminderTitle": {
+    "placeholders": {"title": {"type": "String"}}
+  },
+  "loanReminderBody": "Lent to {name}",
+  "@loanReminderBody": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "widgetIdle": "Nothing in progress",
+  "widgetGoals": "Goals {progress}",
+  "@widgetGoals": {
+    "placeholders": {"progress": {"type": "String"}}
+  }
 }

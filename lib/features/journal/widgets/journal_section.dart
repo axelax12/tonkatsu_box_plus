@@ -49,7 +49,11 @@ class JournalSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final S l = S.of(context);
-    final JournalActions actions = JournalActions(ref, itemId);
+    final JournalActions actions = JournalActions(
+      ref,
+      itemId,
+      itemName: itemName,
+    );
     final PlaySession? running = ref
         .watch(runningSessionProvider(itemId))
         .valueOrNull;
@@ -91,7 +95,7 @@ class JournalSection extends ConsumerWidget {
           _SessionControls(
             running: running,
             accentColor: accentColor,
-            onStart: actions.startSession,
+            onStart: () => actions.startSession(context),
             onStop: (PlaySession s) => actions.stopSession(context, s),
             onLogPast: () => actions.logPastSession(context),
           ),

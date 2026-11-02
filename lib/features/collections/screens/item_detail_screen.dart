@@ -93,6 +93,9 @@ import '../helpers/episode_undo.dart';
 import '../../../shared/keyboard/shortcut_helper.dart';
 import '../../journal/widgets/journal_section.dart';
 import '../../collector/widgets/copies_section.dart';
+import '../../integrations/providers/integrations_providers.dart';
+import '../../integrations/widgets/deal_section.dart';
+import '../../integrations/widgets/steam_achievements_section.dart';
 
 /// Unified detail screen for any collection item, dispatched off
 /// [CollectionItem.mediaType].
@@ -943,9 +946,17 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
         if (widget.collectionId != null)
           CopiesSection(
             itemId: item.id,
+            itemName: displayName,
             accentColor: config.accentColor,
             isEditable: widget.isEditable,
           ),
+        if (widget.collectionId != null && item.mediaType == MediaType.game)
+          SteamAchievementsSection(
+            igdbId: item.externalId,
+            accentColor: config.accentColor,
+          ),
+        if (widget.collectionId != null && isWatchedForDeals(item))
+          DealSection(item: item, accentColor: config.accentColor),
       ],
       recommendationSections: <Widget>[
         if (showRecs)

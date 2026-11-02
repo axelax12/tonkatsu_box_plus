@@ -33,7 +33,11 @@ class ItemJournalScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final S l = S.of(context);
-    final JournalActions actions = JournalActions(ref, itemId);
+    final JournalActions actions = JournalActions(
+      ref,
+      itemId,
+      itemName: itemName,
+    );
 
     return DefaultTabController(
       length: 2,
