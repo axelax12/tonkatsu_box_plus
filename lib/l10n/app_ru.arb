@@ -2715,5 +2715,7 @@
   "todayNoUpNext": "Создайте путь, чтобы видеть, что дальше в саге.",
   "quickStatusTitle": "На каком вы этапе?",
   "quickStatusRemember": "Применять ко всему новому",
-  "quickStatusAction": "Статус"
+  "quickStatusAction": "Статус",
+  "settingsAdvanced": "Дополнительно",
+  "settingsAdvancedHint": "Импорт, хранилище, интеграции и отладка"
 }

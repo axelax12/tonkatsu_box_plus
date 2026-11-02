@@ -3049,5 +3049,7 @@
   "todayNoUpNext": "创建一条路线，看看系列的下一部是什么。",
   "quickStatusTitle": "进度如何？",
   "quickStatusRemember": "以后添加的作品都用这个",
-  "quickStatusAction": "状态"
+  "quickStatusAction": "状态",
+  "settingsAdvanced": "高级",
+  "settingsAdvancedHint": "导入、存储、集成和调试"
 }

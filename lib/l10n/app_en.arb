@@ -3331,5 +3331,7 @@
   "todayNoUpNext": "Create a path to see what comes next in a saga.",
   "quickStatusTitle": "Where are you with it?",
   "quickStatusRemember": "Use this for everything I add",
-  "quickStatusAction": "Status"
+  "quickStatusAction": "Status",
+  "settingsAdvanced": "Advanced",
+  "settingsAdvancedHint": "Imports, storage, integrations and debugging"
 }

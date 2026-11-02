@@ -121,6 +121,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     List<Widget> sections = _buildSections();
     if (searchQuery.isNotEmpty) {
       sections = _filterSections(sections, searchQuery.toLowerCase());
+    } else if (kIsMobile) {
+      sections = _foldAdvanced(sections, S.of(context));
     }
 
     return Material(
@@ -141,6 +143,48 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         ),
       ),
     );
+  }
+
+  /// On the phone the rarely used groups fold into one "Advanced" entry; a
+  /// search still reaches every tile.
+  static List<Widget> _foldAdvanced(List<Widget> sections, S l) {
+    final Set<String> advancedTitles = <String>{
+      l.settingsImport,
+      l.settingsStorage,
+      l.settingsIntegrations,
+      l.settingsDebug,
+      l.settingsGamepadDebug,
+    };
+    final List<Widget> kept = <Widget>[];
+    final List<Widget> folded = <Widget>[];
+    bool previousFolded = false;
+    for (final Widget section in sections) {
+      if (section is SettingsGroup &&
+          advancedTitles.contains(section.title)) {
+        folded
+          ..add(section)
+          ..add(const SizedBox(height: AppSpacing.md));
+        previousFolded = true;
+      } else if (section is SizedBox && previousFolded) {
+        // The gap after a folded group would leave a hole in the main list.
+        previousFolded = false;
+      } else {
+        kept.add(section);
+        previousFolded = false;
+      }
+    }
+    if (folded.isEmpty) return sections;
+    return <Widget>[
+      ...kept,
+      ExpansionTile(
+        key: const ValueKey<String>('settings-advanced'),
+        leading: const Icon(Icons.tune),
+        title: Text(l.settingsAdvanced),
+        subtitle: Text(l.settingsAdvancedHint),
+        childrenPadding: const EdgeInsets.only(top: AppSpacing.sm),
+        children: folded,
+      ),
+    ];
   }
 
   /// Keeps only [SettingsGroup]s whose title or any child [SettingsTile]

@@ -3054,5 +3054,7 @@
   "todayNoUpNext": "Crea una ruta para ver qué sigue en una saga.",
   "quickStatusTitle": "¿Cómo vas con esta obra?",
   "quickStatusRemember": "Usar para todo lo que añada",
-  "quickStatusAction": "Estado"
+  "quickStatusAction": "Estado",
+  "settingsAdvanced": "Avanzado",
+  "settingsAdvancedHint": "Importación, almacenamiento, integraciones y depuración"
 }

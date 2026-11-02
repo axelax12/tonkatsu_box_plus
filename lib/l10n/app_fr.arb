@@ -3054,5 +3054,7 @@
   "todayNoUpNext": "Créez un parcours pour voir la suite d'une saga.",
   "quickStatusTitle": "Où en êtes-vous ?",
   "quickStatusRemember": "Utiliser pour tout ce que j'ajoute",
-  "quickStatusAction": "Statut"
+  "quickStatusAction": "Statut",
+  "settingsAdvanced": "Avancé",
+  "settingsAdvancedHint": "Imports, stockage, intégrations et débogage"
 }
