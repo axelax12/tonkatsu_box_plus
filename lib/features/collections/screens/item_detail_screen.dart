@@ -92,6 +92,7 @@ import '../../../shared/constants/collection_item_ui.dart';
 import '../helpers/episode_undo.dart';
 import '../../../shared/keyboard/shortcut_helper.dart';
 import '../../journal/widgets/journal_section.dart';
+import '../../collector/widgets/copies_section.dart';
 
 /// Unified detail screen for any collection item, dispatched off
 /// [CollectionItem.mediaType].
@@ -936,6 +937,12 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
           JournalSection(
             itemId: item.id,
             itemName: displayName,
+            accentColor: config.accentColor,
+            isEditable: widget.isEditable,
+          ),
+        if (widget.collectionId != null)
+          CopiesSection(
+            itemId: item.id,
             accentColor: config.accentColor,
             isEditable: widget.isEditable,
           ),

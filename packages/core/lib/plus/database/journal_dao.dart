@@ -302,6 +302,14 @@ class JournalDao {
     return rows.map(JournalEntry.fromDb).toList();
   }
 
+  Future<int> countEntries() async {
+    final Database db = await _getDatabase();
+    final List<Map<String, dynamic>> rows = await db.rawQuery(
+      'SELECT COUNT(*) AS n FROM $_entries',
+    );
+    return (rows.first['n'] as int?) ?? 0;
+  }
+
   Future<JournalEntry> insertEntry(JournalEntry entry) async {
     final Database db = await _getDatabase();
     final int id = await db.insert(_entries, entry.copyWith(id: 0).toDb());
