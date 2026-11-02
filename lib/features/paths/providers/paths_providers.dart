@@ -10,6 +10,7 @@ import 'package:core/plus/models/media_path.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 
+import '../../../core/api/anilist_api.dart';
 import '../../../core/api/igdb_api.dart';
 import '../../../core/database/database_service.dart';
 import '../../insights/providers/insights_providers.dart';
@@ -130,29 +131,27 @@ final FutureProvider<ThemeIndex> themeIndexProvider =
 
 final Logger _log = Logger('Paths');
 
-/// IGDB series ids per game, fetched once per game for the app's lifetime:
-/// a franchise does not change between two visits to the picker.
+/// Series or relation tokens per catalog id, fetched once per id for the
+/// app's lifetime: a franchise does not change between two picker visits.
 class SeriesTokenCache {
+  SeriesTokenCache(this._fetch);
+
+  final Future<Map<int, Set<String>>> Function(List<int> ids) _fetch;
   final Map<int, Set<String>> _known = <int, Set<String>>{};
 
-  Future<Map<int, Set<String>>> tokensFor(
-    IgdbApi api,
-    Iterable<int> gameIds,
-  ) async {
+  Future<Map<int, Set<String>>> tokensFor(Iterable<int> ids) async {
     final List<int> missing = <int>[
-      for (final int id in gameIds.toSet())
+      for (final int id in ids.toSet())
         if (!_known.containsKey(id)) id,
     ];
     if (missing.isNotEmpty) {
       try {
-        final Map<int, Set<String>> fetched = await api.seriesTokensFor(
-          missing,
-        );
+        final Map<int, Set<String>> fetched = await _fetch(missing);
         for (final int id in missing) {
           _known[id] = fetched[id] ?? const <String>{};
         }
       } on Exception catch (e, stack) {
-        // Left unknown, so the next visit tries again once IGDB is reachable.
+        // Left unknown, so the next visit tries again once the API answers.
         _log.info('Series lookup unavailable', e, stack);
       }
     }
@@ -160,10 +159,19 @@ class SeriesTokenCache {
   }
 }
 
-final Provider<SeriesTokenCache> seriesTokenCacheProvider =
-    Provider<SeriesTokenCache>((Ref ref) => SeriesTokenCache());
+final Provider<SeriesTokenCache> igdbSeriesCacheProvider =
+    Provider<SeriesTokenCache>(
+      (Ref ref) => SeriesTokenCache(ref.read(igdbApiProvider).seriesTokensFor),
+    );
 
-/// Library games of the same IGDB franchise or collection as the path's own.
+final Provider<SeriesTokenCache> aniListRelationsCacheProvider =
+    Provider<SeriesTokenCache>(
+      (Ref ref) =>
+          SeriesTokenCache(ref.read(aniListApiProvider).relatedTokensFor),
+    );
+
+/// Library works of the same series as the path's own: IGDB franchises and
+/// collections for games, AniList relations for anime and manga.
 final FutureProviderFamily<List<CollectionItem>, int>
 seriesSuggestionsProvider = FutureProvider.family<List<CollectionItem>, int>((
   Ref ref,
@@ -176,24 +184,52 @@ seriesSuggestionsProvider = FutureProvider.family<List<CollectionItem>, int>((
     libraryByIdProvider.future,
   );
   final List<CollectionItem> seeds = <CollectionItem>[
-    for (final PathEntry e in entries)
-      if (byId[e.itemId] case final CollectionItem i
-          when i.mediaType == MediaType.game)
-        i,
+    for (final PathEntry e in entries) ?byId[e.itemId],
   ];
-  if (seeds.isEmpty) return const <CollectionItem>[];
-  final Map<int, Set<String>> tokens = await ref
-      .read(seriesTokenCacheProvider)
-      .tokensFor(ref.read(igdbApiProvider), <int>[
-        for (final CollectionItem i in byId.values)
-          if (i.mediaType == MediaType.game) i.externalId,
-      ]);
-  return PathSuggestions.bySeries(
-    seeds: seeds,
-    library: byId.values,
-    tokens: tokens,
-    exclude: <int>{for (final PathEntry e in entries) e.itemId},
-  );
+  final Set<int> exclude = <int>{for (final PathEntry e in entries) e.itemId};
+  final List<CollectionItem> result = <CollectionItem>[];
+
+  if (seeds.any((CollectionItem i) => i.mediaType == MediaType.game)) {
+    final Map<int, Set<String>> tokens = await ref
+        .read(igdbSeriesCacheProvider)
+        .tokensFor(<int>[
+          for (final CollectionItem i in byId.values)
+            if (i.mediaType == MediaType.game) i.externalId,
+        ]);
+    result.addAll(
+      PathSuggestions.bySeries(
+        seeds: seeds,
+        library: byId.values,
+        tokens: tokens,
+        exclude: exclude,
+      ),
+    );
+  }
+
+  final List<CollectionItem> aniList = <CollectionItem>[
+    for (final CollectionItem i in byId.values)
+      if (PathSuggestions.aniListKey(i) != null) i,
+  ];
+  if (seeds.any((CollectionItem i) => PathSuggestions.aniListKey(i) != null)) {
+    final Map<int, Set<String>> relations = await ref
+        .read(aniListRelationsCacheProvider)
+        .tokensFor(<int>[for (final CollectionItem i in aniList) i.externalId]);
+    // Keys carry the media type; AniList ids are unique across both.
+    final Map<String, Set<String>> related = <String, Set<String>>{
+      for (final CollectionItem i in aniList)
+        if (PathSuggestions.aniListKey(i) case final String key)
+          key: relations[i.externalId] ?? const <String>{},
+    };
+    result.addAll(
+      PathSuggestions.byRelations(
+        seeds: seeds,
+        library: byId.values,
+        related: related,
+        exclude: exclude,
+      ),
+    );
+  }
+  return result;
 });
 
 final Provider<PathsController> pathsControllerProvider =

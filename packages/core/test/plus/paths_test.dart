@@ -1,5 +1,7 @@
 import 'package:core/models/collection_item.dart';
+import 'package:core/models/data_source.dart';
 import 'package:core/models/item_status.dart';
+import 'package:core/models/media_type.dart';
 import 'package:core/plus/analytics/path_walk.dart';
 import 'package:core/plus/analytics/theme_index.dart';
 import 'package:core/plus/database/aspects_dao.dart';
@@ -262,6 +264,49 @@ void main() {
           seeds: <CollectionItem>[library[3]],
           library: library,
           tokens: const <int, Set<String>>{},
+        ),
+        isEmpty,
+      );
+    });
+  });
+
+  group('PathSuggestions.byRelations', () {
+    CollectionItem anime(int id, {DataSource source = DataSource.anilist}) =>
+        createTestCollectionItem(
+          id: id,
+          externalId: id,
+          mediaType: MediaType.anime,
+          source: source,
+          anime: createTestAnime(id: id, title: 'A$id', source: source),
+        );
+
+    test('walks relations through the library only', () {
+      final List<CollectionItem> library = <CollectionItem>[
+        anime(1),
+        anime(2),
+        anime(3),
+        anime(4),
+        anime(5, source: DataSource.kitsu),
+      ];
+      final Map<String, Set<String>> related = <String, Set<String>>{
+        'anime:1': <String>{'anime:2', 'manga:9'},
+        'anime:2': <String>{'anime:3'},
+        'anime:4': <String>{'anime:8'},
+        'anime:8': <String>{'anime:5'},
+      };
+      final List<CollectionItem> hits = PathSuggestions.byRelations(
+        seeds: <CollectionItem>[library.first],
+        library: library,
+        related: related,
+        exclude: <int>{1},
+      );
+      expect(hits.map((CollectionItem i) => i.id).toSet(), <int>{2, 3});
+      expect(PathSuggestions.aniListKey(library[4]), isNull);
+      expect(
+        PathSuggestions.byRelations(
+          seeds: <CollectionItem>[library[4]],
+          library: library,
+          related: related,
         ),
         isEmpty,
       );

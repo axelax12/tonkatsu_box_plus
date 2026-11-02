@@ -1,4 +1,5 @@
 import '../../models/collection_item.dart';
+import '../../models/data_source.dart';
 import '../../models/item_status.dart';
 import '../../models/media_type.dart';
 import '../models/media_path.dart';
@@ -197,6 +198,61 @@ class PathSuggestions {
       if (own != null && own.any(wanted.contains)) {
         // One entry per game even when it sits in several collections.
         hits.putIfAbsent(item.externalId, () => item);
+      }
+    }
+    final List<CollectionItem> sorted = hits.values.toList()..sort(_byRelease);
+    return sorted.length <= limit ? sorted : sorted.sublist(0, limit);
+  }
+
+  /// AniList key of an anime or manga, or null when it came from elsewhere.
+  static String? aniListKey(CollectionItem item) {
+    if (item.dataSource != DataSource.anilist) return null;
+    return switch (item.mediaType) {
+      MediaType.anime => 'anime:${item.externalId}',
+      MediaType.manga => 'manga:${item.externalId}',
+      _ => null,
+    };
+  }
+
+  /// Library anime and manga connected to the path's own through AniList
+  /// relations, followed across the library: 0079 reaches Zeta, Zeta reaches ZZ.
+  static List<CollectionItem> byRelations({
+    required Iterable<CollectionItem> seeds,
+    required Iterable<CollectionItem> library,
+    required Map<String, Set<String>> related,
+    Set<int> exclude = const <int>{},
+    int limit = defaultLimit,
+  }) {
+    final Map<String, Set<String>> edges = <String, Set<String>>{};
+    void link(String a, String b) {
+      edges.putIfAbsent(a, () => <String>{}).add(b);
+      edges.putIfAbsent(b, () => <String>{}).add(a);
+    }
+
+    for (final MapEntry<String, Set<String>> e in related.entries) {
+      for (final String other in e.value) {
+        link(e.key, other);
+      }
+    }
+    final Map<String, CollectionItem> byKey = <String, CollectionItem>{};
+    for (final CollectionItem item in library) {
+      final String? key = aniListKey(item);
+      if (key != null) byKey.putIfAbsent(key, () => item);
+    }
+    final List<String> queue = <String>[
+      for (final CollectionItem s in seeds) ?aniListKey(s),
+    ];
+    final Set<String> seen = queue.toSet();
+    final Map<int, CollectionItem> hits = <int, CollectionItem>{};
+    while (queue.isNotEmpty) {
+      final String key = queue.removeLast();
+      for (final String next in edges[key] ?? const <String>{}) {
+        if (!seen.add(next)) continue;
+        final CollectionItem? item = byKey[next];
+        // Only works in the library extend the walk, keeping it local.
+        if (item == null) continue;
+        queue.add(next);
+        if (!exclude.contains(item.id)) hits[item.id] = item;
       }
     }
     final List<CollectionItem> sorted = hits.values.toList()..sort(_byRelease);
