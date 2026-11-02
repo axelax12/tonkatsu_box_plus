@@ -1,0 +1,320 @@
+name: Plus Android
+
+# The fork is developed without a local Flutter SDK, so CI does three extra
+# jobs besides the gates: regenerates code, publishes the APK as a release the
+# phone can download, and writes every log to a ci-results/<branch> branch.
+on:
+  push:
+    branches: ['**', '!ci-results/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: plus-android-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  REPORT_DIR: ci-report
+
+jobs:
+  codegen:
+    name: Regenerate code
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: |
+          mkdir -p "$REPORT_DIR"
+          echo "/$REPORT_DIR/" >> .git/info/exclude
+          {
+            flutter pub get
+            dart pub get --directory packages/core
+            dart pub get --directory server
+          } 2>&1 | tee "$REPORT_DIR/codegen.log"
+
+      - name: Generate localizations and RPC layer
+        run: |
+          {
+            flutter gen-l10n
+            (cd packages/core && dart run tool/generate_rpc.dart)
+          } 2>&1 | tee -a "$REPORT_DIR/codegen.log"
+
+      # Only files this branch touched, so upstream files keep their own layout.
+      - name: Format changed Dart files
+        if: github.ref_name != 'main'
+        run: |
+          git diff --name-only --diff-filter=ACMR origin/main...HEAD -- '*.dart' \
+            | grep -v '/generated/' | grep -v '^lib/l10n/' \
+            | xargs -r dart format 2>&1 | tee -a "$REPORT_DIR/codegen.log"
+
+      - name: Commit generated changes
+        id: commit
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git diff > "$REPORT_DIR/codegen.diff"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "chore: regenerate code and format [plus-ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report-codegen
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: ignore
+
+  analyze:
+    name: Analyze
+    needs: codegen
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.codegen.outputs.sha }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: |
+          flutter pub get
+          dart pub get --directory packages/core
+          dart pub get --directory server
+
+      - name: Analyze code
+        run: |
+          mkdir -p "$REPORT_DIR"
+          flutter analyze --fatal-infos --fatal-warnings 2>&1 | tee "$REPORT_DIR/analyze.log"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report-analyze
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: ignore
+
+  test-packages:
+    name: Test core and server
+    needs: codegen
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.codegen.outputs.sha }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: |
+          dart pub get --directory packages/core
+          dart pub get --directory server
+
+      - name: Run core package tests
+        working-directory: packages/core
+        run: |
+          mkdir -p "../../$REPORT_DIR"
+          dart test -r failures-only 2>&1 | tee "../../$REPORT_DIR/test-core.log"
+
+      - name: Run server tests
+        if: always()
+        working-directory: server
+        run: dart test -r failures-only 2>&1 | tee "../$REPORT_DIR/test-server.log"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report-test-packages
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: ignore
+
+  test-app:
+    name: Test app (shard ${{ matrix.shard }})
+    needs: codegen
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.codegen.outputs.sha }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run app tests
+        run: |
+          mkdir -p "$REPORT_DIR"
+          flutter test -r failures-only --total-shards 4 --shard-index ${{ matrix.shard }} \
+            2>&1 | tee "$REPORT_DIR/test-app-${{ matrix.shard }}.log"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report-test-app-${{ matrix.shard }}
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: ignore
+
+  build-apk:
+    name: Build APK
+    needs: codegen
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.codegen.outputs.sha }}
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Without the secret Gradle falls back to the debug key (see build.gradle.kts).
+      - name: Decode keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/plus-release.jks"
+            echo "KEYSTORE_PATH=$RUNNER_TEMP/plus-release.jks" >> "$GITHUB_ENV"
+          else
+            echo "::warning::KEYSTORE_BASE64 is not set: the APK is signed with a throwaway debug key."
+          fi
+
+      - name: Build APK
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+        run: |
+          mkdir -p "$REPORT_DIR"
+          BASE_VERSION="$(grep -m1 '^version:' pubspec.yaml | sed -E 's/version: *([^+]*).*/\1/')"
+          echo "BUILD_NAME=${BASE_VERSION}-plus.${GITHUB_RUN_NUMBER}" >> "$GITHUB_ENV"
+          flutter build apk --release \
+            --build-name="${BASE_VERSION}-plus.${GITHUB_RUN_NUMBER}" \
+            --build-number=$((1000 + GITHUB_RUN_NUMBER)) \
+            --dart-define=TMDB_API_KEY=${{ secrets.TMDB_API_KEY }} \
+            --dart-define=TVDB_API_KEY=${{ secrets.TVDB_API_KEY }} \
+            --dart-define=STEAMGRIDDB_API_KEY=${{ secrets.STEAMGRIDDB_API_KEY }} \
+            --dart-define=IGDB_CLIENT_ID=${{ secrets.IGDB_CLIENT_ID }} \
+            --dart-define=IGDB_CLIENT_SECRET=${{ secrets.IGDB_CLIENT_SECRET }} \
+            --dart-define=SCREENSCRAPER_DEV_ID=${{ secrets.SCREENSCRAPER_DEV_ID }} \
+            --dart-define=SCREENSCRAPER_DEV_PASSWORD=${{ secrets.SCREENSCRAPER_DEV_PASSWORD }} \
+            --dart-define=PODCASTINDEX_API_KEY=${{ secrets.PODCASTINDEX_API_KEY }} \
+            --dart-define=PODCASTINDEX_API_SECRET=${{ secrets.PODCASTINDEX_API_SECRET }} \
+            --dart-define=SIMKL_CLIENT_ID=${{ secrets.SIMKL_CLIENT_ID }} \
+            2>&1 | tee "$REPORT_DIR/build-apk.log"
+          SLUG="${GITHUB_REF_NAME//\//-}"
+          mv build/app/outputs/flutter-apk/app-release.apk "tonkatsu-box-plus-${SLUG}.apk"
+          echo "APK=tonkatsu-box-plus-${SLUG}.apk" >> "$GITHUB_ENV"
+          echo "SLUG=${SLUG}" >> "$GITHUB_ENV"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: ${{ env.APK }}
+          retention-days: 14
+
+      # A release asset downloads straight to the phone; an artifact needs a
+      # GitHub login and comes zipped.
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="plus-${SLUG}"
+          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+          if [ "$GITHUB_REF_NAME" = "main" ]; then KIND="--latest"; else KIND="--prerelease"; fi
+          gh release create "$TAG" "$APK" $KIND \
+            --target "${{ needs.codegen.outputs.sha }}" \
+            --title "Tonkatsu Box Plus · ${GITHUB_REF_NAME} · ${BUILD_NAME}" \
+            --notes "Build automatica del branch \`${GITHUB_REF_NAME}\` (commit ${{ needs.codegen.outputs.sha }}). Scarica l'APK qui sotto e installalo sul telefono."
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report-build-apk
+          path: ${{ env.REPORT_DIR }}
+          if-no-files-found: ignore
+
+  report:
+    name: Publish CI report
+    needs: [codegen, analyze, test-packages, test-app, build-apk]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: report-*
+          path: ${{ env.REPORT_DIR }}
+          merge-multiple: true
+
+      - name: Push report branch
+        env:
+          RESULTS: >-
+            codegen=${{ needs.codegen.result }}
+            analyze=${{ needs.analyze.result }}
+            test-packages=${{ needs.test-packages.result }}
+            test-app=${{ needs.test-app.result }}
+            build-apk=${{ needs.build-apk.result }}
+        run: |
+          SLUG="${GITHUB_REF_NAME//\//-}"
+          mkdir -p "$REPORT_DIR"
+          {
+            echo "# CI report: ${GITHUB_REF_NAME}"
+            echo
+            echo "- commit: ${{ needs.codegen.outputs.sha || github.sha }}"
+            echo "- run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "- date: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo
+            for r in $RESULTS; do echo "- ${r%%=*}: **${r#*=}**"; done
+          } > "$REPORT_DIR/summary.md"
+          cp -r "$REPORT_DIR" "$RUNNER_TEMP/report"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan ci-report-tmp
+          git rm -rf -q .
+          git clean -fdq
+          cp -r "$RUNNER_TEMP/report/." .
+          git add -A
+          git commit -q -m "CI report for ${GITHUB_REF_NAME} (run ${GITHUB_RUN_NUMBER})"
+          git push -f origin "HEAD:refs/heads/ci-results/${SLUG}"

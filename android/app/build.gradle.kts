@@ -13,6 +13,12 @@ val keystorePropertiesFile = rootProject.file("key.properties")
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
+val releaseStorePath: String =
+    System.getenv("KEYSTORE_PATH") ?: keystoreProperties.getProperty("storeFile", "")
+// Without a release key (fresh fork, no CI secrets) the build still produces an
+// installable APK, signed with the debug key; updates then need a reinstall.
+val hasReleaseKeystore: Boolean =
+    releaseStorePath.isNotEmpty() && file(releaseStorePath).exists()
 
 android {
     namespace = "com.hacan359.tonkatsubox"
@@ -29,7 +35,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.hacan359.tonkatsubox"
+        applicationId = "com.axelax12.tonkatsuboxplus"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -37,12 +43,9 @@ android {
     }
 
     signingConfigs {
-        create("release") {
+        if (hasReleaseKeystore) create("release") {
             // Env vars on CI, key.properties locally.
-            storeFile = file(
-                System.getenv("KEYSTORE_PATH")
-                    ?: keystoreProperties.getProperty("storeFile", "")
-            )
+            storeFile = file(releaseStorePath)
             storePassword =
                 System.getenv("KEYSTORE_PASSWORD")
                     ?: keystoreProperties.getProperty("storePassword", "")
@@ -57,7 +60,9 @@ android {
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = signingConfigs.getByName(
+                if (hasReleaseKeystore) "release" else "debug"
+            )
         }
     }
 }

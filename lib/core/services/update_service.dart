@@ -42,8 +42,8 @@ class UpdateService {
   final Dio _dio;
   final String? _currentVersionOverride;
 
-  static const String _repoOwner = 'hacan359';
-  static const String _repoName = 'tonkatsu_box';
+  static const String _repoOwner = 'axelax12';
+  static const String _repoName = 'tonkatsu_box_plus';
   static const String _apiUrl =
       'https://api.github.com/repos/$_repoOwner/$_repoName/releases/latest';
 

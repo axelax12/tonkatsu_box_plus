@@ -184,7 +184,7 @@ void main() {
         await sut.checkForUpdate();
 
         verify(() => mockDio.get<Map<String, dynamic>>(
-              'https://api.github.com/repos/hacan359/tonkatsu_box/releases/latest',
+              'https://api.github.com/repos/axelax12/tonkatsu_box_plus/releases/latest',
               options: any(named: 'options'),
             )).called(1);
       });
