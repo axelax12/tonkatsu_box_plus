@@ -7694,4 +7694,13 @@ class SPt extends S {
   @override
   String get todayNoUpNext =>
       'Crie um percurso para ver o que vem a seguir numa saga.';
+
+  @override
+  String get quickStatusTitle => 'Em que ponto você está?';
+
+  @override
+  String get quickStatusRemember => 'Usar para tudo que eu adicionar';
+
+  @override
+  String get quickStatusAction => 'Status';
 }

@@ -7281,4 +7281,13 @@ class SZh extends S {
 
   @override
   String get todayNoUpNext => '创建一条路线，看看系列的下一部是什么。';
+
+  @override
+  String get quickStatusTitle => '进度如何？';
+
+  @override
+  String get quickStatusRemember => '以后添加的作品都用这个';
+
+  @override
+  String get quickStatusAction => '状态';
 }

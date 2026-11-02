@@ -7753,4 +7753,13 @@ class SRu extends S {
 
   @override
   String get todayNoUpNext => 'Создайте путь, чтобы видеть, что дальше в саге.';
+
+  @override
+  String get quickStatusTitle => 'На каком вы этапе?';
+
+  @override
+  String get quickStatusRemember => 'Применять ко всему новому';
+
+  @override
+  String get quickStatusAction => 'Статус';
 }

@@ -13417,6 +13417,24 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Create a path to see what comes next in a saga.'**
   String get todayNoUpNext;
+
+  /// No description provided for @quickStatusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Where are you with it?'**
+  String get quickStatusTitle;
+
+  /// No description provided for @quickStatusRemember.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this for everything I add'**
+  String get quickStatusRemember;
+
+  /// No description provided for @quickStatusAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get quickStatusAction;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

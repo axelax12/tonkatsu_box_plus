@@ -7739,4 +7739,13 @@ class SFr extends S {
   @override
   String get todayNoUpNext =>
       'Créez un parcours pour voir la suite d\'une saga.';
+
+  @override
+  String get quickStatusTitle => 'Où en êtes-vous ?';
+
+  @override
+  String get quickStatusRemember => 'Utiliser pour tout ce que j\'ajoute';
+
+  @override
+  String get quickStatusAction => 'Statut';
 }

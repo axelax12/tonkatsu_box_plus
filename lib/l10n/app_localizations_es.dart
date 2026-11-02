@@ -7714,4 +7714,13 @@ class SEs extends S {
 
   @override
   String get todayNoUpNext => 'Crea una ruta para ver qué sigue en una saga.';
+
+  @override
+  String get quickStatusTitle => '¿Cómo vas con esta obra?';
+
+  @override
+  String get quickStatusRemember => 'Usar para todo lo que añada';
+
+  @override
+  String get quickStatusAction => 'Estado';
 }

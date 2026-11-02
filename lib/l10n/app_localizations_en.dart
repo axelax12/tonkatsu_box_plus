@@ -7630,4 +7630,13 @@ class SEn extends S {
 
   @override
   String get todayNoUpNext => 'Create a path to see what comes next in a saga.';
+
+  @override
+  String get quickStatusTitle => 'Where are you with it?';
+
+  @override
+  String get quickStatusRemember => 'Use this for everything I add';
+
+  @override
+  String get quickStatusAction => 'Status';
 }

@@ -60,7 +60,11 @@ typedef AddedItem = ({
   DataSource? source,
 });
 
-Future<void> _setStatus(WidgetRef ref, AddedItem added, ItemStatus status) async {
+Future<void> _setStatus(
+  WidgetRef ref,
+  AddedItem added,
+  ItemStatus status,
+) async {
   try {
     final CollectionItem? item = await ref
         .read(databaseServiceProvider)
@@ -122,7 +126,8 @@ class _QuickStatusSheetState extends ConsumerState<_QuickStatusSheet> {
 
   Future<void> _pick(ItemStatus status) async {
     final NavigatorState navigator = Navigator.of(context);
-    if (_remember) await ref.read(newItemStatusProvider.notifier).select(status);
+    if (_remember)
+      await ref.read(newItemStatusProvider.notifier).select(status);
     await _setStatus(ref, widget.added, status);
     navigator.pop();
   }
