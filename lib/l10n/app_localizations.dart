@@ -12319,6 +12319,252 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Rate 50 items'**
   String get keepsakeCriticHint;
+
+  /// No description provided for @connectionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections'**
+  String get connectionsTitle;
+
+  /// No description provided for @connectionsSteam.
+  ///
+  /// In en, this message translates to:
+  /// **'Steam achievements'**
+  String get connectionsSteam;
+
+  /// No description provided for @connectionsSteamHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs a Steam Web API key and your 17-digit SteamID64. Your game details must be public.'**
+  String get connectionsSteamHint;
+
+  /// No description provided for @connectionsSteamKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Steam Web API key'**
+  String get connectionsSteamKey;
+
+  /// No description provided for @connectionsSteamId.
+  ///
+  /// In en, this message translates to:
+  /// **'SteamID64'**
+  String get connectionsSteamId;
+
+  /// No description provided for @connectionsItad.
+  ///
+  /// In en, this message translates to:
+  /// **'IsThereAnyDeal prices'**
+  String get connectionsItad;
+
+  /// No description provided for @connectionsItadHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Register a free app on IsThereAnyDeal to get a key. Prices use your country.'**
+  String get connectionsItadHint;
+
+  /// No description provided for @connectionsItadKey.
+  ///
+  /// In en, this message translates to:
+  /// **'IsThereAnyDeal API key'**
+  String get connectionsItadKey;
+
+  /// No description provided for @connectionsCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Country code (e.g. IT)'**
+  String get connectionsCountry;
+
+  /// No description provided for @connectionsGetKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Get a key'**
+  String get connectionsGetKey;
+
+  /// No description provided for @steamAchievementsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Steam achievements'**
+  String get steamAchievementsTitle;
+
+  /// No description provided for @steamConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect Steam to see achievements'**
+  String get steamConnect;
+
+  /// No description provided for @steamSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get steamSync;
+
+  /// No description provided for @steamNotSynced.
+  ///
+  /// In en, this message translates to:
+  /// **'Not synced yet.'**
+  String get steamNotSynced;
+
+  /// No description provided for @steamProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{earned} of {total} unlocked'**
+  String steamProgress(int earned, int total);
+
+  /// No description provided for @steamShowAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all {count}'**
+  String steamShowAll(int count);
+
+  /// No description provided for @steamShowLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get steamShowLess;
+
+  /// No description provided for @steamHiddenAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden achievement'**
+  String get steamHiddenAchievement;
+
+  /// No description provided for @steamPrivateProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Steam game details are private. Make them public to sync.'**
+  String get steamPrivateProfile;
+
+  /// No description provided for @steamNoAchievements.
+  ///
+  /// In en, this message translates to:
+  /// **'This game has no Steam achievements.'**
+  String get steamNoAchievements;
+
+  /// No description provided for @steamBadKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Steam rejected the key or SteamID. Check them in Connections.'**
+  String get steamBadKey;
+
+  /// No description provided for @steamNetworkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not reach the service. Try again later.'**
+  String get steamNetworkError;
+
+  /// No description provided for @dealTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Best price'**
+  String get dealTitle;
+
+  /// No description provided for @dealConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect IsThereAnyDeal for prices'**
+  String get dealConnect;
+
+  /// No description provided for @dealConnectHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect IsThereAnyDeal to watch prices of the games you plan to play and get a notice at their all-time low.'**
+  String get dealConnectHint;
+
+  /// No description provided for @dealNotChecked.
+  ///
+  /// In en, this message translates to:
+  /// **'Price not checked yet.'**
+  String get dealNotChecked;
+
+  /// No description provided for @dealNotListed.
+  ///
+  /// In en, this message translates to:
+  /// **'No store listing found.'**
+  String get dealNotListed;
+
+  /// No description provided for @dealHistoricLow.
+  ///
+  /// In en, this message translates to:
+  /// **'All-time low {price}'**
+  String dealHistoricLow(String price);
+
+  /// No description provided for @dealAtLow.
+  ///
+  /// In en, this message translates to:
+  /// **'All-time low right now!'**
+  String get dealAtLow;
+
+  /// No description provided for @dealBadKey.
+  ///
+  /// In en, this message translates to:
+  /// **'IsThereAnyDeal rejected the key. Check it in Connections.'**
+  String get dealBadKey;
+
+  /// No description provided for @dealLowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} at its all-time low'**
+  String dealLowTitle(String title);
+
+  /// No description provided for @dealLowBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{price} on {shop}'**
+  String dealLowBody(String price, String shop);
+
+  /// No description provided for @dealsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Deals'**
+  String get dealsTitle;
+
+  /// No description provided for @dealsCardHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Prices of the games you plan to play'**
+  String get dealsCardHint;
+
+  /// No description provided for @dealsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned games are watched. A notice arrives when one hits its all-time low.'**
+  String get dealsHint;
+
+  /// No description provided for @dealsRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Check prices now'**
+  String get dealsRefresh;
+
+  /// No description provided for @dealsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No planned games yet. Set a game to Planned to watch its price.'**
+  String get dealsEmpty;
+
+  /// No description provided for @loanReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to get {title} back'**
+  String loanReminderTitle(String title);
+
+  /// No description provided for @loanReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Lent to {name}'**
+  String loanReminderBody(String name);
+
+  /// No description provided for @widgetIdle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in progress'**
+  String get widgetIdle;
+
+  /// No description provided for @widgetGoals.
+  ///
+  /// In en, this message translates to:
+  /// **'Goals {progress}'**
+  String widgetGoals(String progress);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

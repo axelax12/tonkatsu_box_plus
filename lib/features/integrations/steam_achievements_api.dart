@@ -43,7 +43,9 @@ class SteamAchievement {
 /// Steam Web API calls the fork needs beyond upstream's library import.
 class SteamAchievementsApi {
   SteamAchievementsApi({Dio? dio})
-    : _dio = dio ?? createApiDio(connectTimeout: _timeout, receiveTimeout: _timeout);
+    : _dio =
+          dio ??
+          createApiDio(connectTimeout: _timeout, receiveTimeout: _timeout);
 
   static const Duration _timeout = Duration(seconds: 10);
   static const String _base = 'https://api.steampowered.com/ISteamUserStats';
@@ -78,7 +80,9 @@ class SteamAchievementsApi {
         SteamAchievement(
           apiName: apiName,
           title:
-              meta['displayName'] as String? ?? raw['name'] as String? ?? apiName,
+              meta['displayName'] as String? ??
+              raw['name'] as String? ??
+              apiName,
           description:
               meta['description'] as String? ?? raw['description'] as String?,
           icon: meta['icon'] as String?,

@@ -7064,4 +7064,152 @@ class SEs extends S {
 
   @override
   String get keepsakeCriticHint => 'Valora 50 elementos';
+
+  @override
+  String get connectionsTitle => 'Conexiones';
+
+  @override
+  String get connectionsSteam => 'Logros de Steam';
+
+  @override
+  String get connectionsSteamHint =>
+      'Necesita una clave de Steam Web API y tu SteamID64 de 17 dígitos. Tus datos de juego deben ser públicos.';
+
+  @override
+  String get connectionsSteamKey => 'Clave de Steam Web API';
+
+  @override
+  String get connectionsSteamId => 'SteamID64';
+
+  @override
+  String get connectionsItad => 'Precios de IsThereAnyDeal';
+
+  @override
+  String get connectionsItadHint =>
+      'Registra una app gratuita en IsThereAnyDeal para obtener una clave. Los precios usan tu país.';
+
+  @override
+  String get connectionsItadKey => 'Clave API de IsThereAnyDeal';
+
+  @override
+  String get connectionsCountry => 'Código de país (p. ej. ES)';
+
+  @override
+  String get connectionsGetKey => 'Obtener clave';
+
+  @override
+  String get steamAchievementsTitle => 'Logros de Steam';
+
+  @override
+  String get steamConnect => 'Conecta Steam para ver los logros';
+
+  @override
+  String get steamSync => 'Actualizar';
+
+  @override
+  String get steamNotSynced => 'Aún sin sincronizar.';
+
+  @override
+  String steamProgress(int earned, int total) {
+    return '$earned de $total desbloqueados';
+  }
+
+  @override
+  String steamShowAll(int count) {
+    return 'Ver los $count';
+  }
+
+  @override
+  String get steamShowLess => 'Ver menos';
+
+  @override
+  String get steamHiddenAchievement => 'Logro oculto';
+
+  @override
+  String get steamPrivateProfile =>
+      'Tus datos de juego en Steam son privados. Hazlos públicos para sincronizar.';
+
+  @override
+  String get steamNoAchievements => 'Este juego no tiene logros de Steam.';
+
+  @override
+  String get steamBadKey =>
+      'Steam rechazó la clave o el SteamID. Revísalos en Conexiones.';
+
+  @override
+  String get steamNetworkError =>
+      'No se pudo contactar con el servicio. Inténtalo más tarde.';
+
+  @override
+  String get dealTitle => 'Mejor precio';
+
+  @override
+  String get dealConnect => 'Conecta IsThereAnyDeal para ver precios';
+
+  @override
+  String get dealConnectHint =>
+      'Conecta IsThereAnyDeal para seguir los precios de los juegos planeados y recibir un aviso en su mínimo histórico.';
+
+  @override
+  String get dealNotChecked => 'Precio aún sin comprobar.';
+
+  @override
+  String get dealNotListed => 'No se encontró en tiendas.';
+
+  @override
+  String dealHistoricLow(String price) {
+    return 'Mínimo histórico $price';
+  }
+
+  @override
+  String get dealAtLow => '¡Mínimo histórico ahora mismo!';
+
+  @override
+  String get dealBadKey =>
+      'IsThereAnyDeal rechazó la clave. Revísala en Conexiones.';
+
+  @override
+  String dealLowTitle(String title) {
+    return '$title en su mínimo histórico';
+  }
+
+  @override
+  String dealLowBody(String price, String shop) {
+    return '$price en $shop';
+  }
+
+  @override
+  String get dealsTitle => 'Ofertas';
+
+  @override
+  String get dealsCardHint => 'Precios de los juegos que planeas jugar';
+
+  @override
+  String get dealsHint =>
+      'Se siguen los juegos planeados. Recibirás un aviso cuando uno llegue a su mínimo histórico.';
+
+  @override
+  String get dealsRefresh => 'Comprobar precios';
+
+  @override
+  String get dealsEmpty =>
+      'Aún no hay juegos planeados. Marca uno como Planeado para seguir su precio.';
+
+  @override
+  String loanReminderTitle(String title) {
+    return 'Hora de recuperar $title';
+  }
+
+  @override
+  String loanReminderBody(String name) {
+    return 'Prestado a $name';
+  }
+
+  @override
+  String get widgetIdle => 'Nada en curso';
+
+  @override
+  String widgetGoals(String progress) {
+    return 'Metas $progress';
+  }
 }

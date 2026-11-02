@@ -100,7 +100,9 @@ class _DealsScreenState extends ConsumerState<DealsScreen> {
             Text(
               l.dealsEmpty,
               textAlign: TextAlign.center,
-              style: AppTypography.body.copyWith(color: AppColors.textSecondary),
+              style: AppTypography.body.copyWith(
+                color: AppColors.textSecondary,
+              ),
             ),
           for (final CollectionItem item in sorted)
             Padding(

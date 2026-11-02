@@ -97,7 +97,10 @@ class PlusNotifications {
 
   Future<void> cancelRunningSession(int itemId) async {
     if (!await _ensureReady()) return;
-    await _run('cancel session', () => _plugin.cancel(id: _sessionBase + itemId));
+    await _run(
+      'cancel session',
+      () => _plugin.cancel(id: _sessionBase + itemId),
+    );
   }
 
   Future<void> scheduleLoanReminder({
@@ -131,7 +134,10 @@ class PlusNotifications {
 
   Future<void> cancelLoanReminder(int copyId) async {
     if (!await _ensureReady()) return;
-    await _run('cancel loan reminder', () => _plugin.cancel(id: _loanBase + copyId));
+    await _run(
+      'cancel loan reminder',
+      () => _plugin.cancel(id: _loanBase + copyId),
+    );
   }
 
   Future<void> showDeal({

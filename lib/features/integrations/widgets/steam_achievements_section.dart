@@ -79,14 +79,18 @@ class _SteamAchievementsSectionState
   @override
   Widget build(BuildContext context) {
     final S l = S.of(context);
-    final String? appId = ref.watch(steamAppProvider(widget.igdbId)).valueOrNull;
+    final String? appId = ref
+        .watch(steamAppProvider(widget.igdbId))
+        .valueOrNull;
     if (appId == null) return const SizedBox.shrink();
 
     final bool connected = ref.watch(steamCredentialsProvider) != null;
     final List<TrackerAchievement> achievements =
         ref.watch(steamAchievementsProvider(appId)).valueOrNull ??
         const <TrackerAchievement>[];
-    final AsyncValue<SteamSync?> syncAsync = ref.watch(steamSyncProvider(appId));
+    final AsyncValue<SteamSync?> syncAsync = ref.watch(
+      steamSyncProvider(appId),
+    );
     final SteamSync? sync = syncAsync.valueOrNull;
     if (connected && syncAsync.hasValue) _maybeAutoSync(appId, sync);
 
@@ -94,11 +98,10 @@ class _SteamAchievementsSectionState
         .where((TrackerAchievement a) => a.earned)
         .length;
     final List<TrackerAchievement> ordered = <TrackerAchievement>[
-      ...achievements.where((TrackerAchievement a) => a.earned).toList()
-        ..sort(
-          (TrackerAchievement a, TrackerAchievement b) =>
-              (b.earnedAt ?? 0).compareTo(a.earnedAt ?? 0),
-        ),
+      ...achievements.where((TrackerAchievement a) => a.earned).toList()..sort(
+        (TrackerAchievement a, TrackerAchievement b) =>
+            (b.earnedAt ?? 0).compareTo(a.earnedAt ?? 0),
+      ),
       ...achievements.where((TrackerAchievement a) => !a.earned),
     ];
     final List<TrackerAchievement> shown = _expanded
@@ -110,7 +113,11 @@ class _SteamAchievementsSectionState
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon(Icons.emoji_events_outlined, size: 20, color: widget.accentColor),
+            Icon(
+              Icons.emoji_events_outlined,
+              size: 20,
+              color: widget.accentColor,
+            ),
             const SizedBox(width: AppSpacing.sm),
             Expanded(
               child: Text(
@@ -162,7 +169,10 @@ class _SteamAchievementsSectionState
           ),
           const SizedBox(height: AppSpacing.sm),
           for (final TrackerAchievement a in shown)
-            _AchievementTile(key: ValueKey<String>(a.achievementId), achievement: a),
+            _AchievementTile(
+              key: ValueKey<String>(a.achievementId),
+              achievement: a,
+            ),
           if (ordered.length > _collapsedCount)
             Align(
               alignment: Alignment.centerLeft,

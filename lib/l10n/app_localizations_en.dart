@@ -6984,4 +6984,152 @@ class SEn extends S {
 
   @override
   String get keepsakeCriticHint => 'Rate 50 items';
+
+  @override
+  String get connectionsTitle => 'Connections';
+
+  @override
+  String get connectionsSteam => 'Steam achievements';
+
+  @override
+  String get connectionsSteamHint =>
+      'Needs a Steam Web API key and your 17-digit SteamID64. Your game details must be public.';
+
+  @override
+  String get connectionsSteamKey => 'Steam Web API key';
+
+  @override
+  String get connectionsSteamId => 'SteamID64';
+
+  @override
+  String get connectionsItad => 'IsThereAnyDeal prices';
+
+  @override
+  String get connectionsItadHint =>
+      'Register a free app on IsThereAnyDeal to get a key. Prices use your country.';
+
+  @override
+  String get connectionsItadKey => 'IsThereAnyDeal API key';
+
+  @override
+  String get connectionsCountry => 'Country code (e.g. IT)';
+
+  @override
+  String get connectionsGetKey => 'Get a key';
+
+  @override
+  String get steamAchievementsTitle => 'Steam achievements';
+
+  @override
+  String get steamConnect => 'Connect Steam to see achievements';
+
+  @override
+  String get steamSync => 'Refresh';
+
+  @override
+  String get steamNotSynced => 'Not synced yet.';
+
+  @override
+  String steamProgress(int earned, int total) {
+    return '$earned of $total unlocked';
+  }
+
+  @override
+  String steamShowAll(int count) {
+    return 'Show all $count';
+  }
+
+  @override
+  String get steamShowLess => 'Show less';
+
+  @override
+  String get steamHiddenAchievement => 'Hidden achievement';
+
+  @override
+  String get steamPrivateProfile =>
+      'Your Steam game details are private. Make them public to sync.';
+
+  @override
+  String get steamNoAchievements => 'This game has no Steam achievements.';
+
+  @override
+  String get steamBadKey =>
+      'Steam rejected the key or SteamID. Check them in Connections.';
+
+  @override
+  String get steamNetworkError =>
+      'Could not reach the service. Try again later.';
+
+  @override
+  String get dealTitle => 'Best price';
+
+  @override
+  String get dealConnect => 'Connect IsThereAnyDeal for prices';
+
+  @override
+  String get dealConnectHint =>
+      'Connect IsThereAnyDeal to watch prices of the games you plan to play and get a notice at their all-time low.';
+
+  @override
+  String get dealNotChecked => 'Price not checked yet.';
+
+  @override
+  String get dealNotListed => 'No store listing found.';
+
+  @override
+  String dealHistoricLow(String price) {
+    return 'All-time low $price';
+  }
+
+  @override
+  String get dealAtLow => 'All-time low right now!';
+
+  @override
+  String get dealBadKey =>
+      'IsThereAnyDeal rejected the key. Check it in Connections.';
+
+  @override
+  String dealLowTitle(String title) {
+    return '$title at its all-time low';
+  }
+
+  @override
+  String dealLowBody(String price, String shop) {
+    return '$price on $shop';
+  }
+
+  @override
+  String get dealsTitle => 'Deals';
+
+  @override
+  String get dealsCardHint => 'Prices of the games you plan to play';
+
+  @override
+  String get dealsHint =>
+      'Planned games are watched. A notice arrives when one hits its all-time low.';
+
+  @override
+  String get dealsRefresh => 'Check prices now';
+
+  @override
+  String get dealsEmpty =>
+      'No planned games yet. Set a game to Planned to watch its price.';
+
+  @override
+  String loanReminderTitle(String title) {
+    return 'Time to get $title back';
+  }
+
+  @override
+  String loanReminderBody(String name) {
+    return 'Lent to $name';
+  }
+
+  @override
+  String get widgetIdle => 'Nothing in progress';
+
+  @override
+  String widgetGoals(String progress) {
+    return 'Goals $progress';
+  }
 }

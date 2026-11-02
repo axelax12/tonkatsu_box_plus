@@ -7099,4 +7099,152 @@ class SRu extends S {
 
   @override
   String get keepsakeCriticHint => 'Оцените 50 элементов';
+
+  @override
+  String get connectionsTitle => 'Подключения';
+
+  @override
+  String get connectionsSteam => 'Достижения Steam';
+
+  @override
+  String get connectionsSteamHint =>
+      'Нужны ключ Steam Web API и ваш 17-значный SteamID64. Сведения об играх должны быть открыты.';
+
+  @override
+  String get connectionsSteamKey => 'Ключ Steam Web API';
+
+  @override
+  String get connectionsSteamId => 'SteamID64';
+
+  @override
+  String get connectionsItad => 'Цены IsThereAnyDeal';
+
+  @override
+  String get connectionsItadHint =>
+      'Зарегистрируйте бесплатное приложение на IsThereAnyDeal, чтобы получить ключ. Цены — для вашей страны.';
+
+  @override
+  String get connectionsItadKey => 'Ключ API IsThereAnyDeal';
+
+  @override
+  String get connectionsCountry => 'Код страны (например, IT)';
+
+  @override
+  String get connectionsGetKey => 'Получить ключ';
+
+  @override
+  String get steamAchievementsTitle => 'Достижения Steam';
+
+  @override
+  String get steamConnect => 'Подключите Steam, чтобы видеть достижения';
+
+  @override
+  String get steamSync => 'Обновить';
+
+  @override
+  String get steamNotSynced => 'Ещё не синхронизировано.';
+
+  @override
+  String steamProgress(int earned, int total) {
+    return 'Открыто $earned из $total';
+  }
+
+  @override
+  String steamShowAll(int count) {
+    return 'Показать все ($count)';
+  }
+
+  @override
+  String get steamShowLess => 'Свернуть';
+
+  @override
+  String get steamHiddenAchievement => 'Скрытое достижение';
+
+  @override
+  String get steamPrivateProfile =>
+      'Сведения об играх в Steam скрыты. Откройте их для синхронизации.';
+
+  @override
+  String get steamNoAchievements => 'У этой игры нет достижений Steam.';
+
+  @override
+  String get steamBadKey =>
+      'Steam отклонил ключ или SteamID. Проверьте их в подключениях.';
+
+  @override
+  String get steamNetworkError =>
+      'Не удалось связаться с сервисом. Попробуйте позже.';
+
+  @override
+  String get dealTitle => 'Лучшая цена';
+
+  @override
+  String get dealConnect => 'Подключите IsThereAnyDeal для цен';
+
+  @override
+  String get dealConnectHint =>
+      'Подключите IsThereAnyDeal, чтобы следить за ценами запланированных игр и получать уведомление об исторически низкой цене.';
+
+  @override
+  String get dealNotChecked => 'Цена ещё не проверялась.';
+
+  @override
+  String get dealNotListed => 'В магазинах не найдено.';
+
+  @override
+  String dealHistoricLow(String price) {
+    return 'Исторический минимум $price';
+  }
+
+  @override
+  String get dealAtLow => 'Сейчас исторический минимум!';
+
+  @override
+  String get dealBadKey =>
+      'IsThereAnyDeal отклонил ключ. Проверьте его в подключениях.';
+
+  @override
+  String dealLowTitle(String title) {
+    return '$title: исторический минимум';
+  }
+
+  @override
+  String dealLowBody(String price, String shop) {
+    return '$price в $shop';
+  }
+
+  @override
+  String get dealsTitle => 'Скидки';
+
+  @override
+  String get dealsCardHint => 'Цены игр, которые вы планируете';
+
+  @override
+  String get dealsHint =>
+      'Запланированные игры отслеживаются. Уведомление придёт, когда цена достигнет минимума.';
+
+  @override
+  String get dealsRefresh => 'Проверить цены';
+
+  @override
+  String get dealsEmpty =>
+      'Запланированных игр пока нет. Отметьте игру как запланированную, чтобы следить за ценой.';
+
+  @override
+  String loanReminderTitle(String title) {
+    return 'Пора вернуть $title';
+  }
+
+  @override
+  String loanReminderBody(String name) {
+    return 'Одолжено: $name';
+  }
+
+  @override
+  String get widgetIdle => 'Сейчас ничего не идёт';
+
+  @override
+  String widgetGoals(String progress) {
+    return 'Цели $progress';
+  }
 }

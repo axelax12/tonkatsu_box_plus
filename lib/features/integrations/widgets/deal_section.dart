@@ -154,13 +154,14 @@ class DealSummary extends StatelessWidget {
                       ],
                     ],
                   ),
-                  if (shop != null)
-                    Text(shop, style: AppTypography.bodySmall),
+                  if (shop != null) Text(shop, style: AppTypography.bodySmall),
                   if (low != null)
                     Text(
                       atLow
                           ? l.dealAtLow
-                          : l.dealHistoricLow(formatPrice(low, snapshot.currency)),
+                          : l.dealHistoricLow(
+                              formatPrice(low, snapshot.currency),
+                            ),
                       style: AppTypography.caption.copyWith(
                         color: atLow
                             ? AppColors.success

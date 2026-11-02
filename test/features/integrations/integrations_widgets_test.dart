@@ -92,10 +92,7 @@ void main() {
         const DealsScreen(),
         wrapInScaffold: true,
         overrides: <Override>[
-          itadSettingsProvider.overrideWithValue((
-            apiKey: 'k',
-            country: 'IT',
-          )),
+          itadSettingsProvider.overrideWithValue((apiKey: 'k', country: 'IT')),
           watchedGamesProvider.overrideWith(
             (Ref ref) async => <CollectionItem>[
               createTestCollectionItem(id: 1, status: ItemStatus.planned),

@@ -104,10 +104,7 @@ class ItadApi {
       final List<dynamic> data = await _call<List<dynamic>>(
         () => _dio.post<List<dynamic>>(
           '/games/prices/v3',
-          queryParameters: <String, dynamic>{
-            'key': apiKey,
-            'country': country,
-          },
+          queryParameters: <String, dynamic>{'key': apiKey, 'country': country},
           data: batch,
         ),
       );
@@ -148,8 +145,9 @@ class ItadApi {
     );
   }
 
-  static double? _amount(Object? price) =>
-      price is Map<String, dynamic> ? (price['amount'] as num?)?.toDouble() : null;
+  static double? _amount(Object? price) => price is Map<String, dynamic>
+      ? (price['amount'] as num?)?.toDouble()
+      : null;
 
   Future<T> _call<T>(Future<Response<T>> Function() request) async {
     try {

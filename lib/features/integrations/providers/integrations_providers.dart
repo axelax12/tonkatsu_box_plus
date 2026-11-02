@@ -45,7 +45,8 @@ final Provider<SteamCredentials?> steamCredentialsProvider =
     Provider<SteamCredentials?>((Ref ref) {
       ref.watch(credentialsRevisionProvider);
       final SharedPreferences prefs = ref.read(sharedPreferencesProvider);
-      final String key = prefs.getString(SettingsKeys.steamApiKey)?.trim() ?? '';
+      final String key =
+          prefs.getString(SettingsKeys.steamApiKey)?.trim() ?? '';
       final String id = prefs.getString(SettingsKeys.steamId)?.trim() ?? '';
       return key.isEmpty || id.isEmpty ? null : (apiKey: key, steamId: id);
     });
@@ -94,8 +95,9 @@ final FutureProviderFamily<String?, int> steamAppProvider =
 final FutureProviderFamily<List<TrackerAchievement>, String>
 steamAchievementsProvider =
     FutureProvider.family<List<TrackerAchievement>, String>(
-      (Ref ref, String appId) =>
-          ref.watch(trackerDaoProvider).getAchievements(TrackerType.steam, appId),
+      (Ref ref, String appId) => ref
+          .watch(trackerDaoProvider)
+          .getAchievements(TrackerType.steam, appId),
     );
 
 final FutureProviderFamily<SteamSync?, String> steamSyncProvider =
@@ -155,7 +157,8 @@ class SteamAchievementsService {
 
 final FutureProviderFamily<PriceSnapshot?, int> itemPriceProvider =
     FutureProvider.family<PriceSnapshot?, int>(
-      (Ref ref, int itemId) => ref.watch(integrationsDaoProvider).getPrice(itemId),
+      (Ref ref, int itemId) =>
+          ref.watch(integrationsDaoProvider).getPrice(itemId),
     );
 
 final FutureProvider<List<PriceSnapshot>> allPricesProvider =
@@ -207,7 +210,8 @@ class DealsService {
       for (final CollectionItem item in unresolved) {
         final String? viaSteam = bySteam[steamByIgdb[item.externalId]];
         final String? id =
-            viaSteam ?? await api.lookupTitle(item.itemName, apiKey: settings.apiKey);
+            viaSteam ??
+            await api.lookupTitle(item.itemName, apiKey: settings.apiKey);
         if (id != null) itadByItem[item.id] = id;
       }
     }
