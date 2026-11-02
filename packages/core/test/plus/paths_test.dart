@@ -77,9 +77,10 @@ void main() {
       expect(back.aspect, PathAspect.setting);
       expect(back.copyWith(clearNote: true, clearAspect: true).note, isNull);
       expect(e.withPosition(PathOrder.chronological, 7).chronoPos, 7);
-      expect(e.withPosition(PathOrder.release, 2).positionFor(
-        PathOrder.release,
-      ), 2);
+      expect(
+        e.withPosition(PathOrder.release, 2).positionFor(PathOrder.release),
+        2,
+      );
       expect(e.withPosition(PathOrder.recommended, 3).recommendedPos, 3);
 
       expect(PathKind.fromString('theme'), PathKind.theme);
@@ -114,10 +115,12 @@ void main() {
         },
         order: PathOrder.recommended,
       );
-      expect(
-        walk.stops.map((PathStop s) => s.entry.itemId),
-        <int>[10, 20, 30, 40],
-      );
+      expect(walk.stops.map((PathStop s) => s.entry.itemId), <int>[
+        10,
+        20,
+        30,
+        40,
+      ]);
       expect(walk.stops[0].state, StopState.done);
       expect(walk.stops[1].state, StopState.upcoming);
       expect(walk.stops[2].state, StopState.next);
@@ -203,7 +206,10 @@ void main() {
       );
       expect(hits.map((CollectionItem i) => i.id), <int>[2, 1, 5]);
       expect(PathSuggestions.byTitle('a b', library), isEmpty);
-      expect(PathSuggestions.byTitle('gundam', library, limit: 1), hasLength(1));
+      expect(
+        PathSuggestions.byTitle('gundam', library, limit: 1),
+        hasLength(1),
+      );
       expect(PathSuggestions.releaseOrder(library.reversed), <int>[
         2,
         4,
@@ -217,7 +223,10 @@ void main() {
   group('ThemeIndex', () {
     test('derives themes from genres by whole words', () {
       expect(
-        ThemeIndex.themesFor(<String>['Sci-Fi & Fantasy', 'Role-playing (RPG)']),
+        ThemeIndex.themesFor(<String>[
+          'Sci-Fi & Fantasy',
+          'Role-playing (RPG)',
+        ]),
         <BuiltInTheme>{
           BuiltInTheme.space,
           BuiltInTheme.fantasyWorlds,
@@ -262,12 +271,14 @@ void main() {
       final List<ThemeKey> atmosphere = index.keysFor(PathAspect.atmosphere);
       expect(atmosphere.first, const ThemeKey.builtIn(BuiltInTheme.dark));
       expect(index.itemsFor(atmosphere.first), hasLength(2));
-      expect(atmosphere, contains(const ThemeKey.custom(
-        PathAspect.atmosphere,
-        'MELANCHOLIC',
-      )));
       expect(
-        index.itemsFor(const ThemeKey.custom(PathAspect.atmosphere, 'melancholic')),
+        atmosphere,
+        contains(const ThemeKey.custom(PathAspect.atmosphere, 'MELANCHOLIC')),
+      );
+      expect(
+        index.itemsFor(
+          const ThemeKey.custom(PathAspect.atmosphere, 'melancholic'),
+        ),
         hasLength(2),
       );
       expect(index.keysFor(PathAspect.setting), isEmpty);
@@ -320,7 +331,11 @@ void main() {
       expect(await dao.getPaths(kind: PathKind.theme), isEmpty);
       expect((await dao.getPathsForItem(b)).single.id, path.id);
 
-      await t.db.delete('collection_items', where: 'id = ?', whereArgs: <int>[a]);
+      await t.db.delete(
+        'collection_items',
+        where: 'id = ?',
+        whereArgs: <int>[a],
+      );
       expect(await dao.getEntries(path.id), hasLength(2));
       await dao.removeEntry(entries[1].id);
       expect(await dao.getAllEntries(), hasLength(1));
@@ -342,25 +357,39 @@ void main() {
     test('normalizes labels, ignores blanks and duplicates', () async {
       final int a = await t.newItem();
       expect(
-        await dao.add(itemId: a, aspect: PathAspect.atmosphere,
-            label: '  rainy   nights ', now: t0),
+        await dao.add(
+          itemId: a,
+          aspect: PathAspect.atmosphere,
+          label: '  rainy   nights ',
+          now: t0,
+        ),
         isTrue,
       );
       expect(
-        await dao.add(itemId: a, aspect: PathAspect.atmosphere,
-            label: 'Rainy Nights', now: t0),
+        await dao.add(
+          itemId: a,
+          aspect: PathAspect.atmosphere,
+          label: 'Rainy Nights',
+          now: t0,
+        ),
         isFalse,
       );
       expect(
-        await dao.add(itemId: a, aspect: PathAspect.setting, label: '  ',
-            now: t0),
+        await dao.add(
+          itemId: a,
+          aspect: PathAspect.setting,
+          label: '  ',
+          now: t0,
+        ),
         isFalse,
       );
       final List<ItemAspectTag> tags = await dao.getForItem(a);
       expect(tags.single.label, 'rainy nights');
       expect(await dao.getAll(), hasLength(1));
-      expect(AspectsDao.normalizeLabel('x' * 60).length,
-          AspectsDao.maxLabelLength);
+      expect(
+        AspectsDao.normalizeLabel('x' * 60).length,
+        AspectsDao.maxLabelLength,
+      );
       await dao.remove(tags.single.id);
       expect(await dao.getForItem(a), isEmpty);
     });

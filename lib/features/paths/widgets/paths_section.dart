@@ -41,16 +41,17 @@ class PathsSection extends ConsumerWidget {
     };
     if (!context.mounted) return;
     // A null path inside the record means "create a new one".
-    final ({MediaPath? path})? chosen = await showJournalSheet<({MediaPath? path})>(
-      context,
-      title: l.pathAddToPath,
-      builder: (BuildContext sheetContext) => _PathChoice(
-        paths: <MediaPath>[
-          for (final MediaPath p in all)
-            if (!current.contains(p.id)) p,
-        ],
-      ),
-    );
+    final ({MediaPath? path})? chosen =
+        await showJournalSheet<({MediaPath? path})>(
+          context,
+          title: l.pathAddToPath,
+          builder: (BuildContext sheetContext) => _PathChoice(
+            paths: <MediaPath>[
+              for (final MediaPath p in all)
+                if (!current.contains(p.id)) p,
+            ],
+          ),
+        );
     if (chosen == null || !context.mounted) return;
     final PathsController controller = ref.read(pathsControllerProvider);
     MediaPath? target = chosen.path;

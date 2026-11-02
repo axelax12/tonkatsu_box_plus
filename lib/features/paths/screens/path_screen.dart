@@ -353,8 +353,8 @@ class _PathHeader extends StatelessWidget {
             const SizedBox(height: AppSpacing.md),
             _CurrentCard(
               stop: current,
-              isStart: walk.requiredDone == 0 &&
-                  current.state == StopState.next,
+              isStart:
+                  walk.requiredDone == 0 && current.state == StopState.next,
               onTap: () => onOpenCurrent(current),
             ),
           ],

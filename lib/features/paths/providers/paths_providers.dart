@@ -15,9 +15,7 @@ final Provider<PathsDao> pathsDaoProvider = Provider<PathsDao>((Ref ref) {
   return PathsDao(() => db.database);
 });
 
-final Provider<AspectsDao> aspectsDaoProvider = Provider<AspectsDao>((
-  Ref ref,
-) {
+final Provider<AspectsDao> aspectsDaoProvider = Provider<AspectsDao>((Ref ref) {
   final DatabaseService db = ref.watch(databaseServiceProvider);
   return AspectsDao(() => db.database);
 });
@@ -38,7 +36,9 @@ final FutureProvider<Map<int, CollectionItem>> libraryByIdProvider =
       final List<CollectionItem> items = await ref.watch(
         libraryItemsProvider.future,
       );
-      return <int, CollectionItem>{for (final CollectionItem i in items) i.id: i};
+      return <int, CollectionItem>{
+        for (final CollectionItem i in items) i.id: i,
+      };
     });
 
 /// The order a path is being walked in; starts at the path's own default.
@@ -50,10 +50,9 @@ class PathOrderNotifier extends FamilyNotifier<PathOrder?, int> {
 }
 
 final NotifierProviderFamily<PathOrderNotifier, PathOrder?, int>
-pathOrderProvider =
-    NotifierProvider.family<PathOrderNotifier, PathOrder?, int>(
-      PathOrderNotifier.new,
-    );
+pathOrderProvider = NotifierProvider.family<PathOrderNotifier, PathOrder?, int>(
+  PathOrderNotifier.new,
+);
 
 typedef PathWalkKey = ({int pathId, PathOrder order});
 
@@ -80,10 +79,7 @@ class ItemPathView {
 }
 
 final FutureProviderFamily<List<ItemPathView>, int> itemPathsProvider =
-    FutureProvider.family<List<ItemPathView>, int>((
-      Ref ref,
-      int itemId,
-    ) async {
+    FutureProvider.family<List<ItemPathView>, int>((Ref ref, int itemId) async {
       ref.watch(pathsProvider);
       final List<MediaPath> paths = await ref
           .read(pathsDaoProvider)
@@ -104,7 +100,10 @@ final FutureProvider<List<ItemAspectTag>> allAspectTagsProvider =
     );
 
 final FutureProviderFamily<List<ItemAspectTag>, int> itemAspectTagsProvider =
-    FutureProvider.family<List<ItemAspectTag>, int>((Ref ref, int itemId) async {
+    FutureProvider.family<List<ItemAspectTag>, int>((
+      Ref ref,
+      int itemId,
+    ) async {
       final List<ItemAspectTag> all = await ref.watch(
         allAspectTagsProvider.future,
       );

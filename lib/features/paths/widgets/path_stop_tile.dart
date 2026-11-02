@@ -162,8 +162,7 @@ class PathStopTile extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                      if (entry.optional)
-                        _Pill(label: l.pathOptional),
+                      if (entry.optional) _Pill(label: l.pathOptional),
                       if (aspect != null && !masked)
                         _Pill(label: aspectLabel(aspect, l)),
                     ],

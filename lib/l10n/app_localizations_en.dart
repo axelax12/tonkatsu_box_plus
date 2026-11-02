@@ -7132,4 +7132,312 @@ class SEn extends S {
   String widgetGoals(String progress) {
     return 'Goals $progress';
   }
+
+  @override
+  String get pathsTitle => 'Paths & universes';
+
+  @override
+  String get pathsHint => 'Where to start a saga, and works linked by a theme';
+
+  @override
+  String get pathsNoneYet => 'No paths yet';
+
+  @override
+  String get pathsTabPaths => 'Paths';
+
+  @override
+  String get pathsTabExplore => 'Explore';
+
+  @override
+  String get pathKindUniverse => 'Universe';
+
+  @override
+  String get pathKindTheme => 'Theme path';
+
+  @override
+  String get pathsUniverses => 'Universes';
+
+  @override
+  String get pathsThemes => 'Theme paths';
+
+  @override
+  String get pathOrderRelease => 'Release';
+
+  @override
+  String get pathOrderChrono => 'Story order';
+
+  @override
+  String get pathOrderRecommended => 'Recommended';
+
+  @override
+  String get aspectAtmosphere => 'Atmosphere';
+
+  @override
+  String get aspectSetting => 'Setting';
+
+  @override
+  String get aspectThemes => 'Themes';
+
+  @override
+  String get aspectStructure => 'Structure';
+
+  @override
+  String get pathNew => 'New path';
+
+  @override
+  String get pathNameHint => 'e.g. Gundam, The Witcher, cosmic horror';
+
+  @override
+  String get pathCreate => 'Create';
+
+  @override
+  String pathProgress(int done, int total) {
+    return '$done of $total done';
+  }
+
+  @override
+  String pathOptionalProgress(int done, int total) {
+    return 'Side stops: $done/$total';
+  }
+
+  @override
+  String get pathStartHere => 'Start here';
+
+  @override
+  String get pathContinue => 'Continue here';
+
+  @override
+  String get pathCompleted => 'Path completed';
+
+  @override
+  String get pathEmpty =>
+      'No works on this path yet. Add them from your library.';
+
+  @override
+  String get pathAddWorks => 'Add works';
+
+  @override
+  String get pathEditStops => 'Edit stops';
+
+  @override
+  String get pathSortByRelease => 'Sort release order by date';
+
+  @override
+  String pathDeleteConfirm(String name) {
+    return 'Delete the path \"$name\"? The works stay in your library.';
+  }
+
+  @override
+  String get pathOptional => 'Optional';
+
+  @override
+  String get pathOptionalHint => 'Side story, not needed to finish the path';
+
+  @override
+  String get pathSpoiler => 'Hide until reached';
+
+  @override
+  String get pathSpoilerHint => 'Shown as ??? until every earlier stop is done';
+
+  @override
+  String get pathSpoilerHidden => 'Hidden to avoid spoilers';
+
+  @override
+  String get pathReveal => 'Reveal';
+
+  @override
+  String get pathRevealConfirm =>
+      'Show this stop? Its title may spoil what comes before it.';
+
+  @override
+  String get pathNote => 'Note';
+
+  @override
+  String get pathNoteHint => 'Why it is here, where it fits';
+
+  @override
+  String get pathAspect => 'Linked by';
+
+  @override
+  String get pathAspectNone => 'Not set';
+
+  @override
+  String get pathRemoveStop => 'Remove from path';
+
+  @override
+  String get pathStateDone => 'Done';
+
+  @override
+  String get pathStateActive => 'In progress';
+
+  @override
+  String get pathStateNext => 'Next';
+
+  @override
+  String get pathPickerTitle => 'Add from your library';
+
+  @override
+  String get pathPickerSearch => 'Search your library';
+
+  @override
+  String get pathPickerSuggested => 'Matching the name';
+
+  @override
+  String pathPickerSelectAll(int count) {
+    return 'Select all $count';
+  }
+
+  @override
+  String pathPickerAdd(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Add $count',
+      zero: 'Add',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pathPickerMissing =>
+      'Not in your library? Add it from Search first, then come back.';
+
+  @override
+  String get pathPickerNoResults => 'Nothing found';
+
+  @override
+  String get pathsSectionTitle => 'Paths & themes';
+
+  @override
+  String pathsSectionStop(int pos, int total) {
+    return 'Stop $pos of $total';
+  }
+
+  @override
+  String pathsSectionNext(String name) {
+    return 'Next: $name';
+  }
+
+  @override
+  String get pathAddToPath => 'Add to a path';
+
+  @override
+  String pathAdded(String name) {
+    return 'Added to $name';
+  }
+
+  @override
+  String get aspectAddTag => 'Add tag';
+
+  @override
+  String get aspectTagHint => 'e.g. melancholic, orbital station';
+
+  @override
+  String get aspectTagExists => 'Already tagged';
+
+  @override
+  String get aspectFromGenres => 'From genres';
+
+  @override
+  String get exploreIntro =>
+      'Pick an aspect, then a thread to follow across games, films, books and more.';
+
+  @override
+  String get exploreEmpty =>
+      'Nothing here yet. Genres fill this in, and so do the tags you add on a work page.';
+
+  @override
+  String exploreToDiscover(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count to discover',
+      one: '1 to discover',
+      zero: 'All explored',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get exploreMakePath => 'Make a path';
+
+  @override
+  String explorePathCreated(String name) {
+    return 'Path \"$name\" created';
+  }
+
+  @override
+  String get themeDark => 'Dark';
+
+  @override
+  String get themeTense => 'Tense';
+
+  @override
+  String get themeLighthearted => 'Light-hearted';
+
+  @override
+  String get themeCozy => 'Cozy';
+
+  @override
+  String get themeEmotional => 'Emotional';
+
+  @override
+  String get themeSurreal => 'Surreal';
+
+  @override
+  String get themeSpace => 'Space & sci-fi';
+
+  @override
+  String get themeFantasyWorlds => 'Fantasy worlds';
+
+  @override
+  String get themeHistorical => 'Historical';
+
+  @override
+  String get themeDystopia => 'Dystopia & cyberpunk';
+
+  @override
+  String get themeSchool => 'School life';
+
+  @override
+  String get themeSupernatural => 'Supernatural';
+
+  @override
+  String get themeLove => 'Love';
+
+  @override
+  String get themeWar => 'War';
+
+  @override
+  String get themeMind => 'Mind & philosophy';
+
+  @override
+  String get themeCrime => 'Crime & justice';
+
+  @override
+  String get themeComingOfAge => 'Coming of age';
+
+  @override
+  String get themeMachines => 'Mecha & machines';
+
+  @override
+  String get themeCompetition => 'Sport & competition';
+
+  @override
+  String get themeMystery => 'Mystery';
+
+  @override
+  String get themeJourney => 'Journey & adventure';
+
+  @override
+  String get themeAction => 'Action';
+
+  @override
+  String get themeStrategy => 'Strategy';
+
+  @override
+  String get themeRolePlaying => 'Role-playing';
+
+  @override
+  String get themeTrueStories => 'True stories';
 }

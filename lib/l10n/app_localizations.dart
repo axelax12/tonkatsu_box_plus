@@ -12565,6 +12565,546 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Goals {progress}'**
   String widgetGoals(String progress);
+
+  /// No description provided for @pathsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Paths & universes'**
+  String get pathsTitle;
+
+  /// No description provided for @pathsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Where to start a saga, and works linked by a theme'**
+  String get pathsHint;
+
+  /// No description provided for @pathsNoneYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No paths yet'**
+  String get pathsNoneYet;
+
+  /// No description provided for @pathsTabPaths.
+  ///
+  /// In en, this message translates to:
+  /// **'Paths'**
+  String get pathsTabPaths;
+
+  /// No description provided for @pathsTabExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get pathsTabExplore;
+
+  /// No description provided for @pathKindUniverse.
+  ///
+  /// In en, this message translates to:
+  /// **'Universe'**
+  String get pathKindUniverse;
+
+  /// No description provided for @pathKindTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme path'**
+  String get pathKindTheme;
+
+  /// No description provided for @pathsUniverses.
+  ///
+  /// In en, this message translates to:
+  /// **'Universes'**
+  String get pathsUniverses;
+
+  /// No description provided for @pathsThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme paths'**
+  String get pathsThemes;
+
+  /// No description provided for @pathOrderRelease.
+  ///
+  /// In en, this message translates to:
+  /// **'Release'**
+  String get pathOrderRelease;
+
+  /// No description provided for @pathOrderChrono.
+  ///
+  /// In en, this message translates to:
+  /// **'Story order'**
+  String get pathOrderChrono;
+
+  /// No description provided for @pathOrderRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended'**
+  String get pathOrderRecommended;
+
+  /// No description provided for @aspectAtmosphere.
+  ///
+  /// In en, this message translates to:
+  /// **'Atmosphere'**
+  String get aspectAtmosphere;
+
+  /// No description provided for @aspectSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'Setting'**
+  String get aspectSetting;
+
+  /// No description provided for @aspectThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes'**
+  String get aspectThemes;
+
+  /// No description provided for @aspectStructure.
+  ///
+  /// In en, this message translates to:
+  /// **'Structure'**
+  String get aspectStructure;
+
+  /// No description provided for @pathNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New path'**
+  String get pathNew;
+
+  /// No description provided for @pathNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Gundam, The Witcher, cosmic horror'**
+  String get pathNameHint;
+
+  /// No description provided for @pathCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get pathCreate;
+
+  /// No description provided for @pathProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} done'**
+  String pathProgress(int done, int total);
+
+  /// No description provided for @pathOptionalProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Side stops: {done}/{total}'**
+  String pathOptionalProgress(int done, int total);
+
+  /// No description provided for @pathStartHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Start here'**
+  String get pathStartHere;
+
+  /// No description provided for @pathContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue here'**
+  String get pathContinue;
+
+  /// No description provided for @pathCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Path completed'**
+  String get pathCompleted;
+
+  /// No description provided for @pathEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No works on this path yet. Add them from your library.'**
+  String get pathEmpty;
+
+  /// No description provided for @pathAddWorks.
+  ///
+  /// In en, this message translates to:
+  /// **'Add works'**
+  String get pathAddWorks;
+
+  /// No description provided for @pathEditStops.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit stops'**
+  String get pathEditStops;
+
+  /// No description provided for @pathSortByRelease.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort release order by date'**
+  String get pathSortByRelease;
+
+  /// No description provided for @pathDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete the path \"{name}\"? The works stay in your library.'**
+  String pathDeleteConfirm(String name);
+
+  /// No description provided for @pathOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get pathOptional;
+
+  /// No description provided for @pathOptionalHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Side story, not needed to finish the path'**
+  String get pathOptionalHint;
+
+  /// No description provided for @pathSpoiler.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide until reached'**
+  String get pathSpoiler;
+
+  /// No description provided for @pathSpoilerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown as ??? until every earlier stop is done'**
+  String get pathSpoilerHint;
+
+  /// No description provided for @pathSpoilerHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden to avoid spoilers'**
+  String get pathSpoilerHidden;
+
+  /// No description provided for @pathReveal.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal'**
+  String get pathReveal;
+
+  /// No description provided for @pathRevealConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Show this stop? Its title may spoil what comes before it.'**
+  String get pathRevealConfirm;
+
+  /// No description provided for @pathNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get pathNote;
+
+  /// No description provided for @pathNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Why it is here, where it fits'**
+  String get pathNoteHint;
+
+  /// No description provided for @pathAspect.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked by'**
+  String get pathAspect;
+
+  /// No description provided for @pathAspectNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get pathAspectNone;
+
+  /// No description provided for @pathRemoveStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from path'**
+  String get pathRemoveStop;
+
+  /// No description provided for @pathStateDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get pathStateDone;
+
+  /// No description provided for @pathStateActive.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get pathStateActive;
+
+  /// No description provided for @pathStateNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get pathStateNext;
+
+  /// No description provided for @pathPickerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add from your library'**
+  String get pathPickerTitle;
+
+  /// No description provided for @pathPickerSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search your library'**
+  String get pathPickerSearch;
+
+  /// No description provided for @pathPickerSuggested.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching the name'**
+  String get pathPickerSuggested;
+
+  /// No description provided for @pathPickerSelectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Select all {count}'**
+  String pathPickerSelectAll(int count);
+
+  /// No description provided for @pathPickerAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Add} other{Add {count}}}'**
+  String pathPickerAdd(int count);
+
+  /// No description provided for @pathPickerMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Not in your library? Add it from Search first, then come back.'**
+  String get pathPickerMissing;
+
+  /// No description provided for @pathPickerNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing found'**
+  String get pathPickerNoResults;
+
+  /// No description provided for @pathsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Paths & themes'**
+  String get pathsSectionTitle;
+
+  /// No description provided for @pathsSectionStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop {pos} of {total}'**
+  String pathsSectionStop(int pos, int total);
+
+  /// No description provided for @pathsSectionNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {name}'**
+  String pathsSectionNext(String name);
+
+  /// No description provided for @pathAddToPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to a path'**
+  String get pathAddToPath;
+
+  /// No description provided for @pathAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to {name}'**
+  String pathAdded(String name);
+
+  /// No description provided for @aspectAddTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Add tag'**
+  String get aspectAddTag;
+
+  /// No description provided for @aspectTagHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. melancholic, orbital station'**
+  String get aspectTagHint;
+
+  /// No description provided for @aspectTagExists.
+  ///
+  /// In en, this message translates to:
+  /// **'Already tagged'**
+  String get aspectTagExists;
+
+  /// No description provided for @aspectFromGenres.
+  ///
+  /// In en, this message translates to:
+  /// **'From genres'**
+  String get aspectFromGenres;
+
+  /// No description provided for @exploreIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick an aspect, then a thread to follow across games, films, books and more.'**
+  String get exploreIntro;
+
+  /// No description provided for @exploreEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here yet. Genres fill this in, and so do the tags you add on a work page.'**
+  String get exploreEmpty;
+
+  /// No description provided for @exploreToDiscover.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{All explored} =1{1 to discover} other{{count} to discover}}'**
+  String exploreToDiscover(int count);
+
+  /// No description provided for @exploreMakePath.
+  ///
+  /// In en, this message translates to:
+  /// **'Make a path'**
+  String get exploreMakePath;
+
+  /// No description provided for @explorePathCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Path \"{name}\" created'**
+  String explorePathCreated(String name);
+
+  /// No description provided for @themeDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get themeDark;
+
+  /// No description provided for @themeTense.
+  ///
+  /// In en, this message translates to:
+  /// **'Tense'**
+  String get themeTense;
+
+  /// No description provided for @themeLighthearted.
+  ///
+  /// In en, this message translates to:
+  /// **'Light-hearted'**
+  String get themeLighthearted;
+
+  /// No description provided for @themeCozy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cozy'**
+  String get themeCozy;
+
+  /// No description provided for @themeEmotional.
+  ///
+  /// In en, this message translates to:
+  /// **'Emotional'**
+  String get themeEmotional;
+
+  /// No description provided for @themeSurreal.
+  ///
+  /// In en, this message translates to:
+  /// **'Surreal'**
+  String get themeSurreal;
+
+  /// No description provided for @themeSpace.
+  ///
+  /// In en, this message translates to:
+  /// **'Space & sci-fi'**
+  String get themeSpace;
+
+  /// No description provided for @themeFantasyWorlds.
+  ///
+  /// In en, this message translates to:
+  /// **'Fantasy worlds'**
+  String get themeFantasyWorlds;
+
+  /// No description provided for @themeHistorical.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical'**
+  String get themeHistorical;
+
+  /// No description provided for @themeDystopia.
+  ///
+  /// In en, this message translates to:
+  /// **'Dystopia & cyberpunk'**
+  String get themeDystopia;
+
+  /// No description provided for @themeSchool.
+  ///
+  /// In en, this message translates to:
+  /// **'School life'**
+  String get themeSchool;
+
+  /// No description provided for @themeSupernatural.
+  ///
+  /// In en, this message translates to:
+  /// **'Supernatural'**
+  String get themeSupernatural;
+
+  /// No description provided for @themeLove.
+  ///
+  /// In en, this message translates to:
+  /// **'Love'**
+  String get themeLove;
+
+  /// No description provided for @themeWar.
+  ///
+  /// In en, this message translates to:
+  /// **'War'**
+  String get themeWar;
+
+  /// No description provided for @themeMind.
+  ///
+  /// In en, this message translates to:
+  /// **'Mind & philosophy'**
+  String get themeMind;
+
+  /// No description provided for @themeCrime.
+  ///
+  /// In en, this message translates to:
+  /// **'Crime & justice'**
+  String get themeCrime;
+
+  /// No description provided for @themeComingOfAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming of age'**
+  String get themeComingOfAge;
+
+  /// No description provided for @themeMachines.
+  ///
+  /// In en, this message translates to:
+  /// **'Mecha & machines'**
+  String get themeMachines;
+
+  /// No description provided for @themeCompetition.
+  ///
+  /// In en, this message translates to:
+  /// **'Sport & competition'**
+  String get themeCompetition;
+
+  /// No description provided for @themeMystery.
+  ///
+  /// In en, this message translates to:
+  /// **'Mystery'**
+  String get themeMystery;
+
+  /// No description provided for @themeJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey & adventure'**
+  String get themeJourney;
+
+  /// No description provided for @themeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get themeAction;
+
+  /// No description provided for @themeStrategy.
+  ///
+  /// In en, this message translates to:
+  /// **'Strategy'**
+  String get themeStrategy;
+
+  /// No description provided for @themeRolePlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'Role-playing'**
+  String get themeRolePlaying;
+
+  /// No description provided for @themeTrueStories.
+  ///
+  /// In en, this message translates to:
+  /// **'True stories'**
+  String get themeTrueStories;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

@@ -129,9 +129,8 @@ class _LibraryPickerState extends ConsumerState<_LibraryPicker> {
                 _Header(
                   title: l.pathPickerSuggested,
                   action: TextButton(
-                    onPressed: () => setState(
-                      () => _selected.addAll(suggestedIds),
-                    ),
+                    onPressed: () =>
+                        setState(() => _selected.addAll(suggestedIds)),
                     style: TextButton.styleFrom(
                       minimumSize: const Size(0, AppSpacing.buttonHeightDense),
                     ),

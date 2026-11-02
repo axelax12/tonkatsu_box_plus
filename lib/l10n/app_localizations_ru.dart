@@ -7247,4 +7247,315 @@ class SRu extends S {
   String widgetGoals(String progress) {
     return 'Цели $progress';
   }
+
+  @override
+  String get pathsTitle => 'Пути и вселенные';
+
+  @override
+  String get pathsHint => 'С чего начать сагу и что связывает произведения';
+
+  @override
+  String get pathsNoneYet => 'Путей пока нет';
+
+  @override
+  String get pathsTabPaths => 'Пути';
+
+  @override
+  String get pathsTabExplore => 'Обзор';
+
+  @override
+  String get pathKindUniverse => 'Вселенная';
+
+  @override
+  String get pathKindTheme => 'Тематический путь';
+
+  @override
+  String get pathsUniverses => 'Вселенные';
+
+  @override
+  String get pathsThemes => 'Тематические пути';
+
+  @override
+  String get pathOrderRelease => 'По выходу';
+
+  @override
+  String get pathOrderChrono => 'По сюжету';
+
+  @override
+  String get pathOrderRecommended => 'Рекомендуемый';
+
+  @override
+  String get aspectAtmosphere => 'Атмосфера';
+
+  @override
+  String get aspectSetting => 'Сеттинг';
+
+  @override
+  String get aspectThemes => 'Темы';
+
+  @override
+  String get aspectStructure => 'Структура';
+
+  @override
+  String get pathNew => 'Новый путь';
+
+  @override
+  String get pathNameHint => 'напр. Gundam, Ведьмак, космический ужас';
+
+  @override
+  String get pathCreate => 'Создать';
+
+  @override
+  String pathProgress(int done, int total) {
+    return 'Пройдено $done из $total';
+  }
+
+  @override
+  String pathOptionalProgress(int done, int total) {
+    return 'Побочные: $done/$total';
+  }
+
+  @override
+  String get pathStartHere => 'Начните отсюда';
+
+  @override
+  String get pathContinue => 'Продолжить отсюда';
+
+  @override
+  String get pathCompleted => 'Путь пройден';
+
+  @override
+  String get pathEmpty =>
+      'На этом пути пока нет произведений. Добавьте их из библиотеки.';
+
+  @override
+  String get pathAddWorks => 'Добавить';
+
+  @override
+  String get pathEditStops => 'Изменить этапы';
+
+  @override
+  String get pathSortByRelease => 'Упорядочить по дате выхода';
+
+  @override
+  String pathDeleteConfirm(String name) {
+    return 'Удалить путь «$name»? Произведения останутся в библиотеке.';
+  }
+
+  @override
+  String get pathOptional => 'Необязательно';
+
+  @override
+  String get pathOptionalHint => 'Побочная история, не нужна для завершения';
+
+  @override
+  String get pathSpoiler => 'Скрыть до этого этапа';
+
+  @override
+  String get pathSpoilerHint =>
+      'Показывается как ???, пока не пройдены предыдущие';
+
+  @override
+  String get pathSpoilerHidden => 'Скрыто, чтобы не было спойлеров';
+
+  @override
+  String get pathReveal => 'Показать';
+
+  @override
+  String get pathRevealConfirm =>
+      'Показать этот этап? Название может раскрыть сюжет предыдущих.';
+
+  @override
+  String get pathNote => 'Заметка';
+
+  @override
+  String get pathNoteHint => 'Почему здесь и куда вписывается';
+
+  @override
+  String get pathAspect => 'Связь';
+
+  @override
+  String get pathAspectNone => 'Не указано';
+
+  @override
+  String get pathRemoveStop => 'Убрать из пути';
+
+  @override
+  String get pathStateDone => 'Пройдено';
+
+  @override
+  String get pathStateActive => 'В процессе';
+
+  @override
+  String get pathStateNext => 'Далее';
+
+  @override
+  String get pathPickerTitle => 'Добавить из библиотеки';
+
+  @override
+  String get pathPickerSearch => 'Поиск по библиотеке';
+
+  @override
+  String get pathPickerSuggested => 'Совпадают с названием';
+
+  @override
+  String pathPickerSelectAll(int count) {
+    return 'Выбрать все ($count)';
+  }
+
+  @override
+  String pathPickerAdd(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Добавить ($count)',
+      zero: 'Добавить',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pathPickerMissing =>
+      'Нет в библиотеке? Сначала добавьте через поиск, потом вернитесь.';
+
+  @override
+  String get pathPickerNoResults => 'Ничего не найдено';
+
+  @override
+  String get pathsSectionTitle => 'Пути и темы';
+
+  @override
+  String pathsSectionStop(int pos, int total) {
+    return 'Этап $pos из $total';
+  }
+
+  @override
+  String pathsSectionNext(String name) {
+    return 'Далее: $name';
+  }
+
+  @override
+  String get pathAddToPath => 'Добавить в путь';
+
+  @override
+  String pathAdded(String name) {
+    return 'Добавлено в «$name»';
+  }
+
+  @override
+  String get aspectAddTag => 'Добавить тег';
+
+  @override
+  String get aspectTagHint => 'напр. меланхолия, орбитальная станция';
+
+  @override
+  String get aspectTagExists => 'Такой тег уже есть';
+
+  @override
+  String get aspectFromGenres => 'Из жанров';
+
+  @override
+  String get exploreIntro =>
+      'Выберите аспект, а затем нить, которая проходит через игры, фильмы, книги и не только.';
+
+  @override
+  String get exploreEmpty =>
+      'Пока пусто. Сюда попадают жанры и теги, которые вы добавляете на странице произведения.';
+
+  @override
+  String exploreToDiscover(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ещё впереди',
+      many: '$count ещё впереди',
+      few: '$count ещё впереди',
+      one: '1 ещё впереди',
+      zero: 'Всё изучено',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get exploreMakePath => 'Сделать путь';
+
+  @override
+  String explorePathCreated(String name) {
+    return 'Путь «$name» создан';
+  }
+
+  @override
+  String get themeDark => 'Мрачное';
+
+  @override
+  String get themeTense => 'Напряжённое';
+
+  @override
+  String get themeLighthearted => 'Лёгкое';
+
+  @override
+  String get themeCozy => 'Уютное';
+
+  @override
+  String get themeEmotional => 'Трогательное';
+
+  @override
+  String get themeSurreal => 'Сюрреалистичное';
+
+  @override
+  String get themeSpace => 'Космос и фантастика';
+
+  @override
+  String get themeFantasyWorlds => 'Фэнтезийные миры';
+
+  @override
+  String get themeHistorical => 'Историческое';
+
+  @override
+  String get themeDystopia => 'Антиутопия и киберпанк';
+
+  @override
+  String get themeSchool => 'Школьная жизнь';
+
+  @override
+  String get themeSupernatural => 'Сверхъестественное';
+
+  @override
+  String get themeLove => 'Любовь';
+
+  @override
+  String get themeWar => 'Война';
+
+  @override
+  String get themeMind => 'Разум и философия';
+
+  @override
+  String get themeCrime => 'Преступление и правосудие';
+
+  @override
+  String get themeComingOfAge => 'Взросление';
+
+  @override
+  String get themeMachines => 'Мехи и машины';
+
+  @override
+  String get themeCompetition => 'Спорт и соревнование';
+
+  @override
+  String get themeMystery => 'Загадка';
+
+  @override
+  String get themeJourney => 'Путешествие и приключение';
+
+  @override
+  String get themeAction => 'Экшен';
+
+  @override
+  String get themeStrategy => 'Стратегия';
+
+  @override
+  String get themeRolePlaying => 'Ролевое';
+
+  @override
+  String get themeTrueStories => 'Реальные истории';
 }

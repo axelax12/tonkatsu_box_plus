@@ -81,8 +81,8 @@ class PathWalk {
       } else {
         state = StopState.upcoming;
       }
-      if (!entry.optional && (state == StopState.inProgress ||
-          state == StopState.next)) {
+      if (!entry.optional &&
+          (state == StopState.inProgress || state == StopState.next)) {
         nextAssigned = true;
       }
 
@@ -111,8 +111,7 @@ class PathWalk {
   final int optionalDone;
   final int optionalTotal;
 
-  double get fraction =>
-      requiredTotal == 0 ? 0 : requiredDone / requiredTotal;
+  double get fraction => requiredTotal == 0 ? 0 : requiredDone / requiredTotal;
 
   bool get isComplete => requiredTotal > 0 && requiredDone == requiredTotal;
 
@@ -188,10 +187,9 @@ class PathSuggestions {
     return true;
   }
 
-  static List<String> _words(String text) => _normalize(text)
-      .split(' ')
-      .where((String w) => w.length >= _minWordLength)
-      .toList();
+  static List<String> _words(String text) => _normalize(
+    text,
+  ).split(' ').where((String w) => w.length >= _minWordLength).toList();
 
   static String _normalize(String text) => text
       .toLowerCase()

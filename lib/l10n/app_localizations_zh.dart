@@ -6796,4 +6796,306 @@ class SZh extends S {
   String widgetGoals(String progress) {
     return '目标 $progress';
   }
+
+  @override
+  String get pathsTitle => '路线与宇宙';
+
+  @override
+  String get pathsHint => '从哪里开始一个系列，以及按主题相连的作品';
+
+  @override
+  String get pathsNoneYet => '还没有路线';
+
+  @override
+  String get pathsTabPaths => '路线';
+
+  @override
+  String get pathsTabExplore => '探索';
+
+  @override
+  String get pathKindUniverse => '宇宙';
+
+  @override
+  String get pathKindTheme => '主题路线';
+
+  @override
+  String get pathsUniverses => '宇宙';
+
+  @override
+  String get pathsThemes => '主题路线';
+
+  @override
+  String get pathOrderRelease => '发行';
+
+  @override
+  String get pathOrderChrono => '剧情顺序';
+
+  @override
+  String get pathOrderRecommended => '推荐';
+
+  @override
+  String get aspectAtmosphere => '氛围';
+
+  @override
+  String get aspectSetting => '背景';
+
+  @override
+  String get aspectThemes => '主题';
+
+  @override
+  String get aspectStructure => '结构';
+
+  @override
+  String get pathNew => '新建路线';
+
+  @override
+  String get pathNameHint => '例如：高达、巫师、克苏鲁恐怖';
+
+  @override
+  String get pathCreate => '创建';
+
+  @override
+  String pathProgress(int done, int total) {
+    return '已完成 $done/$total';
+  }
+
+  @override
+  String pathOptionalProgress(int done, int total) {
+    return '支线：$done/$total';
+  }
+
+  @override
+  String get pathStartHere => '从这里开始';
+
+  @override
+  String get pathContinue => '从这里继续';
+
+  @override
+  String get pathCompleted => '路线已完成';
+
+  @override
+  String get pathEmpty => '这条路线还没有作品。从你的库中添加吧。';
+
+  @override
+  String get pathAddWorks => '添加作品';
+
+  @override
+  String get pathEditStops => '编辑站点';
+
+  @override
+  String get pathSortByRelease => '按发行日期排序';
+
+  @override
+  String pathDeleteConfirm(String name) {
+    return '删除路线“$name”？作品仍保留在库中。';
+  }
+
+  @override
+  String get pathOptional => '可选';
+
+  @override
+  String get pathOptionalHint => '支线故事，完成路线不需要';
+
+  @override
+  String get pathSpoiler => '到达前隐藏';
+
+  @override
+  String get pathSpoilerHint => '在完成之前的站点前显示为 ???';
+
+  @override
+  String get pathSpoilerHidden => '为避免剧透已隐藏';
+
+  @override
+  String get pathReveal => '显示';
+
+  @override
+  String get pathRevealConfirm => '要显示这个站点吗？它的标题可能剧透之前的内容。';
+
+  @override
+  String get pathNote => '备注';
+
+  @override
+  String get pathNoteHint => '为什么在这里，处于哪个位置';
+
+  @override
+  String get pathAspect => '关联点';
+
+  @override
+  String get pathAspectNone => '未设置';
+
+  @override
+  String get pathRemoveStop => '从路线移除';
+
+  @override
+  String get pathStateDone => '已完成';
+
+  @override
+  String get pathStateActive => '进行中';
+
+  @override
+  String get pathStateNext => '下一个';
+
+  @override
+  String get pathPickerTitle => '从库中添加';
+
+  @override
+  String get pathPickerSearch => '搜索你的库';
+
+  @override
+  String get pathPickerSuggested => '与名称匹配';
+
+  @override
+  String pathPickerSelectAll(int count) {
+    return '全选（$count）';
+  }
+
+  @override
+  String pathPickerAdd(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '添加 $count 项',
+      zero: '添加',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pathPickerMissing => '不在库中？先通过搜索添加，再回来。';
+
+  @override
+  String get pathPickerNoResults => '未找到';
+
+  @override
+  String get pathsSectionTitle => '路线与主题';
+
+  @override
+  String pathsSectionStop(int pos, int total) {
+    return '第 $pos/$total 站';
+  }
+
+  @override
+  String pathsSectionNext(String name) {
+    return '下一个：$name';
+  }
+
+  @override
+  String get pathAddToPath => '加入路线';
+
+  @override
+  String pathAdded(String name) {
+    return '已加入 $name';
+  }
+
+  @override
+  String get aspectAddTag => '添加标签';
+
+  @override
+  String get aspectTagHint => '例如：忧郁、轨道空间站';
+
+  @override
+  String get aspectTagExists => '已有此标签';
+
+  @override
+  String get aspectFromGenres => '来自类型';
+
+  @override
+  String get exploreIntro => '选择一个方面，再选一条贯穿游戏、电影、书籍等的线索。';
+
+  @override
+  String get exploreEmpty => '这里还没有内容。类型和你在作品页添加的标签会填充这里。';
+
+  @override
+  String exploreToDiscover(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '还有 $count 个待发现',
+      zero: '已全部探索',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get exploreMakePath => '生成路线';
+
+  @override
+  String explorePathCreated(String name) {
+    return '已创建路线“$name”';
+  }
+
+  @override
+  String get themeDark => '黑暗';
+
+  @override
+  String get themeTense => '紧张';
+
+  @override
+  String get themeLighthearted => '轻松';
+
+  @override
+  String get themeCozy => '治愈';
+
+  @override
+  String get themeEmotional => '感人';
+
+  @override
+  String get themeSurreal => '超现实';
+
+  @override
+  String get themeSpace => '太空与科幻';
+
+  @override
+  String get themeFantasyWorlds => '奇幻世界';
+
+  @override
+  String get themeHistorical => '历史';
+
+  @override
+  String get themeDystopia => '反乌托邦与赛博朋克';
+
+  @override
+  String get themeSchool => '校园生活';
+
+  @override
+  String get themeSupernatural => '超自然';
+
+  @override
+  String get themeLove => '爱情';
+
+  @override
+  String get themeWar => '战争';
+
+  @override
+  String get themeMind => '心灵与哲学';
+
+  @override
+  String get themeCrime => '犯罪与正义';
+
+  @override
+  String get themeComingOfAge => '成长';
+
+  @override
+  String get themeMachines => '机甲与机械';
+
+  @override
+  String get themeCompetition => '运动与竞技';
+
+  @override
+  String get themeMystery => '悬疑';
+
+  @override
+  String get themeJourney => '旅程与冒险';
+
+  @override
+  String get themeAction => '动作';
+
+  @override
+  String get themeStrategy => '策略';
+
+  @override
+  String get themeRolePlaying => '角色扮演';
+
+  @override
+  String get themeTrueStories => '真实故事';
 }

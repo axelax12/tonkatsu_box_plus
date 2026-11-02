@@ -44,14 +44,17 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
 
   Future<void> _makePath(String name, List<CollectionItem> items) async {
     final S l = S.of(context);
-    final int id = (await ref
-            .read(pathsControllerProvider)
-            .create(name: name, kind: PathKind.theme, items: items))
-        .id;
+    final int id =
+        (await ref
+                .read(pathsControllerProvider)
+                .create(name: name, kind: PathKind.theme, items: items))
+            .id;
     if (!mounted) return;
     context.showSnack(l.explorePathCreated(name), type: SnackType.success);
     await Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (BuildContext _) => PathScreen(pathId: id)),
+      MaterialPageRoute<void>(
+        builder: (BuildContext _) => PathScreen(pathId: id),
+      ),
     );
   }
 

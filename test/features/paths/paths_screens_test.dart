@@ -79,9 +79,7 @@ void main() {
 
   List<Override> overrides() => <Override>[
     libraryItemsProvider.overrideWith((Ref ref) async => items),
-    pathsProvider.overrideWith(
-      (Ref ref) async => <MediaPath>[universe, theme],
-    ),
+    pathsProvider.overrideWith((Ref ref) async => <MediaPath>[universe, theme]),
     pathEntriesProvider.overrideWith(
       (Ref ref, int id) async => id == 1 ? entries : const <PathEntry>[],
     ),
@@ -113,10 +111,12 @@ void main() {
       await tester.pumpAndSettle();
       // The dialog's confirm button is the last one it lays out.
       await tester.tap(
-        find.descendant(
-          of: find.byType(AlertDialog),
-          matching: find.byType(TextButton),
-        ).last,
+        find
+            .descendant(
+              of: find.byType(AlertDialog),
+              matching: find.byType(TextButton),
+            )
+            .last,
       );
       await tester.pumpAndSettle();
       expect(find.text('Char Counterattack'), findsOneWidget);
