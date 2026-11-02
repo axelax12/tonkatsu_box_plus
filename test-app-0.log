@@ -1,0 +1,38 @@
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
++60: /home/runner/work/tonkatsu_box_plus/tonkatsu_box_plus/test/features/together/together_screen_test.dart: TogetherScreen runs a vote between the user and a guest
+
+Warning: A call to tap() with finder "Found 1 widget with icon "IconData(U+0E493)": [
+  Icon(IconData(U+0E493), size: 16.0, dependencies: [Directionality, IconTheme]),
+]" derived an Offset (Offset(33.0, 118.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#2aa44 relayoutBoundary=up2
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#5e15a(TextSpan(inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), size: 12.0, "Add a guest")), RenderParagraph#3c324@Offset(66.0, 6.0), RenderPadding#32ee7@Offset(17.0, 17.0), RenderPointerListener#916fe@Offset(17.0, 17.0), RenderSemanticsAnnotations#8d2e1@Offset(17.0, 17.0), RenderMouseRegion#1e2a2@Offset(17.0, 17.0), RenderSemanticsAnnotations#a8bb4@Offset(17.0, 17.0), _RenderInkFeatures#f6a77@Offset(17.0, 17.0), RenderCustomPaint#0a095@Offset(17.0, 17.0), RenderPhysicalShape#dc08f@Offset(17.0, 17.0), RenderPositionedBox#eaa34@Offset(17.0, 24.0), RenderSemanticsAnnotations#dd3ab@Offset(17.0, 24.0), RenderWrap#6b2eb@Offset(17.0, 76.0), RenderRepaintBoundary#9a63c@Offset(17.0, 76.0), RenderIndexedSemantics#153ba@Offset(17.0, 76.0), RenderSliverList@(mainAxis: 102.0, crossAxis: 17.0), RenderSliverPadding@(mainAxis: 118.0, crossAxis: 33.0), RenderViewport#14148@Offset(33.0, 118.0), RenderIgnorePointer#629d3@Offset(33.0, 118.0), RenderSemanticsAnnotations#9e92e@Offset(33.0, 118.0), RenderPointerListener#b2c69@Offset(33.0, 118.0), RenderSemanticsGestureHandler#d8ed0@Offset(33.0, 118.0), RenderPointerListener#b0468@Offset(33.0, 118.0), _RenderScrollSemantics#a982a@Offset(33.0, 118.0), RenderClipRect#5f7aa@Offset(33.0, 118.0), RenderAnimatedOpacity#5a60b@Offset(33.0, 118.0), RenderStack#627a7@Offset(33.0, 118.0), RenderCustomMultiChildLayoutBox#ea6af@Offset(33.0, 118.0), _RenderInkFeatures#a9cd7@Offset(33.0, 118.0), RenderPhysicalModel#bf112@Offset(33.0, 118.0), RenderSemanticsAnnotations#c26cd@Offset(33.0, 118.0), RenderRepaintBoundary#a7baf@Offset(33.0, 118.0), RenderIgnorePointer#489c3@Offset(33.0, 118.0), _RenderInkFeatures#2def2@Offset(33.0, 118.0), RenderCustomPaint#4e224@Offset(33.0, 118.0), RenderClipPath#85514@Offset(33.0, 118.0), RenderDecoratedBox#73e10@Offset(33.0, 118.0), _RenderSnapshotWidget#6000d@Offset(33.0, 118.0), _RenderSnapshotWidget#6dc52@Offset(33.0, 118.0), _RenderSnapshotWidget#5a709@Offset(33.0, 118.0), _RenderSnapshotWidget#57814@Offset(33.0, 118.0), RenderRepaintBoundary#1e7e1@Offset(33.0, 118.0), RenderSemanticsAnnotations#84e38@Offset(33.0, 118.0), RenderOffstage#40910@Offset(33.0, 118.0), RenderSemanticsAnnotations#7e9b3@Offset(33.0, 118.0), _RenderTheater#e5920@Offset(33.0, 118.0), RenderAbsorbPointer#a5ab6@Offset(33.0, 118.0), RenderPointerListener#0894c@Offset(33.0, 118.0), RenderSemanticsAnnotations#acbfb@Offset(33.0, 118.0), RenderCustomPaint#2bc98@Offset(33.0, 118.0), RenderSemanticsAnnotations#2c1f3@Offset(33.0, 118.0), RenderSemanticsAnnotations#e1b94@Offset(33.0, 118.0), RenderSemanticsAnnotations#c8ca9@Offset(33.0, 118.0), RenderTapRegionSurface#eaedf@Offset(33.0, 118.0), RenderSemanticsAnnotations#b3969@Offset(33.0, 118.0), RenderSemanticsAnnotations#24f0f@Offset(33.0, 118.0), HitTestEntry<HitTestTarget>#ab369(_ReusableRenderView#c375e), HitTestEntry<HitTestTarget>#22817(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure>.<anonymous closure> (file:///home/runner/work/tonkatsu_box_plus/tonkatsu_box_plus/test/features/together/together_screen_test.dart:84:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
++1531: All tests passed!
