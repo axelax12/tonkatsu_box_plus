@@ -153,7 +153,7 @@ class _CopyTile extends StatelessWidget {
     final DateTime? due = copy.loanDueAt;
     final String details = <String>[
       copyFormatLabel(copy.format, l),
-      if (edition != null) edition,
+      ?edition,
       if (condition != null) copyConditionLabel(condition, l),
       if (price != null) formatPrice(price, copy.currency),
     ].join(' · ');

@@ -161,6 +161,7 @@ void main() {
           id: 2,
           mediaType: MediaType.book,
           status: ItemStatus.completed,
+          addedAt: DateTime(2026, 1, 20),
           completedAt: DateTime(2026, 2, 1),
         ),
       ];
