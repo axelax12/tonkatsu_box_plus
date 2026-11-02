@@ -7646,4 +7646,72 @@ class SEs extends S {
 
   @override
   String get releaseReminderBody => 'Hoy sale una obra de tu lista.';
+
+  @override
+  String get homeToday => 'Hoy';
+
+  @override
+  String get homeLibrary => 'Biblioteca';
+
+  @override
+  String get todayCustomize => 'Personalizar inicio';
+
+  @override
+  String get todayCustomizeHint =>
+      'Arrastra para ordenar y apaga lo que no necesites.';
+
+  @override
+  String get todayResume => 'Continuar';
+
+  @override
+  String get todayGoals => 'Metas';
+
+  @override
+  String get todayUpNext => 'Lo siguiente en tus rutas';
+
+  @override
+  String get todayReleases => 'Próximos estrenos';
+
+  @override
+  String get todayBacklog => 'Pendientes';
+
+  @override
+  String get todayLists => 'Listas inteligentes';
+
+  @override
+  String get todayNothingInProgress =>
+      'Nada en curso. ¡Elige algo de tus pendientes!';
+
+  @override
+  String todayWhereWasI(String position) {
+    return 'Te quedaste en: $position';
+  }
+
+  @override
+  String get todayStart => 'Empezar sesión';
+
+  @override
+  String get todayStop => 'Parar sesión';
+
+  @override
+  String get todaySeeAll => 'Ver todo';
+
+  @override
+  String todayBacklogLine(int count, int hours) {
+    return '$count pendientes · unas $hours h';
+  }
+
+  @override
+  String get todayPickForMe => 'Ayúdame a elegir';
+
+  @override
+  String todayInPath(String name) {
+    return 'En $name';
+  }
+
+  @override
+  String get todayNoReleases => 'Aún no hay estrenos con fecha en tu lista.';
+
+  @override
+  String get todayNoUpNext => 'Crea una ruta para ver qué sigue en una saga.';
 }

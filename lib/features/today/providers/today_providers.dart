@@ -85,9 +85,7 @@ class TodayLayoutNotifier extends Notifier<TodayLayout> {
 }
 
 final NotifierProvider<TodayLayoutNotifier, TodayLayout> todayLayoutProvider =
-    NotifierProvider<TodayLayoutNotifier, TodayLayout>(
-      TodayLayoutNotifier.new,
-    );
+    NotifierProvider<TodayLayoutNotifier, TodayLayout>(TodayLayoutNotifier.new);
 
 enum HomeMode { today, library }
 
@@ -130,7 +128,8 @@ final FutureProvider<List<CollectionItem>> inProgressItemsProvider =
       DateTime touched(CollectionItem i) =>
           i.lastActivityAt ?? i.startedAt ?? i.addedAt;
       active.sort(
-        (CollectionItem a, CollectionItem b) => touched(b).compareTo(touched(a)),
+        (CollectionItem a, CollectionItem b) =>
+            touched(b).compareTo(touched(a)),
       );
       return active;
     });

@@ -63,10 +63,9 @@ class _PlusItemPanelState extends ConsumerState<PlusItemPanel> {
 
   void _select(PlusPanelTab tab) {
     setState(() => _tab = tab);
-    ref.read(sharedPreferencesProvider).setString(
-      PlusItemPanel.prefsKey,
-      tab.name,
-    );
+    ref
+        .read(sharedPreferencesProvider)
+        .setString(PlusItemPanel.prefsKey, tab.name);
   }
 
   static IconData _icon(PlusPanelTab tab) => switch (tab) {
@@ -147,7 +146,10 @@ class _PlusItemPanelState extends ConsumerState<PlusItemPanel> {
         AnimatedSize(
           duration: kThemeAnimationDuration,
           alignment: Alignment.topCenter,
-          child: KeyedSubtree(key: ValueKey<PlusPanelTab>(tab), child: _content(tab)),
+          child: KeyedSubtree(
+            key: ValueKey<PlusPanelTab>(tab),
+            child: _content(tab),
+          ),
         ),
       ],
     );

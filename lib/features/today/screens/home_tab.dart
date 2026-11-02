@@ -28,40 +28,40 @@ class HomeTab extends ConsumerWidget {
     });
 
     return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(
-              AppSpacing.md,
-              AppSpacing.sm,
-              AppSpacing.md,
-              0,
-            ),
-            child: SegmentedButton<HomeMode>(
-              showSelectedIcon: false,
-              segments: <ButtonSegment<HomeMode>>[
-                ButtonSegment<HomeMode>(
-                  value: HomeMode.today,
-                  icon: const Icon(Icons.wb_sunny_outlined),
-                  label: Text(l.homeToday),
-                ),
-                ButtonSegment<HomeMode>(
-                  value: HomeMode.library,
-                  icon: const Icon(Icons.grid_view),
-                  label: Text(l.homeLibrary),
-                ),
-              ],
-              selected: <HomeMode>{mode},
-              onSelectionChanged: (Set<HomeMode> s) =>
-                  ref.read(homeModeProvider.notifier).select(s.first),
-            ),
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.md,
+            AppSpacing.sm,
+            AppSpacing.md,
+            0,
           ),
-          Expanded(
-            child: IndexedStack(
-              index: mode.index,
-              children: const <Widget>[TodayView(), AllItemsScreen()],
-            ),
+          child: SegmentedButton<HomeMode>(
+            showSelectedIcon: false,
+            segments: <ButtonSegment<HomeMode>>[
+              ButtonSegment<HomeMode>(
+                value: HomeMode.today,
+                icon: const Icon(Icons.wb_sunny_outlined),
+                label: Text(l.homeToday),
+              ),
+              ButtonSegment<HomeMode>(
+                value: HomeMode.library,
+                icon: const Icon(Icons.grid_view),
+                label: Text(l.homeLibrary),
+              ),
+            ],
+            selected: <HomeMode>{mode},
+            onSelectionChanged: (Set<HomeMode> s) =>
+                ref.read(homeModeProvider.notifier).select(s.first),
           ),
-        ],
+        ),
+        Expanded(
+          child: IndexedStack(
+            index: mode.index,
+            children: const <Widget>[TodayView(), AllItemsScreen()],
+          ),
+        ),
+      ],
     );
   }
 }

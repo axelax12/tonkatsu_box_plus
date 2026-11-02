@@ -38,7 +38,12 @@ void main() {
 
   final List<CollectionItem> items = <CollectionItem>[
     work(1, 'Older run', ItemStatus.inProgress, at: t0),
-    work(2, 'Latest run', ItemStatus.inProgress, at: t0.add(const Duration(days: 3))),
+    work(
+      2,
+      'Latest run',
+      ItemStatus.inProgress,
+      at: t0.add(const Duration(days: 3)),
+    ),
     work(3, 'Coming soon', ItemStatus.planned),
   ];
 
@@ -52,9 +57,7 @@ void main() {
     ),
     pathsProvider.overrideWith((Ref ref) async => const <MediaPath>[]),
     smartListsProvider.overrideWith((Ref ref) async => const <SmartList>[]),
-    runningSessionProvider.overrideWith(
-      (Ref ref, int id) async => null,
-    ),
+    runningSessionProvider.overrideWith((Ref ref, int id) async => null),
     itemBookmarkProvider.overrideWith(
       (Ref ref, int id) async =>
           ResumeBookmark(itemId: id, updatedAt: t0, position: 'Chapter 4'),
@@ -63,7 +66,9 @@ void main() {
 
   group('TodayLayout', () {
     test('round-trips and repairs unknown or missing sections', () {
-      final TodayLayout layout = TodayLayout.decode('goals,-resume,bogus,goals');
+      final TodayLayout layout = TodayLayout.decode(
+        'goals,-resume,bogus,goals',
+      );
       expect(layout.order.take(2), <TodaySection>[
         TodaySection.goals,
         TodaySection.resume,

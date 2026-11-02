@@ -95,8 +95,7 @@ class _CustomizeSheet extends ConsumerWidget {
                   ],
                 ),
                 value: !layout.hidden.contains(section),
-                onChanged: (bool v) =>
-                    notifier.setVisible(section, visible: v),
+                onChanged: (bool v) => notifier.setVisible(section, visible: v),
               );
             },
           ),

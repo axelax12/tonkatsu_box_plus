@@ -7685,4 +7685,72 @@ class SRu extends S {
   @override
   String get releaseReminderBody =>
       'Сегодня выходит произведение из вашего списка.';
+
+  @override
+  String get homeToday => 'Сегодня';
+
+  @override
+  String get homeLibrary => 'Библиотека';
+
+  @override
+  String get todayCustomize => 'Настроить главную';
+
+  @override
+  String get todayCustomizeHint =>
+      'Перетащите, чтобы изменить порядок, и выключите лишнее.';
+
+  @override
+  String get todayResume => 'Продолжить';
+
+  @override
+  String get todayGoals => 'Цели';
+
+  @override
+  String get todayUpNext => 'Дальше на ваших путях';
+
+  @override
+  String get todayReleases => 'Скоро выйдет';
+
+  @override
+  String get todayBacklog => 'Бэклог';
+
+  @override
+  String get todayLists => 'Умные списки';
+
+  @override
+  String get todayNothingInProgress =>
+      'Сейчас ничего не начато. Выберите что-нибудь из бэклога!';
+
+  @override
+  String todayWhereWasI(String position) {
+    return 'Вы остановились: $position';
+  }
+
+  @override
+  String get todayStart => 'Начать сессию';
+
+  @override
+  String get todayStop => 'Остановить';
+
+  @override
+  String get todaySeeAll => 'Все';
+
+  @override
+  String todayBacklogLine(int count, int hours) {
+    return '$count ждут · около $hours ч';
+  }
+
+  @override
+  String get todayPickForMe => 'Помогите выбрать';
+
+  @override
+  String todayInPath(String name) {
+    return 'Путь: $name';
+  }
+
+  @override
+  String get todayNoReleases => 'В вашем списке пока нет датированных релизов.';
+
+  @override
+  String get todayNoUpNext => 'Создайте путь, чтобы видеть, что дальше в саге.';
 }

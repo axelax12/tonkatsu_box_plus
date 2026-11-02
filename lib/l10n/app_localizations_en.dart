@@ -7562,4 +7562,72 @@ class SEn extends S {
 
   @override
   String get releaseReminderBody => 'A work on your list is released today.';
+
+  @override
+  String get homeToday => 'Today';
+
+  @override
+  String get homeLibrary => 'Library';
+
+  @override
+  String get todayCustomize => 'Customize home';
+
+  @override
+  String get todayCustomizeHint =>
+      'Drag to reorder, switch off what you do not need.';
+
+  @override
+  String get todayResume => 'Continue';
+
+  @override
+  String get todayGoals => 'Goals';
+
+  @override
+  String get todayUpNext => 'Next on your paths';
+
+  @override
+  String get todayReleases => 'Coming out';
+
+  @override
+  String get todayBacklog => 'Backlog';
+
+  @override
+  String get todayLists => 'Smart lists';
+
+  @override
+  String get todayNothingInProgress =>
+      'Nothing in progress. Pick something from your backlog!';
+
+  @override
+  String todayWhereWasI(String position) {
+    return 'Where you left off: $position';
+  }
+
+  @override
+  String get todayStart => 'Start session';
+
+  @override
+  String get todayStop => 'Stop session';
+
+  @override
+  String get todaySeeAll => 'See all';
+
+  @override
+  String todayBacklogLine(int count, int hours) {
+    return '$count waiting · about $hours h to clear';
+  }
+
+  @override
+  String get todayPickForMe => 'Help me choose';
+
+  @override
+  String todayInPath(String name) {
+    return 'In $name';
+  }
+
+  @override
+  String get todayNoReleases => 'No dated releases on your list yet.';
+
+  @override
+  String get todayNoUpNext => 'Create a path to see what comes next in a saga.';
 }

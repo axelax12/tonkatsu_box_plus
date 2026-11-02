@@ -83,10 +83,7 @@ class CoverStrip extends StatelessWidget {
             const SizedBox(width: AppSpacing.sm),
         itemBuilder: (BuildContext context, int index) {
           final CoverStripEntry entry = entries[index];
-          return _CoverTile(
-            key: ValueKey<int>(entry.item.id),
-            entry: entry,
-          );
+          return _CoverTile(key: ValueKey<int>(entry.item.id), entry: entry);
         },
       ),
     );

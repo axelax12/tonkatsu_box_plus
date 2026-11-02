@@ -7625,4 +7625,73 @@ class SPt extends S {
 
   @override
   String get releaseReminderBody => 'Uma obra da sua lista sai hoje.';
+
+  @override
+  String get homeToday => 'Hoje';
+
+  @override
+  String get homeLibrary => 'Biblioteca';
+
+  @override
+  String get todayCustomize => 'Personalizar início';
+
+  @override
+  String get todayCustomizeHint =>
+      'Arraste para reordenar e desligue o que não precisar.';
+
+  @override
+  String get todayResume => 'Continuar';
+
+  @override
+  String get todayGoals => 'Metas';
+
+  @override
+  String get todayUpNext => 'Próximo nos seus percursos';
+
+  @override
+  String get todayReleases => 'Em breve';
+
+  @override
+  String get todayBacklog => 'Pendentes';
+
+  @override
+  String get todayLists => 'Listas inteligentes';
+
+  @override
+  String get todayNothingInProgress =>
+      'Nada em andamento. Escolha algo dos pendentes!';
+
+  @override
+  String todayWhereWasI(String position) {
+    return 'Você parou em: $position';
+  }
+
+  @override
+  String get todayStart => 'Iniciar sessão';
+
+  @override
+  String get todayStop => 'Parar sessão';
+
+  @override
+  String get todaySeeAll => 'Ver tudo';
+
+  @override
+  String todayBacklogLine(int count, int hours) {
+    return '$count pendentes · cerca de $hours h';
+  }
+
+  @override
+  String get todayPickForMe => 'Me ajude a escolher';
+
+  @override
+  String todayInPath(String name) {
+    return 'Em $name';
+  }
+
+  @override
+  String get todayNoReleases => 'Nenhum lançamento com data na sua lista.';
+
+  @override
+  String get todayNoUpNext =>
+      'Crie um percurso para ver o que vem a seguir numa saga.';
 }
