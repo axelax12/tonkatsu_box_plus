@@ -6312,4 +6312,126 @@ class SZh extends S {
   String yearShareTitle(int year) {
     return '$year 年度回顾';
   }
+
+  @override
+  String get smartListsTitle => '智能列表';
+
+  @override
+  String get smartListsHint => '根据你设定的规则自动更新的列表';
+
+  @override
+  String get smartNew => '新建智能列表';
+
+  @override
+  String get smartNoneYet => '还没有智能列表。从模板开始，或自己创建一个。';
+
+  @override
+  String get smartTemplates => '模板';
+
+  @override
+  String smartAdded(String name) {
+    return '已添加「$name」';
+  }
+
+  @override
+  String smartDeleteConfirm(String name) {
+    return '删除智能列表「$name」？条目本身不会被删除。';
+  }
+
+  @override
+  String get smartEmpty => '目前没有符合这些规则的条目。';
+
+  @override
+  String smartMatches(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个结果',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get smartName => '名称';
+
+  @override
+  String get smartRuleTypes => '类型';
+
+  @override
+  String get smartRuleStatus => '状态';
+
+  @override
+  String get smartRuleLength => '预计时长';
+
+  @override
+  String get smartMinHours => '至少（小时）';
+
+  @override
+  String get smartMaxHours => '至多（小时）';
+
+  @override
+  String get smartRuleProgress => '进度与历史';
+
+  @override
+  String get smartUnitsLeft => '剩余集数、章节或页数至多';
+
+  @override
+  String get smartMinRating => '我的评分至少（1-10）';
+
+  @override
+  String get smartMinAgeDays => '在库中至少（天）';
+
+  @override
+  String get smartFavoritesOnly => '仅收藏';
+
+  @override
+  String get smartNeverStarted => '从未开始';
+
+  @override
+  String get smartRuleTags => '标签（任一）';
+
+  @override
+  String get smartRuleCollections => '收藏夹（任一）';
+
+  @override
+  String get smartRuleText => '包含文字';
+
+  @override
+  String get smartTextHint => '标题、类型或作者';
+
+  @override
+  String get smartSort => '排序';
+
+  @override
+  String get smartSortOldest => '等待最久的在前';
+
+  @override
+  String get smartSortNewest => '最新的在前';
+
+  @override
+  String get smartSortShortest => '最短的在前';
+
+  @override
+  String get smartSortRating => '评分最高的在前';
+
+  @override
+  String get smartSortName => '按名称';
+
+  @override
+  String get smartTemplateShortGames => '待玩短游戏（10 小时内）';
+
+  @override
+  String get smartTemplateAlmostDone => '即将完成（剩 5 个以内）';
+
+  @override
+  String get smartTemplateForgotten => '等待超过一年';
+
+  @override
+  String get smartTemplateMovieNight => '电影之夜（2 小时内）';
+
+  @override
+  String get smartTemplateFavoritesToStart => '收藏但还没开始的';
+
+  @override
+  String get smartTemplateBestRated => '我评分最高的';
 }

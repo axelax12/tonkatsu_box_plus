@@ -110,7 +110,7 @@ final FutureProvider<BacklogHealth> backlogHealthProvider =
             i.externalId,
       }.toList();
       final GoalsDao dao = ref.read(goalsDaoProvider);
-      await _refreshTimeToBeat(ref, dao, gameIds, now);
+      await refreshTimeToBeat(ref, dao, gameIds, now);
       final Map<int, int> gameSeconds = await dao.getTimeToBeat(gameIds);
 
       return BacklogHealth.compute(
@@ -123,7 +123,7 @@ final FutureProvider<BacklogHealth> backlogHealthProvider =
 
 // Best effort: without IGDB keys or network the estimate simply covers fewer
 // games, and the screen says how many were left out.
-Future<void> _refreshTimeToBeat(
+Future<void> refreshTimeToBeat(
   Ref ref,
   GoalsDao dao,
   List<int> gameIds,

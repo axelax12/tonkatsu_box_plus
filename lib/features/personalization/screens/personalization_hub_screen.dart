@@ -9,6 +9,8 @@ import '../../insights/screens/goals_screen.dart';
 import '../../insights/screens/year_review_screen.dart';
 import '../../insights/widgets/hub_insights_previews.dart';
 import '../../likes/screens/likes_screen.dart';
+import '../../smart_lists/screens/smart_lists_screen.dart';
+import '../../smart_lists/widgets/hub_smart_lists_preview.dart';
 import '../../recommendations/screens/recommendations_screen.dart';
 import '../../showcase/screens/showcase_screen.dart';
 import '../../statistics/screens/statistics_screen.dart';
@@ -132,6 +134,18 @@ class PersonalizationHubScreen extends StatelessWidget {
                   context,
                   title: l.insightsYearTitle,
                   child: const YearReviewScreen(),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              HubSectionCard(
+                icon: Icons.filter_list_alt,
+                title: l.smartListsTitle,
+                hint: l.smartListsHint,
+                preview: const HubSmartListsPreview(),
+                onTap: () => pushPersonalizationSection(
+                  context,
+                  title: l.smartListsTitle,
+                  child: const SmartListsScreen(),
                 ),
               ),
             ],

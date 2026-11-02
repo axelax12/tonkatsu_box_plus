@@ -6694,4 +6694,131 @@ class SPt extends S {
   String yearShareTitle(int year) {
     return 'Retrospectiva $year';
   }
+
+  @override
+  String get smartListsTitle => 'Listas inteligentes';
+
+  @override
+  String get smartListsHint =>
+      'Listas que se atualizam sozinhas pelas suas regras';
+
+  @override
+  String get smartNew => 'Nova lista inteligente';
+
+  @override
+  String get smartNoneYet =>
+      'Nenhuma lista ainda. Comece por um modelo ou crie a sua.';
+
+  @override
+  String get smartTemplates => 'Modelos';
+
+  @override
+  String smartAdded(String name) {
+    return '\"$name\" adicionada';
+  }
+
+  @override
+  String smartDeleteConfirm(String name) {
+    return 'Excluir a lista \"$name\"? Seus itens continuam onde estão.';
+  }
+
+  @override
+  String get smartEmpty => 'Nada corresponde a essas regras agora.';
+
+  @override
+  String smartMatches(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count resultados',
+      one: '1 resultado',
+      zero: 'Nenhum resultado',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get smartName => 'Nome';
+
+  @override
+  String get smartRuleTypes => 'Tipos';
+
+  @override
+  String get smartRuleStatus => 'Status';
+
+  @override
+  String get smartRuleLength => 'Duração estimada';
+
+  @override
+  String get smartMinHours => 'Pelo menos (horas)';
+
+  @override
+  String get smartMaxHours => 'No máximo (horas)';
+
+  @override
+  String get smartRuleProgress => 'Progresso e histórico';
+
+  @override
+  String get smartUnitsLeft =>
+      'Episódios, capítulos ou páginas restantes no máximo';
+
+  @override
+  String get smartMinRating => 'Minha nota pelo menos (1-10)';
+
+  @override
+  String get smartMinAgeDays => 'Na biblioteca há pelo menos (dias)';
+
+  @override
+  String get smartFavoritesOnly => 'Somente favoritos';
+
+  @override
+  String get smartNeverStarted => 'Nunca iniciados';
+
+  @override
+  String get smartRuleTags => 'Tags (qualquer um)';
+
+  @override
+  String get smartRuleCollections => 'Coleções (qualquer uma)';
+
+  @override
+  String get smartRuleText => 'Contém texto';
+
+  @override
+  String get smartTextHint => 'Título, gênero ou autor';
+
+  @override
+  String get smartSort => 'Ordem';
+
+  @override
+  String get smartSortOldest => 'Os mais antigos primeiro';
+
+  @override
+  String get smartSortNewest => 'Mais recentes primeiro';
+
+  @override
+  String get smartSortShortest => 'Mais curtos primeiro';
+
+  @override
+  String get smartSortRating => 'Mais bem avaliados primeiro';
+
+  @override
+  String get smartSortName => 'De A a Z';
+
+  @override
+  String get smartTemplateShortGames => 'Jogos curtos na fila (menos de 10 h)';
+
+  @override
+  String get smartTemplateAlmostDone => 'Quase no fim (5 ou menos)';
+
+  @override
+  String get smartTemplateForgotten => 'Esperando há mais de um ano';
+
+  @override
+  String get smartTemplateMovieNight => 'Noite de filme (menos de 2 h)';
+
+  @override
+  String get smartTemplateFavoritesToStart => 'Favoritos que nunca comecei';
+
+  @override
+  String get smartTemplateBestRated => 'Meus mais bem avaliados';
 }

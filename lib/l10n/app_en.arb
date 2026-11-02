@@ -2929,5 +2929,51 @@
   "yearShareTitle": "{year} in review",
   "@yearShareTitle": {
     "placeholders": {"year": {"type": "int"}}
-  }
+  },
+  "smartListsTitle": "Smart lists",
+  "smartListsHint": "Lists that update themselves from rules you pick",
+  "smartNew": "New smart list",
+  "smartNoneYet": "No smart lists yet. Start from a template or build your own.",
+  "smartTemplates": "Templates",
+  "smartAdded": "\"{name}\" added",
+  "@smartAdded": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "smartDeleteConfirm": "Delete the smart list \"{name}\"? Your items stay where they are.",
+  "@smartDeleteConfirm": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "smartEmpty": "Nothing matches these rules right now.",
+  "smartMatches": "{count, plural, =0{No matches} =1{1 match} other{{count} matches}}",
+  "@smartMatches": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "smartName": "Name",
+  "smartRuleTypes": "Types",
+  "smartRuleStatus": "Status",
+  "smartRuleLength": "Estimated length",
+  "smartMinHours": "At least (hours)",
+  "smartMaxHours": "At most (hours)",
+  "smartRuleProgress": "Progress and history",
+  "smartUnitsLeft": "Episodes, chapters or pages left at most",
+  "smartMinRating": "My rating at least (1-10)",
+  "smartMinAgeDays": "In the library for at least (days)",
+  "smartFavoritesOnly": "Favorites only",
+  "smartNeverStarted": "Never started",
+  "smartRuleTags": "Tags (any of)",
+  "smartRuleCollections": "Collections (any of)",
+  "smartRuleText": "Contains text",
+  "smartTextHint": "Title, genre or author",
+  "smartSort": "Order",
+  "smartSortOldest": "Waiting longest first",
+  "smartSortNewest": "Newest first",
+  "smartSortShortest": "Shortest first",
+  "smartSortRating": "Best rated first",
+  "smartSortName": "A to Z",
+  "smartTemplateShortGames": "Short games waiting (under 10 h)",
+  "smartTemplateAlmostDone": "Almost done (5 or fewer left)",
+  "smartTemplateForgotten": "Waiting for over a year",
+  "smartTemplateMovieNight": "Movie night (under 2 h)",
+  "smartTemplateFavoritesToStart": "Favorites I never started",
+  "smartTemplateBestRated": "My best rated"
 }
