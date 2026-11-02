@@ -119,7 +119,7 @@ class _TimelineTab extends ConsumerWidget {
       itemEntriesProvider(itemId),
     );
 
-    if (sessions.isLoading || entries.isLoading) {
+    if (!sessions.hasValue || !entries.hasValue) {
       return const Center(child: CircularProgressIndicator());
     }
 
@@ -281,7 +281,7 @@ class _PlaythroughsTab extends ConsumerWidget {
     );
     final List<Playthrough> list = runs.valueOrNull ?? const <Playthrough>[];
 
-    if (runs.isLoading) {
+    if (!runs.hasValue) {
       return const Center(child: CircularProgressIndicator());
     }
     if (list.isEmpty) {
