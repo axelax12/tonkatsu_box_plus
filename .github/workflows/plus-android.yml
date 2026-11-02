@@ -66,11 +66,14 @@ jobs:
       - name: Commit generated changes
         id: commit
         run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            git diff > "$REPORT_DIR/codegen.diff"
+          # Only generated code and Dart formatting: a newer runner SDK also
+          # rewrites pubspec.lock and analysis_options.yaml, which must not drift.
+          git add -u -- '*.dart'
+          git add -- lib/l10n packages/core/lib/rpc/generated
+          if ! git diff --cached --quiet; then
+            git diff --cached > "$REPORT_DIR/codegen.diff"
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add -A
             git commit -m "chore: regenerate code and format [plus-ci]"
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
