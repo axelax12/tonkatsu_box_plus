@@ -126,8 +126,9 @@ class _QuickStatusSheetState extends ConsumerState<_QuickStatusSheet> {
 
   Future<void> _pick(ItemStatus status) async {
     final NavigatorState navigator = Navigator.of(context);
-    if (_remember)
+    if (_remember) {
       await ref.read(newItemStatusProvider.notifier).select(status);
+    }
     await _setStatus(ref, widget.added, status);
     navigator.pop();
   }
