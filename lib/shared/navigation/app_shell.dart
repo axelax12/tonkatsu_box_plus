@@ -33,6 +33,7 @@ import 'app_bottom_bar.dart';
 import 'app_sidebar.dart';
 import 'app_top_bar.dart';
 import '../../features/notifications/release_reminders_provider.dart';
+import '../../features/today/screens/home_tab.dart';
 import 'nav_destinations.dart';
 import 'nav_tab.dart';
 import 'search_providers.dart';
@@ -362,7 +363,8 @@ class _AppShellState extends ConsumerState<AppShell> {
       key: _navigatorKeys[tabIndex],
       onGenerateRoute: (RouteSettings settings) {
         final Widget screen = switch (NavTab.values[tabIndex]) {
-          NavTab.home => const AllItemsScreen(),
+          // The phone gets Today; desktop keeps the library grid as is.
+          NavTab.home => kIsMobile ? const HomeTab() : const AllItemsScreen(),
           NavTab.releases => const ReleasesScreen(),
           NavTab.collections => const HomeScreen(),
           NavTab.tierLists => const TierListsScreen(),
