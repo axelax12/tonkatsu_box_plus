@@ -27,7 +27,7 @@ class ItemCoverGrid extends StatelessWidget {
         SliverPadding(
           padding: const EdgeInsets.all(AppSpacing.md),
           sliver: SliverGrid(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: _maxTileWidth,
               mainAxisSpacing: AppSpacing.md,
               crossAxisSpacing: AppSpacing.sm,
