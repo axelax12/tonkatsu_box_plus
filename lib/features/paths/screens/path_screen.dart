@@ -42,6 +42,7 @@ class _PathScreenState extends ConsumerState<PathScreen> {
     final List<CollectionItem>? picked = await showLibraryPicker(
       context,
       pathName: path.name,
+      pathId: path.id,
       exclude: <int>{for (final PathStop s in walk.stops) s.entry.itemId},
     );
     if (picked == null || picked.isEmpty) return;
