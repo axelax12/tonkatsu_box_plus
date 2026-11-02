@@ -3024,5 +3024,7 @@
   "togetherVoteAgain": "重新投票",
   "togetherNewRound": "新一轮",
   "togetherOpen": "打开",
-  "togetherBack": "返回"
+  "togetherBack": "返回",
+  "releaseReminderTitle": "今天发售：{name}",
+  "releaseReminderBody": "你清单里的一部作品今天发售。"
 }

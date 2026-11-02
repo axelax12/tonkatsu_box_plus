@@ -2690,5 +2690,7 @@
   "togetherVoteAgain": "Переголосовать",
   "togetherNewRound": "Новый раунд",
   "togetherOpen": "Открыть",
-  "togetherBack": "Назад"
+  "togetherBack": "Назад",
+  "releaseReminderTitle": "Выходит сегодня: {name}",
+  "releaseReminderBody": "Сегодня выходит произведение из вашего списка."
 }

@@ -17,13 +17,18 @@ class PlusNotifications {
   static const int _sessionBase = 1000000;
   static const int _loanBase = 2000000;
   static const int _dealBase = 3000000;
+  static const int _releaseBase = 4000000;
 
   static const String _sessionChannel = 'plus_sessions';
   static const String _reminderChannel = 'plus_reminders';
   static const String _dealChannel = 'plus_deals';
+  static const String _releaseChannel = 'plus_releases';
 
   /// Morning hour a loan reminder fires on its due day.
   static const int _reminderHour = 10;
+
+  /// Release-day reminders fire a little earlier, before the day is planned.
+  static const int _releaseHour = 9;
 
   final FlutterLocalNotificationsPlugin _plugin =
       FlutterLocalNotificationsPlugin();
@@ -160,6 +165,43 @@ class PlusNotifications {
         ),
       );
     });
+  }
+
+  /// Replaces every pending release reminder with [reminders]; ids are the
+  /// item rows, so [previousItemIds] is enough to clear the old set.
+  Future<void> replaceReleaseReminders({
+    required Iterable<int> previousItemIds,
+    required List<({int itemId, String title, String body, DateTime day})>
+    reminders,
+  }) async {
+    if (!await _ensureReady()) return;
+    for (final int id in previousItemIds) {
+      await _run('cancel release', () => _plugin.cancel(id: _releaseBase + id));
+    }
+    if (reminders.isEmpty) return;
+    await requestPermission();
+    for (final ({int itemId, String title, String body, DateTime day}) r
+        in reminders) {
+      final DateTime fireAt = DateTime(
+        r.day.year,
+        r.day.month,
+        r.day.day,
+        _releaseHour,
+      );
+      if (fireAt.isBefore(DateTime.now())) continue;
+      await _run('schedule release', () async {
+        await _plugin.zonedSchedule(
+          id: _releaseBase + r.itemId,
+          title: r.title,
+          body: r.body,
+          scheduledDate: tz.TZDateTime.from(fireAt.toUtc(), tz.UTC),
+          notificationDetails: const NotificationDetails(
+            android: AndroidNotificationDetails(_releaseChannel, 'Releases'),
+          ),
+          androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+        );
+      });
+    }
   }
 
   // A notification is never worth crashing a save for.

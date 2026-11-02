@@ -3029,5 +3029,7 @@
   "togetherVoteAgain": "Votar otra vez",
   "togetherNewRound": "Nueva ronda",
   "togetherOpen": "Abrir",
-  "togetherBack": "Atrás"
+  "togetherBack": "Atrás",
+  "releaseReminderTitle": "Sale hoy: {name}",
+  "releaseReminderBody": "Hoy sale una obra de tu lista."
 }

@@ -3457,5 +3457,7 @@
   "togetherVoteAgain": "Votar de novo",
   "togetherNewRound": "Nova rodada",
   "togetherOpen": "Abrir",
-  "togetherBack": "Voltar"
+  "togetherBack": "Voltar",
+  "releaseReminderTitle": "Sai hoje: {name}",
+  "releaseReminderBody": "Uma obra da sua lista sai hoje."
 }

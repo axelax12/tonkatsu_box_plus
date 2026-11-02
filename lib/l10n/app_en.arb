@@ -3294,5 +3294,10 @@
   "togetherVoteAgain": "Vote again",
   "togetherNewRound": "New round",
   "togetherOpen": "Open",
-  "togetherBack": "Back"
+  "togetherBack": "Back",
+  "releaseReminderTitle": "Out today: {name}",
+  "@releaseReminderTitle": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "releaseReminderBody": "A work on your list is released today."
 }
