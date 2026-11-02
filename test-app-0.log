@@ -1,0 +1,60 @@
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
++51: /home/runner/work/tonkatsu_box_plus/tonkatsu_box_plus/test/features/together/together_screen_test.dart: TogetherScreen runs a vote between the user and a guest
+
+Warning: A call to tap() with finder "Found 1 widget with icon "IconData(U+0E493)": [
+  Icon(IconData(U+0E493), size: 16.0, dependencies: [Directionality, IconTheme]),
+]" derived an Offset (Offset(33.0, 118.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#19dd7 relayoutBoundary=up2
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#1e2e8(TextSpan(inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), size: 12.0, "Add a guest")), RenderParagraph#6b6c0@Offset(66.0, 6.0), RenderPadding#08845@Offset(17.0, 17.0), RenderPointerListener#a26e1@Offset(17.0, 17.0), RenderSemanticsAnnotations#ca003@Offset(17.0, 17.0), RenderMouseRegion#2dfd6@Offset(17.0, 17.0), RenderSemanticsAnnotations#cb74c@Offset(17.0, 17.0), _RenderInkFeatures#43b31@Offset(17.0, 17.0), RenderCustomPaint#269eb@Offset(17.0, 17.0), RenderPhysicalShape#9df98@Offset(17.0, 17.0), RenderPositionedBox#a2898@Offset(17.0, 24.0), RenderSemanticsAnnotations#9b3a5@Offset(17.0, 24.0), RenderWrap#19599@Offset(17.0, 76.0), RenderRepaintBoundary#0772b@Offset(17.0, 76.0), RenderIndexedSemantics#fadc7@Offset(17.0, 76.0), RenderSliverList@(mainAxis: 102.0, crossAxis: 17.0), RenderSliverPadding@(mainAxis: 118.0, crossAxis: 33.0), RenderViewport#53333@Offset(33.0, 118.0), RenderIgnorePointer#05a46@Offset(33.0, 118.0), RenderSemanticsAnnotations#52115@Offset(33.0, 118.0), RenderPointerListener#e94cb@Offset(33.0, 118.0), RenderSemanticsGestureHandler#7dbbc@Offset(33.0, 118.0), RenderPointerListener#24aae@Offset(33.0, 118.0), _RenderScrollSemantics#a99c1@Offset(33.0, 118.0), RenderClipRect#ad2d0@Offset(33.0, 118.0), RenderAnimatedOpacity#97357@Offset(33.0, 118.0), RenderStack#07ce1@Offset(33.0, 118.0), RenderCustomMultiChildLayoutBox#298df@Offset(33.0, 118.0), _RenderInkFeatures#07492@Offset(33.0, 118.0), RenderPhysicalModel#a4640@Offset(33.0, 118.0), RenderSemanticsAnnotations#d964d@Offset(33.0, 118.0), RenderRepaintBoundary#e8a90@Offset(33.0, 118.0), RenderIgnorePointer#669d0@Offset(33.0, 118.0), _RenderInkFeatures#97790@Offset(33.0, 118.0), RenderCustomPaint#f1808@Offset(33.0, 118.0), RenderClipPath#5c1f9@Offset(33.0, 118.0), RenderDecoratedBox#447be@Offset(33.0, 118.0), _RenderSnapshotWidget#19750@Offset(33.0, 118.0), _RenderSnapshotWidget#fc821@Offset(33.0, 118.0), _RenderSnapshotWidget#b5c4c@Offset(33.0, 118.0), _RenderSnapshotWidget#e9169@Offset(33.0, 118.0), RenderRepaintBoundary#6e71c@Offset(33.0, 118.0), RenderSemanticsAnnotations#8da1d@Offset(33.0, 118.0), RenderOffstage#0b936@Offset(33.0, 118.0), RenderSemanticsAnnotations#1811c@Offset(33.0, 118.0), _RenderTheater#d0c40@Offset(33.0, 118.0), RenderAbsorbPointer#a9715@Offset(33.0, 118.0), RenderPointerListener#725f8@Offset(33.0, 118.0), RenderSemanticsAnnotations#a0b41@Offset(33.0, 118.0), RenderCustomPaint#cd4ac@Offset(33.0, 118.0), RenderSemanticsAnnotations#a2c93@Offset(33.0, 118.0), RenderSemanticsAnnotations#5c247@Offset(33.0, 118.0), RenderSemanticsAnnotations#58a08@Offset(33.0, 118.0), RenderTapRegionSurface#69cb7@Offset(33.0, 118.0), RenderSemanticsAnnotations#05322@Offset(33.0, 118.0), RenderSemanticsAnnotations#5c113@Offset(33.0, 118.0), HitTestEntry<HitTestTarget>#42772(_ReusableRenderView#2f571), HitTestEntry<HitTestTarget>#9c3e2(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure>.<anonymous closure> (file:///home/runner/work/tonkatsu_box_plus/tonkatsu_box_plus/test/features/together/together_screen_test.dart:84:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
++613: /home/runner/work/tonkatsu_box_plus/tonkatsu_box_plus/test/features/item_panel/plus_item_panel_test.dart: PlusItemPanel shows one section at a time and remembers the choice
+
+Warning: A call to tap() with finder "Found 1 widget with icon "IconData(U+F0877)" (ignoring all but first): [
+  Icon(IconData(U+F0877), size: 16.0, dependencies: [Directionality, IconTheme]),
+]" derived an Offset (Offset(159.0, 24.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#1dfd3 relayoutBoundary=up2
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#8c3a2(TextSpan(inherit: true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), size: 12.0, "My copies")), RenderParagraph#462b6@Offset(54.0, 6.0), RenderPadding#a11d9@Offset(17.0, 17.0), RenderPointerListener#569ed@Offset(17.0, 17.0), RenderSemanticsAnnotations#072c4@Offset(17.0, 17.0), RenderMouseRegion#d2519@Offset(17.0, 17.0), RenderSemanticsAnnotations#76dfe@Offset(17.0, 17.0), _RenderInkFeatures#50cff@Offset(17.0, 17.0), RenderCustomPaint#d69ca@Offset(17.0, 17.0), RenderPhysicalShape#16048@Offset(17.0, 17.0), RenderPositionedBox#b9d0b@Offset(17.0, 24.0), RenderSemanticsAnnotations#96422@Offset(17.0, 24.0), RenderPadding#f2ac6@Offset(17.0, 24.0), RenderFlex#6452d@Offset(159.0, 24.0), _RenderSingleChildViewport#37fa4@Offset(159.0, 24.0), RenderIgnorePointer#20b26@Offset(159.0, 24.0), RenderSemanticsAnnotations#5fe51@Offset(159.0, 24.0), RenderPointerListener#dcca3@Offset(159.0, 24.0), RenderSemanticsGestureHandler#26b4a@Offset(159.0, 24.0), RenderPointerListener#02c13@Offset(159.0, 24.0), _RenderScrollSemantics#26ec3@Offset(159.0, 24.0), RenderClipRect#fb37d@Offset(159.0, 24.0), RenderFlex#c07f4@Offset(159.0, 24.0), _RenderSingleChildViewport#023dc@Offset(159.0, 24.0), RenderIgnorePointer#292f5@Offset(159.0, 24.0), RenderSemanticsAnnotations#90a8c@Offset(159.0, 24.0), RenderPointerListener#ebbe7@Offset(159.0, 24.0), RenderSemanticsGestureHandler#59af6@Offset(159.0, 24.0), RenderPointerListener#f9174@Offset(159.0, 24.0), _RenderScrollSemantics#56a98@Offset(159.0, 24.0), RenderClipRect#6a4d6@Offset(159.0, 24.0), RenderCustomMultiChildLayoutBox#0199b@Offset(159.0, 24.0), _RenderInkFeatures#6f915@Offset(159.0, 24.0), RenderPhysicalModel#8dcc5@Offset(159.0, 24.0), RenderSemanticsAnnotations#c8a96@Offset(159.0, 24.0), RenderRepaintBoundary#0fbc6@Offset(159.0, 24.0), RenderIgnorePointer#5f623@Offset(159.0, 24.0), _RenderInkFeatures#d434e@Offset(159.0, 24.0), RenderCustomPaint#d3c93@Offset(159.0, 24.0), RenderClipPath#656ee@Offset(159.0, 24.0), RenderDecoratedBox#98e81@Offset(159.0, 24.0), _RenderSnapshotWidget#f908a@Offset(159.0, 24.0), _RenderSnapshotWidget#cf57b@Offset(159.0, 24.0), _RenderSnapshotWidget#4461c@Offset(159.0, 24.0), _RenderSnapshotWidget#1bfe5@Offset(159.0, 24.0), RenderRepaintBoundary#cf4c1@Offset(159.0, 24.0), RenderSemanticsAnnotations#ac5a1@Offset(159.0, 24.0), RenderOffstage#c0dba@Offset(159.0, 24.0), RenderSemanticsAnnotations#7e204@Offset(159.0, 24.0), _RenderTheater#45de3@Offset(159.0, 24.0), RenderAbsorbPointer#8dfdb@Offset(159.0, 24.0), RenderPointerListener#79280@Offset(159.0, 24.0), RenderSemanticsAnnotations#b7ab7@Offset(159.0, 24.0), RenderCustomPaint#75fb5@Offset(159.0, 24.0), RenderSemanticsAnnotations#56f71@Offset(159.0, 24.0), RenderSemanticsAnnotations#1c05f@Offset(159.0, 24.0), RenderSemanticsAnnotations#50b5a@Offset(159.0, 24.0), RenderTapRegionSurface#8d50d@Offset(159.0, 24.0), RenderSemanticsAnnotations#f09da@Offset(159.0, 24.0), RenderSemanticsAnnotations#29ca0@Offset(159.0, 24.0), HitTestEntry<HitTestTarget>#09e04(_ReusableRenderView#6b844), HitTestEntry<HitTestTarget>#ff495(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure>.<anonymous closure> (file:///home/runner/work/tonkatsu_box_plus/tonkatsu_box_plus/test/features/item_panel/plus_item_panel_test.dart:80:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
++1535: All tests passed!
