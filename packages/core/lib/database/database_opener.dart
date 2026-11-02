@@ -1,5 +1,6 @@
 import 'package:sqflite_common/sqlite_api.dart';
 
+import '../plus/database/plus_schema.dart';
 import 'migrations/migration.dart';
 import 'migrations/migration_registry.dart';
 import 'migrations/migration_runner.dart';
@@ -71,6 +72,8 @@ Future<Database> openAppDatabase({
           appVersion: newVersion,
         );
       },
+      // Fork-only tables: a separate chain, so upstream numbering never collides.
+      onOpen: PlusSchema.ensure,
       onConfigure: (Database db) async {
         await db.execute('PRAGMA foreign_keys = ON');
         // WAL + NORMAL batches commits into one fsync per checkpoint;

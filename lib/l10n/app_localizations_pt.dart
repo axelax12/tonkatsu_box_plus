@@ -6299,4 +6299,195 @@ class SPt extends S {
   String collectionImportSynced(String source, int count) {
     return '$source sincronizado: $count novos';
   }
+
+  @override
+  String get journalTitle => 'Diário';
+
+  @override
+  String get journalStartSession => 'Iniciar sessão';
+
+  @override
+  String get journalStopSession => 'Parar';
+
+  @override
+  String get journalSessionRunning => 'Sessão em andamento';
+
+  @override
+  String get journalLogPastSession => 'Registrar uma sessão passada';
+
+  @override
+  String journalTrackedTime(String time) {
+    return '$time registrado';
+  }
+
+  @override
+  String journalSessionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sessões',
+      one: '1 sessão',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String journalLastSession(String date) {
+    return 'Última sessão: $date';
+  }
+
+  @override
+  String get journalResumeTitle => 'Onde eu parei?';
+
+  @override
+  String get journalResumeEmpty =>
+      'Anote onde você parou para retomar com facilidade depois.';
+
+  @override
+  String get journalResumePosition => 'Onde parei';
+
+  @override
+  String get journalResumeObjective => 'Próximo objetivo';
+
+  @override
+  String get journalResumeReminders => 'Controles e coisas para lembrar';
+
+  @override
+  String get journalResumeCharacters => 'Personagens e eventos';
+
+  @override
+  String get journalResumeNotes => 'Notas';
+
+  @override
+  String journalResumeUpdated(String date) {
+    return 'Atualizado em $date';
+  }
+
+  @override
+  String get journalAddEntry => 'Adicionar ao diário';
+
+  @override
+  String get journalSeeAll => 'Abrir diário';
+
+  @override
+  String get journalKindNote => 'Nota';
+
+  @override
+  String get journalKindQuote => 'Citação';
+
+  @override
+  String get journalKindImpression => 'Impressão';
+
+  @override
+  String get journalKindMilestone => 'Marco';
+
+  @override
+  String get journalKindScreenshot => 'Captura de tela';
+
+  @override
+  String get journalEntryText => 'Texto';
+
+  @override
+  String get journalEntryProgress => 'Onde (capítulo, missão, episódio…)';
+
+  @override
+  String get journalEntrySpoiler => 'Contém spoilers';
+
+  @override
+  String get journalEntryDate => 'Data';
+
+  @override
+  String get journalSpoilerHidden => 'Spoiler — toque para revelar';
+
+  @override
+  String get journalStopSheetTitle => 'Encerrar sessão';
+
+  @override
+  String get journalSessionNote => 'Como foi?';
+
+  @override
+  String get journalSessionDuration => 'Duração';
+
+  @override
+  String get journalSessionStart => 'Início';
+
+  @override
+  String journalSessionAdded(String time) {
+    return '$time adicionado ao total';
+  }
+
+  @override
+  String get journalDeleteSessionConfirm =>
+      'Excluir esta sessão? O tempo dela será removido do total.';
+
+  @override
+  String get journalDeleteEntryConfirm => 'Excluir esta entrada do diário?';
+
+  @override
+  String get journalEmpty =>
+      'Nada aqui ainda. Inicie uma sessão ou escreva sua primeira nota.';
+
+  @override
+  String get journalPlaythroughs => 'Jogatinas';
+
+  @override
+  String get journalAddPlaythrough => 'Adicionar jogatina';
+
+  @override
+  String get journalPlaythroughLabel =>
+      'Nome (ex.: Primeira jogatina, NG+, Releitura)';
+
+  @override
+  String journalPlaythroughUntitled(int number) {
+    return 'Jogatina $number';
+  }
+
+  @override
+  String get journalPlaythroughInProgress => 'Em andamento';
+
+  @override
+  String get journalPlaythroughCompleted => 'Concluída';
+
+  @override
+  String get journalPlaythroughDropped => 'Abandonada';
+
+  @override
+  String get journalPlaythroughStarted => 'Início';
+
+  @override
+  String get journalPlaythroughFinished => 'Fim';
+
+  @override
+  String get journalPlaythroughReview => 'Resenha';
+
+  @override
+  String get journalPlaythroughRating => 'Nota';
+
+  @override
+  String get journalPlaythroughNoRating => 'Sem nota';
+
+  @override
+  String get journalDeletePlaythroughConfirm =>
+      'Excluir esta jogatina? As sessões e notas dela continuam no diário.';
+
+  @override
+  String get journalTimeline => 'Linha do tempo';
+
+  @override
+  String get journalSessionsTab => 'Sessões';
+
+  @override
+  String get journalHours => 'Horas';
+
+  @override
+  String get journalMinutes => 'Minutos';
+
+  @override
+  String get journalPickDate => 'Escolha uma data';
+
+  @override
+  String get journalNotSet => 'Não definido';
+
+  @override
+  String get journalInvalidDuration => 'Informe uma duração maior que zero.';
 }

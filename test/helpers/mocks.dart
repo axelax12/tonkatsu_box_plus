@@ -23,6 +23,7 @@ import 'package:core/database/dao/tracker_dao.dart';
 import 'package:core/database/dao/tv_show_dao.dart';
 import 'package:core/database/dao/visual_novel_dao.dart';
 import 'package:core/database/dao/wishlist_dao.dart';
+import 'package:core/plus/database/journal_dao.dart';
 import 'package:core/models/canvas_connection.dart';
 import 'package:core/models/canvas_item.dart';
 import 'package:core/models/canvas_viewport.dart';
@@ -276,3 +277,5 @@ class FakeCanvasConnection extends Fake implements CanvasConnection {}
 class FakeCanvasViewport extends Fake implements CanvasViewport {}
 
 class FakeGame extends Fake implements Game {}
+
+class MockJournalDao extends Mock implements JournalDao {}

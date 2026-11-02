@@ -6348,4 +6348,197 @@ class SRu extends S {
   String collectionImportSynced(String source, int count) {
     return '$source синхронизирован: новых $count';
   }
+
+  @override
+  String get journalTitle => 'Дневник';
+
+  @override
+  String get journalStartSession => 'Начать сессию';
+
+  @override
+  String get journalStopSession => 'Стоп';
+
+  @override
+  String get journalSessionRunning => 'Идёт сессия';
+
+  @override
+  String get journalLogPastSession => 'Записать прошлую сессию';
+
+  @override
+  String journalTrackedTime(String time) {
+    return 'Отслежено: $time';
+  }
+
+  @override
+  String journalSessionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count сессии',
+      many: '$count сессий',
+      few: '$count сессии',
+      one: '1 сессия',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String journalLastSession(String date) {
+    return 'Последняя сессия: $date';
+  }
+
+  @override
+  String get journalResumeTitle => 'На чём я остановился?';
+
+  @override
+  String get journalResumeEmpty =>
+      'Запишите, где вы остановились, чтобы потом легко продолжить.';
+
+  @override
+  String get journalResumePosition => 'Где я остановился';
+
+  @override
+  String get journalResumeObjective => 'Следующая цель';
+
+  @override
+  String get journalResumeReminders => 'Управление и что запомнить';
+
+  @override
+  String get journalResumeCharacters => 'Персонажи и события';
+
+  @override
+  String get journalResumeNotes => 'Заметки';
+
+  @override
+  String journalResumeUpdated(String date) {
+    return 'Обновлено $date';
+  }
+
+  @override
+  String get journalAddEntry => 'Добавить в дневник';
+
+  @override
+  String get journalSeeAll => 'Открыть дневник';
+
+  @override
+  String get journalKindNote => 'Заметка';
+
+  @override
+  String get journalKindQuote => 'Цитата';
+
+  @override
+  String get journalKindImpression => 'Впечатление';
+
+  @override
+  String get journalKindMilestone => 'Веха';
+
+  @override
+  String get journalKindScreenshot => 'Скриншот';
+
+  @override
+  String get journalEntryText => 'Текст';
+
+  @override
+  String get journalEntryProgress => 'Где (глава, миссия, эпизод…)';
+
+  @override
+  String get journalEntrySpoiler => 'Содержит спойлеры';
+
+  @override
+  String get journalEntryDate => 'Дата';
+
+  @override
+  String get journalSpoilerHidden => 'Спойлер — нажмите, чтобы показать';
+
+  @override
+  String get journalStopSheetTitle => 'Завершить сессию';
+
+  @override
+  String get journalSessionNote => 'Как всё прошло?';
+
+  @override
+  String get journalSessionDuration => 'Длительность';
+
+  @override
+  String get journalSessionStart => 'Начало';
+
+  @override
+  String journalSessionAdded(String time) {
+    return '$time добавлено к общему времени';
+  }
+
+  @override
+  String get journalDeleteSessionConfirm =>
+      'Удалить эту сессию? Её время будет вычтено из общего.';
+
+  @override
+  String get journalDeleteEntryConfirm => 'Удалить эту запись дневника?';
+
+  @override
+  String get journalEmpty =>
+      'Здесь пока пусто. Начните сессию или напишите первую заметку.';
+
+  @override
+  String get journalPlaythroughs => 'Прохождения';
+
+  @override
+  String get journalAddPlaythrough => 'Добавить прохождение';
+
+  @override
+  String get journalPlaythroughLabel =>
+      'Название (например, Первое прохождение, NG+, Перечитывание)';
+
+  @override
+  String journalPlaythroughUntitled(int number) {
+    return 'Прохождение $number';
+  }
+
+  @override
+  String get journalPlaythroughInProgress => 'В процессе';
+
+  @override
+  String get journalPlaythroughCompleted => 'Завершено';
+
+  @override
+  String get journalPlaythroughDropped => 'Брошено';
+
+  @override
+  String get journalPlaythroughStarted => 'Начато';
+
+  @override
+  String get journalPlaythroughFinished => 'Завершено';
+
+  @override
+  String get journalPlaythroughReview => 'Отзыв';
+
+  @override
+  String get journalPlaythroughRating => 'Оценка';
+
+  @override
+  String get journalPlaythroughNoRating => 'Без оценки';
+
+  @override
+  String get journalDeletePlaythroughConfirm =>
+      'Удалить это прохождение? Его сессии и заметки останутся в дневнике.';
+
+  @override
+  String get journalTimeline => 'Хронология';
+
+  @override
+  String get journalSessionsTab => 'Сессии';
+
+  @override
+  String get journalHours => 'Часы';
+
+  @override
+  String get journalMinutes => 'Минуты';
+
+  @override
+  String get journalPickDate => 'Выберите дату';
+
+  @override
+  String get journalNotSet => 'Не указано';
+
+  @override
+  String get journalInvalidDuration => 'Укажите длительность больше нуля.';
 }

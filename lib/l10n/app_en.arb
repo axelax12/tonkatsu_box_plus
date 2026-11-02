@@ -2767,5 +2767,79 @@
       "source": {"type": "String"},
       "count": {"type": "int"}
     }
-  }
+  },
+  "journalTitle": "Journal",
+  "journalStartSession": "Start session",
+  "journalStopSession": "Stop",
+  "journalSessionRunning": "Session in progress",
+  "journalLogPastSession": "Log a past session",
+  "journalTrackedTime": "{time} tracked",
+  "@journalTrackedTime": {
+    "placeholders": {"time": {"type": "String"}}
+  },
+  "journalSessionCount": "{count, plural, =1{1 session} other{{count} sessions}}",
+  "@journalSessionCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "journalLastSession": "Last session: {date}",
+  "@journalLastSession": {
+    "placeholders": {"date": {"type": "String"}}
+  },
+  "journalResumeTitle": "Where was I?",
+  "journalResumeEmpty": "Note where you got to, so picking it up later is easy.",
+  "journalResumePosition": "Where I got to",
+  "journalResumeObjective": "Next objective",
+  "journalResumeReminders": "Controls and things to remember",
+  "journalResumeCharacters": "Characters and events",
+  "journalResumeNotes": "Notes",
+  "journalResumeUpdated": "Updated {date}",
+  "@journalResumeUpdated": {
+    "placeholders": {"date": {"type": "String"}}
+  },
+  "journalAddEntry": "Add to journal",
+  "journalSeeAll": "Open journal",
+  "journalKindNote": "Note",
+  "journalKindQuote": "Quote",
+  "journalKindImpression": "Impression",
+  "journalKindMilestone": "Milestone",
+  "journalKindScreenshot": "Screenshot",
+  "journalEntryText": "Text",
+  "journalEntryProgress": "Where (chapter, mission, episode…)",
+  "journalEntrySpoiler": "Contains spoilers",
+  "journalEntryDate": "Date",
+  "journalSpoilerHidden": "Spoiler — tap to reveal",
+  "journalStopSheetTitle": "End session",
+  "journalSessionNote": "How did it go?",
+  "journalSessionDuration": "Duration",
+  "journalSessionStart": "Started",
+  "journalSessionAdded": "{time} added to the total",
+  "@journalSessionAdded": {
+    "placeholders": {"time": {"type": "String"}}
+  },
+  "journalDeleteSessionConfirm": "Delete this session? Its time is removed from the total.",
+  "journalDeleteEntryConfirm": "Delete this journal entry?",
+  "journalEmpty": "Nothing here yet. Start a session or write your first note.",
+  "journalPlaythroughs": "Playthroughs",
+  "journalAddPlaythrough": "Add playthrough",
+  "journalPlaythroughLabel": "Name (e.g. First run, NG+, Reread)",
+  "journalPlaythroughUntitled": "Playthrough {number}",
+  "@journalPlaythroughUntitled": {
+    "placeholders": {"number": {"type": "int"}}
+  },
+  "journalPlaythroughInProgress": "In progress",
+  "journalPlaythroughCompleted": "Completed",
+  "journalPlaythroughDropped": "Dropped",
+  "journalPlaythroughStarted": "Started",
+  "journalPlaythroughFinished": "Finished",
+  "journalPlaythroughReview": "Review",
+  "journalPlaythroughRating": "Rating",
+  "journalPlaythroughNoRating": "No rating",
+  "journalDeletePlaythroughConfirm": "Delete this playthrough? Its sessions and notes stay in the journal.",
+  "journalTimeline": "Timeline",
+  "journalSessionsTab": "Sessions",
+  "journalHours": "Hours",
+  "journalMinutes": "Minutes",
+  "journalPickDate": "Pick a date",
+  "journalNotSet": "Not set",
+  "journalInvalidDuration": "Enter a duration longer than zero."
 }

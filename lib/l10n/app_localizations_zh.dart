@@ -5929,4 +5929,189 @@ class SZh extends S {
   String collectionImportSynced(String source, int count) {
     return '$source 已同步：新增 $count';
   }
+
+  @override
+  String get journalTitle => '日志';
+
+  @override
+  String get journalStartSession => '开始记录';
+
+  @override
+  String get journalStopSession => '停止';
+
+  @override
+  String get journalSessionRunning => '正在记录';
+
+  @override
+  String get journalLogPastSession => '补记一次过去的记录';
+
+  @override
+  String journalTrackedTime(String time) {
+    return '已记录 $time';
+  }
+
+  @override
+  String journalSessionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 次记录',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String journalLastSession(String date) {
+    return '上次记录：$date';
+  }
+
+  @override
+  String get journalResumeTitle => '我玩到哪了？';
+
+  @override
+  String get journalResumeEmpty => '记下你进行到哪里，之后继续会更轻松。';
+
+  @override
+  String get journalResumePosition => '进行到';
+
+  @override
+  String get journalResumeObjective => '下一个目标';
+
+  @override
+  String get journalResumeReminders => '操作与需要记住的事';
+
+  @override
+  String get journalResumeCharacters => '角色与事件';
+
+  @override
+  String get journalResumeNotes => '备注';
+
+  @override
+  String journalResumeUpdated(String date) {
+    return '更新于 $date';
+  }
+
+  @override
+  String get journalAddEntry => '添加到日志';
+
+  @override
+  String get journalSeeAll => '打开日志';
+
+  @override
+  String get journalKindNote => '笔记';
+
+  @override
+  String get journalKindQuote => '引用';
+
+  @override
+  String get journalKindImpression => '感想';
+
+  @override
+  String get journalKindMilestone => '里程碑';
+
+  @override
+  String get journalKindScreenshot => '截图';
+
+  @override
+  String get journalEntryText => '内容';
+
+  @override
+  String get journalEntryProgress => '位置（章节、任务、集数…）';
+
+  @override
+  String get journalEntrySpoiler => '包含剧透';
+
+  @override
+  String get journalEntryDate => '日期';
+
+  @override
+  String get journalSpoilerHidden => '剧透——点击显示';
+
+  @override
+  String get journalStopSheetTitle => '结束记录';
+
+  @override
+  String get journalSessionNote => '感觉如何？';
+
+  @override
+  String get journalSessionDuration => '时长';
+
+  @override
+  String get journalSessionStart => '开始时间';
+
+  @override
+  String journalSessionAdded(String time) {
+    return '已将 $time 计入总时长';
+  }
+
+  @override
+  String get journalDeleteSessionConfirm => '删除这次记录？其时长将从总时长中扣除。';
+
+  @override
+  String get journalDeleteEntryConfirm => '删除这条日志？';
+
+  @override
+  String get journalEmpty => '这里还什么都没有。开始一次记录或写下第一条笔记吧。';
+
+  @override
+  String get journalPlaythroughs => '周目';
+
+  @override
+  String get journalAddPlaythrough => '添加周目';
+
+  @override
+  String get journalPlaythroughLabel => '名称（如：一周目、NG+、重读）';
+
+  @override
+  String journalPlaythroughUntitled(int number) {
+    return '第 $number 周目';
+  }
+
+  @override
+  String get journalPlaythroughInProgress => '进行中';
+
+  @override
+  String get journalPlaythroughCompleted => '已完成';
+
+  @override
+  String get journalPlaythroughDropped => '已放弃';
+
+  @override
+  String get journalPlaythroughStarted => '开始';
+
+  @override
+  String get journalPlaythroughFinished => '结束';
+
+  @override
+  String get journalPlaythroughReview => '评价';
+
+  @override
+  String get journalPlaythroughRating => '评分';
+
+  @override
+  String get journalPlaythroughNoRating => '未评分';
+
+  @override
+  String get journalDeletePlaythroughConfirm => '删除这个周目？其记录和笔记会保留在日志中。';
+
+  @override
+  String get journalTimeline => '时间线';
+
+  @override
+  String get journalSessionsTab => '记录';
+
+  @override
+  String get journalHours => '小时';
+
+  @override
+  String get journalMinutes => '分钟';
+
+  @override
+  String get journalPickDate => '选择日期';
+
+  @override
+  String get journalNotSet => '未设置';
+
+  @override
+  String get journalInvalidDuration => '请输入大于零的时长。';
 }

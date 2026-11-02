@@ -11005,6 +11005,342 @@ abstract class S {
   /// In en, this message translates to:
   /// **'{source} synced: {count} new'**
   String collectionImportSynced(String source, int count);
+
+  /// No description provided for @journalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Journal'**
+  String get journalTitle;
+
+  /// No description provided for @journalStartSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Start session'**
+  String get journalStartSession;
+
+  /// No description provided for @journalStopSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get journalStopSession;
+
+  /// No description provided for @journalSessionRunning.
+  ///
+  /// In en, this message translates to:
+  /// **'Session in progress'**
+  String get journalSessionRunning;
+
+  /// No description provided for @journalLogPastSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Log a past session'**
+  String get journalLogPastSession;
+
+  /// No description provided for @journalTrackedTime.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} tracked'**
+  String journalTrackedTime(String time);
+
+  /// No description provided for @journalSessionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 session} other{{count} sessions}}'**
+  String journalSessionCount(int count);
+
+  /// No description provided for @journalLastSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Last session: {date}'**
+  String journalLastSession(String date);
+
+  /// No description provided for @journalResumeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Where was I?'**
+  String get journalResumeTitle;
+
+  /// No description provided for @journalResumeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Note where you got to, so picking it up later is easy.'**
+  String get journalResumeEmpty;
+
+  /// No description provided for @journalResumePosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Where I got to'**
+  String get journalResumePosition;
+
+  /// No description provided for @journalResumeObjective.
+  ///
+  /// In en, this message translates to:
+  /// **'Next objective'**
+  String get journalResumeObjective;
+
+  /// No description provided for @journalResumeReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Controls and things to remember'**
+  String get journalResumeReminders;
+
+  /// No description provided for @journalResumeCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Characters and events'**
+  String get journalResumeCharacters;
+
+  /// No description provided for @journalResumeNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get journalResumeNotes;
+
+  /// No description provided for @journalResumeUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated {date}'**
+  String journalResumeUpdated(String date);
+
+  /// No description provided for @journalAddEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to journal'**
+  String get journalAddEntry;
+
+  /// No description provided for @journalSeeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Open journal'**
+  String get journalSeeAll;
+
+  /// No description provided for @journalKindNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get journalKindNote;
+
+  /// No description provided for @journalKindQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'Quote'**
+  String get journalKindQuote;
+
+  /// No description provided for @journalKindImpression.
+  ///
+  /// In en, this message translates to:
+  /// **'Impression'**
+  String get journalKindImpression;
+
+  /// No description provided for @journalKindMilestone.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone'**
+  String get journalKindMilestone;
+
+  /// No description provided for @journalKindScreenshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Screenshot'**
+  String get journalKindScreenshot;
+
+  /// No description provided for @journalEntryText.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get journalEntryText;
+
+  /// No description provided for @journalEntryProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Where (chapter, mission, episode…)'**
+  String get journalEntryProgress;
+
+  /// No description provided for @journalEntrySpoiler.
+  ///
+  /// In en, this message translates to:
+  /// **'Contains spoilers'**
+  String get journalEntrySpoiler;
+
+  /// No description provided for @journalEntryDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get journalEntryDate;
+
+  /// No description provided for @journalSpoilerHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Spoiler — tap to reveal'**
+  String get journalSpoilerHidden;
+
+  /// No description provided for @journalStopSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End session'**
+  String get journalStopSheetTitle;
+
+  /// No description provided for @journalSessionNote.
+  ///
+  /// In en, this message translates to:
+  /// **'How did it go?'**
+  String get journalSessionNote;
+
+  /// No description provided for @journalSessionDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get journalSessionDuration;
+
+  /// No description provided for @journalSessionStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get journalSessionStart;
+
+  /// No description provided for @journalSessionAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} added to the total'**
+  String journalSessionAdded(String time);
+
+  /// No description provided for @journalDeleteSessionConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this session? Its time is removed from the total.'**
+  String get journalDeleteSessionConfirm;
+
+  /// No description provided for @journalDeleteEntryConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this journal entry?'**
+  String get journalDeleteEntryConfirm;
+
+  /// No description provided for @journalEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here yet. Start a session or write your first note.'**
+  String get journalEmpty;
+
+  /// No description provided for @journalPlaythroughs.
+  ///
+  /// In en, this message translates to:
+  /// **'Playthroughs'**
+  String get journalPlaythroughs;
+
+  /// No description provided for @journalAddPlaythrough.
+  ///
+  /// In en, this message translates to:
+  /// **'Add playthrough'**
+  String get journalAddPlaythrough;
+
+  /// No description provided for @journalPlaythroughLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name (e.g. First run, NG+, Reread)'**
+  String get journalPlaythroughLabel;
+
+  /// No description provided for @journalPlaythroughUntitled.
+  ///
+  /// In en, this message translates to:
+  /// **'Playthrough {number}'**
+  String journalPlaythroughUntitled(int number);
+
+  /// No description provided for @journalPlaythroughInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get journalPlaythroughInProgress;
+
+  /// No description provided for @journalPlaythroughCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get journalPlaythroughCompleted;
+
+  /// No description provided for @journalPlaythroughDropped.
+  ///
+  /// In en, this message translates to:
+  /// **'Dropped'**
+  String get journalPlaythroughDropped;
+
+  /// No description provided for @journalPlaythroughStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get journalPlaythroughStarted;
+
+  /// No description provided for @journalPlaythroughFinished.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished'**
+  String get journalPlaythroughFinished;
+
+  /// No description provided for @journalPlaythroughReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get journalPlaythroughReview;
+
+  /// No description provided for @journalPlaythroughRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get journalPlaythroughRating;
+
+  /// No description provided for @journalPlaythroughNoRating.
+  ///
+  /// In en, this message translates to:
+  /// **'No rating'**
+  String get journalPlaythroughNoRating;
+
+  /// No description provided for @journalDeletePlaythroughConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this playthrough? Its sessions and notes stay in the journal.'**
+  String get journalDeletePlaythroughConfirm;
+
+  /// No description provided for @journalTimeline.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get journalTimeline;
+
+  /// No description provided for @journalSessionsTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Sessions'**
+  String get journalSessionsTab;
+
+  /// No description provided for @journalHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Hours'**
+  String get journalHours;
+
+  /// No description provided for @journalMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get journalMinutes;
+
+  /// No description provided for @journalPickDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a date'**
+  String get journalPickDate;
+
+  /// No description provided for @journalNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get journalNotSet;
+
+  /// No description provided for @journalInvalidDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a duration longer than zero.'**
+  String get journalInvalidDuration;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

@@ -6319,4 +6319,195 @@ class SEs extends S {
   String collectionImportSynced(String source, int count) {
     return '$source sincronizado: $count nuevos';
   }
+
+  @override
+  String get journalTitle => 'Diario';
+
+  @override
+  String get journalStartSession => 'Empezar sesión';
+
+  @override
+  String get journalStopSession => 'Detener';
+
+  @override
+  String get journalSessionRunning => 'Sesión en curso';
+
+  @override
+  String get journalLogPastSession => 'Registrar una sesión pasada';
+
+  @override
+  String journalTrackedTime(String time) {
+    return '$time registrado';
+  }
+
+  @override
+  String journalSessionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sesiones',
+      one: '1 sesión',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String journalLastSession(String date) {
+    return 'Última sesión: $date';
+  }
+
+  @override
+  String get journalResumeTitle => '¿Dónde me quedé?';
+
+  @override
+  String get journalResumeEmpty =>
+      'Anota dónde te quedaste para retomarlo fácilmente más tarde.';
+
+  @override
+  String get journalResumePosition => 'Dónde me quedé';
+
+  @override
+  String get journalResumeObjective => 'Próximo objetivo';
+
+  @override
+  String get journalResumeReminders => 'Controles y cosas que recordar';
+
+  @override
+  String get journalResumeCharacters => 'Personajes y sucesos';
+
+  @override
+  String get journalResumeNotes => 'Notas';
+
+  @override
+  String journalResumeUpdated(String date) {
+    return 'Actualizado $date';
+  }
+
+  @override
+  String get journalAddEntry => 'Añadir al diario';
+
+  @override
+  String get journalSeeAll => 'Abrir diario';
+
+  @override
+  String get journalKindNote => 'Nota';
+
+  @override
+  String get journalKindQuote => 'Cita';
+
+  @override
+  String get journalKindImpression => 'Impresión';
+
+  @override
+  String get journalKindMilestone => 'Hito';
+
+  @override
+  String get journalKindScreenshot => 'Captura';
+
+  @override
+  String get journalEntryText => 'Texto';
+
+  @override
+  String get journalEntryProgress => 'Dónde (capítulo, misión, episodio…)';
+
+  @override
+  String get journalEntrySpoiler => 'Contiene spoilers';
+
+  @override
+  String get journalEntryDate => 'Fecha';
+
+  @override
+  String get journalSpoilerHidden => 'Spoiler: toca para mostrar';
+
+  @override
+  String get journalStopSheetTitle => 'Terminar sesión';
+
+  @override
+  String get journalSessionNote => '¿Qué tal fue?';
+
+  @override
+  String get journalSessionDuration => 'Duración';
+
+  @override
+  String get journalSessionStart => 'Inicio';
+
+  @override
+  String journalSessionAdded(String time) {
+    return '$time añadido al total';
+  }
+
+  @override
+  String get journalDeleteSessionConfirm =>
+      '¿Eliminar esta sesión? Su tiempo se restará del total.';
+
+  @override
+  String get journalDeleteEntryConfirm => '¿Eliminar esta entrada del diario?';
+
+  @override
+  String get journalEmpty =>
+      'Aún no hay nada. Inicia una sesión o escribe tu primera nota.';
+
+  @override
+  String get journalPlaythroughs => 'Partidas';
+
+  @override
+  String get journalAddPlaythrough => 'Añadir partida';
+
+  @override
+  String get journalPlaythroughLabel =>
+      'Nombre (p. ej. Primera partida, NG+, Relectura)';
+
+  @override
+  String journalPlaythroughUntitled(int number) {
+    return 'Partida $number';
+  }
+
+  @override
+  String get journalPlaythroughInProgress => 'En curso';
+
+  @override
+  String get journalPlaythroughCompleted => 'Completada';
+
+  @override
+  String get journalPlaythroughDropped => 'Abandonada';
+
+  @override
+  String get journalPlaythroughStarted => 'Inicio';
+
+  @override
+  String get journalPlaythroughFinished => 'Fin';
+
+  @override
+  String get journalPlaythroughReview => 'Reseña';
+
+  @override
+  String get journalPlaythroughRating => 'Puntuación';
+
+  @override
+  String get journalPlaythroughNoRating => 'Sin puntuación';
+
+  @override
+  String get journalDeletePlaythroughConfirm =>
+      '¿Eliminar esta partida? Sus sesiones y notas se quedan en el diario.';
+
+  @override
+  String get journalTimeline => 'Cronología';
+
+  @override
+  String get journalSessionsTab => 'Sesiones';
+
+  @override
+  String get journalHours => 'Horas';
+
+  @override
+  String get journalMinutes => 'Minutos';
+
+  @override
+  String get journalPickDate => 'Elige una fecha';
+
+  @override
+  String get journalNotSet => 'Sin definir';
+
+  @override
+  String get journalInvalidDuration => 'Introduce una duración mayor que cero.';
 }
