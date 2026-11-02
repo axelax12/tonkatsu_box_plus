@@ -171,7 +171,8 @@ class MockVndbApi extends Mock implements VndbApi {}
 
 class MockAniListApi extends Mock implements AniListApi {}
 
-class MockAniListGraphQLClient extends Mock implements AniListGraphQLClient {}
+class MockAniListGraphQLClient extends Mock
+    implements AniListGraphQLClient {}
 
 class MockAniListTagDao extends Mock implements AniListTagDao {}
 
@@ -205,9 +206,11 @@ class MockSteamImportService extends Mock implements SteamImportService {}
 
 class MockImageCacheService extends Mock implements ImageCacheService {}
 
-class MockTraktImportService extends Mock implements TraktImportService {}
+class MockTraktImportService extends Mock
+    implements TraktImportService {}
 
-class MockKinoriumImportService extends Mock implements KinoriumImportService {}
+class MockKinoriumImportService extends Mock
+    implements KinoriumImportService {}
 
 class MockRaToIgdbMapper extends Mock implements RaToIgdbMapper {}
 
