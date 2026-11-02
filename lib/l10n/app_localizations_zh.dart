@@ -5931,23 +5931,23 @@ class SZh extends S {
   }
 
   @override
-  String get journalTitle => 'Journal';
+  String get journalTitle => '日志';
 
   @override
-  String get journalStartSession => 'Start session';
+  String get journalStartSession => '开始记录';
 
   @override
-  String get journalStopSession => 'Stop';
+  String get journalStopSession => '停止';
 
   @override
-  String get journalSessionRunning => 'Session in progress';
+  String get journalSessionRunning => '正在记录';
 
   @override
-  String get journalLogPastSession => 'Log a past session';
+  String get journalLogPastSession => '补记一次过去的记录';
 
   @override
   String journalTrackedTime(String time) {
-    return '$time tracked';
+    return '已记录 $time';
   }
 
   @override
@@ -5955,168 +5955,163 @@ class SZh extends S {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count sessions',
-      one: '1 session',
+      other: '$count 次记录',
     );
     return '$_temp0';
   }
 
   @override
   String journalLastSession(String date) {
-    return 'Last session: $date';
+    return '上次记录：$date';
   }
 
   @override
-  String get journalResumeTitle => 'Where was I?';
+  String get journalResumeTitle => '我玩到哪了？';
 
   @override
-  String get journalResumeEmpty =>
-      'Note where you got to, so picking it up later is easy.';
+  String get journalResumeEmpty => '记下你进行到哪里，之后继续会更轻松。';
 
   @override
-  String get journalResumePosition => 'Where I got to';
+  String get journalResumePosition => '进行到';
 
   @override
-  String get journalResumeObjective => 'Next objective';
+  String get journalResumeObjective => '下一个目标';
 
   @override
-  String get journalResumeReminders => 'Controls and things to remember';
+  String get journalResumeReminders => '操作与需要记住的事';
 
   @override
-  String get journalResumeCharacters => 'Characters and events';
+  String get journalResumeCharacters => '角色与事件';
 
   @override
-  String get journalResumeNotes => 'Notes';
+  String get journalResumeNotes => '备注';
 
   @override
   String journalResumeUpdated(String date) {
-    return 'Updated $date';
+    return '更新于 $date';
   }
 
   @override
-  String get journalAddEntry => 'Add to journal';
+  String get journalAddEntry => '添加到日志';
 
   @override
-  String get journalSeeAll => 'Open journal';
+  String get journalSeeAll => '打开日志';
 
   @override
-  String get journalKindNote => 'Note';
+  String get journalKindNote => '笔记';
 
   @override
-  String get journalKindQuote => 'Quote';
+  String get journalKindQuote => '引用';
 
   @override
-  String get journalKindImpression => 'Impression';
+  String get journalKindImpression => '感想';
 
   @override
-  String get journalKindMilestone => 'Milestone';
+  String get journalKindMilestone => '里程碑';
 
   @override
-  String get journalKindScreenshot => 'Screenshot';
+  String get journalKindScreenshot => '截图';
 
   @override
-  String get journalEntryText => 'Text';
+  String get journalEntryText => '内容';
 
   @override
-  String get journalEntryProgress => 'Where (chapter, mission, episode…)';
+  String get journalEntryProgress => '位置（章节、任务、集数…）';
 
   @override
-  String get journalEntrySpoiler => 'Contains spoilers';
+  String get journalEntrySpoiler => '包含剧透';
 
   @override
-  String get journalEntryDate => 'Date';
+  String get journalEntryDate => '日期';
 
   @override
-  String get journalSpoilerHidden => 'Spoiler — tap to reveal';
+  String get journalSpoilerHidden => '剧透——点击显示';
 
   @override
-  String get journalStopSheetTitle => 'End session';
+  String get journalStopSheetTitle => '结束记录';
 
   @override
-  String get journalSessionNote => 'How did it go?';
+  String get journalSessionNote => '感觉如何？';
 
   @override
-  String get journalSessionDuration => 'Duration';
+  String get journalSessionDuration => '时长';
 
   @override
-  String get journalSessionStart => 'Started';
+  String get journalSessionStart => '开始时间';
 
   @override
   String journalSessionAdded(String time) {
-    return '$time added to the total';
+    return '已将 $time 计入总时长';
   }
 
   @override
-  String get journalDeleteSessionConfirm =>
-      'Delete this session? Its time is removed from the total.';
+  String get journalDeleteSessionConfirm => '删除这次记录？其时长将从总时长中扣除。';
 
   @override
-  String get journalDeleteEntryConfirm => 'Delete this journal entry?';
+  String get journalDeleteEntryConfirm => '删除这条日志？';
 
   @override
-  String get journalEmpty =>
-      'Nothing here yet. Start a session or write your first note.';
+  String get journalEmpty => '这里还什么都没有。开始一次记录或写下第一条笔记吧。';
 
   @override
-  String get journalPlaythroughs => 'Playthroughs';
+  String get journalPlaythroughs => '周目';
 
   @override
-  String get journalAddPlaythrough => 'Add playthrough';
+  String get journalAddPlaythrough => '添加周目';
 
   @override
-  String get journalPlaythroughLabel => 'Name (e.g. First run, NG+, Reread)';
+  String get journalPlaythroughLabel => '名称（如：一周目、NG+、重读）';
 
   @override
   String journalPlaythroughUntitled(int number) {
-    return 'Playthrough $number';
+    return '第 $number 周目';
   }
 
   @override
-  String get journalPlaythroughInProgress => 'In progress';
+  String get journalPlaythroughInProgress => '进行中';
 
   @override
-  String get journalPlaythroughCompleted => 'Completed';
+  String get journalPlaythroughCompleted => '已完成';
 
   @override
-  String get journalPlaythroughDropped => 'Dropped';
+  String get journalPlaythroughDropped => '已放弃';
 
   @override
-  String get journalPlaythroughStarted => 'Started';
+  String get journalPlaythroughStarted => '开始';
 
   @override
-  String get journalPlaythroughFinished => 'Finished';
+  String get journalPlaythroughFinished => '结束';
 
   @override
-  String get journalPlaythroughReview => 'Review';
+  String get journalPlaythroughReview => '评价';
 
   @override
-  String get journalPlaythroughRating => 'Rating';
+  String get journalPlaythroughRating => '评分';
 
   @override
-  String get journalPlaythroughNoRating => 'No rating';
+  String get journalPlaythroughNoRating => '未评分';
 
   @override
-  String get journalDeletePlaythroughConfirm =>
-      'Delete this playthrough? Its sessions and notes stay in the journal.';
+  String get journalDeletePlaythroughConfirm => '删除这个周目？其记录和笔记会保留在日志中。';
 
   @override
-  String get journalTimeline => 'Timeline';
+  String get journalTimeline => '时间线';
 
   @override
-  String get journalSessionsTab => 'Sessions';
+  String get journalSessionsTab => '记录';
 
   @override
-  String get journalHours => 'Hours';
+  String get journalHours => '小时';
 
   @override
-  String get journalMinutes => 'Minutes';
+  String get journalMinutes => '分钟';
 
   @override
-  String get journalPickDate => 'Pick a date';
+  String get journalPickDate => '选择日期';
 
   @override
-  String get journalNotSet => 'Not set';
+  String get journalNotSet => '未设置';
 
   @override
-  String get journalInvalidDuration => 'Enter a duration longer than zero.';
+  String get journalInvalidDuration => '请输入大于零的时长。';
 }

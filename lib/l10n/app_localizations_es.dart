@@ -6321,23 +6321,23 @@ class SEs extends S {
   }
 
   @override
-  String get journalTitle => 'Journal';
+  String get journalTitle => 'Diario';
 
   @override
-  String get journalStartSession => 'Start session';
+  String get journalStartSession => 'Empezar sesión';
 
   @override
-  String get journalStopSession => 'Stop';
+  String get journalStopSession => 'Detener';
 
   @override
-  String get journalSessionRunning => 'Session in progress';
+  String get journalSessionRunning => 'Sesión en curso';
 
   @override
-  String get journalLogPastSession => 'Log a past session';
+  String get journalLogPastSession => 'Registrar una sesión pasada';
 
   @override
   String journalTrackedTime(String time) {
-    return '$time tracked';
+    return '$time registrado';
   }
 
   @override
@@ -6345,168 +6345,169 @@ class SEs extends S {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count sessions',
-      one: '1 session',
+      other: '$count sesiones',
+      one: '1 sesión',
     );
     return '$_temp0';
   }
 
   @override
   String journalLastSession(String date) {
-    return 'Last session: $date';
+    return 'Última sesión: $date';
   }
 
   @override
-  String get journalResumeTitle => 'Where was I?';
+  String get journalResumeTitle => '¿Dónde me quedé?';
 
   @override
   String get journalResumeEmpty =>
-      'Note where you got to, so picking it up later is easy.';
+      'Anota dónde te quedaste para retomarlo fácilmente más tarde.';
 
   @override
-  String get journalResumePosition => 'Where I got to';
+  String get journalResumePosition => 'Dónde me quedé';
 
   @override
-  String get journalResumeObjective => 'Next objective';
+  String get journalResumeObjective => 'Próximo objetivo';
 
   @override
-  String get journalResumeReminders => 'Controls and things to remember';
+  String get journalResumeReminders => 'Controles y cosas que recordar';
 
   @override
-  String get journalResumeCharacters => 'Characters and events';
+  String get journalResumeCharacters => 'Personajes y sucesos';
 
   @override
-  String get journalResumeNotes => 'Notes';
+  String get journalResumeNotes => 'Notas';
 
   @override
   String journalResumeUpdated(String date) {
-    return 'Updated $date';
+    return 'Actualizado $date';
   }
 
   @override
-  String get journalAddEntry => 'Add to journal';
+  String get journalAddEntry => 'Añadir al diario';
 
   @override
-  String get journalSeeAll => 'Open journal';
+  String get journalSeeAll => 'Abrir diario';
 
   @override
-  String get journalKindNote => 'Note';
+  String get journalKindNote => 'Nota';
 
   @override
-  String get journalKindQuote => 'Quote';
+  String get journalKindQuote => 'Cita';
 
   @override
-  String get journalKindImpression => 'Impression';
+  String get journalKindImpression => 'Impresión';
 
   @override
-  String get journalKindMilestone => 'Milestone';
+  String get journalKindMilestone => 'Hito';
 
   @override
-  String get journalKindScreenshot => 'Screenshot';
+  String get journalKindScreenshot => 'Captura';
 
   @override
-  String get journalEntryText => 'Text';
+  String get journalEntryText => 'Texto';
 
   @override
-  String get journalEntryProgress => 'Where (chapter, mission, episode…)';
+  String get journalEntryProgress => 'Dónde (capítulo, misión, episodio…)';
 
   @override
-  String get journalEntrySpoiler => 'Contains spoilers';
+  String get journalEntrySpoiler => 'Contiene spoilers';
 
   @override
-  String get journalEntryDate => 'Date';
+  String get journalEntryDate => 'Fecha';
 
   @override
-  String get journalSpoilerHidden => 'Spoiler — tap to reveal';
+  String get journalSpoilerHidden => 'Spoiler: toca para mostrar';
 
   @override
-  String get journalStopSheetTitle => 'End session';
+  String get journalStopSheetTitle => 'Terminar sesión';
 
   @override
-  String get journalSessionNote => 'How did it go?';
+  String get journalSessionNote => '¿Qué tal fue?';
 
   @override
-  String get journalSessionDuration => 'Duration';
+  String get journalSessionDuration => 'Duración';
 
   @override
-  String get journalSessionStart => 'Started';
+  String get journalSessionStart => 'Inicio';
 
   @override
   String journalSessionAdded(String time) {
-    return '$time added to the total';
+    return '$time añadido al total';
   }
 
   @override
   String get journalDeleteSessionConfirm =>
-      'Delete this session? Its time is removed from the total.';
+      '¿Eliminar esta sesión? Su tiempo se restará del total.';
 
   @override
-  String get journalDeleteEntryConfirm => 'Delete this journal entry?';
+  String get journalDeleteEntryConfirm => '¿Eliminar esta entrada del diario?';
 
   @override
   String get journalEmpty =>
-      'Nothing here yet. Start a session or write your first note.';
+      'Aún no hay nada. Inicia una sesión o escribe tu primera nota.';
 
   @override
-  String get journalPlaythroughs => 'Playthroughs';
+  String get journalPlaythroughs => 'Partidas';
 
   @override
-  String get journalAddPlaythrough => 'Add playthrough';
+  String get journalAddPlaythrough => 'Añadir partida';
 
   @override
-  String get journalPlaythroughLabel => 'Name (e.g. First run, NG+, Reread)';
+  String get journalPlaythroughLabel =>
+      'Nombre (p. ej. Primera partida, NG+, Relectura)';
 
   @override
   String journalPlaythroughUntitled(int number) {
-    return 'Playthrough $number';
+    return 'Partida $number';
   }
 
   @override
-  String get journalPlaythroughInProgress => 'In progress';
+  String get journalPlaythroughInProgress => 'En curso';
 
   @override
-  String get journalPlaythroughCompleted => 'Completed';
+  String get journalPlaythroughCompleted => 'Completada';
 
   @override
-  String get journalPlaythroughDropped => 'Dropped';
+  String get journalPlaythroughDropped => 'Abandonada';
 
   @override
-  String get journalPlaythroughStarted => 'Started';
+  String get journalPlaythroughStarted => 'Inicio';
 
   @override
-  String get journalPlaythroughFinished => 'Finished';
+  String get journalPlaythroughFinished => 'Fin';
 
   @override
-  String get journalPlaythroughReview => 'Review';
+  String get journalPlaythroughReview => 'Reseña';
 
   @override
-  String get journalPlaythroughRating => 'Rating';
+  String get journalPlaythroughRating => 'Puntuación';
 
   @override
-  String get journalPlaythroughNoRating => 'No rating';
+  String get journalPlaythroughNoRating => 'Sin puntuación';
 
   @override
   String get journalDeletePlaythroughConfirm =>
-      'Delete this playthrough? Its sessions and notes stay in the journal.';
+      '¿Eliminar esta partida? Sus sesiones y notas se quedan en el diario.';
 
   @override
-  String get journalTimeline => 'Timeline';
+  String get journalTimeline => 'Cronología';
 
   @override
-  String get journalSessionsTab => 'Sessions';
+  String get journalSessionsTab => 'Sesiones';
 
   @override
-  String get journalHours => 'Hours';
+  String get journalHours => 'Horas';
 
   @override
-  String get journalMinutes => 'Minutes';
+  String get journalMinutes => 'Minutos';
 
   @override
-  String get journalPickDate => 'Pick a date';
+  String get journalPickDate => 'Elige una fecha';
 
   @override
-  String get journalNotSet => 'Not set';
+  String get journalNotSet => 'Sin definir';
 
   @override
-  String get journalInvalidDuration => 'Enter a duration longer than zero.';
+  String get journalInvalidDuration => 'Introduce una duración mayor que cero.';
 }
