@@ -3051,5 +3051,8 @@
   "todayPickForMe": "Ayúdame a elegir",
   "todayInPath": "En {name}",
   "todayNoReleases": "Aún no hay estrenos con fecha en tu lista.",
-  "todayNoUpNext": "Crea una ruta para ver qué sigue en una saga."
+  "todayNoUpNext": "Crea una ruta para ver qué sigue en una saga.",
+  "quickStatusTitle": "¿Cómo vas con esta obra?",
+  "quickStatusRemember": "Usar para todo lo que añada",
+  "quickStatusAction": "Estado"
 }

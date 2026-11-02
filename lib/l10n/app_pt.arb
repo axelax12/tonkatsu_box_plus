@@ -3479,5 +3479,8 @@
   "todayPickForMe": "Me ajude a escolher",
   "todayInPath": "Em {name}",
   "todayNoReleases": "Nenhum lançamento com data na sua lista.",
-  "todayNoUpNext": "Crie um percurso para ver o que vem a seguir numa saga."
+  "todayNoUpNext": "Crie um percurso para ver o que vem a seguir numa saga.",
+  "quickStatusTitle": "Em que ponto você está?",
+  "quickStatusRemember": "Usar para tudo que eu adicionar",
+  "quickStatusAction": "Status"
 }

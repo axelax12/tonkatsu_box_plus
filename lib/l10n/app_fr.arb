@@ -3051,5 +3051,8 @@
   "todayPickForMe": "Aide-moi à choisir",
   "todayInPath": "Dans {name}",
   "todayNoReleases": "Aucune sortie datée dans votre liste.",
-  "todayNoUpNext": "Créez un parcours pour voir la suite d'une saga."
+  "todayNoUpNext": "Créez un parcours pour voir la suite d'une saga.",
+  "quickStatusTitle": "Où en êtes-vous ?",
+  "quickStatusRemember": "Utiliser pour tout ce que j'ajoute",
+  "quickStatusAction": "Statut"
 }

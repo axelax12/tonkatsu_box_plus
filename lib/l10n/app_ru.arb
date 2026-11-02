@@ -2712,5 +2712,8 @@
   "todayPickForMe": "Помогите выбрать",
   "todayInPath": "Путь: {name}",
   "todayNoReleases": "В вашем списке пока нет датированных релизов.",
-  "todayNoUpNext": "Создайте путь, чтобы видеть, что дальше в саге."
+  "todayNoUpNext": "Создайте путь, чтобы видеть, что дальше в саге.",
+  "quickStatusTitle": "На каком вы этапе?",
+  "quickStatusRemember": "Применять ко всему новому",
+  "quickStatusAction": "Статус"
 }

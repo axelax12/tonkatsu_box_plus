@@ -3046,5 +3046,8 @@
   "todayPickForMe": "帮我选",
   "todayInPath": "路线：{name}",
   "todayNoReleases": "清单中还没有确定日期的发售。",
-  "todayNoUpNext": "创建一条路线，看看系列的下一部是什么。"
+  "todayNoUpNext": "创建一条路线，看看系列的下一部是什么。",
+  "quickStatusTitle": "进度如何？",
+  "quickStatusRemember": "以后添加的作品都用这个",
+  "quickStatusAction": "状态"
 }

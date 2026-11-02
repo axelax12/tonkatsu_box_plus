@@ -7,9 +7,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../core/services/image_cache_service.dart';
+import '../../../shared/constants/platform_features.dart';
 import '../../../shared/extensions/snackbar_extension.dart';
 import '../../../shared/widgets/collection_picker_dialog.dart';
 import '../../collections/providers/collections_provider.dart';
+import '../../quick_add/quick_status.dart';
 
 /// Result of the collection picker. `id == null` means Uncategorized.
 class PickedCollection {
@@ -25,6 +27,9 @@ class SearchCollectionAdder {
   const SearchCollectionAdder(this._ref);
 
   final WidgetRef _ref;
+
+  static const Duration _defaultSnack = Duration(milliseconds: 750);
+  static const Duration _statusActionWindow = Duration(seconds: 4);
 
   /// When [collectionName] is provided the named snack variant is used;
   /// [afterAdd] runs only on success (e.g. TV season preload).
@@ -59,15 +64,31 @@ class SearchCollectionAdder {
 
     if (success) {
       _cacheImage(imageType, imageId, imageUrl);
+      final AddedItem added = (
+        collectionId: collectionId,
+        mediaType: mediaType,
+        externalId: externalId,
+        platformId: platformId,
+        source: source,
+      );
+      await applyNewItemStatus(_ref, added);
       if (afterAdd != null) {
         await afterAdd();
-        if (!context.mounted) return success;
       }
+      if (!context.mounted) return success;
       context.showSnack(
         collectionName != null
             ? l.searchAddedToNamed(title, collectionName)
             : l.searchAddedToCollection(title),
         type: SnackType.success,
+        // The phone gets a moment to fix the status without opening the item.
+        duration: kIsMobile ? _statusActionWindow : _defaultSnack,
+        action: kIsMobile
+            ? SnackBarAction(
+                label: l.quickStatusAction,
+                onPressed: () => showQuickStatusSheet(context, _ref, added),
+              )
+            : null,
       );
     } else {
       context.showSnack(
@@ -119,7 +140,16 @@ class SearchCollectionAdder {
             platformId: platformId,
             source: source,
           );
-      if (success) added++;
+      if (success) {
+        added++;
+        await applyNewItemStatus(_ref, (
+          collectionId: collectionId,
+          mediaType: mediaType,
+          externalId: externalId,
+          platformId: platformId,
+          source: source,
+        ));
+      }
     }
 
     if (added > 0) {

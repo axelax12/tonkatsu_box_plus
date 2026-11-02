@@ -3328,5 +3328,8 @@
     "placeholders": {"name": {"type": "String"}}
   },
   "todayNoReleases": "No dated releases on your list yet.",
-  "todayNoUpNext": "Create a path to see what comes next in a saga."
+  "todayNoUpNext": "Create a path to see what comes next in a saga.",
+  "quickStatusTitle": "Where are you with it?",
+  "quickStatusRemember": "Use this for everything I add",
+  "quickStatusAction": "Status"
 }
