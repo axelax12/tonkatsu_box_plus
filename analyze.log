@@ -1,0 +1,14 @@
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Analyzing tonkatsu_box_plus...                                  
+No issues found! (ran in 42.8s)
