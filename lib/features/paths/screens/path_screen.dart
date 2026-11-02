@@ -129,7 +129,7 @@ class _PathScreenState extends ConsumerState<PathScreen> {
       for (final PathStop s in walk.stops) s.entry.id,
     ];
     final int moved = ids.removeAt(from);
-    ids.insert(to > from ? to - 1 : to, moved);
+    ids.insert(to, moved);
     await _controller.reorder(widget.pathId, walk.order, ids);
   }
 
@@ -227,7 +227,7 @@ class _PathScreenState extends ConsumerState<PathScreen> {
         buildDefaultDragHandles: false,
         padding: const EdgeInsets.only(bottom: _fabClearance),
         itemCount: walk.stops.length,
-        onReorder: (int from, int to) => _reorder(walk, from, to),
+        onReorderItem: (int from, int to) => _reorder(walk, from, to),
         itemBuilder: (BuildContext context, int index) {
           final PathStop stop = walk.stops[index];
           return PathStopTile(
