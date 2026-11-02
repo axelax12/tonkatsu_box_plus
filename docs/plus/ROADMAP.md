@@ -20,9 +20,9 @@ ma racconta il tuo rapporto con le opere.
 - [x] Fork e identità Android separata (`com.axelax12.tonkatsuboxplus`): si installa accanto all'app originale.
 - [x] CI su GitHub Actions: analisi, test, generazione del codice, APK pubblicato come release.
 - [ ] Chiave di firma nei segreti GitHub, così ogni aggiornamento si installa sopra il precedente.
-- [ ] (Proposta) Traduzione italiana dell'interfaccia.
+- [x] Interfaccia: resta in inglese (scelta di novembre 2026).
 
-## Fase 1 — Il diario (fondamenta)
+## Fase 1 — Il diario (fondamenta) ✅
 
 Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con timer, "dove ero rimasto".
 
@@ -36,7 +36,7 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
    personaggi ed eventi annotati. Per i giochi: missione attuale, comandi da ricordare, prossimo
    obiettivo. In futuro, eventuali riassunti automatici useranno solo contenuti fino al punto raggiunto.
 
-## Fase 2 — Obiettivi e numeri
+## Fase 2 — Obiettivi e numeri 🚧
 
 5. **Obiettivi annuali** (stile StoryGraph): opere finite per tipo, ore, pagine, backlog smaltito.
    Più obiettivi in parallelo, con anello di avanzamento in home.
@@ -88,6 +88,16 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
     ha già visto, compatibili con gusti e tempo disponibile; ognuno vota o scarta.
 19. **Club** di lettura, visione o gioco, con progressi individuali e discussioni protette dagli spoiler.
     Richiede una forma di sincronizzazione tra dispositivi: da valutare dopo la Fase 6.
+
+## Fase 8 — Restyling "copertine protagoniste"
+
+Dopo le funzioni, un restyling unico e coerente in stile GameTrack/Letterboxd: copertine grandi,
+sfondi sfocati presi dalla copertina, colori che si adattano all'opera. Risolve i punti segnalati:
+
+- **Troppe opzioni ovunque:** menu e impostazioni ridotti all'essenziale, il resto in "Avanzate".
+- **Scheda opera caotica:** gerarchia chiara (copertina, stato, diario, avanzamento), sezioni secondarie raccolte.
+- **Home poco utile:** nuova home con "In corso", anello degli obiettivi, riprendi e uscite.
+- **Cercare e aggiungere:** ricerca più diretta e aggiunta in un tocco con stato già impostato.
 
 ## Come lavoriamo
 

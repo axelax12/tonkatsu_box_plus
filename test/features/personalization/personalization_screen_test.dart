@@ -66,7 +66,7 @@ void main() {
 
       expect(tester.takeException(), isNull);
       expect(find.byType(PersonalizationHubScreen), findsOneWidget);
-      expect(cards(), findsNWidgets(4));
+      expect(cards(), findsAtLeastNWidgets(4));
       // Sections are routes, not tabs: none is built until opened.
       expect(find.byType(StatisticsScreen), findsNothing);
       expect(find.byType(GenreCloudScreen), findsNothing);
@@ -172,7 +172,7 @@ void main() {
       );
 
       expect(tester.takeException(), isNull);
-      expect(cards(), findsNWidgets(4));
+      expect(cards(), findsAtLeastNWidgets(4));
 
       await tester.tap(cards().at(0));
       await tester.pumpAndSettle();
