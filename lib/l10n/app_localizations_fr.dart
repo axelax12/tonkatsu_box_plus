@@ -6866,4 +6866,227 @@ class SFr extends S {
 
   @override
   String get smartTemplateBestRated => 'Mes mieux notés';
+
+  @override
+  String get collectorTitle => 'La pièce du collectionneur';
+
+  @override
+  String get collectorHint =>
+      'Vos étagères, vos souvenirs et qui a vos affaires';
+
+  @override
+  String hubCollectorPreview(int copies, int unlocked, int total) {
+    return '$copies exemplaires physiques · $unlocked/$total souvenirs';
+  }
+
+  @override
+  String get copiesTitle => 'Mes exemplaires';
+
+  @override
+  String get copiesNone => 'Aucun exemplaire ajouté.';
+
+  @override
+  String get copyAdd => 'Ajouter un exemplaire';
+
+  @override
+  String get copyEdit => 'Modifier l\'exemplaire';
+
+  @override
+  String get copyPhysical => 'Physique';
+
+  @override
+  String get copyDigital => 'Numérique';
+
+  @override
+  String get copyEdition => 'Édition';
+
+  @override
+  String get copyCondition => 'État';
+
+  @override
+  String get copyNoCondition => 'Non précisé';
+
+  @override
+  String get conditionSealed => 'Neuf sous blister';
+
+  @override
+  String get conditionMint => 'Parfait état';
+
+  @override
+  String get conditionGood => 'Bon';
+
+  @override
+  String get conditionFair => 'Correct';
+
+  @override
+  String get conditionPoor => 'Mauvais';
+
+  @override
+  String get copyPrice => 'Prix payé';
+
+  @override
+  String get copyCurrency => 'Devise';
+
+  @override
+  String get copyPurchased => 'Acheté le';
+
+  @override
+  String get copyStore => 'Où';
+
+  @override
+  String get copyNotes => 'Notes';
+
+  @override
+  String get copyLend => 'Prêter';
+
+  @override
+  String get copyLendTo => 'Prêté à';
+
+  @override
+  String get copyDue => 'À rendre avant le';
+
+  @override
+  String get copyNoDue => 'Sans date';
+
+  @override
+  String get copyReturned => 'Marquer comme rendu';
+
+  @override
+  String copyLentChip(String name) {
+    return 'Prêté à $name';
+  }
+
+  @override
+  String get copyOverdue => 'En retard';
+
+  @override
+  String get copyDeleteConfirm => 'Supprimer cet exemplaire ?';
+
+  @override
+  String loanDue(String date) {
+    return 'jusqu\'au $date';
+  }
+
+  @override
+  String get loansTab => 'Prêts';
+
+  @override
+  String get loansNone => 'Rien n\'est prêté pour le moment.';
+
+  @override
+  String get roomTab => 'Pièce';
+
+  @override
+  String get roomKeepsakes => 'Souvenirs';
+
+  @override
+  String get roomEmpty => 'Ces étagères sont vides pour le moment.';
+
+  @override
+  String get roomSave => 'Enregistrer en image';
+
+  @override
+  String get roomThemeWood => 'Bois';
+
+  @override
+  String get roomThemeMidnight => 'Minuit';
+
+  @override
+  String get roomThemeNeon => 'Néon';
+
+  @override
+  String get roomSourceOwned => 'Exemplaires physiques';
+
+  @override
+  String get roomSourceFavorites => 'Favoris';
+
+  @override
+  String get roomSourceFinished => 'Terminés cette année';
+
+  @override
+  String get valuePhysical => 'Exemplaires physiques';
+
+  @override
+  String get valueDigital => 'Exemplaires numériques';
+
+  @override
+  String get valueSpent => 'Dépensé';
+
+  @override
+  String keepsakeProgress(int value, int target) {
+    return '$value / $target';
+  }
+
+  @override
+  String get keepsakeFirstFinish => 'Première fin';
+
+  @override
+  String get keepsakeFirstFinishHint => 'Terminez n\'importe quoi';
+
+  @override
+  String get keepsakeTenFinished => 'Dix de faits';
+
+  @override
+  String get keepsakeTenFinishedHint => 'Terminez 10 éléments';
+
+  @override
+  String get keepsakeFiftyFinished => 'Un demi-cent';
+
+  @override
+  String get keepsakeFiftyFinishedHint => 'Terminez 50 éléments';
+
+  @override
+  String get keepsakeHundredFinished => 'Centurion';
+
+  @override
+  String get keepsakeHundredFinishedHint => 'Terminez 100 éléments';
+
+  @override
+  String get keepsakePolymath => 'Touche-à-tout';
+
+  @override
+  String get keepsakePolymathHint => 'Terminez 4 types de médias';
+
+  @override
+  String get keepsakeMarathon => 'Marathon';
+
+  @override
+  String get keepsakeMarathonHint => 'Une session de 4 heures ou plus';
+
+  @override
+  String get keepsakeHundredHours => 'Cent heures';
+
+  @override
+  String get keepsakeHundredHoursHint => 'Enregistrez 100 heures de sessions';
+
+  @override
+  String get keepsakeWeekStreak => 'Semaine complète';
+
+  @override
+  String get keepsakeWeekStreakHint => '7 jours de sessions d\'affilée';
+
+  @override
+  String get keepsakeJournalist => 'Chroniqueur';
+
+  @override
+  String get keepsakeJournalistHint => 'Écrivez 25 entrées de journal';
+
+  @override
+  String get keepsakeShelfBuilder => 'Bâtisseur d\'étagères';
+
+  @override
+  String get keepsakeShelfBuilderHint => 'Possédez 25 exemplaires physiques';
+
+  @override
+  String get keepsakeBacklogBuster => 'Briseur de backlog';
+
+  @override
+  String get keepsakeBacklogBusterHint =>
+      'Terminez 10 éléments qui attendaient depuis plus d\'un an';
+
+  @override
+  String get keepsakeCritic => 'Critique';
+
+  @override
+  String get keepsakeCriticHint => 'Notez 50 éléments';
 }

@@ -6434,4 +6434,225 @@ class SZh extends S {
 
   @override
   String get smartTemplateBestRated => '我评分最高的';
+
+  @override
+  String get collectorTitle => '收藏家之屋';
+
+  @override
+  String get collectorHint => '你的书架、纪念品，以及谁借走了你的东西';
+
+  @override
+  String hubCollectorPreview(int copies, int unlocked, int total) {
+    return '$copies 份实体 · 纪念品 $unlocked/$total';
+  }
+
+  @override
+  String get copiesTitle => '我的副本';
+
+  @override
+  String get copiesNone => '还没有添加副本。';
+
+  @override
+  String get copyAdd => '添加副本';
+
+  @override
+  String get copyEdit => '编辑副本';
+
+  @override
+  String get copyPhysical => '实体';
+
+  @override
+  String get copyDigital => '数字';
+
+  @override
+  String get copyEdition => '版本';
+
+  @override
+  String get copyCondition => '品相';
+
+  @override
+  String get copyNoCondition => '未设置';
+
+  @override
+  String get conditionSealed => '未拆封';
+
+  @override
+  String get conditionMint => '全新';
+
+  @override
+  String get conditionGood => '良好';
+
+  @override
+  String get conditionFair => '一般';
+
+  @override
+  String get conditionPoor => '较差';
+
+  @override
+  String get copyPrice => '购买价格';
+
+  @override
+  String get copyCurrency => '货币';
+
+  @override
+  String get copyPurchased => '购买日期';
+
+  @override
+  String get copyStore => '购买地点';
+
+  @override
+  String get copyNotes => '备注';
+
+  @override
+  String get copyLend => '借出';
+
+  @override
+  String get copyLendTo => '借给';
+
+  @override
+  String get copyDue => '归还期限';
+
+  @override
+  String get copyNoDue => '无期限';
+
+  @override
+  String get copyReturned => '标记为已归还';
+
+  @override
+  String copyLentChip(String name) {
+    return '借给了 $name';
+  }
+
+  @override
+  String get copyOverdue => '已逾期';
+
+  @override
+  String get copyDeleteConfirm => '删除这个副本？';
+
+  @override
+  String loanDue(String date) {
+    return '$date 前归还';
+  }
+
+  @override
+  String get loansTab => '借出记录';
+
+  @override
+  String get loansNone => '目前没有借出的东西。';
+
+  @override
+  String get roomTab => '房间';
+
+  @override
+  String get roomKeepsakes => '纪念品';
+
+  @override
+  String get roomEmpty => '这些书架暂时是空的。';
+
+  @override
+  String get roomSave => '保存为图片';
+
+  @override
+  String get roomThemeWood => '木质';
+
+  @override
+  String get roomThemeMidnight => '午夜';
+
+  @override
+  String get roomThemeNeon => '霓虹';
+
+  @override
+  String get roomSourceOwned => '实体副本';
+
+  @override
+  String get roomSourceFavorites => '收藏';
+
+  @override
+  String get roomSourceFinished => '今年完成';
+
+  @override
+  String get valuePhysical => '实体副本';
+
+  @override
+  String get valueDigital => '数字副本';
+
+  @override
+  String get valueSpent => '花费';
+
+  @override
+  String keepsakeProgress(int value, int target) {
+    return '$value / $target';
+  }
+
+  @override
+  String get keepsakeFirstFinish => '首次完成';
+
+  @override
+  String get keepsakeFirstFinishHint => '完成任意一项';
+
+  @override
+  String get keepsakeTenFinished => '十项完成';
+
+  @override
+  String get keepsakeTenFinishedHint => '完成 10 项';
+
+  @override
+  String get keepsakeFiftyFinished => '半百';
+
+  @override
+  String get keepsakeFiftyFinishedHint => '完成 50 项';
+
+  @override
+  String get keepsakeHundredFinished => '百项达成';
+
+  @override
+  String get keepsakeHundredFinishedHint => '完成 100 项';
+
+  @override
+  String get keepsakePolymath => '博学者';
+
+  @override
+  String get keepsakePolymathHint => '完成 4 种媒体类型';
+
+  @override
+  String get keepsakeMarathon => '马拉松';
+
+  @override
+  String get keepsakeMarathonHint => '单次记录 4 小时以上';
+
+  @override
+  String get keepsakeHundredHours => '百小时';
+
+  @override
+  String get keepsakeHundredHoursHint => '累计记录 100 小时';
+
+  @override
+  String get keepsakeWeekStreak => '连续一周';
+
+  @override
+  String get keepsakeWeekStreakHint => '连续 7 天有记录';
+
+  @override
+  String get keepsakeJournalist => '记录者';
+
+  @override
+  String get keepsakeJournalistHint => '写下 25 条日志';
+
+  @override
+  String get keepsakeShelfBuilder => '书架建造者';
+
+  @override
+  String get keepsakeShelfBuilderHint => '拥有 25 份实体';
+
+  @override
+  String get keepsakeBacklogBuster => '待办终结者';
+
+  @override
+  String get keepsakeBacklogBusterHint => '完成 10 项等待超过一年的条目';
+
+  @override
+  String get keepsakeCritic => '评论家';
+
+  @override
+  String get keepsakeCriticHint => '为 50 项评分';
 }

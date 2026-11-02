@@ -167,11 +167,7 @@ class CollectorRoom extends StatelessWidget {
                         ((c.maxWidth + _gap) / (coverWidth + _gap)).floor(),
                       );
                       final List<Widget> shelves = <Widget>[];
-                      for (
-                        int i = 0;
-                        i < group.value.length;
-                        i += perShelf
-                      ) {
+                      for (int i = 0; i < group.value.length; i += perShelf) {
                         final List<CollectionItem> row = group.value.sublist(
                           i,
                           i + perShelf > group.value.length
@@ -389,11 +385,18 @@ class _Medal extends StatelessWidget {
                 border: Border.all(color: color, width: unlocked ? 2 : 1),
                 boxShadow: unlocked && palette.glow != null
                     ? <BoxShadow>[
-                        BoxShadow(color: color.withValues(alpha: 0.7), blurRadius: 10),
+                        BoxShadow(
+                          color: color.withValues(alpha: 0.7),
+                          blurRadius: 10,
+                        ),
                       ]
                     : null,
               ),
-              child: Icon(keepsakeIcon(progress.keepsake), size: 20, color: color),
+              child: Icon(
+                keepsakeIcon(progress.keepsake),
+                size: 20,
+                color: color,
+              ),
             ),
           ],
         ),

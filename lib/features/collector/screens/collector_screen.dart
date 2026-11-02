@@ -111,7 +111,9 @@ class _RoomTabState extends ConsumerState<_RoomTab> {
     final S l = S.of(context);
     final RoomTheme theme = ref.watch(roomThemeProvider);
     final RoomSource source = ref.watch(roomSourceProvider);
-    final List<CollectionItem>? items = ref.watch(roomItemsProvider).valueOrNull;
+    final List<CollectionItem>? items = ref
+        .watch(roomItemsProvider)
+        .valueOrNull;
     final List<KeepsakeProgress> keepsakes =
         ref.watch(keepsakesProvider).valueOrNull ?? const <KeepsakeProgress>[];
 
@@ -121,7 +123,10 @@ class _RoomTabState extends ConsumerState<_RoomTab> {
         SegmentedButton<RoomTheme>(
           segments: <ButtonSegment<RoomTheme>>[
             for (final RoomTheme t in RoomTheme.values)
-              ButtonSegment<RoomTheme>(value: t, label: Text(_themeLabel(t, l))),
+              ButtonSegment<RoomTheme>(
+                value: t,
+                label: Text(_themeLabel(t, l)),
+              ),
           ],
           selected: <RoomTheme>{theme},
           showSelectedIcon: false,
@@ -175,7 +180,9 @@ class _LoansTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final S l = S.of(context);
     final MaterialLocalizations material = MaterialLocalizations.of(context);
-    final CollectionValue? value = ref.watch(collectionValueProvider).valueOrNull;
+    final CollectionValue? value = ref
+        .watch(collectionValueProvider)
+        .valueOrNull;
     final List<OwnedCopy> loans =
         ref.watch(activeLoansProvider).valueOrNull ?? const <OwnedCopy>[];
     final Map<int, CollectionItem> itemsById = <int, CollectionItem>{

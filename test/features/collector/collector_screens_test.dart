@@ -43,8 +43,7 @@ void main() {
     libraryItemsProvider.overrideWith((Ref ref) async => items),
     allCopiesProvider.overrideWith((Ref ref) async => copies),
     activeLoansProvider.overrideWith(
-      (Ref ref) async =>
-          copies.where((OwnedCopy c) => c.isLoaned).toList(),
+      (Ref ref) async => copies.where((OwnedCopy c) => c.isLoaned).toList(),
     ),
     keepsakesProvider.overrideWith(
       (Ref ref) async => Keepsakes.compute(
@@ -123,9 +122,9 @@ void main() {
         ),
         wrapInScaffold: true,
         overrides: <Override>[
-          itemCopiesProvider(2).overrideWith(
-            (Ref ref) async => <OwnedCopy>[copies[1]],
-          ),
+          itemCopiesProvider(
+            2,
+          ).overrideWith((Ref ref) async => <OwnedCopy>[copies[1]]),
         ],
       );
       expect(tester.takeException(), isNull);
@@ -144,9 +143,9 @@ void main() {
         ),
         wrapInScaffold: true,
         overrides: <Override>[
-          itemCopiesProvider(2).overrideWith(
-            (Ref ref) async => <OwnedCopy>[copies[1]],
-          ),
+          itemCopiesProvider(
+            2,
+          ).overrideWith((Ref ref) async => <OwnedCopy>[copies[1]]),
         ],
       );
       expect(find.byIcon(Icons.handshake_outlined), findsNothing);

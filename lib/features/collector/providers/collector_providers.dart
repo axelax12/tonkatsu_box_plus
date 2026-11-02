@@ -75,7 +75,9 @@ class RoomThemeNotifier extends Notifier<RoomTheme> {
     final String? saved = ref
         .read(sharedPreferencesProvider)
         .getString(_roomThemeKey);
-    return RoomTheme.values.where((RoomTheme t) => t.name == saved).firstOrNull ??
+    return RoomTheme.values
+            .where((RoomTheme t) => t.name == saved)
+            .firstOrNull ??
         RoomTheme.wood;
   }
 
@@ -109,42 +111,36 @@ class RoomSourceNotifier extends Notifier<RoomSource> {
 }
 
 /// What stands on the shelves for the chosen source, newest first.
-final FutureProvider<List<CollectionItem>> roomItemsProvider =
-    FutureProvider<List<CollectionItem>>((Ref ref) async {
-      final RoomSource source = ref.watch(roomSourceProvider);
-      final List<CollectionItem> items = await ref.watch(
-        libraryItemsProvider.future,
-      );
-      final List<CollectionItem> result;
-      switch (source) {
-        case RoomSource.owned:
-          final List<OwnedCopy> copies = await ref.watch(
-            allCopiesProvider.future,
-          );
-          final Set<int> owned = <int>{
-            for (final OwnedCopy c in copies)
-              if (c.format == CopyFormat.physical) c.itemId,
-          };
-          result = items
-              .where((CollectionItem i) => owned.contains(i.id))
-              .toList();
-        case RoomSource.favorites:
-          result = items.where((CollectionItem i) => i.isFavorite).toList();
-        case RoomSource.finishedThisYear:
-          final int year = DateTime.now().year;
-          result = items
-              .where(
-                (CollectionItem i) =>
-                    isFinishedStatus(i.status) &&
-                    i.completedAt?.year == year,
-              )
-              .toList();
-      }
-      return result
-        ..sort(
-          (CollectionItem a, CollectionItem b) => b.addedAt.compareTo(a.addedAt),
-        );
-    });
+final FutureProvider<List<CollectionItem>>
+roomItemsProvider = FutureProvider<List<CollectionItem>>((Ref ref) async {
+  final RoomSource source = ref.watch(roomSourceProvider);
+  final List<CollectionItem> items = await ref.watch(
+    libraryItemsProvider.future,
+  );
+  final List<CollectionItem> result;
+  switch (source) {
+    case RoomSource.owned:
+      final List<OwnedCopy> copies = await ref.watch(allCopiesProvider.future);
+      final Set<int> owned = <int>{
+        for (final OwnedCopy c in copies)
+          if (c.format == CopyFormat.physical) c.itemId,
+      };
+      result = items.where((CollectionItem i) => owned.contains(i.id)).toList();
+    case RoomSource.favorites:
+      result = items.where((CollectionItem i) => i.isFavorite).toList();
+    case RoomSource.finishedThisYear:
+      final int year = DateTime.now().year;
+      result = items
+          .where(
+            (CollectionItem i) =>
+                isFinishedStatus(i.status) && i.completedAt?.year == year,
+          )
+          .toList();
+  }
+  return result..sort(
+    (CollectionItem a, CollectionItem b) => b.addedAt.compareTo(a.addedAt),
+  );
+});
 
 final Provider<CopiesController> copiesControllerProvider =
     Provider<CopiesController>(CopiesController.new);
@@ -166,7 +162,11 @@ class CopiesController {
     _refresh(copy.itemId);
   }
 
-  Future<void> lend(OwnedCopy copy, {required String to, DateTime? dueAt}) async {
+  Future<void> lend(
+    OwnedCopy copy, {
+    required String to,
+    DateTime? dueAt,
+  }) async {
     await _dao.lend(copy.id, to: to, now: DateTime.now(), dueAt: dueAt);
     _refresh(copy.itemId);
   }

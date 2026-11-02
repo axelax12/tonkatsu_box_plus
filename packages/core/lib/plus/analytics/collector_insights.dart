@@ -114,7 +114,8 @@ abstract final class Keepsakes {
     }
 
     return <KeepsakeProgress>[
-      for (final Keepsake k in Keepsake.values) KeepsakeProgress(k, valueFor(k)),
+      for (final Keepsake k in Keepsake.values)
+        KeepsakeProgress(k, valueFor(k)),
     ];
   }
 }
