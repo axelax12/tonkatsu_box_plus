@@ -91,6 +91,7 @@ import '../../../shared/keyboard/keyboard_shortcuts.dart';
 import '../../../shared/constants/collection_item_ui.dart';
 import '../helpers/episode_undo.dart';
 import '../../../shared/keyboard/shortcut_helper.dart';
+import '../../journal/widgets/journal_section.dart';
 
 /// Unified detail screen for any collection item, dispatched off
 /// [CollectionItem.mediaType].
@@ -930,6 +931,13 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
             currentUnit: item.currentEpisode,
             currentGroup: item.currentSeason,
             accentColor: config.accentColor,
+          ),
+        if (widget.collectionId != null)
+          JournalSection(
+            itemId: item.id,
+            itemName: displayName,
+            accentColor: config.accentColor,
+            isEditable: widget.isEditable,
           ),
       ],
       recommendationSections: <Widget>[
