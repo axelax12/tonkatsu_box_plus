@@ -57,7 +57,7 @@ void main() {
       await pump(tester);
 
       expect(tester.takeException(), isNull);
-      expect(find.byIcon(Icons.play_arrow_rounded), findsOneWidget);
+      expect(find.byIcon(Icons.timer_outlined), findsOneWidget);
       expect(find.byIcon(Icons.history), findsOneWidget);
       expect(find.byType(LiveSessionClock), findsNothing);
     });
@@ -88,7 +88,7 @@ void main() {
     ) async {
       await pump(tester, editable: false);
 
-      expect(find.byIcon(Icons.play_arrow_rounded), findsNothing);
+      expect(find.byIcon(Icons.timer_outlined), findsNothing);
       expect(find.byIcon(Icons.add), findsNothing);
     });
 

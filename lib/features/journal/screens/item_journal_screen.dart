@@ -297,7 +297,7 @@ class _PlaythroughsTab extends ConsumerWidget {
         AppSpacing.xl * 2,
       ),
       itemCount: list.length,
-      separatorBuilder: (BuildContext _, int __) =>
+      separatorBuilder: (BuildContext _, int _) =>
           const SizedBox(height: AppSpacing.sm),
       itemBuilder: (BuildContext context, int index) {
         final Playthrough run = list[index];

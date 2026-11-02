@@ -196,7 +196,7 @@ class _SessionControls extends StatelessWidget {
         Expanded(
           child: FilledButton.icon(
             onPressed: onStart,
-            icon: const Icon(Icons.play_arrow_rounded),
+            icon: const Icon(Icons.timer_outlined),
             label: Text(l.journalStartSession),
             style: FilledButton.styleFrom(backgroundColor: accentColor),
           ),
