@@ -204,6 +204,38 @@ class PathSuggestions {
     return sorted.length <= limit ? sorted : sorted.sublist(0, limit);
   }
 
+  /// A TMDB film (live action or animated), or null for anything else.
+  static bool isTmdbMovie(CollectionItem item) =>
+      item.dataSource == DataSource.tmdb &&
+      item.movie != null &&
+      (item.mediaType == MediaType.movie ||
+          item.mediaType == MediaType.animation);
+
+  /// Library films sharing a TMDB collection with one already on the path;
+  /// [siblings] maps a film's TMDB id to the rest of its collection.
+  static List<CollectionItem> byCollection({
+    required Iterable<CollectionItem> seeds,
+    required Iterable<CollectionItem> library,
+    required Map<int, Set<String>> siblings,
+    Set<int> exclude = const <int>{},
+    int limit = defaultLimit,
+  }) {
+    final Set<String> wanted = <String>{
+      for (final CollectionItem s in seeds)
+        if (isTmdbMovie(s)) ...?siblings[s.externalId],
+    };
+    if (wanted.isEmpty) return const <CollectionItem>[];
+    final Map<int, CollectionItem> hits = <int, CollectionItem>{};
+    for (final CollectionItem item in library) {
+      if (!isTmdbMovie(item) || exclude.contains(item.id)) continue;
+      if (wanted.contains('movie:${item.externalId}')) {
+        hits.putIfAbsent(item.externalId, () => item);
+      }
+    }
+    final List<CollectionItem> sorted = hits.values.toList()..sort(_byRelease);
+    return sorted.length <= limit ? sorted : sorted.sublist(0, limit);
+  }
+
   /// AniList key of an anime or manga, or null when it came from elsewhere.
   static String? aniListKey(CollectionItem item) {
     if (item.dataSource != DataSource.anilist) return null;

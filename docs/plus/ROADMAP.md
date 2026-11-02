@@ -84,8 +84,9 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
 
 Stato: percorsi con i tre ordini, tappe facoltative e spoiler, suggerimenti per titolo dalla libreria,
 sezione nella scheda opera ed esplorazione per aspetto (generi più tag personali), proposte dei giochi
-della stessa serie da franchise e collezioni IGDB e degli anime/manga collegati dalle relazioni AniList,
-condivisione dei percorsi come testo da incollare in chat e importazione. Da fare: collezioni TMDB.
+della stessa serie da franchise e collezioni IGDB, dei film della stessa collezione TMDB e degli
+anime/manga collegati dalle relazioni AniList, condivisione dei percorsi come testo da incollare in chat
+e importazione.
 
 ## Fase 7 — Insieme ✅ (club esclusi)
 

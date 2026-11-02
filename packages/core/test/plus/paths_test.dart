@@ -313,6 +313,43 @@ void main() {
     });
   });
 
+  group('PathSuggestions.byCollection', () {
+    CollectionItem film(int id, int year) => createTestCollectionItem(
+      id: id,
+      externalId: id,
+      mediaType: MediaType.movie,
+      movie: createTestMovie(tmdbId: id, releaseYear: year),
+    );
+
+    test('finds library films of the same TMDB collection', () {
+      final List<CollectionItem> library = <CollectionItem>[
+        film(120, 2001),
+        film(121, 2002),
+        film(122, 2003),
+        film(999, 1999),
+        item(5, ItemStatus.notStarted),
+      ];
+      final List<CollectionItem> hits = PathSuggestions.byCollection(
+        seeds: <CollectionItem>[library[1]],
+        library: library,
+        siblings: <int, Set<String>>{
+          121: <String>{'movie:120', 'movie:122'},
+        },
+        exclude: <int>{121},
+      );
+      expect(hits.map((CollectionItem i) => i.id), <int>[120, 122]);
+      expect(PathSuggestions.isTmdbMovie(library.last), isFalse);
+      expect(
+        PathSuggestions.byCollection(
+          seeds: <CollectionItem>[library[3]],
+          library: library,
+          siblings: const <int, Set<String>>{},
+        ),
+        isEmpty,
+      );
+    });
+  });
+
   group('ThemeIndex', () {
     test('derives themes from genres by whole words', () {
       expect(

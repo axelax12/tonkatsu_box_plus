@@ -132,6 +132,49 @@ class TmdbMoviesApi {
     }
   }
 
+  /// The other films of each movie's TMDB collection ("The Lord of the Rings
+  /// Collection"), as `movie:<id>` tokens; a movie outside one gets none.
+  Future<Map<int, Set<String>>> collectionSiblingsFor(List<int> movieIds) async {
+    _client.ensureApiKey();
+    final Map<int, Set<String>> result = <int, Set<String>>{};
+    final Map<int, Set<String>> partsByCollection = <int, Set<String>>{};
+    try {
+      for (final int movieId in movieIds) {
+        final Response<dynamic> movie = await _client.get('/movie/$movieId');
+        final Map<String, dynamic>? collection =
+            (movie.data as Map<String, dynamic>?)?['belongs_to_collection']
+                as Map<String, dynamic>?;
+        final int? collectionId = collection?['id'] as int?;
+        if (collectionId == null) {
+          result[movieId] = const <String>{};
+          continue;
+        }
+        Set<String>? parts = partsByCollection[collectionId];
+        if (parts == null) {
+          final Response<dynamic> response = await _client.get(
+            '/collection/$collectionId',
+          );
+          parts = <String>{
+            for (final dynamic part
+                in ((response.data as Map<String, dynamic>?)?['parts']
+                        as List<dynamic>?) ??
+                    const <dynamic>[])
+              if ((part as Map<String, dynamic>)['id'] case final int id)
+                'movie:$id',
+          };
+          partsByCollection[collectionId] = parts;
+        }
+        result[movieId] = <String>{
+          for (final String p in parts)
+            if (p != 'movie:$movieId') p,
+        };
+      }
+      return result;
+    } on DioException catch (e) {
+      throw _client.handleDioException(e, 'Failed to fetch movie collection');
+    }
+  }
+
   Future<List<Movie>> getPopularMovies({int page = 1}) async {
     _client.ensureApiKey();
 

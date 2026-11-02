@@ -12,6 +12,7 @@ import 'package:logging/logging.dart';
 
 import '../../../core/api/anilist_api.dart';
 import '../../../core/api/igdb_api.dart';
+import '../../../core/api/tmdb_api.dart';
 import '../../../core/database/database_service.dart';
 import '../../insights/providers/insights_providers.dart';
 
@@ -164,14 +165,20 @@ final Provider<SeriesTokenCache> igdbSeriesCacheProvider =
       (Ref ref) => SeriesTokenCache(ref.read(igdbApiProvider).seriesTokensFor),
     );
 
+final Provider<SeriesTokenCache> tmdbCollectionCacheProvider =
+    Provider<SeriesTokenCache>(
+      (Ref ref) =>
+          SeriesTokenCache(ref.read(tmdbApiProvider).collectionSiblingsFor),
+    );
+
 final Provider<SeriesTokenCache> aniListRelationsCacheProvider =
     Provider<SeriesTokenCache>(
       (Ref ref) =>
           SeriesTokenCache(ref.read(aniListApiProvider).relatedTokensFor),
     );
 
-/// Library works of the same series as the path's own: IGDB franchises and
-/// collections for games, AniList relations for anime and manga.
+/// Library works of the same series as the path's own: IGDB franchises for
+/// games, TMDB collections for films, AniList relations for anime and manga.
 final FutureProviderFamily<List<CollectionItem>, int>
 seriesSuggestionsProvider = FutureProvider.family<List<CollectionItem>, int>((
   Ref ref,
@@ -201,6 +208,25 @@ seriesSuggestionsProvider = FutureProvider.family<List<CollectionItem>, int>((
         seeds: seeds,
         library: byId.values,
         tokens: tokens,
+        exclude: exclude,
+      ),
+    );
+  }
+
+  // Only the path's own films are looked up: two calls each, not the library.
+  final List<int> seedFilms = <int>[
+    for (final CollectionItem i in seeds)
+      if (PathSuggestions.isTmdbMovie(i)) i.externalId,
+  ];
+  if (seedFilms.isNotEmpty) {
+    final Map<int, Set<String>> siblings = await ref
+        .read(tmdbCollectionCacheProvider)
+        .tokensFor(seedFilms);
+    result.addAll(
+      PathSuggestions.byCollection(
+        seeds: seeds,
+        library: byId.values,
+        siblings: siblings,
         exclude: exclude,
       ),
     );
