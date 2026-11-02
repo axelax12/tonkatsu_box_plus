@@ -1,0 +1,41 @@
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
+Package gamepads:windows references gamepads_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of gamepads to either avoid referencing a default implementation via `platforms: windows: default_package: gamepads_windows` or create a plugin named gamepads_windows.
+
++775: /home/runner/work/tonkatsu_box_plus/tonkatsu_box_plus/test/shared/widgets/dual_date_picker_dialog_test.dart: DualDatePickerDialog allowBoth should render on a landscape phone with the keyboard up
+
+Warning: A call to tap() with finder "Found 1 widget with text "Cancel": [
+  Text("Cancel", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(545.7, 176.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderParagraph#79f62 relayoutBoundary=up14
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#28670@Offset(545.7, 176.0), RenderConstrainedBox#9093e@Offset(545.7, 176.0), RenderMouseRegion#59366@Offset(545.7, 176.0), RenderSemanticsAnnotations#d6e8a@Offset(545.7, 176.0), RenderPointerListener#747c7@Offset(545.7, 176.0), RenderSemanticsGestureHandler#2df18@Offset(545.7, 176.0), RenderExcludeSemantics#e689f@Offset(545.7, 176.0), RenderBlockSemantics#4de96@Offset(545.7, 176.0), RenderIgnorePointer#072f9@Offset(545.7, 176.0), RenderSemanticsAnnotations#07a05@Offset(545.7, 176.0), _RenderTheater#a9061@Offset(545.7, 176.0), RenderAbsorbPointer#9fe31@Offset(545.7, 176.0), RenderPointerListener#578a6@Offset(545.7, 176.0), RenderSemanticsAnnotations#c2da7@Offset(545.7, 176.0), RenderCustomPaint#a210b@Offset(545.7, 176.0), RenderSemanticsAnnotations#763ab@Offset(545.7, 176.0), RenderSemanticsAnnotations#78f3c@Offset(545.7, 176.0), RenderSemanticsAnnotations#b1831@Offset(545.7, 176.0), RenderTapRegionSurface#ce76c@Offset(545.7, 176.0), RenderSemanticsAnnotations#0628c@Offset(545.7, 176.0), RenderSemanticsAnnotations#a302a@Offset(545.7, 176.0), HitTestEntry<HitTestTarget>#27098(_ReusableRenderView#6d388), HitTestEntry<HitTestTarget>#36eea(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure>.<anonymous closure>.<anonymous closure>.<anonymous closure> (file:///home/runner/work/tonkatsu_box_plus/tonkatsu_box_plus/test/shared/widgets/dual_date_picker_dialog_test.dart:298:49)
+#4      main.<anonymous closure>.<anonymous closure>.openResultAndGet (file:///home/runner/work/tonkatsu_box_plus/tonkatsu_box_plus/test/shared/widgets/dual_date_picker_dialog_test.dart:200:23)
+<asynchronous suspension>
+#5      main.<anonymous closure>.<anonymous closure>.<anonymous closure> (file:///home/runner/work/tonkatsu_box_plus/tonkatsu_box_plus/test/shared/widgets/dual_date_picker_dialog_test.dart:295:9)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#8      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
++1401: All tests passed!
