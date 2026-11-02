@@ -36,7 +36,7 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
    personaggi ed eventi annotati. Per i giochi: missione attuale, comandi da ricordare, prossimo
    obiettivo. In futuro, eventuali riassunti automatici useranno solo contenuti fino al punto raggiunto.
 
-## Fase 2 — Obiettivi e numeri 🚧
+## Fase 2 — Obiettivi e numeri ✅
 
 5. **Obiettivi annuali** (stile StoryGraph): opere finite per tipo, ore, pagine, backlog smaltito.
    Più obiettivi in parallelo, con anello di avanzamento in home.
@@ -45,7 +45,7 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
 7. **Riepilogo dell'anno** (stile Wrapped). Statistiche più racconto: le opere che hanno segnato
    l'anno, citazioni e impressioni dal diario. Condivisibile come immagine, partendo dalla share card esistente.
 
-## Fase 3 — Collezioni intelligenti e home
+## Fase 3 — Collezioni intelligenti e home ✅ (la home passa alla Fase 8)
 
 8. **Collezioni automatiche con regole.** Liste che si aggiornano da sole, ad esempio:
    - giochi posseduti, mai iniziati, completabili in meno di 10 ore;
@@ -56,7 +56,7 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
 9. **Home personalizzabile a sezioni.** Scegli, ordini e nascondi le sezioni: riprendi, obiettivi,
    collezioni automatiche, uscite, salute del backlog.
 
-## Fase 4 — Il collezionista
+## Fase 4 — Il collezionista ✅
 
 10. **Collezione fisica.** Edizione, condizione, prezzo pagato, dove e quando l'hai comprato,
     prestiti agli amici con promemoria di restituzione.
@@ -64,14 +64,14 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
     piccoli ricordi sbloccati completando opere. Toccando una copertina apri la scheda; la stanza si
     può esportare come immagine da condividere.
 
-## Fase 5 — Android e integrazioni
+## Fase 5 — Android e integrazioni ✅ (manca l'avviso sulle uscite in wishlist)
 
 12. **Widget per la home di Android.** Opera in corso con avvia/ferma sessione, obiettivi dell'anno.
 13. **Notifiche.** Uscite delle opere in wishlist, timer di sessione attivo, prestiti in scadenza.
 14. **Achievement Steam.** Oltre a quelli di RetroAchievements già supportati.
 15. **Prezzi della wishlist** tramite IsThereAnyDeal, con avviso al minimo storico.
 
-## Fase 6 — Universi tra media diversi
+## Fase 6 — Universi tra media diversi 🚧
 
 16. **Universi e percorsi.** Collega libri, film, anime, manga e giochi dello stesso universo, con ordine
     di pubblicazione, cronologico e consigliato ("Voglio iniziare Gundam: da dove parto?").
@@ -82,12 +82,19 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
     "Giappone rurale", con opere di media diversi e una motivazione per ciascuna. Da un titolo amato
     scegli cosa ritrovare: atmosfera, ambientazione, temi o struttura narrativa.
 
-## Fase 7 — Insieme
+Stato: percorsi con i tre ordini, tappe facoltative e spoiler, suggerimenti per titolo dalla libreria,
+sezione nella scheda opera ed esplorazione per aspetto (generi più tag personali). Da fare: proposte
+automatiche da franchise IGDB, collezioni TMDB e relazioni AniList, ed esportazione dei percorsi.
+
+## Fase 7 — Insieme 🚧
 
 18. **Modalità "Scegliamo insieme".** Selezioni due o più profili e l'app propone titoli che nessuno
     ha già visto, compatibili con gusti e tempo disponibile; ognuno vota o scarta.
 19. **Club** di lettura, visione o gioco, con progressi individuali e discussioni protette dagli spoiler.
     Richiede una forma di sincronizzazione tra dispositivi: da valutare dopo la Fase 6.
+
+Stato: "Scegliamo insieme" legge in sola lettura le librerie degli altri profili sullo stesso telefono,
+accetta ospiti senza profilo e si vota passandosi il telefono. I club restano in attesa della sincronizzazione.
 
 ## Fase 8 — Restyling "copertine protagoniste"
 
