@@ -1,5 +1,6 @@
 import 'package:core/models/collection_item.dart';
 import 'package:core/models/media_type.dart';
+import 'package:core/plus/analytics/path_exchange.dart';
 import 'package:core/plus/analytics/path_walk.dart';
 import 'package:core/plus/analytics/theme_index.dart';
 import 'package:core/plus/database/aspects_dao.dart';
@@ -9,7 +10,9 @@ import 'package:core/plus/models/media_path.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 
+import '../../../core/api/anilist_api.dart';
 import '../../../core/api/igdb_api.dart';
+import '../../../core/api/tmdb_api.dart';
 import '../../../core/database/database_service.dart';
 import '../../insights/providers/insights_providers.dart';
 
@@ -129,29 +132,27 @@ final FutureProvider<ThemeIndex> themeIndexProvider =
 
 final Logger _log = Logger('Paths');
 
-/// IGDB series ids per game, fetched once per game for the app's lifetime:
-/// a franchise does not change between two visits to the picker.
+/// Series or relation tokens per catalog id, fetched once per id for the
+/// app's lifetime: a franchise does not change between two picker visits.
 class SeriesTokenCache {
+  SeriesTokenCache(this._fetch);
+
+  final Future<Map<int, Set<String>>> Function(List<int> ids) _fetch;
   final Map<int, Set<String>> _known = <int, Set<String>>{};
 
-  Future<Map<int, Set<String>>> tokensFor(
-    IgdbApi api,
-    Iterable<int> gameIds,
-  ) async {
+  Future<Map<int, Set<String>>> tokensFor(Iterable<int> ids) async {
     final List<int> missing = <int>[
-      for (final int id in gameIds.toSet())
+      for (final int id in ids.toSet())
         if (!_known.containsKey(id)) id,
     ];
     if (missing.isNotEmpty) {
       try {
-        final Map<int, Set<String>> fetched = await api.seriesTokensFor(
-          missing,
-        );
+        final Map<int, Set<String>> fetched = await _fetch(missing);
         for (final int id in missing) {
           _known[id] = fetched[id] ?? const <String>{};
         }
       } on Exception catch (e, stack) {
-        // Left unknown, so the next visit tries again once IGDB is reachable.
+        // Left unknown, so the next visit tries again once the API answers.
         _log.info('Series lookup unavailable', e, stack);
       }
     }
@@ -159,10 +160,25 @@ class SeriesTokenCache {
   }
 }
 
-final Provider<SeriesTokenCache> seriesTokenCacheProvider =
-    Provider<SeriesTokenCache>((Ref ref) => SeriesTokenCache());
+final Provider<SeriesTokenCache> igdbSeriesCacheProvider =
+    Provider<SeriesTokenCache>(
+      (Ref ref) => SeriesTokenCache(ref.read(igdbApiProvider).seriesTokensFor),
+    );
 
-/// Library games of the same IGDB franchise or collection as the path's own.
+final Provider<SeriesTokenCache> tmdbCollectionCacheProvider =
+    Provider<SeriesTokenCache>(
+      (Ref ref) =>
+          SeriesTokenCache(ref.read(tmdbApiProvider).collectionSiblingsFor),
+    );
+
+final Provider<SeriesTokenCache> aniListRelationsCacheProvider =
+    Provider<SeriesTokenCache>(
+      (Ref ref) =>
+          SeriesTokenCache(ref.read(aniListApiProvider).relatedTokensFor),
+    );
+
+/// Library works of the same series as the path's own: IGDB franchises for
+/// games, TMDB collections for films, AniList relations for anime and manga.
 final FutureProviderFamily<List<CollectionItem>, int>
 seriesSuggestionsProvider = FutureProvider.family<List<CollectionItem>, int>((
   Ref ref,
@@ -175,24 +191,71 @@ seriesSuggestionsProvider = FutureProvider.family<List<CollectionItem>, int>((
     libraryByIdProvider.future,
   );
   final List<CollectionItem> seeds = <CollectionItem>[
-    for (final PathEntry e in entries)
-      if (byId[e.itemId] case final CollectionItem i
-          when i.mediaType == MediaType.game)
-        i,
+    for (final PathEntry e in entries) ?byId[e.itemId],
   ];
-  if (seeds.isEmpty) return const <CollectionItem>[];
-  final Map<int, Set<String>> tokens = await ref
-      .read(seriesTokenCacheProvider)
-      .tokensFor(ref.read(igdbApiProvider), <int>[
-        for (final CollectionItem i in byId.values)
-          if (i.mediaType == MediaType.game) i.externalId,
-      ]);
-  return PathSuggestions.bySeries(
-    seeds: seeds,
-    library: byId.values,
-    tokens: tokens,
-    exclude: <int>{for (final PathEntry e in entries) e.itemId},
-  );
+  final Set<int> exclude = <int>{for (final PathEntry e in entries) e.itemId};
+  final List<CollectionItem> result = <CollectionItem>[];
+
+  if (seeds.any((CollectionItem i) => i.mediaType == MediaType.game)) {
+    final Map<int, Set<String>> tokens = await ref
+        .read(igdbSeriesCacheProvider)
+        .tokensFor(<int>[
+          for (final CollectionItem i in byId.values)
+            if (i.mediaType == MediaType.game) i.externalId,
+        ]);
+    result.addAll(
+      PathSuggestions.bySeries(
+        seeds: seeds,
+        library: byId.values,
+        tokens: tokens,
+        exclude: exclude,
+      ),
+    );
+  }
+
+  // Only the path's own films are looked up: two calls each, not the library.
+  final List<int> seedFilms = <int>[
+    for (final CollectionItem i in seeds)
+      if (PathSuggestions.isTmdbMovie(i)) i.externalId,
+  ];
+  if (seedFilms.isNotEmpty) {
+    final Map<int, Set<String>> siblings = await ref
+        .read(tmdbCollectionCacheProvider)
+        .tokensFor(seedFilms);
+    result.addAll(
+      PathSuggestions.byCollection(
+        seeds: seeds,
+        library: byId.values,
+        siblings: siblings,
+        exclude: exclude,
+      ),
+    );
+  }
+
+  final List<CollectionItem> aniList = <CollectionItem>[
+    for (final CollectionItem i in byId.values)
+      if (PathSuggestions.aniListKey(i) != null) i,
+  ];
+  if (seeds.any((CollectionItem i) => PathSuggestions.aniListKey(i) != null)) {
+    final Map<int, Set<String>> relations = await ref
+        .read(aniListRelationsCacheProvider)
+        .tokensFor(<int>[for (final CollectionItem i in aniList) i.externalId]);
+    // Keys carry the media type; AniList ids are unique across both.
+    final Map<String, Set<String>> related = <String, Set<String>>{
+      for (final CollectionItem i in aniList)
+        if (PathSuggestions.aniListKey(i) case final String key)
+          key: relations[i.externalId] ?? const <String>{},
+    };
+    result.addAll(
+      PathSuggestions.byRelations(
+        seeds: seeds,
+        library: byId.values,
+        related: related,
+        exclude: exclude,
+      ),
+    );
+  }
+  return result;
 });
 
 final Provider<PathsController> pathsControllerProvider =
@@ -233,6 +296,54 @@ class PathsController {
     await _dao.addItems(saved.id, PathSuggestions.releaseOrder(items));
     _ref.invalidate(pathsProvider);
     return saved;
+  }
+
+  /// Recreates a shared path from the works this library holds; returns the
+  /// new path and the stops left out.
+  Future<({MediaPath path, List<SharedStop> missing})> importShared(
+    SharedPath shared,
+  ) async {
+    final List<CollectionItem> library = await _ref.read(
+      libraryItemsProvider.future,
+    );
+    final PathMatch match = PathExchange.match(shared, library);
+    final DateTime now = DateTime.now();
+    final MediaPath saved = await _dao.savePath(
+      MediaPath(
+        id: 0,
+        name: shared.name,
+        kind: shared.kind,
+        description: shared.description,
+        defaultOrder: shared.defaultOrder,
+        createdAt: now,
+        updatedAt: now,
+      ),
+    );
+    await _dao.insertEntries(<PathEntry>[
+      for (final ({SharedStop stop, CollectionItem item}) f in match.found)
+        PathEntry(
+          id: 0,
+          pathId: saved.id,
+          itemId: f.item.id,
+          releasePos: f.stop.releasePos,
+          chronoPos: f.stop.chronoPos,
+          recommendedPos: f.stop.recommendedPos,
+          optional: f.stop.optional,
+          spoiler: f.stop.spoiler,
+          note: f.stop.note,
+          aspect: f.stop.aspect,
+        ),
+    ]);
+    _ref.invalidate(pathsProvider);
+    return (path: saved, missing: match.missing);
+  }
+
+  Future<String> exportText(MediaPath path) async {
+    final List<PathEntry> entries = await _dao.getEntries(path.id);
+    final Map<int, CollectionItem> items = await _ref.read(
+      libraryByIdProvider.future,
+    );
+    return PathExchange.encode(path, entries, items);
   }
 
   Future<void> delete(int pathId) async {

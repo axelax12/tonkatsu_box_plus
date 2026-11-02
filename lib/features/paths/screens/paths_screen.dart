@@ -1,4 +1,5 @@
 import 'package:core/models/collection_item.dart';
+import 'package:core/plus/analytics/path_exchange.dart';
 import 'package:core/plus/analytics/path_walk.dart';
 import 'package:core/plus/models/media_path.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/constants/media_type_theme.dart';
+import '../../../shared/extensions/snackbar_extension.dart';
 import '../../../shared/theme/app_colors.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/theme/app_typography.dart';
@@ -13,6 +15,7 @@ import '../../../shared/widgets/media_detail/media_cover_image.dart';
 import '../paths_format.dart';
 import '../providers/paths_providers.dart';
 import '../widgets/library_picker_sheet.dart';
+import '../widgets/path_import_dialog.dart';
 import '../widgets/path_sheets.dart';
 import 'explore_screen.dart';
 import 'path_screen.dart';
@@ -73,6 +76,34 @@ Future<void> createPathFlow(
   );
 }
 
+/// Imports a pasted path, says which works were not in the library, then
+/// opens it.
+Future<void> importPathFlow(BuildContext context, WidgetRef ref) async {
+  final S l = S.of(context);
+  final SharedPath? shared = await showPathImportDialog(context);
+  if (shared == null) return;
+  final ({MediaPath path, List<SharedStop> missing}) result = await ref
+      .read(pathsControllerProvider)
+      .importShared(shared);
+  if (!context.mounted) return;
+  context.showSnack(
+    l.pathImportMissing(
+      result.missing.length,
+      result.missing.map((SharedStop s) => s.title).join(', '),
+    ),
+    type: result.missing.isEmpty ? SnackType.success : SnackType.info,
+    duration: _importNoticeDuration,
+  );
+  await Navigator.of(context).push(
+    MaterialPageRoute<void>(
+      builder: (BuildContext _) => PathScreen(pathId: result.path.id),
+    ),
+  );
+}
+
+/// Long enough to read the list of missing titles.
+const Duration _importNoticeDuration = Duration(seconds: 6);
+
 class _PathsTab extends ConsumerWidget {
   const _PathsTab();
 
@@ -97,6 +128,12 @@ class _PathsTab extends ConsumerWidget {
           onPressed: () => createPathFlow(context, ref),
           icon: const Icon(Icons.add),
           label: Text(l.pathNew),
+        ),
+        const SizedBox(height: AppSpacing.sm),
+        OutlinedButton.icon(
+          onPressed: () => importPathFlow(context, ref),
+          icon: const Icon(Icons.download_outlined),
+          label: Text(l.pathImport),
         ),
         if (paths.isEmpty)
           Padding(

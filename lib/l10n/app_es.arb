@@ -3056,5 +3056,12 @@
   "quickStatusRemember": "Usar para todo lo que añada",
   "quickStatusAction": "Estado",
   "settingsAdvanced": "Avanzado",
-  "settingsAdvancedHint": "Importación, almacenamiento, integraciones y depuración"
+  "settingsAdvancedHint": "Importación, almacenamiento, integraciones y depuración",
+  "pathShare": "Copiar para compartir",
+  "pathShared": "Copiado. Pégalo en cualquier chat; se abre con Importar.",
+  "pathImport": "Importar una ruta",
+  "pathImportHint": "Pega el texto que te compartieron",
+  "pathImportPaste": "Pegar",
+  "pathImportInvalid": "Esto no es una ruta compartida.",
+  "pathImportMissing": "{count, plural, =0{Todas las obras están en tu biblioteca.} =1{No está en tu biblioteca: {titles}} other{{count} no están en tu biblioteca: {titles}}}"
 }

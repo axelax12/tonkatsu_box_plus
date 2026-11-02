@@ -213,6 +213,60 @@ class AniListMediaApi {
     }
   }
 
+  /// Directly related titles per AniList id, as `anime:<id>` / `manga:<id>`
+  /// tokens: sequels, prequels, side stories, adaptations and so on.
+  Future<Map<int, Set<String>>> relatedTokensFor(List<int> ids) async {
+    if (ids.isEmpty) return const <int, Set<String>>{};
+    final Map<int, Set<String>> result = <int, Set<String>>{};
+    for (int offset = 0; offset < ids.length; offset += _relationsPage) {
+      final List<int> batch = ids.sublist(
+        offset,
+        offset + _relationsPage > ids.length
+            ? ids.length
+            : offset + _relationsPage,
+      );
+      final Map<String, dynamic> body = await _client.post(
+        query: _relationsQuery,
+        variables: <String, dynamic>{'ids': batch, 'perPage': _relationsPage},
+        errorContext: 'Failed to fetch related titles',
+      );
+      final Map<String, dynamic>? data = _client.unwrapData(body);
+      final List<dynamic> media =
+          ((data?['Page'] as Map<String, dynamic>?)?['media']
+              as List<dynamic>?) ??
+          const <dynamic>[];
+      for (final dynamic raw in media) {
+        final Map<String, dynamic> m = raw as Map<String, dynamic>;
+        final int? id = m['id'] as int?;
+        if (id == null) continue;
+        final List<dynamic> edges =
+            ((m['relations'] as Map<String, dynamic>?)?['edges']
+                as List<dynamic>?) ??
+            const <dynamic>[];
+        result[id] = <String>{
+          for (final dynamic e in edges)
+            if ((e as Map<String, dynamic>)['node']
+                case <String, dynamic>{'id': final int nodeId, 'type': final String type})
+              '${type.toLowerCase()}:$nodeId',
+        };
+      }
+    }
+    return result;
+  }
+
+  static const int _relationsPage = 50;
+
+  static const String _relationsQuery = r'''
+query ($ids: [Int], $perPage: Int) {
+  Page(perPage: $perPage) {
+    media(id_in: $ids) {
+      id
+      relations { edges { node { id type } } }
+    }
+  }
+}
+''';
+
   /// Maximum retries per batch on a 429 before that batch is skipped.
   static const int _maxRateLimitRetries = 3;
 

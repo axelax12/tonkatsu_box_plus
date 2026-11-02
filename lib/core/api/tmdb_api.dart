@@ -93,6 +93,9 @@ class TmdbApi {
 
   Future<Movie?> getMovie(int tmdbId) => _movies.getMovie(tmdbId);
 
+  Future<Map<int, Set<String>>> collectionSiblingsFor(List<int> movieIds) =>
+      _movies.collectionSiblingsFor(movieIds);
+
   Future<List<Movie>> getPopularMovies({int page = 1}) =>
       _movies.getPopularMovies(page: page);
 

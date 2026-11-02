@@ -7730,4 +7730,35 @@ class SEs extends S {
   @override
   String get settingsAdvancedHint =>
       'Importación, almacenamiento, integraciones y depuración';
+
+  @override
+  String get pathShare => 'Copiar para compartir';
+
+  @override
+  String get pathShared =>
+      'Copiado. Pégalo en cualquier chat; se abre con Importar.';
+
+  @override
+  String get pathImport => 'Importar una ruta';
+
+  @override
+  String get pathImportHint => 'Pega el texto que te compartieron';
+
+  @override
+  String get pathImportPaste => 'Pegar';
+
+  @override
+  String get pathImportInvalid => 'Esto no es una ruta compartida.';
+
+  @override
+  String pathImportMissing(int count, String titles) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count no están en tu biblioteca: $titles',
+      one: 'No está en tu biblioteca: $titles',
+      zero: 'Todas las obras están en tu biblioteca.',
+    );
+    return '$_temp0';
+  }
 }

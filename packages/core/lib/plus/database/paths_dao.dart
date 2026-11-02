@@ -108,6 +108,21 @@ class PathsDao {
     });
   }
 
+  /// Stores fully formed entries, positions included; used by imports.
+  Future<void> insertEntries(List<PathEntry> entries) async {
+    if (entries.isEmpty) return;
+    final Database db = await _getDatabase();
+    await db.transaction((Transaction txn) async {
+      for (final PathEntry e in entries) {
+        await txn.insert(
+          _entries,
+          e.copyWith(id: 0).toDb(),
+          conflictAlgorithm: ConflictAlgorithm.ignore,
+        );
+      }
+    });
+  }
+
   Future<void> updateEntry(PathEntry entry) async {
     final Database db = await _getDatabase();
     await db.update(

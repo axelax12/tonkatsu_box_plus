@@ -7296,4 +7296,32 @@ class SZh extends S {
 
   @override
   String get settingsAdvancedHint => '导入、存储、集成和调试';
+
+  @override
+  String get pathShare => '复制以分享';
+
+  @override
+  String get pathShared => '已复制。粘贴到任意聊天中，可用“导入”打开。';
+
+  @override
+  String get pathImport => '导入路线';
+
+  @override
+  String get pathImportHint => '粘贴别人分享给你的文本';
+
+  @override
+  String get pathImportPaste => '粘贴';
+
+  @override
+  String get pathImportInvalid => '这不是分享的路线。';
+
+  @override
+  String pathImportMissing(int count, String titles) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '库中缺少 $count 部：$titles',
+    );
+    return '$_temp0';
+  }
 }

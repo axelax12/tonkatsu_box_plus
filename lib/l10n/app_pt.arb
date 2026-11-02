@@ -3484,5 +3484,12 @@
   "quickStatusRemember": "Usar para tudo que eu adicionar",
   "quickStatusAction": "Status",
   "settingsAdvanced": "Avançado",
-  "settingsAdvancedHint": "Importação, armazenamento, integrações e depuração"
+  "settingsAdvancedHint": "Importação, armazenamento, integrações e depuração",
+  "pathShare": "Copiar para compartilhar",
+  "pathShared": "Copiado. Cole em qualquer chat; ele abre com Importar.",
+  "pathImport": "Importar um percurso",
+  "pathImportHint": "Cole o texto que compartilharam com você",
+  "pathImportPaste": "Colar",
+  "pathImportInvalid": "Isto não é um percurso compartilhado.",
+  "pathImportMissing": "{count, plural, =0{Todas as obras estão na sua biblioteca.} =1{Fora da sua biblioteca: {titles}} other{{count} fora da sua biblioteca: {titles}}}"
 }

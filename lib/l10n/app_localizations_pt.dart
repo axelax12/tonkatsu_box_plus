@@ -7710,4 +7710,35 @@ class SPt extends S {
   @override
   String get settingsAdvancedHint =>
       'Importação, armazenamento, integrações e depuração';
+
+  @override
+  String get pathShare => 'Copiar para compartilhar';
+
+  @override
+  String get pathShared =>
+      'Copiado. Cole em qualquer chat; ele abre com Importar.';
+
+  @override
+  String get pathImport => 'Importar um percurso';
+
+  @override
+  String get pathImportHint => 'Cole o texto que compartilharam com você';
+
+  @override
+  String get pathImportPaste => 'Colar';
+
+  @override
+  String get pathImportInvalid => 'Isto não é um percurso compartilhado.';
+
+  @override
+  String pathImportMissing(int count, String titles) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count fora da sua biblioteca: $titles',
+      one: 'Fora da sua biblioteca: $titles',
+      zero: 'Todas as obras estão na sua biblioteca.',
+    );
+    return '$_temp0';
+  }
 }

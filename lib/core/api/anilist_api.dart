@@ -118,6 +118,9 @@ class AniListApi {
 
   Future<List<AniListTag>> fetchTagCollection() => _media.fetchTagCollection();
 
+  Future<Map<int, Set<String>>> relatedTokensFor(List<int> ids) =>
+      _media.relatedTokensFor(ids);
+
   Future<Manga?> getMangaById(int id) => _media.getMangaById(id);
 
   Future<Anime?> getAnimeById(int id) => _media.getAnimeById(id);

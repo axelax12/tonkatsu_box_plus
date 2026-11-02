@@ -1,5 +1,7 @@
 import 'package:core/models/collection_item.dart';
+import 'package:core/models/data_source.dart';
 import 'package:core/models/item_status.dart';
+import 'package:core/models/media_type.dart';
 import 'package:core/plus/analytics/path_walk.dart';
 import 'package:core/plus/analytics/theme_index.dart';
 import 'package:core/plus/database/aspects_dao.dart';
@@ -268,6 +270,86 @@ void main() {
     });
   });
 
+  group('PathSuggestions.byRelations', () {
+    CollectionItem anime(int id, {DataSource source = DataSource.anilist}) =>
+        createTestCollectionItem(
+          id: id,
+          externalId: id,
+          mediaType: MediaType.anime,
+          source: source,
+          anime: createTestAnime(id: id, title: 'A$id', source: source),
+        );
+
+    test('walks relations through the library only', () {
+      final List<CollectionItem> library = <CollectionItem>[
+        anime(1),
+        anime(2),
+        anime(3),
+        anime(4),
+        anime(5, source: DataSource.kitsu),
+      ];
+      final Map<String, Set<String>> related = <String, Set<String>>{
+        'anime:1': <String>{'anime:2', 'manga:9'},
+        'anime:2': <String>{'anime:3'},
+        'anime:4': <String>{'anime:8'},
+        'anime:8': <String>{'anime:5'},
+      };
+      final List<CollectionItem> hits = PathSuggestions.byRelations(
+        seeds: <CollectionItem>[library.first],
+        library: library,
+        related: related,
+        exclude: <int>{1},
+      );
+      expect(hits.map((CollectionItem i) => i.id).toSet(), <int>{2, 3});
+      expect(PathSuggestions.aniListKey(library[4]), isNull);
+      expect(
+        PathSuggestions.byRelations(
+          seeds: <CollectionItem>[library[4]],
+          library: library,
+          related: related,
+        ),
+        isEmpty,
+      );
+    });
+  });
+
+  group('PathSuggestions.byCollection', () {
+    CollectionItem film(int id, int year) => createTestCollectionItem(
+      id: id,
+      externalId: id,
+      mediaType: MediaType.movie,
+      movie: createTestMovie(tmdbId: id, releaseYear: year),
+    );
+
+    test('finds library films of the same TMDB collection', () {
+      final List<CollectionItem> library = <CollectionItem>[
+        film(120, 2001),
+        film(121, 2002),
+        film(122, 2003),
+        film(999, 1999),
+        item(5, ItemStatus.notStarted),
+      ];
+      final List<CollectionItem> hits = PathSuggestions.byCollection(
+        seeds: <CollectionItem>[library[1]],
+        library: library,
+        siblings: <int, Set<String>>{
+          121: <String>{'movie:120', 'movie:122'},
+        },
+        exclude: <int>{121},
+      );
+      expect(hits.map((CollectionItem i) => i.id), <int>[120, 122]);
+      expect(PathSuggestions.isTmdbMovie(library.last), isFalse);
+      expect(
+        PathSuggestions.byCollection(
+          seeds: <CollectionItem>[library[3]],
+          library: library,
+          siblings: const <int, Set<String>>{},
+        ),
+        isEmpty,
+      );
+    });
+  });
+
   group('ThemeIndex', () {
     test('derives themes from genres by whole words', () {
       expect(
@@ -387,6 +469,23 @@ void main() {
       expect(await dao.getEntries(path.id), hasLength(2));
       await dao.removeEntry(entries[1].id);
       expect(await dao.getAllEntries(), hasLength(1));
+      await dao.insertEntries(<PathEntry>[]);
+      await dao.insertEntries(<PathEntry>[
+        PathEntry(
+          id: 42,
+          pathId: path.id,
+          itemId: c,
+          releasePos: 5,
+          chronoPos: 6,
+          recommendedPos: 7,
+          spoiler: true,
+        ),
+      ]);
+      expect(
+        (await dao.getEntries(path.id)).map((PathEntry e) => e.itemId),
+        <int>[c],
+        reason: 'the duplicate for c is ignored',
+      );
       await dao.deletePath(path.id);
       expect(await dao.getAllEntries(), isEmpty);
     });

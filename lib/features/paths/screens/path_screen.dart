@@ -2,10 +2,12 @@ import 'package:core/models/collection_item.dart';
 import 'package:core/plus/analytics/path_walk.dart';
 import 'package:core/plus/models/media_path.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/constants/media_type_theme.dart';
+import '../../../shared/extensions/snackbar_extension.dart';
 import '../../../shared/theme/app_colors.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/theme/app_typography.dart';
@@ -17,7 +19,7 @@ import '../widgets/library_picker_sheet.dart';
 import '../widgets/path_sheets.dart';
 import '../widgets/path_stop_tile.dart';
 
-enum _PathMenu { details, sortRelease, delete }
+enum _PathMenu { details, sortRelease, share, delete }
 
 /// "Where do I start?": one path walked in a chosen order, with the stop to
 /// pick up next and spoiler stops masked until reached.
@@ -79,6 +81,10 @@ class _PathScreenState extends ConsumerState<PathScreen> {
       case _PathMenu.sortRelease:
         await _controller.sortByRelease(path.id);
         await _selectOrder(path, PathOrder.release);
+      case _PathMenu.share:
+        final String text = await _controller.exportText(path);
+        await Clipboard.setData(ClipboardData(text: text));
+        if (mounted) context.showSnack(l.pathShared, type: SnackType.success);
       case _PathMenu.delete:
         final bool confirmed = await ConfirmDialog.show(
           context,
@@ -173,6 +179,10 @@ class _PathScreenState extends ConsumerState<PathScreen> {
               PopupMenuItem<_PathMenu>(
                 value: _PathMenu.sortRelease,
                 child: Text(l.pathSortByRelease),
+              ),
+              PopupMenuItem<_PathMenu>(
+                value: _PathMenu.share,
+                child: Text(l.pathShare),
               ),
               PopupMenuItem<_PathMenu>(
                 value: _PathMenu.delete,
