@@ -2841,5 +2841,93 @@
   "journalMinutes": "Minutes",
   "journalPickDate": "Pick a date",
   "journalNotSet": "Not set",
-  "journalInvalidDuration": "Enter a duration longer than zero."
+  "journalInvalidDuration": "Enter a duration longer than zero.",
+  "insightsGoalsTitle": "Yearly goals",
+  "insightsGoalsHint": "Set targets for the year and watch the rings fill up",
+  "insightsBacklogTitle": "Backlog health",
+  "insightsBacklogHint": "How big it is, how old, and how long it would take to clear",
+  "insightsYearTitle": "Year in review",
+  "insightsYearHint": "Your year told in numbers and moments",
+  "goalAdd": "Add goal",
+  "goalEdit": "Edit goal",
+  "goalMetricCompleted": "Finished",
+  "goalMetricHours": "Hours logged",
+  "goalMetricBacklog": "From the backlog",
+  "goalAllTypes": "Everything",
+  "goalScope": "What counts",
+  "goalTarget": "Target",
+  "goalNoneYet": "No goals for {year} yet. Add one to start tracking.",
+  "@goalNoneYet": {
+    "placeholders": {"year": {"type": "int"}}
+  },
+  "goalPaceDone": "Goal reached",
+  "goalPaceAhead": "Ahead of pace",
+  "goalPaceOnTrack": "On track",
+  "goalPaceBehind": "Behind pace",
+  "goalProgressCount": "{current} of {target}",
+  "@goalProgressCount": {
+    "placeholders": {"current": {"type": "String"}, "target": {"type": "String"}}
+  },
+  "goalRemaining": "{remaining} to go",
+  "@goalRemaining": {
+    "placeholders": {"remaining": {"type": "String"}}
+  },
+  "goalDeleteConfirm": "Delete this goal?",
+  "goalHoursHint": "Hours come from journal sessions.",
+  "backlogWaiting": "Waiting",
+  "backlogAverageAge": "Average wait",
+  "backlogDays": "{count, plural, =1{1 day} other{{count} days}}",
+  "@backlogDays": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "backlogFinishedPerMonth": "Finished per month",
+  "backlogAddedPerMonth": "Added per month",
+  "backlogShrinking": "Your backlog is shrinking",
+  "backlogGrowing": "Your backlog is growing faster than you finish",
+  "backlogEstimate": "Time to finish everything",
+  "backlogEstimateNote": "{count, plural, =0{Every item has a length estimate.} =1{1 item has no length estimate.} other{{count} items have no length estimate.}}",
+  "@backlogEstimateNote": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "backlogAtYourPace": "At your pace",
+  "backlogMonths": "{value} months",
+  "@backlogMonths": {
+    "placeholders": {"value": {"type": "String"}}
+  },
+  "backlogWeeks": "{value} weeks",
+  "@backlogWeeks": {
+    "placeholders": {"value": {"type": "String"}}
+  },
+  "backlogNever": "Not at this pace",
+  "backlogNoSessions": "Log sessions in the journal for a time-based estimate.",
+  "backlogOldest": "Waiting the longest",
+  "backlogByType": "By type",
+  "backlogEmpty": "Nothing in the backlog. Enjoy it while it lasts.",
+  "backlogFetchingTimes": "Fetching game lengths…",
+  "hubBacklogPreview": "{count} waiting · average {age}",
+  "@hubBacklogPreview": {
+    "placeholders": {"count": {"type": "int"}, "age": {"type": "String"}}
+  },
+  "hubYearPreview": "{count} finished · {time} logged",
+  "@hubYearPreview": {
+    "placeholders": {"count": {"type": "int"}, "time": {"type": "String"}}
+  },
+  "yearCompleted": "Finished",
+  "yearHours": "Time logged",
+  "yearActiveDays": "Active days",
+  "yearLongestStreak": "Longest streak (days)",
+  "yearBusiestMonth": "Busiest month",
+  "yearMonthByMonth": "Month by month",
+  "yearMostPlayed": "Most time with",
+  "yearTopRated": "Top rated",
+  "yearHighlights": "From your journal",
+  "yearEmpty": "Nothing logged in {year} yet.",
+  "@yearEmpty": {
+    "placeholders": {"year": {"type": "int"}}
+  },
+  "yearShare": "Save as image",
+  "yearShareTitle": "{year} in review",
+  "@yearShareTitle": {
+    "placeholders": {"year": {"type": "int"}}
+  }
 }

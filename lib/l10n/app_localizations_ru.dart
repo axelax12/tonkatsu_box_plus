@@ -6541,4 +6541,211 @@ class SRu extends S {
 
   @override
   String get journalInvalidDuration => 'Укажите длительность больше нуля.';
+
+  @override
+  String get insightsGoalsTitle => 'Цели на год';
+
+  @override
+  String get insightsGoalsHint =>
+      'Поставьте цели на год и следите, как заполняются кольца';
+
+  @override
+  String get insightsBacklogTitle => 'Состояние бэклога';
+
+  @override
+  String get insightsBacklogHint =>
+      'Насколько он большой, старый и сколько времени нужно, чтобы его разобрать';
+
+  @override
+  String get insightsYearTitle => 'Итоги года';
+
+  @override
+  String get insightsYearHint => 'Ваш год в цифрах и моментах';
+
+  @override
+  String get goalAdd => 'Добавить цель';
+
+  @override
+  String get goalEdit => 'Изменить цель';
+
+  @override
+  String get goalMetricCompleted => 'Завершено';
+
+  @override
+  String get goalMetricHours => 'Часы';
+
+  @override
+  String get goalMetricBacklog => 'Из бэклога';
+
+  @override
+  String get goalAllTypes => 'Всё';
+
+  @override
+  String get goalScope => 'Что считать';
+
+  @override
+  String get goalTarget => 'Цель';
+
+  @override
+  String goalNoneYet(int year) {
+    return 'Целей на $year пока нет. Добавьте первую.';
+  }
+
+  @override
+  String get goalPaceDone => 'Цель достигнута';
+
+  @override
+  String get goalPaceAhead => 'Опережаете';
+
+  @override
+  String get goalPaceOnTrack => 'По плану';
+
+  @override
+  String get goalPaceBehind => 'Отстаёте';
+
+  @override
+  String goalProgressCount(String current, String target) {
+    return '$current из $target';
+  }
+
+  @override
+  String goalRemaining(String remaining) {
+    return 'осталось $remaining';
+  }
+
+  @override
+  String get goalDeleteConfirm => 'Удалить эту цель?';
+
+  @override
+  String get goalHoursHint => 'Часы берутся из сессий дневника.';
+
+  @override
+  String get backlogWaiting => 'Ждут';
+
+  @override
+  String get backlogAverageAge => 'Среднее ожидание';
+
+  @override
+  String backlogDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count дня',
+      many: '$count дней',
+      few: '$count дня',
+      one: '1 день',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backlogFinishedPerMonth => 'Завершено в месяц';
+
+  @override
+  String get backlogAddedPerMonth => 'Добавлено в месяц';
+
+  @override
+  String get backlogShrinking => 'Бэклог уменьшается';
+
+  @override
+  String get backlogGrowing => 'Бэклог растёт быстрее, чем вы завершаете';
+
+  @override
+  String get backlogEstimate => 'Время, чтобы пройти всё';
+
+  @override
+  String backlogEstimateNote(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'У $count элементов нет оценки длительности.',
+      many: 'У $count элементов нет оценки длительности.',
+      few: 'У $count элементов нет оценки длительности.',
+      one: 'У 1 элемента нет оценки длительности.',
+      zero: 'У всех элементов есть оценка длительности.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backlogAtYourPace => 'В вашем темпе';
+
+  @override
+  String backlogMonths(String value) {
+    return '$value мес.';
+  }
+
+  @override
+  String backlogWeeks(String value) {
+    return '$value нед.';
+  }
+
+  @override
+  String get backlogNever => 'Не в этом темпе';
+
+  @override
+  String get backlogNoSessions =>
+      'Записывайте сессии в дневник, чтобы получить оценку по времени.';
+
+  @override
+  String get backlogOldest => 'Ждут дольше всех';
+
+  @override
+  String get backlogByType => 'По типам';
+
+  @override
+  String get backlogEmpty => 'Бэклог пуст. Наслаждайтесь, пока можно.';
+
+  @override
+  String get backlogFetchingTimes => 'Загружаем длительность игр…';
+
+  @override
+  String hubBacklogPreview(int count, String age) {
+    return 'ждут: $count · в среднем $age';
+  }
+
+  @override
+  String hubYearPreview(int count, String time) {
+    return 'завершено: $count · $time';
+  }
+
+  @override
+  String get yearCompleted => 'Завершено';
+
+  @override
+  String get yearHours => 'Время';
+
+  @override
+  String get yearActiveDays => 'Активных дней';
+
+  @override
+  String get yearLongestStreak => 'Самая длинная серия (дни)';
+
+  @override
+  String get yearBusiestMonth => 'Самый активный месяц';
+
+  @override
+  String get yearMonthByMonth => 'По месяцам';
+
+  @override
+  String get yearMostPlayed => 'Больше всего времени';
+
+  @override
+  String get yearTopRated => 'Лучшие оценки';
+
+  @override
+  String get yearHighlights => 'Из вашего дневника';
+
+  @override
+  String yearEmpty(int year) {
+    return 'В $year году пока ничего нет.';
+  }
+
+  @override
+  String get yearShare => 'Сохранить как изображение';
+
+  @override
+  String yearShareTitle(int year) {
+    return 'Итоги $year';
+  }
 }

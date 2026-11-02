@@ -6114,4 +6114,202 @@ class SZh extends S {
 
   @override
   String get journalInvalidDuration => '请输入大于零的时长。';
+
+  @override
+  String get insightsGoalsTitle => '年度目标';
+
+  @override
+  String get insightsGoalsHint => '设定年度目标，看着进度环逐渐填满';
+
+  @override
+  String get insightsBacklogTitle => '待办清单健康度';
+
+  @override
+  String get insightsBacklogHint => '规模多大、积压多久、清完需要多少时间';
+
+  @override
+  String get insightsYearTitle => '年度回顾';
+
+  @override
+  String get insightsYearHint => '用数字和瞬间讲述你的一年';
+
+  @override
+  String get goalAdd => '添加目标';
+
+  @override
+  String get goalEdit => '编辑目标';
+
+  @override
+  String get goalMetricCompleted => '已完成';
+
+  @override
+  String get goalMetricHours => '记录时长';
+
+  @override
+  String get goalMetricBacklog => '来自待办';
+
+  @override
+  String get goalAllTypes => '全部';
+
+  @override
+  String get goalScope => '计入范围';
+
+  @override
+  String get goalTarget => '目标值';
+
+  @override
+  String goalNoneYet(int year) {
+    return '$year 年还没有目标。添加一个开始吧。';
+  }
+
+  @override
+  String get goalPaceDone => '已达成';
+
+  @override
+  String get goalPaceAhead => '超前';
+
+  @override
+  String get goalPaceOnTrack => '进度正常';
+
+  @override
+  String get goalPaceBehind => '落后';
+
+  @override
+  String goalProgressCount(String current, String target) {
+    return '$current / $target';
+  }
+
+  @override
+  String goalRemaining(String remaining) {
+    return '还差 $remaining';
+  }
+
+  @override
+  String get goalDeleteConfirm => '删除这个目标？';
+
+  @override
+  String get goalHoursHint => '时长来自日志中的记录。';
+
+  @override
+  String get backlogWaiting => '待开始';
+
+  @override
+  String get backlogAverageAge => '平均等待';
+
+  @override
+  String backlogDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 天',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backlogFinishedPerMonth => '每月完成';
+
+  @override
+  String get backlogAddedPerMonth => '每月新增';
+
+  @override
+  String get backlogShrinking => '你的待办正在减少';
+
+  @override
+  String get backlogGrowing => '待办增长速度快于完成速度';
+
+  @override
+  String get backlogEstimate => '全部完成所需时间';
+
+  @override
+  String backlogEstimateNote(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个条目没有时长估计。',
+      zero: '所有条目都有时长估计。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get backlogAtYourPace => '按你的节奏';
+
+  @override
+  String backlogMonths(String value) {
+    return '$value 个月';
+  }
+
+  @override
+  String backlogWeeks(String value) {
+    return '$value 周';
+  }
+
+  @override
+  String get backlogNever => '按当前节奏无法完成';
+
+  @override
+  String get backlogNoSessions => '在日志中记录时长，即可获得基于时间的估计。';
+
+  @override
+  String get backlogOldest => '等待最久';
+
+  @override
+  String get backlogByType => '按类型';
+
+  @override
+  String get backlogEmpty => '待办清单是空的，好好享受吧。';
+
+  @override
+  String get backlogFetchingTimes => '正在获取游戏时长…';
+
+  @override
+  String hubBacklogPreview(int count, String age) {
+    return '$count 个待开始 · 平均 $age';
+  }
+
+  @override
+  String hubYearPreview(int count, String time) {
+    return '已完成 $count · 记录 $time';
+  }
+
+  @override
+  String get yearCompleted => '已完成';
+
+  @override
+  String get yearHours => '记录时长';
+
+  @override
+  String get yearActiveDays => '活跃天数';
+
+  @override
+  String get yearLongestStreak => '最长连续天数';
+
+  @override
+  String get yearBusiestMonth => '最活跃的月份';
+
+  @override
+  String get yearMonthByMonth => '逐月';
+
+  @override
+  String get yearMostPlayed => '投入时间最多';
+
+  @override
+  String get yearTopRated => '评分最高';
+
+  @override
+  String get yearHighlights => '摘自你的日志';
+
+  @override
+  String yearEmpty(int year) {
+    return '$year 年还没有记录。';
+  }
+
+  @override
+  String get yearShare => '保存为图片';
+
+  @override
+  String yearShareTitle(int year) {
+    return '$year 年度回顾';
+  }
 }

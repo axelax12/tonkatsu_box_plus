@@ -11341,6 +11341,336 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Enter a duration longer than zero.'**
   String get journalInvalidDuration;
+
+  /// No description provided for @insightsGoalsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly goals'**
+  String get insightsGoalsTitle;
+
+  /// No description provided for @insightsGoalsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Set targets for the year and watch the rings fill up'**
+  String get insightsGoalsHint;
+
+  /// No description provided for @insightsBacklogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Backlog health'**
+  String get insightsBacklogTitle;
+
+  /// No description provided for @insightsBacklogHint.
+  ///
+  /// In en, this message translates to:
+  /// **'How big it is, how old, and how long it would take to clear'**
+  String get insightsBacklogHint;
+
+  /// No description provided for @insightsYearTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Year in review'**
+  String get insightsYearTitle;
+
+  /// No description provided for @insightsYearHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your year told in numbers and moments'**
+  String get insightsYearHint;
+
+  /// No description provided for @goalAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add goal'**
+  String get goalAdd;
+
+  /// No description provided for @goalEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit goal'**
+  String get goalEdit;
+
+  /// No description provided for @goalMetricCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished'**
+  String get goalMetricCompleted;
+
+  /// No description provided for @goalMetricHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Hours logged'**
+  String get goalMetricHours;
+
+  /// No description provided for @goalMetricBacklog.
+  ///
+  /// In en, this message translates to:
+  /// **'From the backlog'**
+  String get goalMetricBacklog;
+
+  /// No description provided for @goalAllTypes.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything'**
+  String get goalAllTypes;
+
+  /// No description provided for @goalScope.
+  ///
+  /// In en, this message translates to:
+  /// **'What counts'**
+  String get goalScope;
+
+  /// No description provided for @goalTarget.
+  ///
+  /// In en, this message translates to:
+  /// **'Target'**
+  String get goalTarget;
+
+  /// No description provided for @goalNoneYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No goals for {year} yet. Add one to start tracking.'**
+  String goalNoneYet(int year);
+
+  /// No description provided for @goalPaceDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal reached'**
+  String get goalPaceDone;
+
+  /// No description provided for @goalPaceAhead.
+  ///
+  /// In en, this message translates to:
+  /// **'Ahead of pace'**
+  String get goalPaceAhead;
+
+  /// No description provided for @goalPaceOnTrack.
+  ///
+  /// In en, this message translates to:
+  /// **'On track'**
+  String get goalPaceOnTrack;
+
+  /// No description provided for @goalPaceBehind.
+  ///
+  /// In en, this message translates to:
+  /// **'Behind pace'**
+  String get goalPaceBehind;
+
+  /// No description provided for @goalProgressCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} of {target}'**
+  String goalProgressCount(String current, String target);
+
+  /// No description provided for @goalRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{remaining} to go'**
+  String goalRemaining(String remaining);
+
+  /// No description provided for @goalDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this goal?'**
+  String get goalDeleteConfirm;
+
+  /// No description provided for @goalHoursHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hours come from journal sessions.'**
+  String get goalHoursHint;
+
+  /// No description provided for @backlogWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get backlogWaiting;
+
+  /// No description provided for @backlogAverageAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Average wait'**
+  String get backlogAverageAge;
+
+  /// No description provided for @backlogDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String backlogDays(int count);
+
+  /// No description provided for @backlogFinishedPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished per month'**
+  String get backlogFinishedPerMonth;
+
+  /// No description provided for @backlogAddedPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Added per month'**
+  String get backlogAddedPerMonth;
+
+  /// No description provided for @backlogShrinking.
+  ///
+  /// In en, this message translates to:
+  /// **'Your backlog is shrinking'**
+  String get backlogShrinking;
+
+  /// No description provided for @backlogGrowing.
+  ///
+  /// In en, this message translates to:
+  /// **'Your backlog is growing faster than you finish'**
+  String get backlogGrowing;
+
+  /// No description provided for @backlogEstimate.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to finish everything'**
+  String get backlogEstimate;
+
+  /// No description provided for @backlogEstimateNote.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Every item has a length estimate.} =1{1 item has no length estimate.} other{{count} items have no length estimate.}}'**
+  String backlogEstimateNote(int count);
+
+  /// No description provided for @backlogAtYourPace.
+  ///
+  /// In en, this message translates to:
+  /// **'At your pace'**
+  String get backlogAtYourPace;
+
+  /// No description provided for @backlogMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} months'**
+  String backlogMonths(String value);
+
+  /// No description provided for @backlogWeeks.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} weeks'**
+  String backlogWeeks(String value);
+
+  /// No description provided for @backlogNever.
+  ///
+  /// In en, this message translates to:
+  /// **'Not at this pace'**
+  String get backlogNever;
+
+  /// No description provided for @backlogNoSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Log sessions in the journal for a time-based estimate.'**
+  String get backlogNoSessions;
+
+  /// No description provided for @backlogOldest.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting the longest'**
+  String get backlogOldest;
+
+  /// No description provided for @backlogByType.
+  ///
+  /// In en, this message translates to:
+  /// **'By type'**
+  String get backlogByType;
+
+  /// No description provided for @backlogEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in the backlog. Enjoy it while it lasts.'**
+  String get backlogEmpty;
+
+  /// No description provided for @backlogFetchingTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Fetching game lengths…'**
+  String get backlogFetchingTimes;
+
+  /// No description provided for @hubBacklogPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} waiting · average {age}'**
+  String hubBacklogPreview(int count, String age);
+
+  /// No description provided for @hubYearPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} finished · {time} logged'**
+  String hubYearPreview(int count, String time);
+
+  /// No description provided for @yearCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished'**
+  String get yearCompleted;
+
+  /// No description provided for @yearHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Time logged'**
+  String get yearHours;
+
+  /// No description provided for @yearActiveDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Active days'**
+  String get yearActiveDays;
+
+  /// No description provided for @yearLongestStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Longest streak (days)'**
+  String get yearLongestStreak;
+
+  /// No description provided for @yearBusiestMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Busiest month'**
+  String get yearBusiestMonth;
+
+  /// No description provided for @yearMonthByMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Month by month'**
+  String get yearMonthByMonth;
+
+  /// No description provided for @yearMostPlayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Most time with'**
+  String get yearMostPlayed;
+
+  /// No description provided for @yearTopRated.
+  ///
+  /// In en, this message translates to:
+  /// **'Top rated'**
+  String get yearTopRated;
+
+  /// No description provided for @yearHighlights.
+  ///
+  /// In en, this message translates to:
+  /// **'From your journal'**
+  String get yearHighlights;
+
+  /// No description provided for @yearEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing logged in {year} yet.'**
+  String yearEmpty(int year);
+
+  /// No description provided for @yearShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Save as image'**
+  String get yearShare;
+
+  /// No description provided for @yearShareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{year} in review'**
+  String yearShareTitle(int year);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

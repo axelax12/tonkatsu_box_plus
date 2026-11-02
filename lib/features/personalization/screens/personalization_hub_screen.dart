@@ -4,6 +4,10 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/theme/app_colors.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/theme/app_typography.dart';
+import '../../insights/screens/backlog_health_screen.dart';
+import '../../insights/screens/goals_screen.dart';
+import '../../insights/screens/year_review_screen.dart';
+import '../../insights/widgets/hub_insights_previews.dart';
 import '../../likes/screens/likes_screen.dart';
 import '../../recommendations/screens/recommendations_screen.dart';
 import '../../showcase/screens/showcase_screen.dart';
@@ -92,6 +96,42 @@ class PersonalizationHubScreen extends StatelessWidget {
                   context,
                   title: l.likesTitle,
                   child: const LikesScreen(),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              HubSectionCard(
+                icon: Icons.track_changes_outlined,
+                title: l.insightsGoalsTitle,
+                hint: l.insightsGoalsHint,
+                preview: const HubGoalsPreview(),
+                onTap: () => pushPersonalizationSection(
+                  context,
+                  title: l.insightsGoalsTitle,
+                  child: const GoalsScreen(),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              HubSectionCard(
+                icon: Icons.inventory_2_outlined,
+                title: l.insightsBacklogTitle,
+                hint: l.insightsBacklogHint,
+                preview: const HubBacklogPreview(),
+                onTap: () => pushPersonalizationSection(
+                  context,
+                  title: l.insightsBacklogTitle,
+                  child: const BacklogHealthScreen(),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              HubSectionCard(
+                icon: Icons.auto_graph_outlined,
+                title: l.insightsYearTitle,
+                hint: l.insightsYearHint,
+                preview: const HubYearPreview(),
+                onTap: () => pushPersonalizationSection(
+                  context,
+                  title: l.insightsYearTitle,
+                  child: const YearReviewScreen(),
                 ),
               ),
             ],
