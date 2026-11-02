@@ -3123,5 +3123,125 @@
   "widgetGoals": "Goals {progress}",
   "@widgetGoals": {
     "placeholders": {"progress": {"type": "String"}}
-  }
+  },
+  "pathsTitle": "Paths & universes",
+  "pathsHint": "Where to start a saga, and works linked by a theme",
+  "pathsNoneYet": "No paths yet",
+  "pathsTabPaths": "Paths",
+  "pathsTabExplore": "Explore",
+  "pathKindUniverse": "Universe",
+  "pathKindTheme": "Theme path",
+  "pathsUniverses": "Universes",
+  "pathsThemes": "Theme paths",
+  "pathOrderRelease": "Release",
+  "pathOrderChrono": "Story order",
+  "pathOrderRecommended": "Recommended",
+  "aspectAtmosphere": "Atmosphere",
+  "aspectSetting": "Setting",
+  "aspectThemes": "Themes",
+  "aspectStructure": "Structure",
+  "pathNew": "New path",
+  "pathNameHint": "e.g. Gundam, The Witcher, cosmic horror",
+  "pathCreate": "Create",
+  "pathProgress": "{done} of {total} done",
+  "@pathProgress": {
+    "placeholders": {"done": {"type": "int"}, "total": {"type": "int"}}
+  },
+  "pathOptionalProgress": "Side stops: {done}/{total}",
+  "@pathOptionalProgress": {
+    "placeholders": {"done": {"type": "int"}, "total": {"type": "int"}}
+  },
+  "pathStartHere": "Start here",
+  "pathContinue": "Continue here",
+  "pathCompleted": "Path completed",
+  "pathEmpty": "No works on this path yet. Add them from your library.",
+  "pathAddWorks": "Add works",
+  "pathEditStops": "Edit stops",
+  "pathSortByRelease": "Sort release order by date",
+  "pathDeleteConfirm": "Delete the path \"{name}\"? The works stay in your library.",
+  "@pathDeleteConfirm": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "pathOptional": "Optional",
+  "pathOptionalHint": "Side story, not needed to finish the path",
+  "pathSpoiler": "Hide until reached",
+  "pathSpoilerHint": "Shown as ??? until every earlier stop is done",
+  "pathSpoilerHidden": "Hidden to avoid spoilers",
+  "pathReveal": "Reveal",
+  "pathRevealConfirm": "Show this stop? Its title may spoil what comes before it.",
+  "pathNote": "Note",
+  "pathNoteHint": "Why it is here, where it fits",
+  "pathAspect": "Linked by",
+  "pathAspectNone": "Not set",
+  "pathRemoveStop": "Remove from path",
+  "pathStateDone": "Done",
+  "pathStateActive": "In progress",
+  "pathStateNext": "Next",
+  "pathPickerTitle": "Add from your library",
+  "pathPickerSearch": "Search your library",
+  "pathPickerSuggested": "Matching the name",
+  "pathPickerSelectAll": "Select all {count}",
+  "@pathPickerSelectAll": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "pathPickerAdd": "{count, plural, =0{Add} other{Add {count}}}",
+  "@pathPickerAdd": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "pathPickerMissing": "Not in your library? Add it from Search first, then come back.",
+  "pathPickerNoResults": "Nothing found",
+  "pathsSectionTitle": "Paths & themes",
+  "pathsSectionStop": "Stop {pos} of {total}",
+  "@pathsSectionStop": {
+    "placeholders": {"pos": {"type": "int"}, "total": {"type": "int"}}
+  },
+  "pathsSectionNext": "Next: {name}",
+  "@pathsSectionNext": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "pathAddToPath": "Add to a path",
+  "pathAdded": "Added to {name}",
+  "@pathAdded": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "aspectAddTag": "Add tag",
+  "aspectTagHint": "e.g. melancholic, orbital station",
+  "aspectTagExists": "Already tagged",
+  "aspectFromGenres": "From genres",
+  "exploreIntro": "Pick an aspect, then a thread to follow across games, films, books and more.",
+  "exploreEmpty": "Nothing here yet. Genres fill this in, and so do the tags you add on a work page.",
+  "exploreToDiscover": "{count, plural, =0{All explored} =1{1 to discover} other{{count} to discover}}",
+  "@exploreToDiscover": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "exploreMakePath": "Make a path",
+  "explorePathCreated": "Path \"{name}\" created",
+  "@explorePathCreated": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "themeDark": "Dark",
+  "themeTense": "Tense",
+  "themeLighthearted": "Light-hearted",
+  "themeCozy": "Cozy",
+  "themeEmotional": "Emotional",
+  "themeSurreal": "Surreal",
+  "themeSpace": "Space & sci-fi",
+  "themeFantasyWorlds": "Fantasy worlds",
+  "themeHistorical": "Historical",
+  "themeDystopia": "Dystopia & cyberpunk",
+  "themeSchool": "School life",
+  "themeSupernatural": "Supernatural",
+  "themeLove": "Love",
+  "themeWar": "War",
+  "themeMind": "Mind & philosophy",
+  "themeCrime": "Crime & justice",
+  "themeComingOfAge": "Coming of age",
+  "themeMachines": "Mecha & machines",
+  "themeCompetition": "Sport & competition",
+  "themeMystery": "Mystery",
+  "themeJourney": "Journey & adventure",
+  "themeAction": "Action",
+  "themeStrategy": "Strategy",
+  "themeRolePlaying": "Role-playing",
+  "themeTrueStories": "True stories"
 }
