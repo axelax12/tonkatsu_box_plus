@@ -7342,7 +7342,7 @@ class SPt extends S {
   String get pathPickerSearch => 'Pesquisar na sua biblioteca';
 
   @override
-  String get pathPickerSuggested => 'Combinam com o nome';
+  String get pathPickerSuggested => 'Sugestões para este percurso';
 
   @override
   String pathPickerSelectAll(int count) {
@@ -7703,4 +7703,11 @@ class SPt extends S {
 
   @override
   String get quickStatusAction => 'Status';
+
+  @override
+  String get settingsAdvanced => 'Avançado';
+
+  @override
+  String get settingsAdvancedHint =>
+      'Importação, armazenamento, integrações e depuração';
 }

@@ -7363,7 +7363,7 @@ class SEs extends S {
   String get pathPickerSearch => 'Busca en tu biblioteca';
 
   @override
-  String get pathPickerSuggested => 'Coinciden con el nombre';
+  String get pathPickerSuggested => 'Sugeridas para esta ruta';
 
   @override
   String pathPickerSelectAll(int count) {
@@ -7723,4 +7723,11 @@ class SEs extends S {
 
   @override
   String get quickStatusAction => 'Estado';
+
+  @override
+  String get settingsAdvanced => 'Avanzado';
+
+  @override
+  String get settingsAdvancedHint =>
+      'Importación, almacenamiento, integraciones y depuración';
 }

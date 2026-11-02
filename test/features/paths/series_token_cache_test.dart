@@ -20,7 +20,10 @@ void main() {
         },
       );
       final SeriesTokenCache cache = SeriesTokenCache();
-      final Map<int, Set<String>> first = await cache.tokensFor(api, <int>[1, 2]);
+      final Map<int, Set<String>> first = await cache.tokensFor(api, <int>[
+        1,
+        2,
+      ]);
       expect(first[1], <String>{'f:7'});
       expect(first[2], isEmpty, reason: 'a miss is remembered too');
       await cache.tokensFor(api, <int>[1, 2, 3]);

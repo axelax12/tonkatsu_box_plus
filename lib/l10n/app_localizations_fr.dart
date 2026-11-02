@@ -7386,7 +7386,7 @@ class SFr extends S {
   String get pathPickerSearch => 'Rechercher dans votre bibliothèque';
 
   @override
-  String get pathPickerSuggested => 'Correspondant au nom';
+  String get pathPickerSuggested => 'Suggestions pour ce parcours';
 
   @override
   String pathPickerSelectAll(int count) {
@@ -7748,4 +7748,11 @@ class SFr extends S {
 
   @override
   String get quickStatusAction => 'Statut';
+
+  @override
+  String get settingsAdvanced => 'Avancé';
+
+  @override
+  String get settingsAdvancedHint =>
+      'Imports, stockage, intégrations et débogage';
 }

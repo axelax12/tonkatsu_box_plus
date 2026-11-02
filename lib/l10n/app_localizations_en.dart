@@ -7280,7 +7280,7 @@ class SEn extends S {
   String get pathPickerSearch => 'Search your library';
 
   @override
-  String get pathPickerSuggested => 'Matching the name';
+  String get pathPickerSuggested => 'Suggested for this path';
 
   @override
   String pathPickerSelectAll(int count) {
@@ -7639,4 +7639,11 @@ class SEn extends S {
 
   @override
   String get quickStatusAction => 'Status';
+
+  @override
+  String get settingsAdvanced => 'Advanced';
+
+  @override
+  String get settingsAdvancedHint =>
+      'Imports, storage, integrations and debugging';
 }

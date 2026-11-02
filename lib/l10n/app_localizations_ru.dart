@@ -7396,7 +7396,7 @@ class SRu extends S {
   String get pathPickerSearch => 'Поиск по библиотеке';
 
   @override
-  String get pathPickerSuggested => 'Совпадают с названием';
+  String get pathPickerSuggested => 'Подходят к этому пути';
 
   @override
   String pathPickerSelectAll(int count) {
@@ -7762,4 +7762,10 @@ class SRu extends S {
 
   @override
   String get quickStatusAction => 'Статус';
+
+  @override
+  String get settingsAdvanced => 'Дополнительно';
+
+  @override
+  String get settingsAdvancedHint => 'Импорт, хранилище, интеграции и отладка';
 }

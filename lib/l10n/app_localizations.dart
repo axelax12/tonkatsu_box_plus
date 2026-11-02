@@ -12845,7 +12845,7 @@ abstract class S {
   /// No description provided for @pathPickerSuggested.
   ///
   /// In en, this message translates to:
-  /// **'Matching the name'**
+  /// **'Suggested for this path'**
   String get pathPickerSuggested;
 
   /// No description provided for @pathPickerSelectAll.
@@ -13435,6 +13435,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Status'**
   String get quickStatusAction;
+
+  /// No description provided for @settingsAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get settingsAdvanced;
+
+  /// No description provided for @settingsAdvancedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Imports, storage, integrations and debugging'**
+  String get settingsAdvancedHint;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

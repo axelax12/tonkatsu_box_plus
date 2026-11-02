@@ -6942,7 +6942,7 @@ class SZh extends S {
   String get pathPickerSearch => '搜索你的库';
 
   @override
-  String get pathPickerSuggested => '与名称匹配';
+  String get pathPickerSuggested => '为这条路线推荐';
 
   @override
   String pathPickerSelectAll(int count) {
@@ -7290,4 +7290,10 @@ class SZh extends S {
 
   @override
   String get quickStatusAction => '状态';
+
+  @override
+  String get settingsAdvanced => '高级';
+
+  @override
+  String get settingsAdvancedHint => '导入、存储、集成和调试';
 }
