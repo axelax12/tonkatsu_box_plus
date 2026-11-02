@@ -7,6 +7,7 @@ import '../../../shared/theme/app_colors.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/theme/app_typography.dart';
 import '../../../shared/widgets/confirm_dialog.dart';
+import '../../notifications/plus_notifications.dart';
 import '../collector_format.dart';
 import '../providers/collector_providers.dart';
 import 'copy_sheets.dart';
@@ -17,10 +18,14 @@ class CopiesSection extends ConsumerWidget {
     required this.itemId,
     required this.accentColor,
     required this.isEditable,
+    this.itemName,
     super.key,
   });
 
   final int itemId;
+
+  /// Named in the loan reminder.
+  final String? itemName;
   final Color accentColor;
   final bool isEditable;
 
@@ -49,7 +54,10 @@ class CopiesSection extends ConsumerWidget {
           message: l.copyDeleteConfirm,
           confirmLabel: l.delete,
         );
-        if (confirmed) await controller.delete(target);
+        if (confirmed) {
+          await controller.delete(target);
+          await PlusNotifications.instance.cancelLoanReminder(target.id);
+        }
     }
   }
 
@@ -58,14 +66,25 @@ class CopiesSection extends ConsumerWidget {
     WidgetRef ref,
     OwnedCopy copy,
   ) async {
+    final S l = S.of(context);
     final CopiesController controller = ref.read(copiesControllerProvider);
     if (copy.isLoaned) {
       await controller.markReturned(copy);
+      await PlusNotifications.instance.cancelLoanReminder(copy.id);
       return;
     }
     final LoanInput? loan = await showLendSheet(context);
     if (loan == null) return;
     await controller.lend(copy, to: loan.to, dueAt: loan.dueAt);
+    final DateTime? due = loan.dueAt;
+    if (due != null) {
+      await PlusNotifications.instance.scheduleLoanReminder(
+        copyId: copy.id,
+        title: l.loanReminderTitle(itemName ?? l.copiesTitle),
+        body: l.loanReminderBody(loan.to),
+        dueAt: due,
+      );
+    }
   }
 
   @override

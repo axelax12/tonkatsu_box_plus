@@ -6655,4 +6655,145 @@ class SZh extends S {
 
   @override
   String get keepsakeCriticHint => '为 50 项评分';
+
+  @override
+  String get connectionsTitle => '连接';
+
+  @override
+  String get connectionsSteam => 'Steam 成就';
+
+  @override
+  String get connectionsSteamHint =>
+      '需要 Steam Web API 密钥和 17 位 SteamID64，且游戏详情需设为公开。';
+
+  @override
+  String get connectionsSteamKey => 'Steam Web API 密钥';
+
+  @override
+  String get connectionsSteamId => 'SteamID64';
+
+  @override
+  String get connectionsItad => 'IsThereAnyDeal 价格';
+
+  @override
+  String get connectionsItadHint =>
+      '在 IsThereAnyDeal 免费注册应用即可获得密钥，价格按你的国家/地区显示。';
+
+  @override
+  String get connectionsItadKey => 'IsThereAnyDeal API 密钥';
+
+  @override
+  String get connectionsCountry => '国家/地区代码（如 CN）';
+
+  @override
+  String get connectionsGetKey => '获取密钥';
+
+  @override
+  String get steamAchievementsTitle => 'Steam 成就';
+
+  @override
+  String get steamConnect => '连接 Steam 以查看成就';
+
+  @override
+  String get steamSync => '刷新';
+
+  @override
+  String get steamNotSynced => '尚未同步。';
+
+  @override
+  String steamProgress(int earned, int total) {
+    return '已解锁 $earned/$total';
+  }
+
+  @override
+  String steamShowAll(int count) {
+    return '显示全部 $count 个';
+  }
+
+  @override
+  String get steamShowLess => '收起';
+
+  @override
+  String get steamHiddenAchievement => '隐藏成就';
+
+  @override
+  String get steamPrivateProfile => '你的 Steam 游戏详情为私密，请设为公开后再同步。';
+
+  @override
+  String get steamNoAchievements => '这款游戏没有 Steam 成就。';
+
+  @override
+  String get steamBadKey => 'Steam 拒绝了密钥或 SteamID，请在“连接”中检查。';
+
+  @override
+  String get steamNetworkError => '无法连接服务，请稍后再试。';
+
+  @override
+  String get dealTitle => '最低价';
+
+  @override
+  String get dealConnect => '连接 IsThereAnyDeal 查看价格';
+
+  @override
+  String get dealConnectHint => '连接 IsThereAnyDeal，关注计划中游戏的价格，并在史低时收到提醒。';
+
+  @override
+  String get dealNotChecked => '尚未查询价格。';
+
+  @override
+  String get dealNotListed => '未找到商店信息。';
+
+  @override
+  String dealHistoricLow(String price) {
+    return '史低 $price';
+  }
+
+  @override
+  String get dealAtLow => '当前即为史低！';
+
+  @override
+  String get dealBadKey => 'IsThereAnyDeal 拒绝了密钥，请在“连接”中检查。';
+
+  @override
+  String dealLowTitle(String title) {
+    return '$title 史低了';
+  }
+
+  @override
+  String dealLowBody(String price, String shop) {
+    return '$shop 售价 $price';
+  }
+
+  @override
+  String get dealsTitle => '折扣';
+
+  @override
+  String get dealsCardHint => '计划游玩的游戏价格';
+
+  @override
+  String get dealsHint => '会关注计划中的游戏，达到史低时通知你。';
+
+  @override
+  String get dealsRefresh => '立即查价';
+
+  @override
+  String get dealsEmpty => '还没有计划中的游戏。将游戏设为“计划”即可关注价格。';
+
+  @override
+  String loanReminderTitle(String title) {
+    return '该拿回《$title》了';
+  }
+
+  @override
+  String loanReminderBody(String name) {
+    return '借给了 $name';
+  }
+
+  @override
+  String get widgetIdle => '当前没有进行中的记录';
+
+  @override
+  String widgetGoals(String progress) {
+    return '目标 $progress';
+  }
 }

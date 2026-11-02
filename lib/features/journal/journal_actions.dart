@@ -1,3 +1,4 @@
+import 'package:core/plus/analytics/goal_progress.dart';
 import 'package:core/plus/models/journal_entry.dart';
 import 'package:core/plus/models/play_session.dart';
 import 'package:core/plus/models/playthrough.dart';
@@ -9,6 +10,9 @@ import '../../l10n/app_localizations.dart';
 import '../../shared/extensions/snackbar_extension.dart';
 import '../../shared/utils/duration_formatter.dart';
 import '../../shared/widgets/confirm_dialog.dart';
+import '../insights/providers/insights_providers.dart';
+import '../notifications/plus_home_widget.dart';
+import '../notifications/plus_notifications.dart';
 import 'providers/journal_providers.dart';
 import 'widgets/bookmark_editor_sheet.dart';
 import 'widgets/entry_editor_sheet.dart';
@@ -18,15 +22,52 @@ import 'widgets/session_sheets.dart';
 /// UI flows shared by the item section and the full journal screen: each one
 /// opens its sheet, writes through [JournalController] and confirms.
 class JournalActions {
-  const JournalActions(this.ref, this.itemId);
+  const JournalActions(this.ref, this.itemId, {this.itemName});
 
   final WidgetRef ref;
   final int itemId;
 
+  /// Shown in the running-session notification.
+  final String? itemName;
+
   JournalController get _controller => ref.read(journalControllerProvider);
 
-  Future<void> startSession() async {
-    await _controller.startSession(itemId);
+  Future<void> startSession(BuildContext context) async {
+    final S l = S.of(context);
+    final PlaySession session = await _controller.startSession(itemId);
+    await PlusNotifications.instance.showRunningSession(
+      itemId: itemId,
+      title: itemName ?? l.journalSessionRunning,
+      body: l.journalSessionRunning,
+      startedAt: session.startedAt,
+    );
+    await _refreshWidget(l, running: session);
+  }
+
+  // The widget shows one session; stopping clears it back to the goals line.
+  Future<void> _refreshWidget(S l, {PlaySession? running}) async {
+    const int percent = 100;
+    String? goals;
+    try {
+      final List<GoalProgress> progress = await ref.read(
+        goalProgressProvider(DateTime.now().year).future,
+      );
+      if (progress.isNotEmpty) {
+        goals = l.widgetGoals(
+          progress
+              .map((GoalProgress p) => '${(p.fraction * percent).round()}%')
+              .join(' · '),
+        );
+      }
+    } on Exception {
+      goals = null;
+    }
+    await PlusHomeWidget.update(
+      idleLabel: l.widgetIdle,
+      title: running == null ? null : (itemName ?? l.journalSessionRunning),
+      startedAt: running?.startedAt,
+      goals: goals,
+    );
   }
 
   /// Progress typed while stopping also moves the "Where was I?" position.
@@ -47,6 +88,8 @@ class JournalActions {
       note: wrapUp.note,
       progressLabel: wrapUp.progressLabel,
     );
+    await PlusNotifications.instance.cancelRunningSession(itemId);
+    if (context.mounted) await _refreshWidget(l);
     final String progress = wrapUp.progressLabel?.trim() ?? '';
     if (progress.isNotEmpty && progress != bookmark?.position) {
       await _controller.saveBookmark(

@@ -12,6 +12,7 @@ import '../../../shared/theme/app_colors.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/theme/app_typography.dart';
 import '../../insights/providers/insights_providers.dart';
+import '../../notifications/plus_notifications.dart';
 import '../../insights/widgets/item_cover_row.dart';
 import '../../insights/widgets/stat_tile.dart';
 import '../collector_format.dart';
@@ -241,8 +242,10 @@ class _LoansTab extends ConsumerWidget {
               trailing: IconButton(
                 tooltip: l.copyReturned,
                 icon: const Icon(Icons.assignment_return_outlined),
-                onPressed: () =>
-                    ref.read(copiesControllerProvider).markReturned(loan),
+                onPressed: () async {
+                  await ref.read(copiesControllerProvider).markReturned(loan);
+                  await PlusNotifications.instance.cancelLoanReminder(loan.id);
+                },
               ),
             ),
       ],
