@@ -3179,7 +3179,7 @@
   "pathStateNext": "Next",
   "pathPickerTitle": "Add from your library",
   "pathPickerSearch": "Search your library",
-  "pathPickerSuggested": "Matching the name",
+  "pathPickerSuggested": "Suggested for this path",
   "pathPickerSelectAll": "Select all {count}",
   "@pathPickerSelectAll": {
     "placeholders": {"count": {"type": "int"}}
@@ -3299,5 +3299,39 @@
   "@releaseReminderTitle": {
     "placeholders": {"name": {"type": "String"}}
   },
-  "releaseReminderBody": "A work on your list is released today."
+  "releaseReminderBody": "A work on your list is released today.",
+  "homeToday": "Today",
+  "homeLibrary": "Library",
+  "todayCustomize": "Customize home",
+  "todayCustomizeHint": "Drag to reorder, switch off what you do not need.",
+  "todayResume": "Continue",
+  "todayGoals": "Goals",
+  "todayUpNext": "Next on your paths",
+  "todayReleases": "Coming out",
+  "todayBacklog": "Backlog",
+  "todayLists": "Smart lists",
+  "todayNothingInProgress": "Nothing in progress. Pick something from your backlog!",
+  "todayWhereWasI": "Where you left off: {position}",
+  "@todayWhereWasI": {
+    "placeholders": {"position": {"type": "String"}}
+  },
+  "todayStart": "Start session",
+  "todayStop": "Stop session",
+  "todaySeeAll": "See all",
+  "todayBacklogLine": "{count} waiting · about {hours} h to clear",
+  "@todayBacklogLine": {
+    "placeholders": {"count": {"type": "int"}, "hours": {"type": "int"}}
+  },
+  "todayPickForMe": "Help me choose",
+  "todayInPath": "In {name}",
+  "@todayInPath": {
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "todayNoReleases": "No dated releases on your list yet.",
+  "todayNoUpNext": "Create a path to see what comes next in a saga.",
+  "quickStatusTitle": "Where are you with it?",
+  "quickStatusRemember": "Use this for everything I add",
+  "quickStatusAction": "Status",
+  "settingsAdvanced": "Advanced",
+  "settingsAdvancedHint": "Imports, storage, integrations and debugging"
 }

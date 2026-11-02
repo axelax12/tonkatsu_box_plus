@@ -6942,7 +6942,7 @@ class SZh extends S {
   String get pathPickerSearch => '搜索你的库';
 
   @override
-  String get pathPickerSuggested => '与名称匹配';
+  String get pathPickerSuggested => '为这条路线推荐';
 
   @override
   String pathPickerSelectAll(int count) {
@@ -7215,4 +7215,85 @@ class SZh extends S {
 
   @override
   String get releaseReminderBody => '你清单里的一部作品今天发售。';
+
+  @override
+  String get homeToday => '今天';
+
+  @override
+  String get homeLibrary => '库';
+
+  @override
+  String get todayCustomize => '自定义首页';
+
+  @override
+  String get todayCustomizeHint => '拖动排序，关闭不需要的部分。';
+
+  @override
+  String get todayResume => '继续';
+
+  @override
+  String get todayGoals => '目标';
+
+  @override
+  String get todayUpNext => '路线上的下一站';
+
+  @override
+  String get todayReleases => '即将发售';
+
+  @override
+  String get todayBacklog => '待办';
+
+  @override
+  String get todayLists => '智能列表';
+
+  @override
+  String get todayNothingInProgress => '目前没有进行中的作品。从待办里挑一个吧！';
+
+  @override
+  String todayWhereWasI(String position) {
+    return '上次停在：$position';
+  }
+
+  @override
+  String get todayStart => '开始记录';
+
+  @override
+  String get todayStop => '停止记录';
+
+  @override
+  String get todaySeeAll => '查看全部';
+
+  @override
+  String todayBacklogLine(int count, int hours) {
+    return '$count 个待办 · 约 $hours 小时';
+  }
+
+  @override
+  String get todayPickForMe => '帮我选';
+
+  @override
+  String todayInPath(String name) {
+    return '路线：$name';
+  }
+
+  @override
+  String get todayNoReleases => '清单中还没有确定日期的发售。';
+
+  @override
+  String get todayNoUpNext => '创建一条路线，看看系列的下一部是什么。';
+
+  @override
+  String get quickStatusTitle => '进度如何？';
+
+  @override
+  String get quickStatusRemember => '以后添加的作品都用这个';
+
+  @override
+  String get quickStatusAction => '状态';
+
+  @override
+  String get settingsAdvanced => '高级';
+
+  @override
+  String get settingsAdvancedHint => '导入、存储、集成和调试';
 }

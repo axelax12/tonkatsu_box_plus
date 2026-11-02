@@ -64,14 +64,14 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
     piccoli ricordi sbloccati completando opere. Toccando una copertina apri la scheda; la stanza si
     può esportare come immagine da condividere.
 
-## Fase 5 — Android e integrazioni ✅ (manca l'avviso sulle uscite in wishlist)
+## Fase 5 — Android e integrazioni ✅
 
 12. **Widget per la home di Android.** Opera in corso con avvia/ferma sessione, obiettivi dell'anno.
 13. **Notifiche.** Uscite delle opere in wishlist, timer di sessione attivo, prestiti in scadenza.
 14. **Achievement Steam.** Oltre a quelli di RetroAchievements già supportati.
 15. **Prezzi della wishlist** tramite IsThereAnyDeal, con avviso al minimo storico.
 
-## Fase 6 — Universi tra media diversi 🚧
+## Fase 6 — Universi tra media diversi ✅
 
 16. **Universi e percorsi.** Collega libri, film, anime, manga e giochi dello stesso universo, con ordine
     di pubblicazione, cronologico e consigliato ("Voglio iniziare Gundam: da dove parto?").
@@ -83,10 +83,11 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
     scegli cosa ritrovare: atmosfera, ambientazione, temi o struttura narrativa.
 
 Stato: percorsi con i tre ordini, tappe facoltative e spoiler, suggerimenti per titolo dalla libreria,
-sezione nella scheda opera ed esplorazione per aspetto (generi più tag personali). Da fare: proposte
-automatiche da franchise IGDB, collezioni TMDB e relazioni AniList, ed esportazione dei percorsi.
+sezione nella scheda opera ed esplorazione per aspetto (generi più tag personali), proposte dei giochi
+della stessa serie da franchise e collezioni IGDB. Da fare: collezioni TMDB, relazioni AniList ed
+esportazione dei percorsi.
 
-## Fase 7 — Insieme 🚧
+## Fase 7 — Insieme ✅ (club esclusi)
 
 18. **Modalità "Scegliamo insieme".** Selezioni due o più profili e l'app propone titoli che nessuno
     ha già visto, compatibili con gusti e tempo disponibile; ognuno vota o scarta.
@@ -96,7 +97,7 @@ automatiche da franchise IGDB, collezioni TMDB e relazioni AniList, ed esportazi
 Stato: "Scegliamo insieme" legge in sola lettura le librerie degli altri profili sullo stesso telefono,
 accetta ospiti senza profilo e si vota passandosi il telefono. I club restano in attesa della sincronizzazione.
 
-## Fase 8 — Restyling "copertine protagoniste"
+## Fase 8 — Restyling "copertine protagoniste" 🚧
 
 Dopo le funzioni, un restyling unico e coerente in stile GameTrack/Letterboxd: copertine grandi,
 sfondi sfocati presi dalla copertina, colori che si adattano all'opera. Risolve i punti segnalati:
@@ -105,6 +106,11 @@ sfondi sfocati presi dalla copertina, colori che si adattano all'opera. Risolve 
 - **Scheda opera caotica:** gerarchia chiara (copertina, stato, diario, avanzamento), sezioni secondarie raccolte.
 - **Home poco utile:** nuova home con "In corso", anello degli obiettivi, riprendi e uscite.
 - **Cercare e aggiungere:** ricerca più diretta e aggiunta in un tocco con stato già impostato.
+
+Stato (prima tranche): home "Oggi" su telefono con opera in corso in primo piano (copertina sfocata,
+"dove ero rimasto", avvio sessione), obiettivi, prossime tappe, uscite, backlog e liste, con sezioni da
+ordinare e nascondere; nella scheda opera le sezioni del fork riunite in una riga di schede; stato
+predefinito per le nuove aggiunte e scorciatoia dopo l'aggiunta; impostazioni rare raccolte in "Avanzate".
 
 ## Come lavoriamo
 

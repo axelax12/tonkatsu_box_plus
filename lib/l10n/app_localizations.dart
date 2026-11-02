@@ -12845,7 +12845,7 @@ abstract class S {
   /// No description provided for @pathPickerSuggested.
   ///
   /// In en, this message translates to:
-  /// **'Matching the name'**
+  /// **'Suggested for this path'**
   String get pathPickerSuggested;
 
   /// No description provided for @pathPickerSelectAll.
@@ -13297,6 +13297,156 @@ abstract class S {
   /// In en, this message translates to:
   /// **'A work on your list is released today.'**
   String get releaseReminderBody;
+
+  /// No description provided for @homeToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get homeToday;
+
+  /// No description provided for @homeLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Library'**
+  String get homeLibrary;
+
+  /// No description provided for @todayCustomize.
+  ///
+  /// In en, this message translates to:
+  /// **'Customize home'**
+  String get todayCustomize;
+
+  /// No description provided for @todayCustomizeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag to reorder, switch off what you do not need.'**
+  String get todayCustomizeHint;
+
+  /// No description provided for @todayResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get todayResume;
+
+  /// No description provided for @todayGoals.
+  ///
+  /// In en, this message translates to:
+  /// **'Goals'**
+  String get todayGoals;
+
+  /// No description provided for @todayUpNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next on your paths'**
+  String get todayUpNext;
+
+  /// No description provided for @todayReleases.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming out'**
+  String get todayReleases;
+
+  /// No description provided for @todayBacklog.
+  ///
+  /// In en, this message translates to:
+  /// **'Backlog'**
+  String get todayBacklog;
+
+  /// No description provided for @todayLists.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart lists'**
+  String get todayLists;
+
+  /// No description provided for @todayNothingInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in progress. Pick something from your backlog!'**
+  String get todayNothingInProgress;
+
+  /// No description provided for @todayWhereWasI.
+  ///
+  /// In en, this message translates to:
+  /// **'Where you left off: {position}'**
+  String todayWhereWasI(String position);
+
+  /// No description provided for @todayStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start session'**
+  String get todayStart;
+
+  /// No description provided for @todayStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop session'**
+  String get todayStop;
+
+  /// No description provided for @todaySeeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get todaySeeAll;
+
+  /// No description provided for @todayBacklogLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} waiting · about {hours} h to clear'**
+  String todayBacklogLine(int count, int hours);
+
+  /// No description provided for @todayPickForMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Help me choose'**
+  String get todayPickForMe;
+
+  /// No description provided for @todayInPath.
+  ///
+  /// In en, this message translates to:
+  /// **'In {name}'**
+  String todayInPath(String name);
+
+  /// No description provided for @todayNoReleases.
+  ///
+  /// In en, this message translates to:
+  /// **'No dated releases on your list yet.'**
+  String get todayNoReleases;
+
+  /// No description provided for @todayNoUpNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a path to see what comes next in a saga.'**
+  String get todayNoUpNext;
+
+  /// No description provided for @quickStatusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Where are you with it?'**
+  String get quickStatusTitle;
+
+  /// No description provided for @quickStatusRemember.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this for everything I add'**
+  String get quickStatusRemember;
+
+  /// No description provided for @quickStatusAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get quickStatusAction;
+
+  /// No description provided for @settingsAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get settingsAdvanced;
+
+  /// No description provided for @settingsAdvancedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Imports, storage, integrations and debugging'**
+  String get settingsAdvancedHint;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

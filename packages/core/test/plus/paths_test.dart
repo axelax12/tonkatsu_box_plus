@@ -50,6 +50,7 @@ void main() {
     List<String>? genres,
   }) => createTestCollectionItem(
     id: id,
+    externalId: id,
     status: status,
     game: createTestGame(
       id: id,
@@ -217,6 +218,53 @@ void main() {
         3,
         5,
       ]);
+    });
+  });
+
+  group('PathSuggestions.bySeries', () {
+    test('finds library games sharing a franchise or collection', () {
+      final List<CollectionItem> library = <CollectionItem>[
+        item(1, ItemStatus.completed, name: 'Halo', year: 2001),
+        item(2, ItemStatus.notStarted, name: 'Halo 3', year: 2007),
+        item(3, ItemStatus.notStarted, name: 'ODST', year: 2009),
+        item(4, ItemStatus.notStarted, name: 'Doom', year: 1993),
+        createTestCollectionItem(
+          id: 5,
+          externalId: 2,
+          status: ItemStatus.planned,
+          game: createTestGame(id: 2, name: 'Halo 3'),
+        ),
+      ];
+      final Map<int, Set<String>> tokens = <int, Set<String>>{
+        1: <String>{'f:7'},
+        2: <String>{'f:7', 'c:1'},
+        3: <String>{'c:1'},
+        4: <String>{'f:9'},
+      };
+      final List<CollectionItem> hits = PathSuggestions.bySeries(
+        seeds: <CollectionItem>[library.first],
+        library: library,
+        tokens: tokens,
+        exclude: <int>{1},
+      );
+      expect(hits.map((CollectionItem i) => i.id), <int>[2]);
+      expect(
+        PathSuggestions.bySeries(
+          seeds: <CollectionItem>[library[1]],
+          library: library,
+          tokens: tokens,
+          exclude: <int>{2},
+        ).map((CollectionItem i) => i.id),
+        <int>[1, 3, 5],
+      );
+      expect(
+        PathSuggestions.bySeries(
+          seeds: <CollectionItem>[library[3]],
+          library: library,
+          tokens: const <int, Set<String>>{},
+        ),
+        isEmpty,
+      );
     });
   });
 

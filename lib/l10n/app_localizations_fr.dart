@@ -7386,7 +7386,7 @@ class SFr extends S {
   String get pathPickerSearch => 'Rechercher dans votre bibliothèque';
 
   @override
-  String get pathPickerSuggested => 'Correspondant au nom';
+  String get pathPickerSuggested => 'Suggestions pour ce parcours';
 
   @override
   String pathPickerSelectAll(int count) {
@@ -7670,4 +7670,89 @@ class SFr extends S {
   @override
   String get releaseReminderBody =>
       'Une œuvre de votre liste sort aujourd\'hui.';
+
+  @override
+  String get homeToday => 'Aujourd\'hui';
+
+  @override
+  String get homeLibrary => 'Bibliothèque';
+
+  @override
+  String get todayCustomize => 'Personnaliser l\'accueil';
+
+  @override
+  String get todayCustomizeHint =>
+      'Faites glisser pour réordonner, désactivez ce qui ne sert pas.';
+
+  @override
+  String get todayResume => 'Reprendre';
+
+  @override
+  String get todayGoals => 'Objectifs';
+
+  @override
+  String get todayUpNext => 'La suite de vos parcours';
+
+  @override
+  String get todayReleases => 'Bientôt disponible';
+
+  @override
+  String get todayBacklog => 'À découvrir';
+
+  @override
+  String get todayLists => 'Listes intelligentes';
+
+  @override
+  String get todayNothingInProgress =>
+      'Rien en cours. Choisissez quelque chose à découvrir !';
+
+  @override
+  String todayWhereWasI(String position) {
+    return 'Vous en étiez à : $position';
+  }
+
+  @override
+  String get todayStart => 'Lancer une session';
+
+  @override
+  String get todayStop => 'Arrêter';
+
+  @override
+  String get todaySeeAll => 'Tout voir';
+
+  @override
+  String todayBacklogLine(int count, int hours) {
+    return '$count en attente · environ $hours h';
+  }
+
+  @override
+  String get todayPickForMe => 'Aide-moi à choisir';
+
+  @override
+  String todayInPath(String name) {
+    return 'Dans $name';
+  }
+
+  @override
+  String get todayNoReleases => 'Aucune sortie datée dans votre liste.';
+
+  @override
+  String get todayNoUpNext =>
+      'Créez un parcours pour voir la suite d\'une saga.';
+
+  @override
+  String get quickStatusTitle => 'Où en êtes-vous ?';
+
+  @override
+  String get quickStatusRemember => 'Utiliser pour tout ce que j\'ajoute';
+
+  @override
+  String get quickStatusAction => 'Statut';
+
+  @override
+  String get settingsAdvanced => 'Avancé';
+
+  @override
+  String get settingsAdvancedHint =>
+      'Imports, stockage, intégrations et débogage';
 }

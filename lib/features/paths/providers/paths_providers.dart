@@ -1,4 +1,5 @@
 import 'package:core/models/collection_item.dart';
+import 'package:core/models/media_type.dart';
 import 'package:core/plus/analytics/path_walk.dart';
 import 'package:core/plus/analytics/theme_index.dart';
 import 'package:core/plus/database/aspects_dao.dart';
@@ -6,7 +7,9 @@ import 'package:core/plus/database/paths_dao.dart';
 import 'package:core/plus/models/item_aspect.dart';
 import 'package:core/plus/models/media_path.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logging/logging.dart';
 
+import '../../../core/api/igdb_api.dart';
 import '../../../core/database/database_service.dart';
 import '../../insights/providers/insights_providers.dart';
 
@@ -123,6 +126,74 @@ final FutureProvider<ThemeIndex> themeIndexProvider =
       );
       return ThemeIndex.build(items: items, tags: tags);
     });
+
+final Logger _log = Logger('Paths');
+
+/// IGDB series ids per game, fetched once per game for the app's lifetime:
+/// a franchise does not change between two visits to the picker.
+class SeriesTokenCache {
+  final Map<int, Set<String>> _known = <int, Set<String>>{};
+
+  Future<Map<int, Set<String>>> tokensFor(
+    IgdbApi api,
+    Iterable<int> gameIds,
+  ) async {
+    final List<int> missing = <int>[
+      for (final int id in gameIds.toSet())
+        if (!_known.containsKey(id)) id,
+    ];
+    if (missing.isNotEmpty) {
+      try {
+        final Map<int, Set<String>> fetched = await api.seriesTokensFor(
+          missing,
+        );
+        for (final int id in missing) {
+          _known[id] = fetched[id] ?? const <String>{};
+        }
+      } on Exception catch (e, stack) {
+        // Left unknown, so the next visit tries again once IGDB is reachable.
+        _log.info('Series lookup unavailable', e, stack);
+      }
+    }
+    return _known;
+  }
+}
+
+final Provider<SeriesTokenCache> seriesTokenCacheProvider =
+    Provider<SeriesTokenCache>((Ref ref) => SeriesTokenCache());
+
+/// Library games of the same IGDB franchise or collection as the path's own.
+final FutureProviderFamily<List<CollectionItem>, int>
+seriesSuggestionsProvider = FutureProvider.family<List<CollectionItem>, int>((
+  Ref ref,
+  int pathId,
+) async {
+  final List<PathEntry> entries = await ref.watch(
+    pathEntriesProvider(pathId).future,
+  );
+  final Map<int, CollectionItem> byId = await ref.watch(
+    libraryByIdProvider.future,
+  );
+  final List<CollectionItem> seeds = <CollectionItem>[
+    for (final PathEntry e in entries)
+      if (byId[e.itemId] case final CollectionItem i
+          when i.mediaType == MediaType.game)
+        i,
+  ];
+  if (seeds.isEmpty) return const <CollectionItem>[];
+  final Map<int, Set<String>> tokens = await ref
+      .read(seriesTokenCacheProvider)
+      .tokensFor(ref.read(igdbApiProvider), <int>[
+        for (final CollectionItem i in byId.values)
+          if (i.mediaType == MediaType.game) i.externalId,
+      ]);
+  return PathSuggestions.bySeries(
+    seeds: seeds,
+    library: byId.values,
+    tokens: tokens,
+    exclude: <int>{for (final PathEntry e in entries) e.itemId},
+  );
+});
 
 final Provider<PathsController> pathsControllerProvider =
     Provider<PathsController>(PathsController.new);
