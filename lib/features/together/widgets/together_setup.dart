@@ -31,34 +31,10 @@ class TogetherSetup extends ConsumerWidget {
   ];
 
   Future<void> _addGuest(BuildContext context, WidgetRef ref) async {
-    final S l = S.of(context);
-    final TextEditingController controller = TextEditingController();
     final String? name = await showDialog<String>(
       context: context,
-      builder: (BuildContext dialogContext) => AlertDialog(
-        title: Text(l.togetherAddGuest),
-        content: SingleChildScrollView(
-          child: TextField(
-            controller: controller,
-            autofocus: true,
-            textCapitalization: TextCapitalization.words,
-            decoration: InputDecoration(hintText: l.togetherGuestName),
-            onSubmitted: (String v) => Navigator.of(dialogContext).pop(v),
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: Text(l.cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(controller.text),
-            child: Text(l.add),
-          ),
-        ],
-      ),
+      builder: (BuildContext _) => const _GuestNameDialog(),
     );
-    controller.dispose();
     if (name != null) ref.read(togetherProvider.notifier).addGuest(name);
   }
 
@@ -239,6 +215,51 @@ class TogetherSetup extends ConsumerWidget {
             label: Text(l.togetherStart),
           ),
         ],
+      ],
+    );
+  }
+}
+
+/// Owns its controller, so it outlives the dialog's closing animation.
+class _GuestNameDialog extends StatefulWidget {
+  const _GuestNameDialog();
+
+  @override
+  State<_GuestNameDialog> createState() => _GuestNameDialogState();
+}
+
+class _GuestNameDialogState extends State<_GuestNameDialog> {
+  final TextEditingController _name = TextEditingController();
+
+  @override
+  void dispose() {
+    _name.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final S l = S.of(context);
+    return AlertDialog(
+      title: Text(l.togetherAddGuest),
+      content: SingleChildScrollView(
+        child: TextField(
+          controller: _name,
+          autofocus: true,
+          textCapitalization: TextCapitalization.words,
+          decoration: InputDecoration(hintText: l.togetherGuestName),
+          onSubmitted: (String v) => Navigator.of(context).pop(v),
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(l.cancel),
+        ),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(_name.text),
+          child: Text(l.add),
+        ),
       ],
     );
   }
