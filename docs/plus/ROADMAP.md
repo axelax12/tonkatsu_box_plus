@@ -1,0 +1,97 @@
+# Tonkatsu Box Plus — Roadmap
+
+Fork personale di [Tonkatsu Box](https://github.com/hacan359/tonkatsu_box) (MIT), pensato per **Android**.
+Obiettivo: un unico posto per giochi, libri, film, anime e manga, che non si limita a catalogare
+ma racconta il tuo rapporto con le opere.
+
+## Principi
+
+- **Solo Android.** Le build e i test riguardano Android. Il codice resta condiviso con desktop e web
+  solo perché l'app originale è fatta così: non lo rompiamo, ma non sviluppiamo per quelle piattaforme.
+- **Prima i dati, poi le schermate.** Ogni funzione nasce da un modello dati solido, con migrazioni
+  del database solo in aggiunta (mai modificare quelle esistenti) e test automatici.
+- **Locale e privato.** Niente account e niente cloud obbligatori, come nell'app originale.
+- **Anti-spoiler di default.** Tutto ciò che può rovinare una sorpresa è nascosto finché non lo chiedi.
+- **Vicini all'originale.** Le nostre funzioni vivono in moduli separati, così possiamo continuare a
+  riallinearci con gli aggiornamenti di Tonkatsu Box.
+
+## Fase 0 — Infrastruttura ✅
+
+- [x] Fork e identità Android separata (`com.axelax12.tonkatsuboxplus`): si installa accanto all'app originale.
+- [x] CI su GitHub Actions: analisi, test, generazione del codice, APK pubblicato come release.
+- [ ] Chiave di firma nei segreti GitHub, così ogni aggiornamento si installa sopra il precedente.
+- [ ] (Proposta) Traduzione italiana dell'interfaccia.
+
+## Fase 1 — Il diario (fondamenta)
+
+Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con timer, "dove ero rimasto".
+
+1. **Diario delle esperienze.** Una timeline per ogni opera e una generale: sessioni, note, citazioni,
+   screenshot e impressioni datate. Ogni voce può essere marcata come spoiler.
+2. **Sessioni con timer.** Avvia e ferma una sessione (gioco, lettura, visione); il tempo totale e le
+   statistiche nascono dalle sessioni invece che da un numero inserito a mano. Streak e calendario a heatmap.
+3. **Più passaggi per opera.** Ogni playthrough, rilettura o rewatch ha date, piattaforma, voto e
+   recensione propri, così puoi confrontare la prima volta con quella di anni dopo.
+4. **"Dove ero rimasto?"** Un segnalibro strutturato per riprendere dopo mesi: punto raggiunto, note,
+   personaggi ed eventi annotati. Per i giochi: missione attuale, comandi da ricordare, prossimo
+   obiettivo. In futuro, eventuali riassunti automatici useranno solo contenuti fino al punto raggiunto.
+
+## Fase 2 — Obiettivi e numeri
+
+5. **Obiettivi annuali** (stile StoryGraph): opere finite per tipo, ore, pagine, backlog smaltito.
+   Più obiettivi in parallelo, con anello di avanzamento in home.
+6. **Salute del backlog.** Età media del backlog, ritmo con cui lo smaltisci, stima del tempo per
+   finirlo tutto usando i tempi di completamento di IGDB e la tua velocità reale.
+7. **Riepilogo dell'anno** (stile Wrapped). Statistiche più racconto: le opere che hanno segnato
+   l'anno, citazioni e impressioni dal diario. Condivisibile come immagine, partendo dalla share card esistente.
+
+## Fase 3 — Collezioni intelligenti e home
+
+8. **Collezioni automatiche con regole.** Liste che si aggiornano da sole, ad esempio:
+   - giochi posseduti, mai iniziati, completabili in meno di 10 ore;
+   - anime interrotti a meno di cinque episodi dalla fine;
+   - libri di autori giapponesi ancora da leggere.
+
+   Qualsiasi ricerca filtrata si può salvare come collezione dinamica.
+9. **Home personalizzabile a sezioni.** Scegli, ordini e nascondi le sezioni: riprendi, obiettivi,
+   collezioni automatiche, uscite, salute del backlog.
+
+## Fase 4 — Il collezionista
+
+10. **Collezione fisica.** Edizione, condizione, prezzo pagato, dove e quando l'hai comprato,
+    prestiti agli amici con promemoria di restituzione.
+11. **Stanza del collezionista.** Vista opzionale con scaffali personalizzabili, copertine, oggetti e
+    piccoli ricordi sbloccati completando opere. Toccando una copertina apri la scheda; la stanza si
+    può esportare come immagine da condividere.
+
+## Fase 5 — Android e integrazioni
+
+12. **Widget per la home di Android.** Opera in corso con avvia/ferma sessione, obiettivi dell'anno.
+13. **Notifiche.** Uscite delle opere in wishlist, timer di sessione attivo, prestiti in scadenza.
+14. **Achievement Steam.** Oltre a quelli di RetroAchievements già supportati.
+15. **Prezzi della wishlist** tramite IsThereAnyDeal, con avviso al minimo storico.
+
+## Fase 6 — Universi tra media diversi
+
+16. **Universi e percorsi.** Collega libri, film, anime, manga e giochi dello stesso universo, con ordine
+    di pubblicazione, cronologico e consigliato ("Voglio iniziare Gundam: da dove parto?").
+    Ogni percorso ha avanzamento complessivo, tappe facoltative e collegamenti nascosti per evitare
+    spoiler. Include i progressi nelle saghe. Si parte dai dati di IGDB (franchise), TMDB (collezioni)
+    e AniList (relazioni), più percorsi creati a mano ed esportabili.
+17. **Esplorazione per temi.** Percorsi come "horror cosmico", "intrighi politici nello spazio" o
+    "Giappone rurale", con opere di media diversi e una motivazione per ciascuna. Da un titolo amato
+    scegli cosa ritrovare: atmosfera, ambientazione, temi o struttura narrativa.
+
+## Fase 7 — Insieme
+
+18. **Modalità "Scegliamo insieme".** Selezioni due o più profili e l'app propone titoli che nessuno
+    ha già visto, compatibili con gusti e tempo disponibile; ognuno vota o scarta.
+19. **Club** di lettura, visione o gioco, con progressi individuali e discussioni protette dagli spoiler.
+    Richiede una forma di sincronizzazione tra dispositivi: da valutare dopo la Fase 6.
+
+## Come lavoriamo
+
+- Ogni funzione vive su un branch `feature/<nome>`. A ogni push la CI genera il codice, lancia analisi
+  e test e pubblica un APK di prova nella pagina Releases del fork.
+- Quando la funzione è pronta e provata sul telefono, il branch confluisce in `main`.
+- I log completi della CI finiscono nel branch `ci-results/<branch>`.
