@@ -202,7 +202,7 @@ void main() {
       expect(tester.takeException(), isNull);
       expect(find.text(universe.name), findsOneWidget);
       expect(find.byType(InputChip), findsNothing);
-      expect(find.byType(Chip), findsAtLeastNWidgets(1));
+      expect(find.byType(ActionChip), findsOneWidget);
     });
 
     testWidgets('hides itself on a read-only item with nothing to show', (

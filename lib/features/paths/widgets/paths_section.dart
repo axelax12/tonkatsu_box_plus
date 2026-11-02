@@ -1,6 +1,5 @@
 import 'package:core/models/collection_item.dart';
 import 'package:core/plus/analytics/path_walk.dart';
-import 'package:core/plus/analytics/theme_index.dart';
 import 'package:core/plus/models/item_aspect.dart';
 import 'package:core/plus/models/media_path.dart';
 import 'package:flutter/material.dart';
@@ -100,10 +99,8 @@ class PathsSection extends ConsumerWidget {
     final List<ItemAspectTag> tags =
         ref.watch(itemAspectTagsProvider(item.id)).valueOrNull ??
         const <ItemAspectTag>[];
-    final Set<BuiltInTheme> derived = ThemeIndex.themesFor(
-      item.genres ?? const <String>[],
-    );
-    if (!isEditable && paths.isEmpty && tags.isEmpty && derived.isEmpty) {
+    // Genre-derived themes are left to Explore: the page already lists genres.
+    if (!isEditable && paths.isEmpty && tags.isEmpty) {
       return const SizedBox.shrink();
     }
 
@@ -144,13 +141,6 @@ class PathsSection extends ConsumerWidget {
           spacing: AppSpacing.sm,
           runSpacing: AppSpacing.xs,
           children: <Widget>[
-            for (final BuiltInTheme t in derived)
-              Chip(
-                key: ValueKey<String>('b-${t.name}'),
-                avatar: Icon(aspectIcon(t.aspect), size: 16),
-                label: Text(builtInThemeLabel(t, l)),
-                visualDensity: VisualDensity.compact,
-              ),
             for (final ItemAspectTag tag in tags)
               InputChip(
                 key: ValueKey<int>(tag.id),
