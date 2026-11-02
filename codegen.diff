@@ -1,0 +1,1438 @@
+diff --git a/lib/features/integrations/itad_api.dart b/lib/features/integrations/itad_api.dart
+index 04ec5e65..8765f15b 100644
+--- a/lib/features/integrations/itad_api.dart
++++ b/lib/features/integrations/itad_api.dart
+@@ -104,10 +104,7 @@ class ItadApi {
+       final List<dynamic> data = await _call<List<dynamic>>(
+         () => _dio.post<List<dynamic>>(
+           '/games/prices/v3',
+-          queryParameters: <String, dynamic>{
+-            'key': apiKey,
+-            'country': country,
+-          },
++          queryParameters: <String, dynamic>{'key': apiKey, 'country': country},
+           data: batch,
+         ),
+       );
+@@ -148,8 +145,9 @@ class ItadApi {
+     );
+   }
+ 
+-  static double? _amount(Object? price) =>
+-      price is Map<String, dynamic> ? (price['amount'] as num?)?.toDouble() : null;
++  static double? _amount(Object? price) => price is Map<String, dynamic>
++      ? (price['amount'] as num?)?.toDouble()
++      : null;
+ 
+   Future<T> _call<T>(Future<Response<T>> Function() request) async {
+     try {
+diff --git a/lib/features/integrations/providers/integrations_providers.dart b/lib/features/integrations/providers/integrations_providers.dart
+index 3190949c..67344df7 100644
+--- a/lib/features/integrations/providers/integrations_providers.dart
++++ b/lib/features/integrations/providers/integrations_providers.dart
+@@ -45,7 +45,8 @@ final Provider<SteamCredentials?> steamCredentialsProvider =
+     Provider<SteamCredentials?>((Ref ref) {
+       ref.watch(credentialsRevisionProvider);
+       final SharedPreferences prefs = ref.read(sharedPreferencesProvider);
+-      final String key = prefs.getString(SettingsKeys.steamApiKey)?.trim() ?? '';
++      final String key =
++          prefs.getString(SettingsKeys.steamApiKey)?.trim() ?? '';
+       final String id = prefs.getString(SettingsKeys.steamId)?.trim() ?? '';
+       return key.isEmpty || id.isEmpty ? null : (apiKey: key, steamId: id);
+     });
+@@ -94,8 +95,9 @@ final FutureProviderFamily<String?, int> steamAppProvider =
+ final FutureProviderFamily<List<TrackerAchievement>, String>
+ steamAchievementsProvider =
+     FutureProvider.family<List<TrackerAchievement>, String>(
+-      (Ref ref, String appId) =>
+-          ref.watch(trackerDaoProvider).getAchievements(TrackerType.steam, appId),
++      (Ref ref, String appId) => ref
++          .watch(trackerDaoProvider)
++          .getAchievements(TrackerType.steam, appId),
+     );
+ 
+ final FutureProviderFamily<SteamSync?, String> steamSyncProvider =
+@@ -155,7 +157,8 @@ class SteamAchievementsService {
+ 
+ final FutureProviderFamily<PriceSnapshot?, int> itemPriceProvider =
+     FutureProvider.family<PriceSnapshot?, int>(
+-      (Ref ref, int itemId) => ref.watch(integrationsDaoProvider).getPrice(itemId),
++      (Ref ref, int itemId) =>
++          ref.watch(integrationsDaoProvider).getPrice(itemId),
+     );
+ 
+ final FutureProvider<List<PriceSnapshot>> allPricesProvider =
+@@ -207,7 +210,8 @@ class DealsService {
+       for (final CollectionItem item in unresolved) {
+         final String? viaSteam = bySteam[steamByIgdb[item.externalId]];
+         final String? id =
+-            viaSteam ?? await api.lookupTitle(item.itemName, apiKey: settings.apiKey);
++            viaSteam ??
++            await api.lookupTitle(item.itemName, apiKey: settings.apiKey);
+         if (id != null) itadByItem[item.id] = id;
+       }
+     }
+diff --git a/lib/features/integrations/screens/deals_screen.dart b/lib/features/integrations/screens/deals_screen.dart
+index 7fb99482..1b0249ef 100644
+--- a/lib/features/integrations/screens/deals_screen.dart
++++ b/lib/features/integrations/screens/deals_screen.dart
+@@ -100,7 +100,9 @@ class _DealsScreenState extends ConsumerState<DealsScreen> {
+             Text(
+               l.dealsEmpty,
+               textAlign: TextAlign.center,
+-              style: AppTypography.body.copyWith(color: AppColors.textSecondary),
++              style: AppTypography.body.copyWith(
++                color: AppColors.textSecondary,
++              ),
+             ),
+           for (final CollectionItem item in sorted)
+             Padding(
+diff --git a/lib/features/integrations/steam_achievements_api.dart b/lib/features/integrations/steam_achievements_api.dart
+index 03381d33..aac5b5e5 100644
+--- a/lib/features/integrations/steam_achievements_api.dart
++++ b/lib/features/integrations/steam_achievements_api.dart
+@@ -43,7 +43,9 @@ class SteamAchievement {
+ /// Steam Web API calls the fork needs beyond upstream's library import.
+ class SteamAchievementsApi {
+   SteamAchievementsApi({Dio? dio})
+-    : _dio = dio ?? createApiDio(connectTimeout: _timeout, receiveTimeout: _timeout);
++    : _dio =
++          dio ??
++          createApiDio(connectTimeout: _timeout, receiveTimeout: _timeout);
+ 
+   static const Duration _timeout = Duration(seconds: 10);
+   static const String _base = 'https://api.steampowered.com/ISteamUserStats';
+@@ -78,7 +80,9 @@ class SteamAchievementsApi {
+         SteamAchievement(
+           apiName: apiName,
+           title:
+-              meta['displayName'] as String? ?? raw['name'] as String? ?? apiName,
++              meta['displayName'] as String? ??
++              raw['name'] as String? ??
++              apiName,
+           description:
+               meta['description'] as String? ?? raw['description'] as String?,
+           icon: meta['icon'] as String?,
+diff --git a/lib/features/integrations/widgets/deal_section.dart b/lib/features/integrations/widgets/deal_section.dart
+index b35ccad6..f841ba83 100644
+--- a/lib/features/integrations/widgets/deal_section.dart
++++ b/lib/features/integrations/widgets/deal_section.dart
+@@ -154,13 +154,14 @@ class DealSummary extends StatelessWidget {
+                       ],
+                     ],
+                   ),
+-                  if (shop != null)
+-                    Text(shop, style: AppTypography.bodySmall),
++                  if (shop != null) Text(shop, style: AppTypography.bodySmall),
+                   if (low != null)
+                     Text(
+                       atLow
+                           ? l.dealAtLow
+-                          : l.dealHistoricLow(formatPrice(low, snapshot.currency)),
++                          : l.dealHistoricLow(
++                              formatPrice(low, snapshot.currency),
++                            ),
+                       style: AppTypography.caption.copyWith(
+                         color: atLow
+                             ? AppColors.success
+diff --git a/lib/features/integrations/widgets/steam_achievements_section.dart b/lib/features/integrations/widgets/steam_achievements_section.dart
+index 794fb0ee..733178cc 100644
+--- a/lib/features/integrations/widgets/steam_achievements_section.dart
++++ b/lib/features/integrations/widgets/steam_achievements_section.dart
+@@ -79,14 +79,18 @@ class _SteamAchievementsSectionState
+   @override
+   Widget build(BuildContext context) {
+     final S l = S.of(context);
+-    final String? appId = ref.watch(steamAppProvider(widget.igdbId)).valueOrNull;
++    final String? appId = ref
++        .watch(steamAppProvider(widget.igdbId))
++        .valueOrNull;
+     if (appId == null) return const SizedBox.shrink();
+ 
+     final bool connected = ref.watch(steamCredentialsProvider) != null;
+     final List<TrackerAchievement> achievements =
+         ref.watch(steamAchievementsProvider(appId)).valueOrNull ??
+         const <TrackerAchievement>[];
+-    final AsyncValue<SteamSync?> syncAsync = ref.watch(steamSyncProvider(appId));
++    final AsyncValue<SteamSync?> syncAsync = ref.watch(
++      steamSyncProvider(appId),
++    );
+     final SteamSync? sync = syncAsync.valueOrNull;
+     if (connected && syncAsync.hasValue) _maybeAutoSync(appId, sync);
+ 
+@@ -94,11 +98,10 @@ class _SteamAchievementsSectionState
+         .where((TrackerAchievement a) => a.earned)
+         .length;
+     final List<TrackerAchievement> ordered = <TrackerAchievement>[
+-      ...achievements.where((TrackerAchievement a) => a.earned).toList()
+-        ..sort(
+-          (TrackerAchievement a, TrackerAchievement b) =>
+-              (b.earnedAt ?? 0).compareTo(a.earnedAt ?? 0),
+-        ),
++      ...achievements.where((TrackerAchievement a) => a.earned).toList()..sort(
++        (TrackerAchievement a, TrackerAchievement b) =>
++            (b.earnedAt ?? 0).compareTo(a.earnedAt ?? 0),
++      ),
+       ...achievements.where((TrackerAchievement a) => !a.earned),
+     ];
+     final List<TrackerAchievement> shown = _expanded
+@@ -110,7 +113,11 @@ class _SteamAchievementsSectionState
+       children: <Widget>[
+         Row(
+           children: <Widget>[
+-            Icon(Icons.emoji_events_outlined, size: 20, color: widget.accentColor),
++            Icon(
++              Icons.emoji_events_outlined,
++              size: 20,
++              color: widget.accentColor,
++            ),
+             const SizedBox(width: AppSpacing.sm),
+             Expanded(
+               child: Text(
+@@ -162,7 +169,10 @@ class _SteamAchievementsSectionState
+           ),
+           const SizedBox(height: AppSpacing.sm),
+           for (final TrackerAchievement a in shown)
+-            _AchievementTile(key: ValueKey<String>(a.achievementId), achievement: a),
++            _AchievementTile(
++              key: ValueKey<String>(a.achievementId),
++              achievement: a,
++            ),
+           if (ordered.length > _collapsedCount)
+             Align(
+               alignment: Alignment.centerLeft,
+diff --git a/lib/features/notifications/plus_notifications.dart b/lib/features/notifications/plus_notifications.dart
+index ca501625..f0d63b1a 100644
+--- a/lib/features/notifications/plus_notifications.dart
++++ b/lib/features/notifications/plus_notifications.dart
+@@ -97,7 +97,10 @@ class PlusNotifications {
+ 
+   Future<void> cancelRunningSession(int itemId) async {
+     if (!await _ensureReady()) return;
+-    await _run('cancel session', () => _plugin.cancel(id: _sessionBase + itemId));
++    await _run(
++      'cancel session',
++      () => _plugin.cancel(id: _sessionBase + itemId),
++    );
+   }
+ 
+   Future<void> scheduleLoanReminder({
+@@ -131,7 +134,10 @@ class PlusNotifications {
+ 
+   Future<void> cancelLoanReminder(int copyId) async {
+     if (!await _ensureReady()) return;
+-    await _run('cancel loan reminder', () => _plugin.cancel(id: _loanBase + copyId));
++    await _run(
++      'cancel loan reminder',
++      () => _plugin.cancel(id: _loanBase + copyId),
++    );
+   }
+ 
+   Future<void> showDeal({
+diff --git a/lib/l10n/app_localizations.dart b/lib/l10n/app_localizations.dart
+index 50610759..d81ce90b 100644
+--- a/lib/l10n/app_localizations.dart
++++ b/lib/l10n/app_localizations.dart
+@@ -12319,6 +12319,252 @@ abstract class S {
+   /// In en, this message translates to:
+   /// **'Rate 50 items'**
+   String get keepsakeCriticHint;
++
++  /// No description provided for @connectionsTitle.
++  ///
++  /// In en, this message translates to:
++  /// **'Connections'**
++  String get connectionsTitle;
++
++  /// No description provided for @connectionsSteam.
++  ///
++  /// In en, this message translates to:
++  /// **'Steam achievements'**
++  String get connectionsSteam;
++
++  /// No description provided for @connectionsSteamHint.
++  ///
++  /// In en, this message translates to:
++  /// **'Needs a Steam Web API key and your 17-digit SteamID64. Your game details must be public.'**
++  String get connectionsSteamHint;
++
++  /// No description provided for @connectionsSteamKey.
++  ///
++  /// In en, this message translates to:
++  /// **'Steam Web API key'**
++  String get connectionsSteamKey;
++
++  /// No description provided for @connectionsSteamId.
++  ///
++  /// In en, this message translates to:
++  /// **'SteamID64'**
++  String get connectionsSteamId;
++
++  /// No description provided for @connectionsItad.
++  ///
++  /// In en, this message translates to:
++  /// **'IsThereAnyDeal prices'**
++  String get connectionsItad;
++
++  /// No description provided for @connectionsItadHint.
++  ///
++  /// In en, this message translates to:
++  /// **'Register a free app on IsThereAnyDeal to get a key. Prices use your country.'**
++  String get connectionsItadHint;
++
++  /// No description provided for @connectionsItadKey.
++  ///
++  /// In en, this message translates to:
++  /// **'IsThereAnyDeal API key'**
++  String get connectionsItadKey;
++
++  /// No description provided for @connectionsCountry.
++  ///
++  /// In en, this message translates to:
++  /// **'Country code (e.g. IT)'**
++  String get connectionsCountry;
++
++  /// No description provided for @connectionsGetKey.
++  ///
++  /// In en, this message translates to:
++  /// **'Get a key'**
++  String get connectionsGetKey;
++
++  /// No description provided for @steamAchievementsTitle.
++  ///
++  /// In en, this message translates to:
++  /// **'Steam achievements'**
++  String get steamAchievementsTitle;
++
++  /// No description provided for @steamConnect.
++  ///
++  /// In en, this message translates to:
++  /// **'Connect Steam to see achievements'**
++  String get steamConnect;
++
++  /// No description provided for @steamSync.
++  ///
++  /// In en, this message translates to:
++  /// **'Refresh'**
++  String get steamSync;
++
++  /// No description provided for @steamNotSynced.
++  ///
++  /// In en, this message translates to:
++  /// **'Not synced yet.'**
++  String get steamNotSynced;
++
++  /// No description provided for @steamProgress.
++  ///
++  /// In en, this message translates to:
++  /// **'{earned} of {total} unlocked'**
++  String steamProgress(int earned, int total);
++
++  /// No description provided for @steamShowAll.
++  ///
++  /// In en, this message translates to:
++  /// **'Show all {count}'**
++  String steamShowAll(int count);
++
++  /// No description provided for @steamShowLess.
++  ///
++  /// In en, this message translates to:
++  /// **'Show less'**
++  String get steamShowLess;
++
++  /// No description provided for @steamHiddenAchievement.
++  ///
++  /// In en, this message translates to:
++  /// **'Hidden achievement'**
++  String get steamHiddenAchievement;
++
++  /// No description provided for @steamPrivateProfile.
++  ///
++  /// In en, this message translates to:
++  /// **'Your Steam game details are private. Make them public to sync.'**
++  String get steamPrivateProfile;
++
++  /// No description provided for @steamNoAchievements.
++  ///
++  /// In en, this message translates to:
++  /// **'This game has no Steam achievements.'**
++  String get steamNoAchievements;
++
++  /// No description provided for @steamBadKey.
++  ///
++  /// In en, this message translates to:
++  /// **'Steam rejected the key or SteamID. Check them in Connections.'**
++  String get steamBadKey;
++
++  /// No description provided for @steamNetworkError.
++  ///
++  /// In en, this message translates to:
++  /// **'Could not reach the service. Try again later.'**
++  String get steamNetworkError;
++
++  /// No description provided for @dealTitle.
++  ///
++  /// In en, this message translates to:
++  /// **'Best price'**
++  String get dealTitle;
++
++  /// No description provided for @dealConnect.
++  ///
++  /// In en, this message translates to:
++  /// **'Connect IsThereAnyDeal for prices'**
++  String get dealConnect;
++
++  /// No description provided for @dealConnectHint.
++  ///
++  /// In en, this message translates to:
++  /// **'Connect IsThereAnyDeal to watch prices of the games you plan to play and get a notice at their all-time low.'**
++  String get dealConnectHint;
++
++  /// No description provided for @dealNotChecked.
++  ///
++  /// In en, this message translates to:
++  /// **'Price not checked yet.'**
++  String get dealNotChecked;
++
++  /// No description provided for @dealNotListed.
++  ///
++  /// In en, this message translates to:
++  /// **'No store listing found.'**
++  String get dealNotListed;
++
++  /// No description provided for @dealHistoricLow.
++  ///
++  /// In en, this message translates to:
++  /// **'All-time low {price}'**
++  String dealHistoricLow(String price);
++
++  /// No description provided for @dealAtLow.
++  ///
++  /// In en, this message translates to:
++  /// **'All-time low right now!'**
++  String get dealAtLow;
++
++  /// No description provided for @dealBadKey.
++  ///
++  /// In en, this message translates to:
++  /// **'IsThereAnyDeal rejected the key. Check it in Connections.'**
++  String get dealBadKey;
++
++  /// No description provided for @dealLowTitle.
++  ///
++  /// In en, this message translates to:
++  /// **'{title} at its all-time low'**
++  String dealLowTitle(String title);
++
++  /// No description provided for @dealLowBody.
++  ///
++  /// In en, this message translates to:
++  /// **'{price} on {shop}'**
++  String dealLowBody(String price, String shop);
++
++  /// No description provided for @dealsTitle.
++  ///
++  /// In en, this message translates to:
++  /// **'Deals'**
++  String get dealsTitle;
++
++  /// No description provided for @dealsCardHint.
++  ///
++  /// In en, this message translates to:
++  /// **'Prices of the games you plan to play'**
++  String get dealsCardHint;
++
++  /// No description provided for @dealsHint.
++  ///
++  /// In en, this message translates to:
++  /// **'Planned games are watched. A notice arrives when one hits its all-time low.'**
++  String get dealsHint;
++
++  /// No description provided for @dealsRefresh.
++  ///
++  /// In en, this message translates to:
++  /// **'Check prices now'**
++  String get dealsRefresh;
++
++  /// No description provided for @dealsEmpty.
++  ///
++  /// In en, this message translates to:
++  /// **'No planned games yet. Set a game to Planned to watch its price.'**
++  String get dealsEmpty;
++
++  /// No description provided for @loanReminderTitle.
++  ///
++  /// In en, this message translates to:
++  /// **'Time to get {title} back'**
++  String loanReminderTitle(String title);
++
++  /// No description provided for @loanReminderBody.
++  ///
++  /// In en, this message translates to:
++  /// **'Lent to {name}'**
++  String loanReminderBody(String name);
++
++  /// No description provided for @widgetIdle.
++  ///
++  /// In en, this message translates to:
++  /// **'Nothing in progress'**
++  String get widgetIdle;
++
++  /// No description provided for @widgetGoals.
++  ///
++  /// In en, this message translates to:
++  /// **'Goals {progress}'**
++  String widgetGoals(String progress);
+ }
+ 
+ class _SDelegate extends LocalizationsDelegate<S> {
+diff --git a/lib/l10n/app_localizations_en.dart b/lib/l10n/app_localizations_en.dart
+index a40977a4..ff747119 100644
+--- a/lib/l10n/app_localizations_en.dart
++++ b/lib/l10n/app_localizations_en.dart
+@@ -6984,4 +6984,152 @@ class SEn extends S {
+ 
+   @override
+   String get keepsakeCriticHint => 'Rate 50 items';
++
++  @override
++  String get connectionsTitle => 'Connections';
++
++  @override
++  String get connectionsSteam => 'Steam achievements';
++
++  @override
++  String get connectionsSteamHint =>
++      'Needs a Steam Web API key and your 17-digit SteamID64. Your game details must be public.';
++
++  @override
++  String get connectionsSteamKey => 'Steam Web API key';
++
++  @override
++  String get connectionsSteamId => 'SteamID64';
++
++  @override
++  String get connectionsItad => 'IsThereAnyDeal prices';
++
++  @override
++  String get connectionsItadHint =>
++      'Register a free app on IsThereAnyDeal to get a key. Prices use your country.';
++
++  @override
++  String get connectionsItadKey => 'IsThereAnyDeal API key';
++
++  @override
++  String get connectionsCountry => 'Country code (e.g. IT)';
++
++  @override
++  String get connectionsGetKey => 'Get a key';
++
++  @override
++  String get steamAchievementsTitle => 'Steam achievements';
++
++  @override
++  String get steamConnect => 'Connect Steam to see achievements';
++
++  @override
++  String get steamSync => 'Refresh';
++
++  @override
++  String get steamNotSynced => 'Not synced yet.';
++
++  @override
++  String steamProgress(int earned, int total) {
++    return '$earned of $total unlocked';
++  }
++
++  @override
++  String steamShowAll(int count) {
++    return 'Show all $count';
++  }
++
++  @override
++  String get steamShowLess => 'Show less';
++
++  @override
++  String get steamHiddenAchievement => 'Hidden achievement';
++
++  @override
++  String get steamPrivateProfile =>
++      'Your Steam game details are private. Make them public to sync.';
++
++  @override
++  String get steamNoAchievements => 'This game has no Steam achievements.';
++
++  @override
++  String get steamBadKey =>
++      'Steam rejected the key or SteamID. Check them in Connections.';
++
++  @override
++  String get steamNetworkError =>
++      'Could not reach the service. Try again later.';
++
++  @override
++  String get dealTitle => 'Best price';
++
++  @override
++  String get dealConnect => 'Connect IsThereAnyDeal for prices';
++
++  @override
++  String get dealConnectHint =>
++      'Connect IsThereAnyDeal to watch prices of the games you plan to play and get a notice at their all-time low.';
++
++  @override
++  String get dealNotChecked => 'Price not checked yet.';
++
++  @override
++  String get dealNotListed => 'No store listing found.';
++
++  @override
++  String dealHistoricLow(String price) {
++    return 'All-time low $price';
++  }
++
++  @override
++  String get dealAtLow => 'All-time low right now!';
++
++  @override
++  String get dealBadKey =>
++      'IsThereAnyDeal rejected the key. Check it in Connections.';
++
++  @override
++  String dealLowTitle(String title) {
++    return '$title at its all-time low';
++  }
++
++  @override
++  String dealLowBody(String price, String shop) {
++    return '$price on $shop';
++  }
++
++  @override
++  String get dealsTitle => 'Deals';
++
++  @override
++  String get dealsCardHint => 'Prices of the games you plan to play';
++
++  @override
++  String get dealsHint =>
++      'Planned games are watched. A notice arrives when one hits its all-time low.';
++
++  @override
++  String get dealsRefresh => 'Check prices now';
++
++  @override
++  String get dealsEmpty =>
++      'No planned games yet. Set a game to Planned to watch its price.';
++
++  @override
++  String loanReminderTitle(String title) {
++    return 'Time to get $title back';
++  }
++
++  @override
++  String loanReminderBody(String name) {
++    return 'Lent to $name';
++  }
++
++  @override
++  String get widgetIdle => 'Nothing in progress';
++
++  @override
++  String widgetGoals(String progress) {
++    return 'Goals $progress';
++  }
+ }
+diff --git a/lib/l10n/app_localizations_es.dart b/lib/l10n/app_localizations_es.dart
+index 6d43c1cc..c00f415b 100644
+--- a/lib/l10n/app_localizations_es.dart
++++ b/lib/l10n/app_localizations_es.dart
+@@ -7064,4 +7064,152 @@ class SEs extends S {
+ 
+   @override
+   String get keepsakeCriticHint => 'Valora 50 elementos';
++
++  @override
++  String get connectionsTitle => 'Conexiones';
++
++  @override
++  String get connectionsSteam => 'Logros de Steam';
++
++  @override
++  String get connectionsSteamHint =>
++      'Necesita una clave de Steam Web API y tu SteamID64 de 17 dígitos. Tus datos de juego deben ser públicos.';
++
++  @override
++  String get connectionsSteamKey => 'Clave de Steam Web API';
++
++  @override
++  String get connectionsSteamId => 'SteamID64';
++
++  @override
++  String get connectionsItad => 'Precios de IsThereAnyDeal';
++
++  @override
++  String get connectionsItadHint =>
++      'Registra una app gratuita en IsThereAnyDeal para obtener una clave. Los precios usan tu país.';
++
++  @override
++  String get connectionsItadKey => 'Clave API de IsThereAnyDeal';
++
++  @override
++  String get connectionsCountry => 'Código de país (p. ej. ES)';
++
++  @override
++  String get connectionsGetKey => 'Obtener clave';
++
++  @override
++  String get steamAchievementsTitle => 'Logros de Steam';
++
++  @override
++  String get steamConnect => 'Conecta Steam para ver los logros';
++
++  @override
++  String get steamSync => 'Actualizar';
++
++  @override
++  String get steamNotSynced => 'Aún sin sincronizar.';
++
++  @override
++  String steamProgress(int earned, int total) {
++    return '$earned de $total desbloqueados';
++  }
++
++  @override
++  String steamShowAll(int count) {
++    return 'Ver los $count';
++  }
++
++  @override
++  String get steamShowLess => 'Ver menos';
++
++  @override
++  String get steamHiddenAchievement => 'Logro oculto';
++
++  @override
++  String get steamPrivateProfile =>
++      'Tus datos de juego en Steam son privados. Hazlos públicos para sincronizar.';
++
++  @override
++  String get steamNoAchievements => 'Este juego no tiene logros de Steam.';
++
++  @override
++  String get steamBadKey =>
++      'Steam rechazó la clave o el SteamID. Revísalos en Conexiones.';
++
++  @override
++  String get steamNetworkError =>
++      'No se pudo contactar con el servicio. Inténtalo más tarde.';
++
++  @override
++  String get dealTitle => 'Mejor precio';
++
++  @override
++  String get dealConnect => 'Conecta IsThereAnyDeal para ver precios';
++
++  @override
++  String get dealConnectHint =>
++      'Conecta IsThereAnyDeal para seguir los precios de los juegos planeados y recibir un aviso en su mínimo histórico.';
++
++  @override
++  String get dealNotChecked => 'Precio aún sin comprobar.';
++
++  @override
++  String get dealNotListed => 'No se encontró en tiendas.';
++
++  @override
++  String dealHistoricLow(String price) {
++    return 'Mínimo histórico $price';
++  }
++
++  @override
++  String get dealAtLow => '¡Mínimo histórico ahora mismo!';
++
++  @override
++  String get dealBadKey =>
++      'IsThereAnyDeal rechazó la clave. Revísala en Conexiones.';
++
++  @override
++  String dealLowTitle(String title) {
++    return '$title en su mínimo histórico';
++  }
++
++  @override
++  String dealLowBody(String price, String shop) {
++    return '$price en $shop';
++  }
++
++  @override
++  String get dealsTitle => 'Ofertas';
++
++  @override
++  String get dealsCardHint => 'Precios de los juegos que planeas jugar';
++
++  @override
++  String get dealsHint =>
++      'Se siguen los juegos planeados. Recibirás un aviso cuando uno llegue a su mínimo histórico.';
++
++  @override
++  String get dealsRefresh => 'Comprobar precios';
++
++  @override
++  String get dealsEmpty =>
++      'Aún no hay juegos planeados. Marca uno como Planeado para seguir su precio.';
++
++  @override
++  String loanReminderTitle(String title) {
++    return 'Hora de recuperar $title';
++  }
++
++  @override
++  String loanReminderBody(String name) {
++    return 'Prestado a $name';
++  }
++
++  @override
++  String get widgetIdle => 'Nada en curso';
++
++  @override
++  String widgetGoals(String progress) {
++    return 'Metas $progress';
++  }
+ }
+diff --git a/lib/l10n/app_localizations_fr.dart b/lib/l10n/app_localizations_fr.dart
+index 7bde31cf..e4ff077e 100644
+--- a/lib/l10n/app_localizations_fr.dart
++++ b/lib/l10n/app_localizations_fr.dart
+@@ -7089,4 +7089,151 @@ class SFr extends S {
+ 
+   @override
+   String get keepsakeCriticHint => 'Notez 50 éléments';
++
++  @override
++  String get connectionsTitle => 'Connexions';
++
++  @override
++  String get connectionsSteam => 'Succès Steam';
++
++  @override
++  String get connectionsSteamHint =>
++      'Il faut une clé Steam Web API et votre SteamID64 à 17 chiffres. Vos détails de jeu doivent être publics.';
++
++  @override
++  String get connectionsSteamKey => 'Clé Steam Web API';
++
++  @override
++  String get connectionsSteamId => 'SteamID64';
++
++  @override
++  String get connectionsItad => 'Prix IsThereAnyDeal';
++
++  @override
++  String get connectionsItadHint =>
++      'Enregistrez une app gratuite sur IsThereAnyDeal pour obtenir une clé. Les prix sont ceux de votre pays.';
++
++  @override
++  String get connectionsItadKey => 'Clé API IsThereAnyDeal';
++
++  @override
++  String get connectionsCountry => 'Code pays (ex. FR)';
++
++  @override
++  String get connectionsGetKey => 'Obtenir une clé';
++
++  @override
++  String get steamAchievementsTitle => 'Succès Steam';
++
++  @override
++  String get steamConnect => 'Connectez Steam pour voir les succès';
++
++  @override
++  String get steamSync => 'Actualiser';
++
++  @override
++  String get steamNotSynced => 'Pas encore synchronisé.';
++
++  @override
++  String steamProgress(int earned, int total) {
++    return '$earned sur $total débloqués';
++  }
++
++  @override
++  String steamShowAll(int count) {
++    return 'Tout afficher ($count)';
++  }
++
++  @override
++  String get steamShowLess => 'Afficher moins';
++
++  @override
++  String get steamHiddenAchievement => 'Succès caché';
++
++  @override
++  String get steamPrivateProfile =>
++      'Vos détails de jeu Steam sont privés. Rendez-les publics pour synchroniser.';
++
++  @override
++  String get steamNoAchievements => 'Ce jeu n\'a pas de succès Steam.';
++
++  @override
++  String get steamBadKey =>
++      'Steam a refusé la clé ou le SteamID. Vérifiez-les dans Connexions.';
++
++  @override
++  String get steamNetworkError => 'Service injoignable. Réessayez plus tard.';
++
++  @override
++  String get dealTitle => 'Meilleur prix';
++
++  @override
++  String get dealConnect => 'Connectez IsThereAnyDeal pour les prix';
++
++  @override
++  String get dealConnectHint =>
++      'Connectez IsThereAnyDeal pour suivre le prix des jeux prévus et être prévenu à leur plus bas historique.';
++
++  @override
++  String get dealNotChecked => 'Prix pas encore vérifié.';
++
++  @override
++  String get dealNotListed => 'Introuvable en boutique.';
++
++  @override
++  String dealHistoricLow(String price) {
++    return 'Plus bas historique $price';
++  }
++
++  @override
++  String get dealAtLow => 'Plus bas historique en ce moment !';
++
++  @override
++  String get dealBadKey =>
++      'IsThereAnyDeal a refusé la clé. Vérifiez-la dans Connexions.';
++
++  @override
++  String dealLowTitle(String title) {
++    return '$title à son plus bas historique';
++  }
++
++  @override
++  String dealLowBody(String price, String shop) {
++    return '$price sur $shop';
++  }
++
++  @override
++  String get dealsTitle => 'Promos';
++
++  @override
++  String get dealsCardHint => 'Prix des jeux que vous prévoyez';
++
++  @override
++  String get dealsHint =>
++      'Les jeux prévus sont suivis. Une notification arrive quand l\'un atteint son plus bas historique.';
++
++  @override
++  String get dealsRefresh => 'Vérifier les prix';
++
++  @override
++  String get dealsEmpty =>
++      'Aucun jeu prévu. Passez un jeu en Prévu pour suivre son prix.';
++
++  @override
++  String loanReminderTitle(String title) {
++    return 'Il est temps de récupérer $title';
++  }
++
++  @override
++  String loanReminderBody(String name) {
++    return 'Prêté à $name';
++  }
++
++  @override
++  String get widgetIdle => 'Rien en cours';
++
++  @override
++  String widgetGoals(String progress) {
++    return 'Objectifs $progress';
++  }
+ }
+diff --git a/lib/l10n/app_localizations_pt.dart b/lib/l10n/app_localizations_pt.dart
+index a7cfd1d3..0a6889d7 100644
+--- a/lib/l10n/app_localizations_pt.dart
++++ b/lib/l10n/app_localizations_pt.dart
+@@ -7044,4 +7044,152 @@ class SPt extends S {
+ 
+   @override
+   String get keepsakeCriticHint => 'Avalie 50 itens';
++
++  @override
++  String get connectionsTitle => 'Conexões';
++
++  @override
++  String get connectionsSteam => 'Conquistas da Steam';
++
++  @override
++  String get connectionsSteamHint =>
++      'Precisa de uma chave da Steam Web API e do seu SteamID64 de 17 dígitos. Os detalhes de jogos devem ser públicos.';
++
++  @override
++  String get connectionsSteamKey => 'Chave da Steam Web API';
++
++  @override
++  String get connectionsSteamId => 'SteamID64';
++
++  @override
++  String get connectionsItad => 'Preços do IsThereAnyDeal';
++
++  @override
++  String get connectionsItadHint =>
++      'Registre um app gratuito no IsThereAnyDeal para obter uma chave. Os preços usam seu país.';
++
++  @override
++  String get connectionsItadKey => 'Chave de API do IsThereAnyDeal';
++
++  @override
++  String get connectionsCountry => 'Código do país (ex.: BR)';
++
++  @override
++  String get connectionsGetKey => 'Obter chave';
++
++  @override
++  String get steamAchievementsTitle => 'Conquistas da Steam';
++
++  @override
++  String get steamConnect => 'Conecte a Steam para ver as conquistas';
++
++  @override
++  String get steamSync => 'Atualizar';
++
++  @override
++  String get steamNotSynced => 'Ainda não sincronizado.';
++
++  @override
++  String steamProgress(int earned, int total) {
++    return '$earned de $total desbloqueadas';
++  }
++
++  @override
++  String steamShowAll(int count) {
++    return 'Ver todas ($count)';
++  }
++
++  @override
++  String get steamShowLess => 'Ver menos';
++
++  @override
++  String get steamHiddenAchievement => 'Conquista oculta';
++
++  @override
++  String get steamPrivateProfile =>
++      'Seus detalhes de jogos na Steam são privados. Torne-os públicos para sincronizar.';
++
++  @override
++  String get steamNoAchievements => 'Este jogo não tem conquistas da Steam.';
++
++  @override
++  String get steamBadKey =>
++      'A Steam recusou a chave ou o SteamID. Confira em Conexões.';
++
++  @override
++  String get steamNetworkError =>
++      'Não foi possível acessar o serviço. Tente mais tarde.';
++
++  @override
++  String get dealTitle => 'Melhor preço';
++
++  @override
++  String get dealConnect => 'Conecte o IsThereAnyDeal para ver preços';
++
++  @override
++  String get dealConnectHint =>
++      'Conecte o IsThereAnyDeal para acompanhar os preços dos jogos planejados e receber um aviso no menor preço histórico.';
++
++  @override
++  String get dealNotChecked => 'Preço ainda não verificado.';
++
++  @override
++  String get dealNotListed => 'Não encontrado nas lojas.';
++
++  @override
++  String dealHistoricLow(String price) {
++    return 'Menor preço histórico $price';
++  }
++
++  @override
++  String get dealAtLow => 'Menor preço histórico agora!';
++
++  @override
++  String get dealBadKey =>
++      'O IsThereAnyDeal recusou a chave. Confira em Conexões.';
++
++  @override
++  String dealLowTitle(String title) {
++    return '$title no menor preço histórico';
++  }
++
++  @override
++  String dealLowBody(String price, String shop) {
++    return '$price na $shop';
++  }
++
++  @override
++  String get dealsTitle => 'Promoções';
++
++  @override
++  String get dealsCardHint => 'Preços dos jogos que você planeja jogar';
++
++  @override
++  String get dealsHint =>
++      'Os jogos planejados são acompanhados. Um aviso chega quando um atinge o menor preço histórico.';
++
++  @override
++  String get dealsRefresh => 'Verificar preços';
++
++  @override
++  String get dealsEmpty =>
++      'Nenhum jogo planejado. Marque um jogo como Planejado para acompanhar o preço.';
++
++  @override
++  String loanReminderTitle(String title) {
++    return 'Hora de pegar $title de volta';
++  }
++
++  @override
++  String loanReminderBody(String name) {
++    return 'Emprestado para $name';
++  }
++
++  @override
++  String get widgetIdle => 'Nada em andamento';
++
++  @override
++  String widgetGoals(String progress) {
++    return 'Metas $progress';
++  }
+ }
+diff --git a/lib/l10n/app_localizations_ru.dart b/lib/l10n/app_localizations_ru.dart
+index 5070fd18..448b6c0f 100644
+--- a/lib/l10n/app_localizations_ru.dart
++++ b/lib/l10n/app_localizations_ru.dart
+@@ -7099,4 +7099,152 @@ class SRu extends S {
+ 
+   @override
+   String get keepsakeCriticHint => 'Оцените 50 элементов';
++
++  @override
++  String get connectionsTitle => 'Подключения';
++
++  @override
++  String get connectionsSteam => 'Достижения Steam';
++
++  @override
++  String get connectionsSteamHint =>
++      'Нужны ключ Steam Web API и ваш 17-значный SteamID64. Сведения об играх должны быть открыты.';
++
++  @override
++  String get connectionsSteamKey => 'Ключ Steam Web API';
++
++  @override
++  String get connectionsSteamId => 'SteamID64';
++
++  @override
++  String get connectionsItad => 'Цены IsThereAnyDeal';
++
++  @override
++  String get connectionsItadHint =>
++      'Зарегистрируйте бесплатное приложение на IsThereAnyDeal, чтобы получить ключ. Цены — для вашей страны.';
++
++  @override
++  String get connectionsItadKey => 'Ключ API IsThereAnyDeal';
++
++  @override
++  String get connectionsCountry => 'Код страны (например, IT)';
++
++  @override
++  String get connectionsGetKey => 'Получить ключ';
++
++  @override
++  String get steamAchievementsTitle => 'Достижения Steam';
++
++  @override
++  String get steamConnect => 'Подключите Steam, чтобы видеть достижения';
++
++  @override
++  String get steamSync => 'Обновить';
++
++  @override
++  String get steamNotSynced => 'Ещё не синхронизировано.';
++
++  @override
++  String steamProgress(int earned, int total) {
++    return 'Открыто $earned из $total';
++  }
++
++  @override
++  String steamShowAll(int count) {
++    return 'Показать все ($count)';
++  }
++
++  @override
++  String get steamShowLess => 'Свернуть';
++
++  @override
++  String get steamHiddenAchievement => 'Скрытое достижение';
++
++  @override
++  String get steamPrivateProfile =>
++      'Сведения об играх в Steam скрыты. Откройте их для синхронизации.';
++
++  @override
++  String get steamNoAchievements => 'У этой игры нет достижений Steam.';
++
++  @override
++  String get steamBadKey =>
++      'Steam отклонил ключ или SteamID. Проверьте их в подключениях.';
++
++  @override
++  String get steamNetworkError =>
++      'Не удалось связаться с сервисом. Попробуйте позже.';
++
++  @override
++  String get dealTitle => 'Лучшая цена';
++
++  @override
++  String get dealConnect => 'Подключите IsThereAnyDeal для цен';
++
++  @override
++  String get dealConnectHint =>
++      'Подключите IsThereAnyDeal, чтобы следить за ценами запланированных игр и получать уведомление об исторически низкой цене.';
++
++  @override
++  String get dealNotChecked => 'Цена ещё не проверялась.';
++
++  @override
++  String get dealNotListed => 'В магазинах не найдено.';
++
++  @override
++  String dealHistoricLow(String price) {
++    return 'Исторический минимум $price';
++  }
++
++  @override
++  String get dealAtLow => 'Сейчас исторический минимум!';
++
++  @override
++  String get dealBadKey =>
++      'IsThereAnyDeal отклонил ключ. Проверьте его в подключениях.';
++
++  @override
++  String dealLowTitle(String title) {
++    return '$title: исторический минимум';
++  }
++
++  @override
++  String dealLowBody(String price, String shop) {
++    return '$price в $shop';
++  }
++
++  @override
++  String get dealsTitle => 'Скидки';
++
++  @override
++  String get dealsCardHint => 'Цены игр, которые вы планируете';
++
++  @override
++  String get dealsHint =>
++      'Запланированные игры отслеживаются. Уведомление придёт, когда цена достигнет минимума.';
++
++  @override
++  String get dealsRefresh => 'Проверить цены';
++
++  @override
++  String get dealsEmpty =>
++      'Запланированных игр пока нет. Отметьте игру как запланированную, чтобы следить за ценой.';
++
++  @override
++  String loanReminderTitle(String title) {
++    return 'Пора вернуть $title';
++  }
++
++  @override
++  String loanReminderBody(String name) {
++    return 'Одолжено: $name';
++  }
++
++  @override
++  String get widgetIdle => 'Сейчас ничего не идёт';
++
++  @override
++  String widgetGoals(String progress) {
++    return 'Цели $progress';
++  }
+ }
+diff --git a/lib/l10n/app_localizations_zh.dart b/lib/l10n/app_localizations_zh.dart
+index 384b6be0..900b0df2 100644
+--- a/lib/l10n/app_localizations_zh.dart
++++ b/lib/l10n/app_localizations_zh.dart
+@@ -6655,4 +6655,145 @@ class SZh extends S {
+ 
+   @override
+   String get keepsakeCriticHint => '为 50 项评分';
++
++  @override
++  String get connectionsTitle => '连接';
++
++  @override
++  String get connectionsSteam => 'Steam 成就';
++
++  @override
++  String get connectionsSteamHint =>
++      '需要 Steam Web API 密钥和 17 位 SteamID64，且游戏详情需设为公开。';
++
++  @override
++  String get connectionsSteamKey => 'Steam Web API 密钥';
++
++  @override
++  String get connectionsSteamId => 'SteamID64';
++
++  @override
++  String get connectionsItad => 'IsThereAnyDeal 价格';
++
++  @override
++  String get connectionsItadHint =>
++      '在 IsThereAnyDeal 免费注册应用即可获得密钥，价格按你的国家/地区显示。';
++
++  @override
++  String get connectionsItadKey => 'IsThereAnyDeal API 密钥';
++
++  @override
++  String get connectionsCountry => '国家/地区代码（如 CN）';
++
++  @override
++  String get connectionsGetKey => '获取密钥';
++
++  @override
++  String get steamAchievementsTitle => 'Steam 成就';
++
++  @override
++  String get steamConnect => '连接 Steam 以查看成就';
++
++  @override
++  String get steamSync => '刷新';
++
++  @override
++  String get steamNotSynced => '尚未同步。';
++
++  @override
++  String steamProgress(int earned, int total) {
++    return '已解锁 $earned/$total';
++  }
++
++  @override
++  String steamShowAll(int count) {
++    return '显示全部 $count 个';
++  }
++
++  @override
++  String get steamShowLess => '收起';
++
++  @override
++  String get steamHiddenAchievement => '隐藏成就';
++
++  @override
++  String get steamPrivateProfile => '你的 Steam 游戏详情为私密，请设为公开后再同步。';
++
++  @override
++  String get steamNoAchievements => '这款游戏没有 Steam 成就。';
++
++  @override
++  String get steamBadKey => 'Steam 拒绝了密钥或 SteamID，请在“连接”中检查。';
++
++  @override
++  String get steamNetworkError => '无法连接服务，请稍后再试。';
++
++  @override
++  String get dealTitle => '最低价';
++
++  @override
++  String get dealConnect => '连接 IsThereAnyDeal 查看价格';
++
++  @override
++  String get dealConnectHint => '连接 IsThereAnyDeal，关注计划中游戏的价格，并在史低时收到提醒。';
++
++  @override
++  String get dealNotChecked => '尚未查询价格。';
++
++  @override
++  String get dealNotListed => '未找到商店信息。';
++
++  @override
++  String dealHistoricLow(String price) {
++    return '史低 $price';
++  }
++
++  @override
++  String get dealAtLow => '当前即为史低！';
++
++  @override
++  String get dealBadKey => 'IsThereAnyDeal 拒绝了密钥，请在“连接”中检查。';
++
++  @override
++  String dealLowTitle(String title) {
++    return '$title 史低了';
++  }
++
++  @override
++  String dealLowBody(String price, String shop) {
++    return '$shop 售价 $price';
++  }
++
++  @override
++  String get dealsTitle => '折扣';
++
++  @override
++  String get dealsCardHint => '计划游玩的游戏价格';
++
++  @override
++  String get dealsHint => '会关注计划中的游戏，达到史低时通知你。';
++
++  @override
++  String get dealsRefresh => '立即查价';
++
++  @override
++  String get dealsEmpty => '还没有计划中的游戏。将游戏设为“计划”即可关注价格。';
++
++  @override
++  String loanReminderTitle(String title) {
++    return '该拿回《$title》了';
++  }
++
++  @override
++  String loanReminderBody(String name) {
++    return '借给了 $name';
++  }
++
++  @override
++  String get widgetIdle => '当前没有进行中的记录';
++
++  @override
++  String widgetGoals(String progress) {
++    return '目标 $progress';
++  }
+ }
+diff --git a/test/features/integrations/integrations_widgets_test.dart b/test/features/integrations/integrations_widgets_test.dart
+index 5194d133..8c48e815 100644
+--- a/test/features/integrations/integrations_widgets_test.dart
++++ b/test/features/integrations/integrations_widgets_test.dart
+@@ -92,10 +92,7 @@ void main() {
+         const DealsScreen(),
+         wrapInScaffold: true,
+         overrides: <Override>[
+-          itadSettingsProvider.overrideWithValue((
+-            apiKey: 'k',
+-            country: 'IT',
+-          )),
++          itadSettingsProvider.overrideWithValue((apiKey: 'k', country: 'IT')),
+           watchedGamesProvider.overrideWith(
+             (Ref ref) async => <CollectionItem>[
+               createTestCollectionItem(id: 1, status: ItemStatus.planned),
