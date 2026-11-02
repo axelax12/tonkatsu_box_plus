@@ -6877,4 +6877,226 @@ class SRu extends S {
 
   @override
   String get smartTemplateBestRated => 'Мои лучшие оценки';
+
+  @override
+  String get collectorTitle => 'Комната коллекционера';
+
+  @override
+  String get collectorHint => 'Ваши полки, награды и у кого ваши вещи';
+
+  @override
+  String hubCollectorPreview(int copies, int unlocked, int total) {
+    return 'физических копий: $copies · награды: $unlocked/$total';
+  }
+
+  @override
+  String get copiesTitle => 'Мои экземпляры';
+
+  @override
+  String get copiesNone => 'Экземпляров пока нет.';
+
+  @override
+  String get copyAdd => 'Добавить экземпляр';
+
+  @override
+  String get copyEdit => 'Изменить экземпляр';
+
+  @override
+  String get copyPhysical => 'Физический';
+
+  @override
+  String get copyDigital => 'Цифровой';
+
+  @override
+  String get copyEdition => 'Издание';
+
+  @override
+  String get copyCondition => 'Состояние';
+
+  @override
+  String get copyNoCondition => 'Не указано';
+
+  @override
+  String get conditionSealed => 'Запечатан';
+
+  @override
+  String get conditionMint => 'Идеальное';
+
+  @override
+  String get conditionGood => 'Хорошее';
+
+  @override
+  String get conditionFair => 'Среднее';
+
+  @override
+  String get conditionPoor => 'Плохое';
+
+  @override
+  String get copyPrice => 'Цена';
+
+  @override
+  String get copyCurrency => 'Валюта';
+
+  @override
+  String get copyPurchased => 'Куплено';
+
+  @override
+  String get copyStore => 'Где';
+
+  @override
+  String get copyNotes => 'Заметки';
+
+  @override
+  String get copyLend => 'Одолжить';
+
+  @override
+  String get copyLendTo => 'Кому';
+
+  @override
+  String get copyDue => 'Вернуть до';
+
+  @override
+  String get copyNoDue => 'Без даты';
+
+  @override
+  String get copyReturned => 'Отметить возврат';
+
+  @override
+  String copyLentChip(String name) {
+    return 'У $name';
+  }
+
+  @override
+  String get copyOverdue => 'Просрочено';
+
+  @override
+  String get copyDeleteConfirm => 'Удалить этот экземпляр?';
+
+  @override
+  String loanDue(String date) {
+    return 'до $date';
+  }
+
+  @override
+  String get loansTab => 'Займы';
+
+  @override
+  String get loansNone => 'Сейчас ничего не одолжено.';
+
+  @override
+  String get roomTab => 'Комната';
+
+  @override
+  String get roomKeepsakes => 'Награды';
+
+  @override
+  String get roomEmpty => 'Пока эти полки пусты.';
+
+  @override
+  String get roomSave => 'Сохранить как изображение';
+
+  @override
+  String get roomThemeWood => 'Дерево';
+
+  @override
+  String get roomThemeMidnight => 'Полночь';
+
+  @override
+  String get roomThemeNeon => 'Неон';
+
+  @override
+  String get roomSourceOwned => 'Физические копии';
+
+  @override
+  String get roomSourceFavorites => 'Избранное';
+
+  @override
+  String get roomSourceFinished => 'Завершено в этом году';
+
+  @override
+  String get valuePhysical => 'Физические копии';
+
+  @override
+  String get valueDigital => 'Цифровые копии';
+
+  @override
+  String get valueSpent => 'Потрачено';
+
+  @override
+  String keepsakeProgress(int value, int target) {
+    return '$value / $target';
+  }
+
+  @override
+  String get keepsakeFirstFinish => 'Первое завершение';
+
+  @override
+  String get keepsakeFirstFinishHint => 'Завершите что угодно';
+
+  @override
+  String get keepsakeTenFinished => 'Десятка';
+
+  @override
+  String get keepsakeTenFinishedHint => 'Завершите 10 элементов';
+
+  @override
+  String get keepsakeFiftyFinished => 'Полсотни';
+
+  @override
+  String get keepsakeFiftyFinishedHint => 'Завершите 50 элементов';
+
+  @override
+  String get keepsakeHundredFinished => 'Центурион';
+
+  @override
+  String get keepsakeHundredFinishedHint => 'Завершите 100 элементов';
+
+  @override
+  String get keepsakePolymath => 'Эрудит';
+
+  @override
+  String get keepsakePolymathHint => 'Завершите 4 вида медиа';
+
+  @override
+  String get keepsakeMarathon => 'Марафон';
+
+  @override
+  String get keepsakeMarathonHint => 'Одна сессия от 4 часов';
+
+  @override
+  String get keepsakeHundredHours => 'Сто часов';
+
+  @override
+  String get keepsakeHundredHoursHint => 'Наберите 100 часов в сессиях';
+
+  @override
+  String get keepsakeWeekStreak => 'Неделя подряд';
+
+  @override
+  String get keepsakeWeekStreakHint => 'Сессии 7 дней подряд';
+
+  @override
+  String get keepsakeJournalist => 'Летописец';
+
+  @override
+  String get keepsakeJournalistHint => 'Напишите 25 записей в дневник';
+
+  @override
+  String get keepsakeShelfBuilder => 'Строитель полок';
+
+  @override
+  String get keepsakeShelfBuilderHint => 'Соберите 25 физических копий';
+
+  @override
+  String get keepsakeBacklogBuster => 'Гроза бэклога';
+
+  @override
+  String get keepsakeBacklogBusterHint =>
+      'Завершите 10 элементов, ждавших больше года';
+
+  @override
+  String get keepsakeCritic => 'Критик';
+
+  @override
+  String get keepsakeCriticHint => 'Оцените 50 элементов';
 }

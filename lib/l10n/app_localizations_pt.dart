@@ -6821,4 +6821,227 @@ class SPt extends S {
 
   @override
   String get smartTemplateBestRated => 'Meus mais bem avaliados';
+
+  @override
+  String get collectorTitle => 'A sala do colecionador';
+
+  @override
+  String get collectorHint =>
+      'Suas estantes, suas lembranças e quem está com suas coisas';
+
+  @override
+  String hubCollectorPreview(int copies, int unlocked, int total) {
+    return '$copies cópias físicas · $unlocked/$total lembranças';
+  }
+
+  @override
+  String get copiesTitle => 'Minhas cópias';
+
+  @override
+  String get copiesNone => 'Nenhuma cópia adicionada ainda.';
+
+  @override
+  String get copyAdd => 'Adicionar cópia';
+
+  @override
+  String get copyEdit => 'Editar cópia';
+
+  @override
+  String get copyPhysical => 'Física';
+
+  @override
+  String get copyDigital => 'Digital';
+
+  @override
+  String get copyEdition => 'Edição';
+
+  @override
+  String get copyCondition => 'Estado';
+
+  @override
+  String get copyNoCondition => 'Não definido';
+
+  @override
+  String get conditionSealed => 'Lacrado';
+
+  @override
+  String get conditionMint => 'Impecável';
+
+  @override
+  String get conditionGood => 'Bom';
+
+  @override
+  String get conditionFair => 'Razoável';
+
+  @override
+  String get conditionPoor => 'Ruim';
+
+  @override
+  String get copyPrice => 'Preço pago';
+
+  @override
+  String get copyCurrency => 'Moeda';
+
+  @override
+  String get copyPurchased => 'Comprado em';
+
+  @override
+  String get copyStore => 'Onde';
+
+  @override
+  String get copyNotes => 'Notas';
+
+  @override
+  String get copyLend => 'Emprestar';
+
+  @override
+  String get copyLendTo => 'Emprestado para';
+
+  @override
+  String get copyDue => 'Devolver até';
+
+  @override
+  String get copyNoDue => 'Sem data';
+
+  @override
+  String get copyReturned => 'Marcar como devolvido';
+
+  @override
+  String copyLentChip(String name) {
+    return 'Emprestado para $name';
+  }
+
+  @override
+  String get copyOverdue => 'Atrasado';
+
+  @override
+  String get copyDeleteConfirm => 'Excluir esta cópia?';
+
+  @override
+  String loanDue(String date) {
+    return 'até $date';
+  }
+
+  @override
+  String get loansTab => 'Empréstimos';
+
+  @override
+  String get loansNone => 'Nada emprestado agora.';
+
+  @override
+  String get roomTab => 'Sala';
+
+  @override
+  String get roomKeepsakes => 'Lembranças';
+
+  @override
+  String get roomEmpty => 'Estas estantes estão vazias por enquanto.';
+
+  @override
+  String get roomSave => 'Salvar como imagem';
+
+  @override
+  String get roomThemeWood => 'Madeira';
+
+  @override
+  String get roomThemeMidnight => 'Meia-noite';
+
+  @override
+  String get roomThemeNeon => 'Neon';
+
+  @override
+  String get roomSourceOwned => 'Cópias físicas';
+
+  @override
+  String get roomSourceFavorites => 'Favoritos';
+
+  @override
+  String get roomSourceFinished => 'Concluídos este ano';
+
+  @override
+  String get valuePhysical => 'Cópias físicas';
+
+  @override
+  String get valueDigital => 'Cópias digitais';
+
+  @override
+  String get valueSpent => 'Gasto';
+
+  @override
+  String keepsakeProgress(int value, int target) {
+    return '$value / $target';
+  }
+
+  @override
+  String get keepsakeFirstFinish => 'Primeira conclusão';
+
+  @override
+  String get keepsakeFirstFinishHint => 'Conclua qualquer coisa';
+
+  @override
+  String get keepsakeTenFinished => 'Dez concluídos';
+
+  @override
+  String get keepsakeTenFinishedHint => 'Conclua 10 itens';
+
+  @override
+  String get keepsakeFiftyFinished => 'Meia centena';
+
+  @override
+  String get keepsakeFiftyFinishedHint => 'Conclua 50 itens';
+
+  @override
+  String get keepsakeHundredFinished => 'Centurião';
+
+  @override
+  String get keepsakeHundredFinishedHint => 'Conclua 100 itens';
+
+  @override
+  String get keepsakePolymath => 'Polímata';
+
+  @override
+  String get keepsakePolymathHint => 'Conclua 4 tipos de mídia';
+
+  @override
+  String get keepsakeMarathon => 'Maratona';
+
+  @override
+  String get keepsakeMarathonHint => 'Uma sessão de 4 horas ou mais';
+
+  @override
+  String get keepsakeHundredHours => 'Cem horas';
+
+  @override
+  String get keepsakeHundredHoursHint => 'Registre 100 horas em sessões';
+
+  @override
+  String get keepsakeWeekStreak => 'Sequência semanal';
+
+  @override
+  String get keepsakeWeekStreakHint => 'Sessões 7 dias seguidos';
+
+  @override
+  String get keepsakeJournalist => 'Cronista';
+
+  @override
+  String get keepsakeJournalistHint => 'Escreva 25 entradas no diário';
+
+  @override
+  String get keepsakeShelfBuilder => 'Construtor de estantes';
+
+  @override
+  String get keepsakeShelfBuilderHint => 'Tenha 25 cópias físicas';
+
+  @override
+  String get keepsakeBacklogBuster => 'Destruidor de backlog';
+
+  @override
+  String get keepsakeBacklogBusterHint =>
+      'Conclua 10 itens que esperaram mais de um ano';
+
+  @override
+  String get keepsakeCritic => 'Crítico';
+
+  @override
+  String get keepsakeCriticHint => 'Avalie 50 itens';
 }

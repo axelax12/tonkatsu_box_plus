@@ -3,6 +3,7 @@ import 'package:sqflite_common/sqlite_api.dart';
 import 'migrations/plus_migration_v1.dart';
 import 'migrations/plus_migration_v2.dart';
 import 'migrations/plus_migration_v3.dart';
+import 'migrations/plus_migration_v4.dart';
 import 'plus_migration.dart';
 
 /// Thrown when the file was written by a newer fork build; nothing is touched.
@@ -35,6 +36,7 @@ class PlusSchema {
     PlusMigrationV1(),
     PlusMigrationV2(),
     PlusMigrationV3(),
+    PlusMigrationV4(),
   ];
 
   static int get latestVersion => all.last.version;

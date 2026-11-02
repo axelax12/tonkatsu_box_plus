@@ -11893,6 +11893,432 @@ abstract class S {
   /// In en, this message translates to:
   /// **'My best rated'**
   String get smartTemplateBestRated;
+
+  /// No description provided for @collectorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Collector\'s room'**
+  String get collectorTitle;
+
+  /// No description provided for @collectorHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your shelves, your keepsakes and who has your stuff'**
+  String get collectorHint;
+
+  /// No description provided for @hubCollectorPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'{copies} physical copies · {unlocked}/{total} keepsakes'**
+  String hubCollectorPreview(int copies, int unlocked, int total);
+
+  /// No description provided for @copiesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My copies'**
+  String get copiesTitle;
+
+  /// No description provided for @copiesNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No copies added yet.'**
+  String get copiesNone;
+
+  /// No description provided for @copyAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a copy'**
+  String get copyAdd;
+
+  /// No description provided for @copyEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit copy'**
+  String get copyEdit;
+
+  /// No description provided for @copyPhysical.
+  ///
+  /// In en, this message translates to:
+  /// **'Physical'**
+  String get copyPhysical;
+
+  /// No description provided for @copyDigital.
+  ///
+  /// In en, this message translates to:
+  /// **'Digital'**
+  String get copyDigital;
+
+  /// No description provided for @copyEdition.
+  ///
+  /// In en, this message translates to:
+  /// **'Edition'**
+  String get copyEdition;
+
+  /// No description provided for @copyCondition.
+  ///
+  /// In en, this message translates to:
+  /// **'Condition'**
+  String get copyCondition;
+
+  /// No description provided for @copyNoCondition.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get copyNoCondition;
+
+  /// No description provided for @conditionSealed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sealed'**
+  String get conditionSealed;
+
+  /// No description provided for @conditionMint.
+  ///
+  /// In en, this message translates to:
+  /// **'Mint'**
+  String get conditionMint;
+
+  /// No description provided for @conditionGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get conditionGood;
+
+  /// No description provided for @conditionFair.
+  ///
+  /// In en, this message translates to:
+  /// **'Fair'**
+  String get conditionFair;
+
+  /// No description provided for @conditionPoor.
+  ///
+  /// In en, this message translates to:
+  /// **'Poor'**
+  String get conditionPoor;
+
+  /// No description provided for @copyPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price paid'**
+  String get copyPrice;
+
+  /// No description provided for @copyCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get copyCurrency;
+
+  /// No description provided for @copyPurchased.
+  ///
+  /// In en, this message translates to:
+  /// **'Bought on'**
+  String get copyPurchased;
+
+  /// No description provided for @copyStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Where'**
+  String get copyStore;
+
+  /// No description provided for @copyNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get copyNotes;
+
+  /// No description provided for @copyLend.
+  ///
+  /// In en, this message translates to:
+  /// **'Lend'**
+  String get copyLend;
+
+  /// No description provided for @copyLendTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Lent to'**
+  String get copyLendTo;
+
+  /// No description provided for @copyDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Give back by'**
+  String get copyDue;
+
+  /// No description provided for @copyNoDue.
+  ///
+  /// In en, this message translates to:
+  /// **'No date'**
+  String get copyNoDue;
+
+  /// No description provided for @copyReturned.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as returned'**
+  String get copyReturned;
+
+  /// No description provided for @copyLentChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Lent to {name}'**
+  String copyLentChip(String name);
+
+  /// No description provided for @copyOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue'**
+  String get copyOverdue;
+
+  /// No description provided for @copyDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this copy?'**
+  String get copyDeleteConfirm;
+
+  /// No description provided for @loanDue.
+  ///
+  /// In en, this message translates to:
+  /// **'due {date}'**
+  String loanDue(String date);
+
+  /// No description provided for @loansTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Loans'**
+  String get loansTab;
+
+  /// No description provided for @loansNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing lent out right now.'**
+  String get loansNone;
+
+  /// No description provided for @roomTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Room'**
+  String get roomTab;
+
+  /// No description provided for @roomKeepsakes.
+  ///
+  /// In en, this message translates to:
+  /// **'Keepsakes'**
+  String get roomKeepsakes;
+
+  /// No description provided for @roomEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'These shelves are empty for now.'**
+  String get roomEmpty;
+
+  /// No description provided for @roomSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save as image'**
+  String get roomSave;
+
+  /// No description provided for @roomThemeWood.
+  ///
+  /// In en, this message translates to:
+  /// **'Wood'**
+  String get roomThemeWood;
+
+  /// No description provided for @roomThemeMidnight.
+  ///
+  /// In en, this message translates to:
+  /// **'Midnight'**
+  String get roomThemeMidnight;
+
+  /// No description provided for @roomThemeNeon.
+  ///
+  /// In en, this message translates to:
+  /// **'Neon'**
+  String get roomThemeNeon;
+
+  /// No description provided for @roomSourceOwned.
+  ///
+  /// In en, this message translates to:
+  /// **'Physical copies'**
+  String get roomSourceOwned;
+
+  /// No description provided for @roomSourceFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get roomSourceFavorites;
+
+  /// No description provided for @roomSourceFinished.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished this year'**
+  String get roomSourceFinished;
+
+  /// No description provided for @valuePhysical.
+  ///
+  /// In en, this message translates to:
+  /// **'Physical copies'**
+  String get valuePhysical;
+
+  /// No description provided for @valueDigital.
+  ///
+  /// In en, this message translates to:
+  /// **'Digital copies'**
+  String get valueDigital;
+
+  /// No description provided for @valueSpent.
+  ///
+  /// In en, this message translates to:
+  /// **'Spent'**
+  String get valueSpent;
+
+  /// No description provided for @keepsakeProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} / {target}'**
+  String keepsakeProgress(int value, int target);
+
+  /// No description provided for @keepsakeFirstFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'First finish'**
+  String get keepsakeFirstFinish;
+
+  /// No description provided for @keepsakeFirstFinishHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish anything'**
+  String get keepsakeFirstFinishHint;
+
+  /// No description provided for @keepsakeTenFinished.
+  ///
+  /// In en, this message translates to:
+  /// **'Ten down'**
+  String get keepsakeTenFinished;
+
+  /// No description provided for @keepsakeTenFinishedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish 10 items'**
+  String get keepsakeTenFinishedHint;
+
+  /// No description provided for @keepsakeFiftyFinished.
+  ///
+  /// In en, this message translates to:
+  /// **'Half a hundred'**
+  String get keepsakeFiftyFinished;
+
+  /// No description provided for @keepsakeFiftyFinishedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish 50 items'**
+  String get keepsakeFiftyFinishedHint;
+
+  /// No description provided for @keepsakeHundredFinished.
+  ///
+  /// In en, this message translates to:
+  /// **'Centurion'**
+  String get keepsakeHundredFinished;
+
+  /// No description provided for @keepsakeHundredFinishedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish 100 items'**
+  String get keepsakeHundredFinishedHint;
+
+  /// No description provided for @keepsakePolymath.
+  ///
+  /// In en, this message translates to:
+  /// **'Polymath'**
+  String get keepsakePolymath;
+
+  /// No description provided for @keepsakePolymathHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish 4 kinds of media'**
+  String get keepsakePolymathHint;
+
+  /// No description provided for @keepsakeMarathon.
+  ///
+  /// In en, this message translates to:
+  /// **'Marathon'**
+  String get keepsakeMarathon;
+
+  /// No description provided for @keepsakeMarathonHint.
+  ///
+  /// In en, this message translates to:
+  /// **'One session of 4 hours or more'**
+  String get keepsakeMarathonHint;
+
+  /// No description provided for @keepsakeHundredHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Hundred hours'**
+  String get keepsakeHundredHours;
+
+  /// No description provided for @keepsakeHundredHoursHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Log 100 hours in sessions'**
+  String get keepsakeHundredHoursHint;
+
+  /// No description provided for @keepsakeWeekStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Week streak'**
+  String get keepsakeWeekStreak;
+
+  /// No description provided for @keepsakeWeekStreakHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sessions 7 days in a row'**
+  String get keepsakeWeekStreakHint;
+
+  /// No description provided for @keepsakeJournalist.
+  ///
+  /// In en, this message translates to:
+  /// **'Journalist'**
+  String get keepsakeJournalist;
+
+  /// No description provided for @keepsakeJournalistHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write 25 journal entries'**
+  String get keepsakeJournalistHint;
+
+  /// No description provided for @keepsakeShelfBuilder.
+  ///
+  /// In en, this message translates to:
+  /// **'Shelf builder'**
+  String get keepsakeShelfBuilder;
+
+  /// No description provided for @keepsakeShelfBuilderHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Own 25 physical copies'**
+  String get keepsakeShelfBuilderHint;
+
+  /// No description provided for @keepsakeBacklogBuster.
+  ///
+  /// In en, this message translates to:
+  /// **'Backlog buster'**
+  String get keepsakeBacklogBuster;
+
+  /// No description provided for @keepsakeBacklogBusterHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish 10 items that waited over a year'**
+  String get keepsakeBacklogBusterHint;
+
+  /// No description provided for @keepsakeCritic.
+  ///
+  /// In en, this message translates to:
+  /// **'Critic'**
+  String get keepsakeCritic;
+
+  /// No description provided for @keepsakeCriticHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate 50 items'**
+  String get keepsakeCriticHint;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

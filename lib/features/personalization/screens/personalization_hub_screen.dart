@@ -4,6 +4,8 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/theme/app_colors.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/theme/app_typography.dart';
+import '../../collector/screens/collector_screen.dart';
+import '../../collector/widgets/hub_collector_preview.dart';
 import '../../insights/screens/backlog_health_screen.dart';
 import '../../insights/screens/goals_screen.dart';
 import '../../insights/screens/year_review_screen.dart';
@@ -146,6 +148,18 @@ class PersonalizationHubScreen extends StatelessWidget {
                   context,
                   title: l.smartListsTitle,
                   child: const SmartListsScreen(),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              HubSectionCard(
+                icon: Icons.shelves,
+                title: l.collectorTitle,
+                hint: l.collectorHint,
+                preview: const HubCollectorPreview(),
+                onTap: () => pushPersonalizationSection(
+                  context,
+                  title: l.collectorTitle,
+                  child: const CollectorScreen(),
                 ),
               ),
             ],
