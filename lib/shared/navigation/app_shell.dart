@@ -32,6 +32,7 @@ import '../widgets/whats_new_dialog.dart';
 import 'app_bottom_bar.dart';
 import 'app_sidebar.dart';
 import 'app_top_bar.dart';
+import '../../features/notifications/release_reminders_provider.dart';
 import 'nav_destinations.dart';
 import 'nav_tab.dart';
 import 'search_providers.dart';
@@ -99,6 +100,8 @@ class _AppShellState extends ConsumerState<AppShell> {
 
   @override
   Widget build(BuildContext context) {
+    // Listening keeps release-day reminders in step with the library.
+    ref.listen<AsyncValue<int>>(releaseRemindersProvider, (_, _) {});
     ref.listen<SearchTabRequest?>(
       searchTabRequestProvider,
       (SearchTabRequest? previous, SearchTabRequest? request) {

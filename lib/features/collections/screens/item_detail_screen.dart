@@ -96,6 +96,7 @@ import '../../collector/widgets/copies_section.dart';
 import '../../integrations/providers/integrations_providers.dart';
 import '../../integrations/widgets/deal_section.dart';
 import '../../integrations/widgets/steam_achievements_section.dart';
+import '../../paths/widgets/paths_section.dart';
 
 /// Unified detail screen for any collection item, dispatched off
 /// [CollectionItem.mediaType].
@@ -954,6 +955,12 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
           SteamAchievementsSection(
             igdbId: item.externalId,
             accentColor: config.accentColor,
+          ),
+        if (widget.collectionId != null)
+          PathsSection(
+            item: item,
+            accentColor: config.accentColor,
+            isEditable: widget.isEditable,
           ),
         if (widget.collectionId != null && isWatchedForDeals(item))
           DealSection(item: item, accentColor: config.accentColor),

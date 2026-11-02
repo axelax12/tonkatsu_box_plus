@@ -12,10 +12,13 @@ import '../../insights/screens/goals_screen.dart';
 import '../../insights/screens/year_review_screen.dart';
 import '../../insights/widgets/hub_insights_previews.dart';
 import '../../likes/screens/likes_screen.dart';
+import '../../paths/screens/paths_screen.dart';
+import '../../paths/widgets/hub_paths_preview.dart';
 import '../../smart_lists/screens/smart_lists_screen.dart';
 import '../../smart_lists/widgets/hub_smart_lists_preview.dart';
 import '../../recommendations/screens/recommendations_screen.dart';
 import '../../showcase/screens/showcase_screen.dart';
+import '../../together/screens/together_screen.dart';
 import '../../statistics/screens/statistics_screen.dart';
 import '../widgets/hub_likes_preview.dart';
 import '../widgets/hub_recommendations_preview.dart';
@@ -172,6 +175,29 @@ class PersonalizationHubScreen extends StatelessWidget {
                   context,
                   title: l.dealsTitle,
                   child: const DealsScreen(),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              HubSectionCard(
+                icon: Icons.route_outlined,
+                title: l.pathsTitle,
+                hint: l.pathsHint,
+                preview: const HubPathsPreview(),
+                onTap: () => pushPersonalizationSection(
+                  context,
+                  title: l.pathsTitle,
+                  child: const PathsScreen(),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              HubSectionCard(
+                icon: Icons.how_to_vote_outlined,
+                title: l.togetherTitle,
+                hint: l.togetherHint,
+                onTap: () => pushPersonalizationSection(
+                  context,
+                  title: l.togetherTitle,
+                  child: const TogetherScreen(),
                 ),
               ),
             ],

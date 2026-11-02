@@ -7212,4 +7212,438 @@ class SEs extends S {
   String widgetGoals(String progress) {
     return 'Metas $progress';
   }
+
+  @override
+  String get pathsTitle => 'Rutas y universos';
+
+  @override
+  String get pathsHint =>
+      'Por dónde empezar una saga y obras unidas por un tema';
+
+  @override
+  String get pathsNoneYet => 'Aún no hay rutas';
+
+  @override
+  String get pathsTabPaths => 'Rutas';
+
+  @override
+  String get pathsTabExplore => 'Explorar';
+
+  @override
+  String get pathKindUniverse => 'Universo';
+
+  @override
+  String get pathKindTheme => 'Ruta temática';
+
+  @override
+  String get pathsUniverses => 'Universos';
+
+  @override
+  String get pathsThemes => 'Rutas temáticas';
+
+  @override
+  String get pathOrderRelease => 'Estreno';
+
+  @override
+  String get pathOrderChrono => 'Orden de la historia';
+
+  @override
+  String get pathOrderRecommended => 'Recomendado';
+
+  @override
+  String get aspectAtmosphere => 'Atmósfera';
+
+  @override
+  String get aspectSetting => 'Ambientación';
+
+  @override
+  String get aspectThemes => 'Temas';
+
+  @override
+  String get aspectStructure => 'Estructura';
+
+  @override
+  String get pathNew => 'Nueva ruta';
+
+  @override
+  String get pathNameHint => 'p. ej. Gundam, The Witcher, horror cósmico';
+
+  @override
+  String get pathCreate => 'Crear';
+
+  @override
+  String pathProgress(int done, int total) {
+    return '$done de $total completadas';
+  }
+
+  @override
+  String pathOptionalProgress(int done, int total) {
+    return 'Paradas opcionales: $done/$total';
+  }
+
+  @override
+  String get pathStartHere => 'Empieza aquí';
+
+  @override
+  String get pathContinue => 'Sigue aquí';
+
+  @override
+  String get pathCompleted => 'Ruta completada';
+
+  @override
+  String get pathEmpty =>
+      'Esta ruta aún no tiene obras. Añádelas desde tu biblioteca.';
+
+  @override
+  String get pathAddWorks => 'Añadir obras';
+
+  @override
+  String get pathEditStops => 'Editar paradas';
+
+  @override
+  String get pathSortByRelease => 'Ordenar por fecha de estreno';
+
+  @override
+  String pathDeleteConfirm(String name) {
+    return '¿Eliminar la ruta «$name»? Las obras siguen en tu biblioteca.';
+  }
+
+  @override
+  String get pathOptional => 'Opcional';
+
+  @override
+  String get pathOptionalHint =>
+      'Historia secundaria, no hace falta para terminar';
+
+  @override
+  String get pathSpoiler => 'Ocultar hasta llegar';
+
+  @override
+  String get pathSpoilerHint =>
+      'Se muestra como ??? hasta completar las anteriores';
+
+  @override
+  String get pathSpoilerHidden => 'Oculto para evitar spoilers';
+
+  @override
+  String get pathReveal => 'Mostrar';
+
+  @override
+  String get pathRevealConfirm =>
+      '¿Mostrar esta parada? Su título puede destripar lo anterior.';
+
+  @override
+  String get pathNote => 'Nota';
+
+  @override
+  String get pathNoteHint => 'Por qué está aquí y dónde encaja';
+
+  @override
+  String get pathAspect => 'Unida por';
+
+  @override
+  String get pathAspectNone => 'Sin definir';
+
+  @override
+  String get pathRemoveStop => 'Quitar de la ruta';
+
+  @override
+  String get pathStateDone => 'Hecho';
+
+  @override
+  String get pathStateActive => 'En curso';
+
+  @override
+  String get pathStateNext => 'Siguiente';
+
+  @override
+  String get pathPickerTitle => 'Añadir desde tu biblioteca';
+
+  @override
+  String get pathPickerSearch => 'Busca en tu biblioteca';
+
+  @override
+  String get pathPickerSuggested => 'Coinciden con el nombre';
+
+  @override
+  String pathPickerSelectAll(int count) {
+    return 'Seleccionar las $count';
+  }
+
+  @override
+  String pathPickerAdd(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Añadir $count',
+      zero: 'Añadir',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pathPickerMissing =>
+      '¿No está en tu biblioteca? Añádelo desde Buscar y vuelve.';
+
+  @override
+  String get pathPickerNoResults => 'No se encontró nada';
+
+  @override
+  String get pathsSectionTitle => 'Rutas y temas';
+
+  @override
+  String pathsSectionStop(int pos, int total) {
+    return 'Parada $pos de $total';
+  }
+
+  @override
+  String pathsSectionNext(String name) {
+    return 'Siguiente: $name';
+  }
+
+  @override
+  String get pathAddToPath => 'Añadir a una ruta';
+
+  @override
+  String pathAdded(String name) {
+    return 'Añadido a $name';
+  }
+
+  @override
+  String get aspectAddTag => 'Añadir etiqueta';
+
+  @override
+  String get aspectTagHint => 'p. ej. melancólico, estación orbital';
+
+  @override
+  String get aspectTagExists => 'Ya tiene esa etiqueta';
+
+  @override
+  String get aspectFromGenres => 'Por géneros';
+
+  @override
+  String get exploreIntro =>
+      'Elige un aspecto y luego un hilo que recorra juegos, películas, libros y más.';
+
+  @override
+  String get exploreEmpty =>
+      'Aún no hay nada. Se llena con los géneros y con las etiquetas que añades en cada obra.';
+
+  @override
+  String exploreToDiscover(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count por descubrir',
+      one: '1 por descubrir',
+      zero: 'Todo explorado',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get exploreMakePath => 'Crear una ruta';
+
+  @override
+  String explorePathCreated(String name) {
+    return 'Ruta «$name» creada';
+  }
+
+  @override
+  String get themeDark => 'Oscuro';
+
+  @override
+  String get themeTense => 'Tenso';
+
+  @override
+  String get themeLighthearted => 'Desenfadado';
+
+  @override
+  String get themeCozy => 'Acogedor';
+
+  @override
+  String get themeEmotional => 'Emotivo';
+
+  @override
+  String get themeSurreal => 'Surrealista';
+
+  @override
+  String get themeSpace => 'Espacio y ciencia ficción';
+
+  @override
+  String get themeFantasyWorlds => 'Mundos de fantasía';
+
+  @override
+  String get themeHistorical => 'Histórico';
+
+  @override
+  String get themeDystopia => 'Distopía y cyberpunk';
+
+  @override
+  String get themeSchool => 'Vida escolar';
+
+  @override
+  String get themeSupernatural => 'Sobrenatural';
+
+  @override
+  String get themeLove => 'Amor';
+
+  @override
+  String get themeWar => 'Guerra';
+
+  @override
+  String get themeMind => 'Mente y filosofía';
+
+  @override
+  String get themeCrime => 'Crimen y justicia';
+
+  @override
+  String get themeComingOfAge => 'Crecer';
+
+  @override
+  String get themeMachines => 'Mechas y máquinas';
+
+  @override
+  String get themeCompetition => 'Deporte y competición';
+
+  @override
+  String get themeMystery => 'Misterio';
+
+  @override
+  String get themeJourney => 'Viaje y aventura';
+
+  @override
+  String get themeAction => 'Acción';
+
+  @override
+  String get themeStrategy => 'Estrategia';
+
+  @override
+  String get themeRolePlaying => 'Rol';
+
+  @override
+  String get themeTrueStories => 'Historias reales';
+
+  @override
+  String get togetherTitle => 'Elegimos juntos';
+
+  @override
+  String get togetherHint =>
+      'Pasaos el móvil y encontrad algo que nadie haya visto';
+
+  @override
+  String get togetherWho => '¿Quién participa?';
+
+  @override
+  String togetherMe(String name) {
+    return '$name (tú)';
+  }
+
+  @override
+  String get togetherAddGuest => 'Añadir invitado';
+
+  @override
+  String get togetherGuestName => 'Nombre del invitado';
+
+  @override
+  String get togetherProfileOutdated =>
+      'Abre este perfil una vez para actualizarlo';
+
+  @override
+  String get togetherProfileUnavailable =>
+      'No se puede leer la biblioteca de este perfil';
+
+  @override
+  String get togetherNoProfiles =>
+      'Crea más perfiles en Ajustes para sumar sus listas; los invitados también votan.';
+
+  @override
+  String get togetherWhat => '¿Qué?';
+
+  @override
+  String get togetherTime => '¿Cuánto tiempo tenéis?';
+
+  @override
+  String get togetherAnyTime => 'Cualquier duración';
+
+  @override
+  String get togetherUnknownLength => 'Incluir obras de duración desconocida';
+
+  @override
+  String togetherPoolCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count candidatas que nadie ha visto',
+      one: '1 candidata que nadie ha visto',
+      zero: 'No hay nada que nadie haya visto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get togetherStart => 'Empezar a votar';
+
+  @override
+  String togetherPassTo(String name) {
+    return 'Pasa el móvil a $name';
+  }
+
+  @override
+  String get togetherPassHint => 'Los votos son secretos hasta el final.';
+
+  @override
+  String togetherReady(String name) {
+    return 'Soy $name, vamos';
+  }
+
+  @override
+  String get togetherVoteNo => 'No';
+
+  @override
+  String get togetherVoteMaybe => 'Quizá';
+
+  @override
+  String get togetherVoteYes => '¡Sí!';
+
+  @override
+  String togetherCardProgress(int current, int total) {
+    return '$current / $total';
+  }
+
+  @override
+  String togetherOwnedBy(String names) {
+    return 'En la lista de $names';
+  }
+
+  @override
+  String get togetherWinner => 'El grupo eligió';
+
+  @override
+  String get togetherUnanimous => 'Todos dijeron que sí';
+
+  @override
+  String togetherScore(int yes, int no) {
+    return '$yes sí · $no no';
+  }
+
+  @override
+  String get togetherVoteAgain => 'Votar otra vez';
+
+  @override
+  String get togetherNewRound => 'Nueva ronda';
+
+  @override
+  String get togetherOpen => 'Abrir';
+
+  @override
+  String get togetherBack => 'Atrás';
+
+  @override
+  String releaseReminderTitle(String name) {
+    return 'Sale hoy: $name';
+  }
+
+  @override
+  String get releaseReminderBody => 'Hoy sale una obra de tu lista.';
 }
