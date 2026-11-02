@@ -32,9 +32,8 @@ class TogetherResults extends ConsumerWidget {
     final CollectionItem top = winner.candidate.item;
 
     // Only the current profile's own copy has a row id that opens here.
-    VoidCallback? opener(PickCandidate c) => c.owners.contains(me)
-        ? () => openPathItem(context, c.item)
-        : null;
+    VoidCallback? opener(PickCandidate c) =>
+        c.owners.contains(me) ? () => openPathItem(context, c.item) : null;
 
     return ListView(
       padding: const EdgeInsets.all(AppSpacing.md),

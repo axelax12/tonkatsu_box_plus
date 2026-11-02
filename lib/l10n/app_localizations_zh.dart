@@ -7098,4 +7098,113 @@ class SZh extends S {
 
   @override
   String get themeTrueStories => '真实故事';
+
+  @override
+  String get togetherTitle => '一起选';
+
+  @override
+  String get togetherHint => '轮流传手机，找出大家都没看过的作品';
+
+  @override
+  String get togetherWho => '谁参加？';
+
+  @override
+  String togetherMe(String name) {
+    return '$name（你）';
+  }
+
+  @override
+  String get togetherAddGuest => '添加访客';
+
+  @override
+  String get togetherGuestName => '访客名字';
+
+  @override
+  String get togetherProfileOutdated => '请先打开一次该档案以完成更新';
+
+  @override
+  String get togetherProfileUnavailable => '无法读取该档案的库';
+
+  @override
+  String get togetherNoProfiles => '在设置中创建更多档案即可加入他们的清单；访客也可以投票。';
+
+  @override
+  String get togetherWhat => '看什么？';
+
+  @override
+  String get togetherTime => '你们有多少时间？';
+
+  @override
+  String get togetherAnyTime => '不限时长';
+
+  @override
+  String get togetherUnknownLength => '包括时长未知的作品';
+
+  @override
+  String togetherPoolCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个大家都没看过的候选',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get togetherStart => '开始投票';
+
+  @override
+  String togetherPassTo(String name) {
+    return '把手机交给 $name';
+  }
+
+  @override
+  String get togetherPassHint => '投票结果在最后才会揭晓。';
+
+  @override
+  String togetherReady(String name) {
+    return '我是 $name，开始吧';
+  }
+
+  @override
+  String get togetherVoteNo => '不要';
+
+  @override
+  String get togetherVoteMaybe => '也行';
+
+  @override
+  String get togetherVoteYes => '要！';
+
+  @override
+  String togetherCardProgress(int current, int total) {
+    return '$current / $total';
+  }
+
+  @override
+  String togetherOwnedBy(String names) {
+    return '在 $names 的清单中';
+  }
+
+  @override
+  String get togetherWinner => '大家选择了';
+
+  @override
+  String get togetherUnanimous => '全员同意';
+
+  @override
+  String togetherScore(int yes, int no) {
+    return '$yes 赞成 · $no 反对';
+  }
+
+  @override
+  String get togetherVoteAgain => '重新投票';
+
+  @override
+  String get togetherNewRound => '新一轮';
+
+  @override
+  String get togetherOpen => '打开';
+
+  @override
+  String get togetherBack => '返回';
 }

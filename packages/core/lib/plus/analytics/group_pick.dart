@@ -147,8 +147,7 @@ abstract final class GroupPick {
     Map<String, Map<String, Vote>> votesByVoter,
   ) {
     final List<PickResult> results = <PickResult>[
-      for (final PickCandidate c in ballot)
-        _resultFor(c, votesByVoter.values),
+      for (final PickCandidate c in ballot) _resultFor(c, votesByVoter.values),
     ];
     results.sort((PickResult a, PickResult b) {
       if (a.points != b.points) return b.points.compareTo(a.points);

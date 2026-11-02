@@ -8,15 +8,18 @@ import 'package:core/testing/builders.dart';
 import 'package:test/test.dart';
 
 void main() {
-  CollectionItem movie(int rowId, int externalId, ItemStatus status,
-          {int? runtime}) =>
-      createTestCollectionItem(
-        id: rowId,
-        mediaType: MediaType.movie,
-        externalId: externalId,
-        status: status,
-        movie: createTestMovie(tmdbId: externalId, runtime: runtime),
-      );
+  CollectionItem movie(
+    int rowId,
+    int externalId,
+    ItemStatus status, {
+    int? runtime,
+  }) => createTestCollectionItem(
+    id: rowId,
+    mediaType: MediaType.movie,
+    externalId: externalId,
+    status: status,
+    movie: createTestMovie(tmdbId: externalId, runtime: runtime),
+  );
 
   CollectionItem game(int rowId, int externalId) => createTestCollectionItem(
     id: rowId,
@@ -51,9 +54,8 @@ void main() {
         GroupPick.keyOf(movie(0, 20, ItemStatus.planned)),
         GroupPick.keyOf(movie(0, 50, ItemStatus.planned)),
       });
-      final PickCandidate? shared = byKey[GroupPick.keyOf(
-        movie(0, 10, ItemStatus.planned),
-      )];
+      final PickCandidate? shared =
+          byKey[GroupPick.keyOf(movie(0, 10, ItemStatus.planned))];
       expect(shared?.owners, <String>{'me', 'ada'});
       expect(shared?.item.id, 1, reason: 'the first library wins');
       expect(shared?.minutes, 90);
@@ -81,10 +83,11 @@ void main() {
         filters: const PickFilters(maxMinutes: 120),
         gameSecondsById: const <int, int>{99: 3600},
       );
-      expect(
-        evening.map((PickCandidate c) => c.item.id).toSet(),
-        <int>{1, 3, 4},
-      );
+      expect(evening.map((PickCandidate c) => c.item.id).toSet(), <int>{
+        1,
+        3,
+        4,
+      });
       final List<PickCandidate> known = GroupPick.candidates(
         libraries: libraries,
         filters: const PickFilters(
@@ -165,13 +168,21 @@ void main() {
       expect(results.first.no, 1);
       expect(results.first.unanimousFor(2), isFalse);
       expect(
-        PickResult(candidate: c('z', 1), points: 4, yes: 2, no: 0)
-            .unanimousFor(2),
+        PickResult(
+          candidate: c('z', 1),
+          points: 4,
+          yes: 2,
+          no: 0,
+        ).unanimousFor(2),
         isTrue,
       );
       expect(
-        PickResult(candidate: c('z', 1), points: 0, yes: 0, no: 0)
-            .unanimousFor(0),
+        PickResult(
+          candidate: c('z', 1),
+          points: 0,
+          yes: 0,
+          no: 0,
+        ).unanimousFor(0),
         isFalse,
       );
     });

@@ -13105,6 +13105,186 @@ abstract class S {
   /// In en, this message translates to:
   /// **'True stories'**
   String get themeTrueStories;
+
+  /// No description provided for @togetherTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick together'**
+  String get togetherTitle;
+
+  /// No description provided for @togetherHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pass the phone around and find something nobody has seen yet'**
+  String get togetherHint;
+
+  /// No description provided for @togetherWho.
+  ///
+  /// In en, this message translates to:
+  /// **'Who is in?'**
+  String get togetherWho;
+
+  /// No description provided for @togetherMe.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} (you)'**
+  String togetherMe(String name);
+
+  /// No description provided for @togetherAddGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a guest'**
+  String get togetherAddGuest;
+
+  /// No description provided for @togetherGuestName.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest name'**
+  String get togetherGuestName;
+
+  /// No description provided for @togetherProfileOutdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Open this profile once to update it'**
+  String get togetherProfileOutdated;
+
+  /// No description provided for @togetherProfileUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This profile\'s library cannot be read'**
+  String get togetherProfileUnavailable;
+
+  /// No description provided for @togetherNoProfiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Create more profiles in Settings to bring their lists in; guests can vote too.'**
+  String get togetherNoProfiles;
+
+  /// No description provided for @togetherWhat.
+  ///
+  /// In en, this message translates to:
+  /// **'What?'**
+  String get togetherWhat;
+
+  /// No description provided for @togetherTime.
+  ///
+  /// In en, this message translates to:
+  /// **'How much time do you have?'**
+  String get togetherTime;
+
+  /// No description provided for @togetherAnyTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Any length'**
+  String get togetherAnyTime;
+
+  /// No description provided for @togetherUnknownLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Include works with unknown length'**
+  String get togetherUnknownLength;
+
+  /// No description provided for @togetherPoolCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Nothing nobody has seen yet} =1{1 candidate nobody has seen yet} other{{count} candidates nobody has seen yet}}'**
+  String togetherPoolCount(int count);
+
+  /// No description provided for @togetherStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start voting'**
+  String get togetherStart;
+
+  /// No description provided for @togetherPassTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Pass the phone to {name}'**
+  String togetherPassTo(String name);
+
+  /// No description provided for @togetherPassHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Votes stay secret until the end.'**
+  String get togetherPassHint;
+
+  /// No description provided for @togetherReady.
+  ///
+  /// In en, this message translates to:
+  /// **'I am {name}, let us go'**
+  String togetherReady(String name);
+
+  /// No description provided for @togetherVoteNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get togetherVoteNo;
+
+  /// No description provided for @togetherVoteMaybe.
+  ///
+  /// In en, this message translates to:
+  /// **'Maybe'**
+  String get togetherVoteMaybe;
+
+  /// No description provided for @togetherVoteYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes!'**
+  String get togetherVoteYes;
+
+  /// No description provided for @togetherCardProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} / {total}'**
+  String togetherCardProgress(int current, int total);
+
+  /// No description provided for @togetherOwnedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'On the list of {names}'**
+  String togetherOwnedBy(String names);
+
+  /// No description provided for @togetherWinner.
+  ///
+  /// In en, this message translates to:
+  /// **'The group picked'**
+  String get togetherWinner;
+
+  /// No description provided for @togetherUnanimous.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone said yes'**
+  String get togetherUnanimous;
+
+  /// No description provided for @togetherScore.
+  ///
+  /// In en, this message translates to:
+  /// **'{yes} yes · {no} no'**
+  String togetherScore(int yes, int no);
+
+  /// No description provided for @togetherVoteAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Vote again'**
+  String get togetherVoteAgain;
+
+  /// No description provided for @togetherNewRound.
+  ///
+  /// In en, this message translates to:
+  /// **'New round'**
+  String get togetherNewRound;
+
+  /// No description provided for @togetherOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get togetherOpen;
+
+  /// No description provided for @togetherBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get togetherBack;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

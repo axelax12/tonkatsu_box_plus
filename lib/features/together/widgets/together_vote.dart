@@ -113,9 +113,7 @@ class TogetherBallotCard extends ConsumerWidget {
               ),
             ),
           ),
-        ColoredBox(
-          color: AppColors.background.withValues(alpha: _scrimAlpha),
-        ),
+        ColoredBox(color: AppColors.background.withValues(alpha: _scrimAlpha)),
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(AppSpacing.md),

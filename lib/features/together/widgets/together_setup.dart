@@ -79,8 +79,8 @@ class TogetherSetup extends ConsumerWidget {
 
     String? accessNote(String id) => switch (pool?.access[id]) {
       LibraryAccess.outdated => l.togetherProfileOutdated,
-      LibraryAccess.missing || LibraryAccess.failed =>
-        l.togetherProfileUnavailable,
+      LibraryAccess.missing ||
+      LibraryAccess.failed => l.togetherProfileUnavailable,
       LibraryAccess.ready || null => null,
     };
 
@@ -102,8 +102,8 @@ class TogetherSetup extends ConsumerWidget {
               FilterChip(
                 key: ValueKey<String>(p.id),
                 label: Text(p.name),
-                avatar: state.profileIds.contains(p.id) &&
-                        accessNote(p.id) != null
+                avatar:
+                    state.profileIds.contains(p.id) && accessNote(p.id) != null
                     ? Icon(
                         Icons.warning_amber,
                         size: 16,

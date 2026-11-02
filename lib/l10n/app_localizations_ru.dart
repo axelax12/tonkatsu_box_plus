@@ -7558,4 +7558,122 @@ class SRu extends S {
 
   @override
   String get themeTrueStories => 'Реальные истории';
+
+  @override
+  String get togetherTitle => 'Выбираем вместе';
+
+  @override
+  String get togetherHint =>
+      'Передавайте телефон по кругу и найдите то, что никто ещё не видел';
+
+  @override
+  String get togetherWho => 'Кто участвует?';
+
+  @override
+  String togetherMe(String name) {
+    return '$name (вы)';
+  }
+
+  @override
+  String get togetherAddGuest => 'Добавить гостя';
+
+  @override
+  String get togetherGuestName => 'Имя гостя';
+
+  @override
+  String get togetherProfileOutdated =>
+      'Откройте этот профиль один раз, чтобы обновить его';
+
+  @override
+  String get togetherProfileUnavailable =>
+      'Библиотеку этого профиля не удалось прочитать';
+
+  @override
+  String get togetherNoProfiles =>
+      'Создайте другие профили в настройках, чтобы добавить их списки; гости тоже могут голосовать.';
+
+  @override
+  String get togetherWhat => 'Что?';
+
+  @override
+  String get togetherTime => 'Сколько у вас времени?';
+
+  @override
+  String get togetherAnyTime => 'Любая длина';
+
+  @override
+  String get togetherUnknownLength =>
+      'Включать произведения с неизвестной длительностью';
+
+  @override
+  String togetherPoolCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count варианта, которые никто не видел',
+      many: '$count вариантов, которые никто не видел',
+      few: '$count варианта, которые никто не видел',
+      one: '1 вариант, который никто не видел',
+      zero: 'Нет ничего, что никто не видел',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get togetherStart => 'Начать голосование';
+
+  @override
+  String togetherPassTo(String name) {
+    return 'Передайте телефон: $name';
+  }
+
+  @override
+  String get togetherPassHint => 'Голоса скрыты до самого конца.';
+
+  @override
+  String togetherReady(String name) {
+    return 'Это я, $name, поехали';
+  }
+
+  @override
+  String get togetherVoteNo => 'Нет';
+
+  @override
+  String get togetherVoteMaybe => 'Может быть';
+
+  @override
+  String get togetherVoteYes => 'Да!';
+
+  @override
+  String togetherCardProgress(int current, int total) {
+    return '$current / $total';
+  }
+
+  @override
+  String togetherOwnedBy(String names) {
+    return 'В списке: $names';
+  }
+
+  @override
+  String get togetherWinner => 'Группа выбрала';
+
+  @override
+  String get togetherUnanimous => 'Все сказали «да»';
+
+  @override
+  String togetherScore(int yes, int no) {
+    return '$yes да · $no нет';
+  }
+
+  @override
+  String get togetherVoteAgain => 'Переголосовать';
+
+  @override
+  String get togetherNewRound => 'Новый раунд';
+
+  @override
+  String get togetherOpen => 'Открыть';
+
+  @override
+  String get togetherBack => 'Назад';
 }

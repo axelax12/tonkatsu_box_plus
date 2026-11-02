@@ -33,23 +33,22 @@ void main() {
     ],
   );
 
-  List<Override> overrides({Map<String, LibraryAccess>? access}) =>
-      <Override>[
-        profilesDataProvider.overrideWith((Ref ref) => profiles),
-        togetherLibrariesProvider.overrideWith(
-          (Ref ref) async => TogetherLibraries(
-            libraries: <String, List<CollectionItem>>{
-              'me': <CollectionItem>[
-                film(1, 'Alpha', 90, ItemStatus.planned),
-                film(2, 'Beta', 100, ItemStatus.notStarted),
-                film(3, 'Seen', 80, ItemStatus.completed),
-              ],
-            },
-            access: access ?? <String, LibraryAccess>{'me': LibraryAccess.ready},
-            gameSecondsById: const <int, int>{},
-          ),
-        ),
-      ];
+  List<Override> overrides({Map<String, LibraryAccess>? access}) => <Override>[
+    profilesDataProvider.overrideWith((Ref ref) => profiles),
+    togetherLibrariesProvider.overrideWith(
+      (Ref ref) async => TogetherLibraries(
+        libraries: <String, List<CollectionItem>>{
+          'me': <CollectionItem>[
+            film(1, 'Alpha', 90, ItemStatus.planned),
+            film(2, 'Beta', 100, ItemStatus.notStarted),
+            film(3, 'Seen', 80, ItemStatus.completed),
+          ],
+        },
+        access: access ?? <String, LibraryAccess>{'me': LibraryAccess.ready},
+        gameSecondsById: const <int, int>{},
+      ),
+    ),
+  ];
 
   void phone(WidgetTester tester) {
     tester.view.physicalSize = const Size(360, 640);
@@ -61,7 +60,9 @@ void main() {
     while (find.byType(TogetherBallotCard).evaluate().isNotEmpty) {
       final bool isFavourite = find.text(favourite).evaluate().isNotEmpty;
       await tester.tap(
-        find.byIcon(isFavourite ? Icons.favorite : Icons.thumb_down_alt_outlined),
+        find.byIcon(
+          isFavourite ? Icons.favorite : Icons.thumb_down_alt_outlined,
+        ),
       );
       await tester.pumpAndSettle();
     }

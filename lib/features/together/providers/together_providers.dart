@@ -179,11 +179,10 @@ class TogetherController extends AutoDisposeNotifier<TogetherState> {
     final Voter? voter = state.currentVoter;
     final PickCandidate? card = state.currentCard;
     if (voter == null || card == null) return;
-    final Map<String, Map<String, Vote>> votes =
-        <String, Map<String, Vote>>{
-          ...state.votes,
-          voter.id: <String, Vote>{...?state.votes[voter.id], card.key: vote},
-        };
+    final Map<String, Map<String, Vote>> votes = <String, Map<String, Vote>>{
+      ...state.votes,
+      voter.id: <String, Vote>{...?state.votes[voter.id], card.key: vote},
+    };
     final int nextCard = state.cardIndex + 1;
     if (nextCard < state.ballot.length) {
       state = state.copyWith(votes: votes, cardIndex: nextCard);

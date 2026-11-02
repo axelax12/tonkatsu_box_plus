@@ -7440,4 +7440,118 @@ class SEn extends S {
 
   @override
   String get themeTrueStories => 'True stories';
+
+  @override
+  String get togetherTitle => 'Pick together';
+
+  @override
+  String get togetherHint =>
+      'Pass the phone around and find something nobody has seen yet';
+
+  @override
+  String get togetherWho => 'Who is in?';
+
+  @override
+  String togetherMe(String name) {
+    return '$name (you)';
+  }
+
+  @override
+  String get togetherAddGuest => 'Add a guest';
+
+  @override
+  String get togetherGuestName => 'Guest name';
+
+  @override
+  String get togetherProfileOutdated => 'Open this profile once to update it';
+
+  @override
+  String get togetherProfileUnavailable =>
+      'This profile\'s library cannot be read';
+
+  @override
+  String get togetherNoProfiles =>
+      'Create more profiles in Settings to bring their lists in; guests can vote too.';
+
+  @override
+  String get togetherWhat => 'What?';
+
+  @override
+  String get togetherTime => 'How much time do you have?';
+
+  @override
+  String get togetherAnyTime => 'Any length';
+
+  @override
+  String get togetherUnknownLength => 'Include works with unknown length';
+
+  @override
+  String togetherPoolCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count candidates nobody has seen yet',
+      one: '1 candidate nobody has seen yet',
+      zero: 'Nothing nobody has seen yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get togetherStart => 'Start voting';
+
+  @override
+  String togetherPassTo(String name) {
+    return 'Pass the phone to $name';
+  }
+
+  @override
+  String get togetherPassHint => 'Votes stay secret until the end.';
+
+  @override
+  String togetherReady(String name) {
+    return 'I am $name, let us go';
+  }
+
+  @override
+  String get togetherVoteNo => 'No';
+
+  @override
+  String get togetherVoteMaybe => 'Maybe';
+
+  @override
+  String get togetherVoteYes => 'Yes!';
+
+  @override
+  String togetherCardProgress(int current, int total) {
+    return '$current / $total';
+  }
+
+  @override
+  String togetherOwnedBy(String names) {
+    return 'On the list of $names';
+  }
+
+  @override
+  String get togetherWinner => 'The group picked';
+
+  @override
+  String get togetherUnanimous => 'Everyone said yes';
+
+  @override
+  String togetherScore(int yes, int no) {
+    return '$yes yes · $no no';
+  }
+
+  @override
+  String get togetherVoteAgain => 'Vote again';
+
+  @override
+  String get togetherNewRound => 'New round';
+
+  @override
+  String get togetherOpen => 'Open';
+
+  @override
+  String get togetherBack => 'Back';
 }

@@ -7546,4 +7546,119 @@ class SFr extends S {
 
   @override
   String get themeTrueStories => 'Histoires vraies';
+
+  @override
+  String get togetherTitle => 'Choisir ensemble';
+
+  @override
+  String get togetherHint =>
+      'Faites tourner le téléphone et trouvez ce que personne n\'a encore vu';
+
+  @override
+  String get togetherWho => 'Qui participe ?';
+
+  @override
+  String togetherMe(String name) {
+    return '$name (vous)';
+  }
+
+  @override
+  String get togetherAddGuest => 'Ajouter un invité';
+
+  @override
+  String get togetherGuestName => 'Nom de l\'invité';
+
+  @override
+  String get togetherProfileOutdated =>
+      'Ouvrez ce profil une fois pour le mettre à jour';
+
+  @override
+  String get togetherProfileUnavailable =>
+      'Impossible de lire la bibliothèque de ce profil';
+
+  @override
+  String get togetherNoProfiles =>
+      'Créez d\'autres profils dans les Réglages pour ajouter leurs listes ; les invités votent aussi.';
+
+  @override
+  String get togetherWhat => 'Quoi ?';
+
+  @override
+  String get togetherTime => 'Combien de temps avez-vous ?';
+
+  @override
+  String get togetherAnyTime => 'Toute durée';
+
+  @override
+  String get togetherUnknownLength => 'Inclure les œuvres de durée inconnue';
+
+  @override
+  String togetherPoolCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count candidats que personne n\'a vus',
+      one: '1 candidat que personne n\'a vu',
+      zero: 'Rien que personne n\'ait vu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get togetherStart => 'Lancer le vote';
+
+  @override
+  String togetherPassTo(String name) {
+    return 'Passez le téléphone à $name';
+  }
+
+  @override
+  String get togetherPassHint => 'Les votes restent secrets jusqu\'à la fin.';
+
+  @override
+  String togetherReady(String name) {
+    return 'C\'est moi, $name, on y va';
+  }
+
+  @override
+  String get togetherVoteNo => 'Non';
+
+  @override
+  String get togetherVoteMaybe => 'Peut-être';
+
+  @override
+  String get togetherVoteYes => 'Oui !';
+
+  @override
+  String togetherCardProgress(int current, int total) {
+    return '$current / $total';
+  }
+
+  @override
+  String togetherOwnedBy(String names) {
+    return 'Dans la liste de $names';
+  }
+
+  @override
+  String get togetherWinner => 'Le groupe a choisi';
+
+  @override
+  String get togetherUnanimous => 'Tout le monde a dit oui';
+
+  @override
+  String togetherScore(int yes, int no) {
+    return '$yes oui · $no non';
+  }
+
+  @override
+  String get togetherVoteAgain => 'Revoter';
+
+  @override
+  String get togetherNewRound => 'Nouvelle manche';
+
+  @override
+  String get togetherOpen => 'Ouvrir';
+
+  @override
+  String get togetherBack => 'Retour';
 }
