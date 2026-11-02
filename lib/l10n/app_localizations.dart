@@ -12845,7 +12845,7 @@ abstract class S {
   /// No description provided for @pathPickerSuggested.
   ///
   /// In en, this message translates to:
-  /// **'Matching the name'**
+  /// **'Suggested for this path'**
   String get pathPickerSuggested;
 
   /// No description provided for @pathPickerSelectAll.
