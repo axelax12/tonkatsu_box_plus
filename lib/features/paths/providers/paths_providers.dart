@@ -1,5 +1,6 @@
 import 'package:core/models/collection_item.dart';
 import 'package:core/models/media_type.dart';
+import 'package:core/plus/analytics/path_exchange.dart';
 import 'package:core/plus/analytics/path_walk.dart';
 import 'package:core/plus/analytics/theme_index.dart';
 import 'package:core/plus/database/aspects_dao.dart';
@@ -233,6 +234,54 @@ class PathsController {
     await _dao.addItems(saved.id, PathSuggestions.releaseOrder(items));
     _ref.invalidate(pathsProvider);
     return saved;
+  }
+
+  /// Recreates a shared path from the works this library holds; returns the
+  /// new path and the stops left out.
+  Future<({MediaPath path, List<SharedStop> missing})> importShared(
+    SharedPath shared,
+  ) async {
+    final List<CollectionItem> library = await _ref.read(
+      libraryItemsProvider.future,
+    );
+    final PathMatch match = PathExchange.match(shared, library);
+    final DateTime now = DateTime.now();
+    final MediaPath saved = await _dao.savePath(
+      MediaPath(
+        id: 0,
+        name: shared.name,
+        kind: shared.kind,
+        description: shared.description,
+        defaultOrder: shared.defaultOrder,
+        createdAt: now,
+        updatedAt: now,
+      ),
+    );
+    await _dao.insertEntries(<PathEntry>[
+      for (final ({SharedStop stop, CollectionItem item}) f in match.found)
+        PathEntry(
+          id: 0,
+          pathId: saved.id,
+          itemId: f.item.id,
+          releasePos: f.stop.releasePos,
+          chronoPos: f.stop.chronoPos,
+          recommendedPos: f.stop.recommendedPos,
+          optional: f.stop.optional,
+          spoiler: f.stop.spoiler,
+          note: f.stop.note,
+          aspect: f.stop.aspect,
+        ),
+    ]);
+    _ref.invalidate(pathsProvider);
+    return (path: saved, missing: match.missing);
+  }
+
+  Future<String> exportText(MediaPath path) async {
+    final List<PathEntry> entries = await _dao.getEntries(path.id);
+    final Map<int, CollectionItem> items = await _ref.read(
+      libraryByIdProvider.future,
+    );
+    return PathExchange.encode(path, entries, items);
   }
 
   Future<void> delete(int pathId) async {

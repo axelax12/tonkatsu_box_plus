@@ -3051,5 +3051,12 @@
   "quickStatusRemember": "以后添加的作品都用这个",
   "quickStatusAction": "状态",
   "settingsAdvanced": "高级",
-  "settingsAdvancedHint": "导入、存储、集成和调试"
+  "settingsAdvancedHint": "导入、存储、集成和调试",
+  "pathShare": "复制以分享",
+  "pathShared": "已复制。粘贴到任意聊天中，可用“导入”打开。",
+  "pathImport": "导入路线",
+  "pathImportHint": "粘贴别人分享给你的文本",
+  "pathImportPaste": "粘贴",
+  "pathImportInvalid": "这不是分享的路线。",
+  "pathImportMissing": "{count, plural, other{库中缺少 {count} 部：{titles}}}"
 }

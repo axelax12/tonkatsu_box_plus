@@ -91,6 +91,7 @@ import '../../../shared/keyboard/keyboard_shortcuts.dart';
 import '../../../shared/constants/collection_item_ui.dart';
 import '../helpers/episode_undo.dart';
 import '../../../shared/keyboard/shortcut_helper.dart';
+import '../../cover_colors/cover_accent.dart';
 import '../../item_panel/plus_item_panel.dart';
 
 /// Unified detail screen for any collection item, dispatched off
@@ -731,8 +732,13 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
     final String displayName = ref.displayNameOf(item);
     _currentItemName = displayName;
     _updateDiscordPresence(item);
+    final ItemDetailMediaConfig base = ItemDetailMediaConfig.from(item, context);
+    // Until the cover is sampled (and off the phone) the media colour stays.
+    final Color? coverAccent = ref
+        .watch(coverAccentProvider(base.coverUrl ?? ''))
+        .valueOrNull;
     final ItemDetailMediaConfig config =
-        ItemDetailMediaConfig.from(item, context);
+        coverAccent == null ? base : base.withAccent(coverAccent);
 
     return wrapWithScreenShortcuts(
       bindings: _buildScreenShortcuts(item),

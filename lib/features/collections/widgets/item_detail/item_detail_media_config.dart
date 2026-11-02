@@ -121,6 +121,35 @@ class ItemDetailMediaConfig {
   final Anime? anime;
   final Book? book;
   final AudioItem? audioItem;
+
+  /// Same page with the accent taken from the work's own cover.
+  ItemDetailMediaConfig withAccent(Color accent) {
+    return ItemDetailMediaConfig(
+      coverUrl: coverUrl,
+      placeholderIcon: placeholderIcon,
+      source: source,
+      typeIcon: typeIcon,
+      typeLabel: typeLabel,
+      cacheImageType: cacheImageType,
+      cacheImageId: cacheImageId,
+      accentColor: accent,
+      infoChips: infoChips,
+      description: description,
+      hasEpisodeTracker: hasEpisodeTracker,
+      hasMangaProgress: hasMangaProgress,
+      hasAnimeProgress: hasAnimeProgress,
+      hasBookProgress: hasBookProgress,
+      hasAudioTracker: hasAudioTracker,
+      hasCustomProgress: hasCustomProgress,
+      externalUrl: externalUrl,
+      backdropUrl: backdropUrl,
+      tvShow: tvShow,
+      manga: manga,
+      anime: anime,
+      book: book,
+      audioItem: audioItem,
+    );
+  }
 }
 
 String _typeLabel(CollectionItem item, BuildContext context) {

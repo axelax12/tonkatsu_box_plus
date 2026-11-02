@@ -387,6 +387,23 @@ void main() {
       expect(await dao.getEntries(path.id), hasLength(2));
       await dao.removeEntry(entries[1].id);
       expect(await dao.getAllEntries(), hasLength(1));
+      await dao.insertEntries(<PathEntry>[]);
+      await dao.insertEntries(<PathEntry>[
+        PathEntry(
+          id: 42,
+          pathId: path.id,
+          itemId: c,
+          releasePos: 5,
+          chronoPos: 6,
+          recommendedPos: 7,
+          spoiler: true,
+        ),
+      ]);
+      expect(
+        (await dao.getEntries(path.id)).map((PathEntry e) => e.itemId),
+        <int>[c],
+        reason: 'the duplicate for c is ignored',
+      );
       await dao.deletePath(path.id);
       expect(await dao.getAllEntries(), isEmpty);
     });

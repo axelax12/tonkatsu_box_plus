@@ -3056,5 +3056,12 @@
   "quickStatusRemember": "Utiliser pour tout ce que j'ajoute",
   "quickStatusAction": "Statut",
   "settingsAdvanced": "Avancé",
-  "settingsAdvancedHint": "Imports, stockage, intégrations et débogage"
+  "settingsAdvancedHint": "Imports, stockage, intégrations et débogage",
+  "pathShare": "Copier pour partager",
+  "pathShared": "Copié. Collez-le dans n'importe quelle discussion ; il s'ouvre avec Importer.",
+  "pathImport": "Importer un parcours",
+  "pathImportHint": "Collez le texte qu'on vous a partagé",
+  "pathImportPaste": "Coller",
+  "pathImportInvalid": "Ce n'est pas un parcours partagé.",
+  "pathImportMissing": "{count, plural, =0{Toutes les œuvres sont dans votre bibliothèque.} =1{Absente de votre bibliothèque : {titles}} other{{count} absentes de votre bibliothèque : {titles}}}"
 }

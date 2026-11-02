@@ -84,8 +84,8 @@ Quasi tutto il resto si appoggia qui: ore giocate, riepilogo annuale, widget con
 
 Stato: percorsi con i tre ordini, tappe facoltative e spoiler, suggerimenti per titolo dalla libreria,
 sezione nella scheda opera ed esplorazione per aspetto (generi più tag personali), proposte dei giochi
-della stessa serie da franchise e collezioni IGDB. Da fare: collezioni TMDB, relazioni AniList ed
-esportazione dei percorsi.
+della stessa serie da franchise e collezioni IGDB, condivisione dei percorsi come testo da incollare in
+chat e importazione. Da fare: collezioni TMDB e relazioni AniList.
 
 ## Fase 7 — Insieme ✅ (club esclusi)
 
@@ -110,7 +110,8 @@ sfondi sfocati presi dalla copertina, colori che si adattano all'opera. Risolve 
 Stato (prima tranche): home "Oggi" su telefono con opera in corso in primo piano (copertina sfocata,
 "dove ero rimasto", avvio sessione), obiettivi, prossime tappe, uscite, backlog e liste, con sezioni da
 ordinare e nascondere; nella scheda opera le sezioni del fork riunite in una riga di schede; stato
-predefinito per le nuove aggiunte e scorciatoia dopo l'aggiunta; impostazioni rare raccolte in "Avanzate".
+predefinito per le nuove aggiunte e scorciatoia dopo l'aggiunta; impostazioni rare raccolte in "Avanzate";
+colore d'accento della scheda preso dalla copertina; copertina sfocata come sfondo per le opere senza artwork.
 
 ## Come lavoriamo
 
