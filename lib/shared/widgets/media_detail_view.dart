@@ -55,6 +55,7 @@ class MediaDetailView extends ConsumerStatefulWidget {
     this.coverUrl,
     this.externalUrl,
     this.backdropUrl,
+    this.backdropBlurred = false,
     this.infoChips = const <MediaDetailChip>[],
     this.description,
     this.statusWidget,
@@ -95,6 +96,9 @@ class MediaDetailView extends ConsumerStatefulWidget {
   final String? coverUrl;
   final String? externalUrl;
   final String? backdropUrl;
+
+  /// True when [backdropUrl] is the cover filling in for missing artwork.
+  final bool backdropBlurred;
   final IconData placeholderIcon;
   final DataSource source;
   final IconData typeIcon;
@@ -340,7 +344,11 @@ class _MediaDetailViewState extends ConsumerState<MediaDetailView> {
           );
 
     final Widget withBackdrop = widget.backdropUrl != null
-        ? MediaDetailBackdrop(imageUrl: widget.backdropUrl!, child: content)
+        ? MediaDetailBackdrop(
+            imageUrl: widget.backdropUrl!,
+            blurred: widget.backdropBlurred,
+            child: content,
+          )
         : content;
 
     if (widget.embedded) return withBackdrop;

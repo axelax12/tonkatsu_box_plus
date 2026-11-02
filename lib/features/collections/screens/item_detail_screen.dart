@@ -809,7 +809,9 @@ class _ItemDetailScreenState extends ConsumerState<ItemDetailScreen> {
       title: displayName,
       coverUrl: config.coverUrl,
       externalUrl: config.externalUrl,
-      backdropUrl: config.backdropUrl,
+      // On the phone every work gets a backdrop: its art, else its cover.
+      backdropUrl: config.backdropUrl ?? (kIsMobile ? config.coverUrl : null),
+      backdropBlurred: config.backdropUrl == null,
       placeholderIcon: config.placeholderIcon,
       source: config.source,
       typeIcon: config.typeIcon,
