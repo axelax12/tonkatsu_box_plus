@@ -55,11 +55,12 @@ jobs:
             (cd packages/core && dart run tool/generate_rpc.dart)
           } 2>&1 | tee -a "$REPORT_DIR/codegen.log"
 
-      # Only files this branch touched, so upstream files keep their own layout.
-      - name: Format changed Dart files
+      # Only files this branch added: reformatting an upstream file would turn
+      # every future merge from upstream into a conflict.
+      - name: Format new Dart files
         if: github.ref_name != 'main'
         run: |
-          git diff --name-only --diff-filter=ACMR origin/main...HEAD -- '*.dart' \
+          git diff --name-only --diff-filter=A origin/main...HEAD -- '*.dart' \
             | grep -v '/generated/' | grep -v '^lib/l10n/' \
             | xargs -r dart format 2>&1 | tee -a "$REPORT_DIR/codegen.log"
 
