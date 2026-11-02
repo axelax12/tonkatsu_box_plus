@@ -1,0 +1,47 @@
+Running build hooks...Running build hooks...+2262: test/database/database_opener_test.dart: openAppDatabase should refuse a database written by a newer build and leave it as is
+error Database schema v70 is newer than this build supports (v69). Update the app — the file was left untouched. during open, closing...
++2265: test/database/database_opener_test.dart: openAppDatabase should fail on v63 after a build without the guard rewound the stamp
+error Database upgrade v55 → v69 failed on migration v63
+(Music: music_albums_cache, music_tracks_cache, listened_tracks)
+Your data was not changed — the upgrade was rolled back.
+
+SqfliteFfiException(sqlite_error: 1, , SqliteException(1): while executing, table listened_tracks already exists, SQL logic error (code 1)
+  Causing statement (at position 19):       CREATE TABLE listened_tracks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        collection_id INTEGER NOT NULL,
+        album_id INTEGER NOT NULL,
+        source TEXT NOT NULL DEFAULT 'musicBrainz',
+        disc_number INTEGER NOT NULL,
+        track_number INTEGER NOT NULL,
+        listened_at INTEGER,
+        FOREIGN KEY (collection_id) REFERENCES collections(id)
+          ON DELETE CASCADE,
+        UNIQUE(collection_id, source, album_id, disc_number, track_number)
+      )
+    , parameters: }) DatabaseException(SqliteException(1): while executing, table listened_tracks already exists, SQL logic error (code 1)
+  Causing statement (at position 19):       CREATE TABLE listened_tracks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        collection_id INTEGER NOT NULL,
+        album_id INTEGER NOT NULL,
+        source TEXT NOT NULL DEFAULT 'musicBrainz',
+        disc_number INTEGER NOT NULL,
+        track_number INTEGER NOT NULL,
+        listened_at INTEGER,
+        FOREIGN KEY (collection_id) REFERENCES collections(id)
+          ON DELETE CASCADE,
+        UNIQUE(collection_id, source, album_id, disc_number, track_number)
+      )
+    , parameters: ) sql '      CREATE TABLE listened_tracks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        collection_id INTEGER NOT NULL,
+        album_id INTEGER NOT NULL,
+        source TEXT NOT NULL DEFAULT 'musicBrainz',
+        disc_number INTEGER NOT NULL,
+        track_number INTEGER NOT NULL,
+        listened_at INTEGER,
+        FOREIGN KEY (collection_id) REFERENCES collections(id)
+          ON DELETE CASCADE,
+        UNIQUE(collection_id, source, album_id, disc_number, track_number)
+      )
+    ' {details: {database: {path: /tmp/opener_testBTJVMJ/test.db, id: 12, readOnly: false, singleInstance: true}}} during open, closing...
++2412: All tests passed!
