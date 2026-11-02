@@ -1,5 +1,6 @@
 import '../../models/collection_item.dart';
 import '../../models/item_status.dart';
+import '../../models/media_type.dart';
 import '../models/media_path.dart';
 import 'time_estimator.dart';
 
@@ -171,6 +172,35 @@ class PathSuggestions {
     final DateTime? db = b.releaseDate;
     if (da != null && db != null) return da.compareTo(db);
     return a.itemName.toLowerCase().compareTo(b.itemName.toLowerCase());
+  }
+
+  /// Library games sharing an IGDB franchise or collection with a game
+  /// already on the path; [tokens] maps a game's IGDB id to its series.
+  static List<CollectionItem> bySeries({
+    required Iterable<CollectionItem> seeds,
+    required Iterable<CollectionItem> library,
+    required Map<int, Set<String>> tokens,
+    Set<int> exclude = const <int>{},
+    int limit = defaultLimit,
+  }) {
+    final Set<String> wanted = <String>{
+      for (final CollectionItem s in seeds)
+        if (s.mediaType == MediaType.game) ...?tokens[s.externalId],
+    };
+    if (wanted.isEmpty) return const <CollectionItem>[];
+    final Map<int, CollectionItem> hits = <int, CollectionItem>{};
+    for (final CollectionItem item in library) {
+      if (item.mediaType != MediaType.game || exclude.contains(item.id)) {
+        continue;
+      }
+      final Set<String>? own = tokens[item.externalId];
+      if (own != null && own.any(wanted.contains)) {
+        // One entry per game even when it sits in several collections.
+        hits.putIfAbsent(item.externalId, () => item);
+      }
+    }
+    final List<CollectionItem> sorted = hits.values.toList()..sort(_byRelease);
+    return sorted.length <= limit ? sorted : sorted.sublist(0, limit);
   }
 
   /// Release order for already-chosen items, by the same rule as suggestions.

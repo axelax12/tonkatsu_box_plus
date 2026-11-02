@@ -195,6 +195,50 @@ class IgdbGamesApi {
   }
 
   /// IGDB game id to Steam appId, for the games IGDB links to a Steam page.
+  /// Franchise and collection ids per game, as `f:<id>` / `c:<id>` tokens,
+  /// so games of one series can be matched without fetching their names.
+  Future<Map<int, Set<String>>> seriesTokensFor(List<int> gameIds) async {
+    if (gameIds.isEmpty) return <int, Set<String>>{};
+    _client.ensureCredentials();
+    try {
+      final Map<int, Set<String>> result = <int, Set<String>>{};
+      for (int offset = 0; offset < gameIds.length; offset += 500) {
+        final List<int> batch = gameIds.sublist(
+          offset,
+          offset + 500 > gameIds.length ? gameIds.length : offset + 500,
+        );
+        final Response<dynamic> response = await _client.post(
+          '/games',
+          data: 'fields franchises,collections; '
+              'where id = (${batch.join(',')}); '
+              'limit 500;',
+        );
+        if (response.statusCode != 200 || response.data == null) {
+          throw IgdbApiException(
+            'Failed to look up game series',
+            statusCode: response.statusCode,
+          );
+        }
+        for (final dynamic item in response.data as List<dynamic>) {
+          final Map<String, dynamic> map = item as Map<String, dynamic>;
+          final int? id = map['id'] as int?;
+          if (id == null) continue;
+          result[id] = <String>{
+            for (final dynamic f in (map['franchises'] as List<dynamic>?) ??
+                const <dynamic>[])
+              'f:$f',
+            for (final dynamic c in (map['collections'] as List<dynamic>?) ??
+                const <dynamic>[])
+              'c:$c',
+          };
+        }
+      }
+      return result;
+    } on DioException catch (e) {
+      throw _client.handleDioException(e, 'Failed to look up game series');
+    }
+  }
+
   Future<Map<int, String>> steamAppIdsFor(List<int> gameIds) async {
     if (gameIds.isEmpty) return <int, String>{};
     _client.ensureCredentials();

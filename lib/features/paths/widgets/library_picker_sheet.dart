@@ -10,11 +10,14 @@ import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/theme/app_typography.dart';
 import '../../../shared/widgets/media_detail/media_cover_image.dart';
 import '../../insights/providers/insights_providers.dart';
+import '../providers/paths_providers.dart';
 
-/// Picks works from the library; ones matching [pathName] are offered first.
+/// Picks works from the library; games of the same series as [pathId]'s and
+/// titles matching [pathName] are offered first.
 Future<List<CollectionItem>?> showLibraryPicker(
   BuildContext context, {
   required String pathName,
+  int? pathId,
   Set<int> exclude = const <int>{},
 }) {
   return showModalBottomSheet<List<CollectionItem>>(
@@ -33,18 +36,27 @@ Future<List<CollectionItem>?> showLibraryPicker(
         padding: EdgeInsets.only(
           bottom: MediaQuery.viewInsetsOf(sheetContext).bottom,
         ),
-        child: _LibraryPicker(pathName: pathName, exclude: exclude),
+        child: _LibraryPicker(
+          pathName: pathName,
+          pathId: pathId,
+          exclude: exclude,
+        ),
       ),
     ),
   );
 }
 
 class _LibraryPicker extends ConsumerStatefulWidget {
-  const _LibraryPicker({required this.pathName, required this.exclude});
+  const _LibraryPicker({
+    required this.pathName,
+    required this.pathId,
+    required this.exclude,
+  });
 
   static const double heightFactor = 0.92;
 
   final String pathName;
+  final int? pathId;
   final Set<int> exclude;
 
   @override
@@ -78,8 +90,24 @@ class _LibraryPickerState extends ConsumerState<_LibraryPicker> {
         if (!widget.exclude.contains(i.id)) i,
     ];
     final String query = _text.trim().toLowerCase();
+    final int? pathId = widget.pathId;
+    final List<CollectionItem> sameSeries = pathId == null
+        ? const <CollectionItem>[]
+        : ref.watch(seriesSuggestionsProvider(pathId)).valueOrNull ??
+              const <CollectionItem>[];
+    final Set<int> availableIds = <int>{
+      for (final CollectionItem i in available) i.id,
+    };
     final List<CollectionItem> suggested = query.isEmpty
-        ? PathSuggestions.byTitle(widget.pathName, available)
+        ? <CollectionItem>[
+            for (final CollectionItem i in sameSeries)
+              if (availableIds.contains(i.id)) i,
+            for (final CollectionItem i in PathSuggestions.byTitle(
+              widget.pathName,
+              available,
+            ))
+              if (!sameSeries.any((CollectionItem s) => s.id == i.id)) i,
+          ]
         : const <CollectionItem>[];
     final Set<int> suggestedIds = <int>{
       for (final CollectionItem i in suggested) i.id,

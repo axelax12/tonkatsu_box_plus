@@ -2951,7 +2951,7 @@
   "pathStateNext": "下一个",
   "pathPickerTitle": "从库中添加",
   "pathPickerSearch": "搜索你的库",
-  "pathPickerSuggested": "与名称匹配",
+  "pathPickerSuggested": "为这条路线推荐",
   "pathPickerSelectAll": "全选（{count}）",
   "pathPickerAdd": "{count, plural, =0{添加} other{添加 {count} 项}}",
   "pathPickerMissing": "不在库中？先通过搜索添加，再回来。",

@@ -3179,7 +3179,7 @@
   "pathStateNext": "Next",
   "pathPickerTitle": "Add from your library",
   "pathPickerSearch": "Search your library",
-  "pathPickerSuggested": "Matching the name",
+  "pathPickerSuggested": "Suggested for this path",
   "pathPickerSelectAll": "Select all {count}",
   "@pathPickerSelectAll": {
     "placeholders": {"count": {"type": "int"}}

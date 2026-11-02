@@ -2956,7 +2956,7 @@
   "pathStateNext": "Suivant",
   "pathPickerTitle": "Ajouter depuis votre bibliothèque",
   "pathPickerSearch": "Rechercher dans votre bibliothèque",
-  "pathPickerSuggested": "Correspondant au nom",
+  "pathPickerSuggested": "Suggestions pour ce parcours",
   "pathPickerSelectAll": "Tout sélectionner ({count})",
   "pathPickerAdd": "{count, plural, =0{Ajouter} other{Ajouter {count}}}",
   "pathPickerMissing": "Pas dans votre bibliothèque ? Ajoutez-la depuis Recherche, puis revenez.",
