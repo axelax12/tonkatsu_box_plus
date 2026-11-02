@@ -13447,6 +13447,48 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Imports, storage, integrations and debugging'**
   String get settingsAdvancedHint;
+
+  /// No description provided for @pathShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy to share'**
+  String get pathShare;
+
+  /// No description provided for @pathShared.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied. Paste it in any chat; it opens with Import.'**
+  String get pathShared;
+
+  /// No description provided for @pathImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Import a path'**
+  String get pathImport;
+
+  /// No description provided for @pathImportHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste the text someone shared with you'**
+  String get pathImportHint;
+
+  /// No description provided for @pathImportPaste.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste'**
+  String get pathImportPaste;
+
+  /// No description provided for @pathImportInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'This is not a shared path.'**
+  String get pathImportInvalid;
+
+  /// No description provided for @pathImportMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Every work was found in your library.} =1{Not in your library: {titles}} other{{count} not in your library: {titles}}}'**
+  String pathImportMissing(int count, String titles);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

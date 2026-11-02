@@ -7755,4 +7755,35 @@ class SFr extends S {
   @override
   String get settingsAdvancedHint =>
       'Imports, stockage, intégrations et débogage';
+
+  @override
+  String get pathShare => 'Copier pour partager';
+
+  @override
+  String get pathShared =>
+      'Copié. Collez-le dans n\'importe quelle discussion ; il s\'ouvre avec Importer.';
+
+  @override
+  String get pathImport => 'Importer un parcours';
+
+  @override
+  String get pathImportHint => 'Collez le texte qu\'on vous a partagé';
+
+  @override
+  String get pathImportPaste => 'Coller';
+
+  @override
+  String get pathImportInvalid => 'Ce n\'est pas un parcours partagé.';
+
+  @override
+  String pathImportMissing(int count, String titles) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count absentes de votre bibliothèque : $titles',
+      one: 'Absente de votre bibliothèque : $titles',
+      zero: 'Toutes les œuvres sont dans votre bibliothèque.',
+    );
+    return '$_temp0';
+  }
 }

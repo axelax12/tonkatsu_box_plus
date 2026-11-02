@@ -19,7 +19,8 @@ void main() {
       await tester.pumpApp(
         Builder(
           builder: (BuildContext context) => TextButton(
-            onPressed: () async => onResult(await showPathImportDialog(context)),
+            onPressed: () async =>
+                onResult(await showPathImportDialog(context)),
             child: const Text('open'),
           ),
         ),

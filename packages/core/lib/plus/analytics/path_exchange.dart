@@ -156,7 +156,10 @@ abstract final class PathExchange {
   static PathMatch match(SharedPath shared, Iterable<CollectionItem> library) {
     final Map<String, CollectionItem> byKey = <String, CollectionItem>{};
     for (final CollectionItem item in library) {
-      byKey.putIfAbsent('${item.mediaType.value}:${item.externalId}', () => item);
+      byKey.putIfAbsent(
+        '${item.mediaType.value}:${item.externalId}',
+        () => item,
+      );
     }
     final List<({SharedStop stop, CollectionItem item})> found =
         <({SharedStop stop, CollectionItem item})>[];

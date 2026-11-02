@@ -7768,4 +7768,37 @@ class SRu extends S {
 
   @override
   String get settingsAdvancedHint => 'Импорт, хранилище, интеграции и отладка';
+
+  @override
+  String get pathShare => 'Скопировать, чтобы поделиться';
+
+  @override
+  String get pathShared =>
+      'Скопировано. Вставьте в любой чат, а открыть можно через «Импорт».';
+
+  @override
+  String get pathImport => 'Импорт пути';
+
+  @override
+  String get pathImportHint => 'Вставьте текст, которым с вами поделились';
+
+  @override
+  String get pathImportPaste => 'Вставить';
+
+  @override
+  String get pathImportInvalid => 'Это не путь, которым поделились.';
+
+  @override
+  String pathImportMissing(int count, String titles) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count нет в библиотеке: $titles',
+      many: '$count нет в библиотеке: $titles',
+      few: '$count нет в библиотеке: $titles',
+      one: 'Нет в библиотеке: $titles',
+      zero: 'Все произведения есть в библиотеке.',
+    );
+    return '$_temp0';
+  }
 }

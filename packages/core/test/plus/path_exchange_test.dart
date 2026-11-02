@@ -59,10 +59,14 @@ void main() {
           recommendedPos: 2,
         ),
       ];
-      final String text = PathExchange.encode(path, entries, <int, CollectionItem>{
-        10: game(10, 500, 'Ocarina'),
-        11: game(11, 501, 'Skyward'),
-      });
+      final String text = PathExchange.encode(
+        path,
+        entries,
+        <int, CollectionItem>{
+          10: game(10, 500, 'Ocarina'),
+          11: game(11, 501, 'Skyward'),
+        },
+      );
       final SharedPath shared = PathExchange.decode(text);
       expect(shared.name, 'Zelda');
       expect(shared.description, 'Hyrule');
@@ -108,7 +112,10 @@ void main() {
       );
       expect(
         () => PathExchange.decode(
-          jsonEncode(<String, Object>{'format': PathExchange.format, 'name': ' '}),
+          jsonEncode(<String, Object>{
+            'format': PathExchange.format,
+            'name': ' ',
+          }),
         ),
         throwsA(isA<PathExchangeException>()),
       );
@@ -125,10 +132,7 @@ void main() {
       );
       expect(lenient.stops.single.mediaType, MediaType.movie);
       expect(lenient.kind, PathKind.universe);
-      expect(
-        const PathExchangeException('x').toString(),
-        contains('x'),
-      );
+      expect(const PathExchangeException('x').toString(), contains('x'));
     });
   });
 }

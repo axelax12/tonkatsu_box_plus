@@ -7646,4 +7646,35 @@ class SEn extends S {
   @override
   String get settingsAdvancedHint =>
       'Imports, storage, integrations and debugging';
+
+  @override
+  String get pathShare => 'Copy to share';
+
+  @override
+  String get pathShared =>
+      'Copied. Paste it in any chat; it opens with Import.';
+
+  @override
+  String get pathImport => 'Import a path';
+
+  @override
+  String get pathImportHint => 'Paste the text someone shared with you';
+
+  @override
+  String get pathImportPaste => 'Paste';
+
+  @override
+  String get pathImportInvalid => 'This is not a shared path.';
+
+  @override
+  String pathImportMissing(int count, String titles) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count not in your library: $titles',
+      one: 'Not in your library: $titles',
+      zero: 'Every work was found in your library.',
+    );
+    return '$_temp0';
+  }
 }
